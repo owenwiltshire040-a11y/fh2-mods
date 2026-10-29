@@ -2,7 +2,7 @@
 
 Model: 'acfl_2006_str' (CTDP's STR1 via an Assetto Corsa conversion, Sketchfab upload by Dave Love; used for
 Owen's personal mod with CTDP's permission). Scene units are 1/100 m after Sketchfab's root transforms.
-FH2 space: X across (car's left = -X), Y up, Z forward; wheel axle midpoint at Z = 0.
+FH2 space: X across (car's left = -X), Y up, Z forward; the body is centred on the donor's axle midpoint.
 """
 import numpy as np, trimesh, pickle
 SC = 100.0
@@ -38,12 +38,16 @@ YF = (C['HUB_LF'][0][1] + C['HUB_RF'][0][1]) / 2; YR = (C['HUB_LR'][0][1] + C['H
 GROUND_MODEL = ((YF - RF) + (YR - RR)) / 2
 print(f'wheelbase {ZF - ZR:.3f}  tyre radius F {RF:.3f} R {RR:.3f}  model ground {GROUND_MODEL:.3f}')
 
-GROUND_FH2 = 0.182 - 0.330           # the game's wheel centres (0.182) less the STR1's tyre radius
+# donor (Dodge Charger SRT8 2012) wheel centres in FH2 space, from its wheel animations: (x, y, z) per corner
+DONOR_WHEELS = {'HUB_LF': (-0.93, 0.149, 1.592), 'HUB_RF': (0.93, 0.149, 1.592),
+                'HUB_LR': (-0.94, 0.153, -1.418), 'HUB_RR': (0.94, 0.153, -1.418)}
+DONOR_MID_Z = (1.592 + -1.418) / 2                      # axle midpoint, +0.087: the body centres here
+GROUND_FH2 = (0.149 + 0.153) / 2 - 0.330               # the game's wheel centres less the STR1's tyre radius
 # the model sits pitched (front tyre bottoms 4 cm above the rears'): level it about the axle midpoint
 TH = -np.arctan2((YF - RF) - (YR - RR), ZF - ZR); print(f'levelling pitch {np.degrees(TH):.2f} deg')
 ROT = np.array([[1, 0, 0], [0, np.cos(TH), np.sin(TH)], [0, -np.sin(TH), np.cos(TH)]])
 PIV = np.array([0.0, GROUND_MODEL, (ZF + ZR) / 2])
-OFF = np.array([0.0, GROUND_FH2 - GROUND_MODEL, -(ZF + ZR) / 2])
+OFF = np.array([0.0, GROUND_FH2 - GROUND_MODEL, DONOR_MID_Z - (ZF + ZR) / 2])
 def to_fh2(V): V = (V - PIV) @ ROT.T + PIV; return np.stack([-V[:, 0], V[:, 1], V[:, 2]], 1) + OFF
 def nrm(N): N = N @ ROT.T; return np.stack([-N[:, 0], N[:, 1], N[:, 2]], 1)
 out = {}
@@ -56,5 +60,5 @@ for top, prims in raw.items():
         lst.append(dict(node=p['node'], mat=p['mat'], V=V, N=N, UV=UV))
     out[top] = lst
 wheels = {h: dict(centre=to_fh2(c[None])[0], radius=r) for h, (c, r) in C.items()}
-pickle.dump(dict(parts=out, wheels=wheels, ground=GROUND_FH2, wheelbase=ZF - ZR), open('str1_geo.pkl', 'wb'))
-for h, w in wheels.items(): print(h, 'FH2 wheel centre', w['centre'].round(3))
+pickle.dump(dict(parts=out, wheels=wheels, donor_wheels=DONOR_WHEELS, ground=GROUND_FH2, wheelbase=ZF - ZR), open('str1_geo.pkl', 'wb'))
+for h, w in wheels.items(): print(h, 'FH2 wheel centre', w['centre'].round(3), ' donor', DONOR_WHEELS[h])

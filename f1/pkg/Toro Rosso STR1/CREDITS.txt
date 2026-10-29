@@ -6,5 +6,5 @@ Car model, textures/livery and physics reference data:
   The model files came via an Assetto Corsa conversion ("acfl_2006_str") uploaded to Sketchfab as
   "2006 Scuderia Toro Rosso STR1" by Dave Love; the original work is CTDP's.
 Physics figures (mass, weight distribution, wheelbase, engine torque curve, gearing) from CTDP's STR1 setup files.
-Base car in FH2: 2013 Ariel Atom 500 V8 (wheels, brakes, steering column). Engine sound: Porsche Carrera GT V10.
+Base car in FH2: 2012 Dodge Charger SRT8 (wheels, brakes, steering column). Engine sound: Porsche Carrera GT V10.
 Team names, sponsor logos and trademarks belong to their owners; shown only in this private build.

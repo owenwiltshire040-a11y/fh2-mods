@@ -1,6 +1,7 @@
 """Database edits for the Toro Rosso STR1 (2006) on a copy of the game database.
 
-Donor: 2013 Ariel Atom 500 V8 (car 1651, engine 1112, drivetrain 1059). The clone gets car 3651, engine 3651,
+Donor: 2012 Dodge Charger SRT8 (car 1422, engine 882, drivetrain 830; wheelbase 3.052 m, which the game's wheel
+animations fix, so it matches the STR1's 3.05 m). The clone gets car 3651, engine 3651,
 drivetrain 3651 and a new Toro Rosso make. Physics from CTDP's STR1 setup files (personal use, with CTDP's
 permission): 605 kg with driver, 41.8 % front, 3.05 m wheelbase, Cosworth TJ2005 3.0 V10 (317 Nm at 15,500,
 ~723 hp at 16,750, limiter 16,700), 7-speed, carbon brakes, grooved slicks on 13" rims.
@@ -8,10 +9,10 @@ permission): 605 kg with driver, 41.8 % front, 3.05 m wheelbase, Cosworth TJ2005
 import sqlite3, shutil, math
 
 SRC, DST = '../car207/vanilla.slt', 'custom_str1.slt'
-CAR_OLD, CAR = 1651, 3651
-ENG_OLD, ENG = 1112, 3651
-DT_OLD, DT = 1059, 3651
-MEDIA = 'STR_STR1_06'       # same length as ARI_Atom_13, so embedded paths can be renamed in place
+CAR_OLD, CAR = 1422, 3651
+ENG_OLD, ENG = 882, 3651
+DT_OLD, DT = 830, 3651
+MEDIA = 'STR_ToroRosso_1_06'       # same length as DOD_ChargerSRT8_12, so embedded paths can be renamed in place
 
 shutil.copy(SRC, DST)
 c = sqlite3.connect(DST)
@@ -43,8 +44,8 @@ def car_remap(r):
 
 # ---------------------------------------------------------------- make: Toro Rosso
 make_id = q('select max(ID) from List_CarMake')[0][0] + 2      # (+1 is the Peugeot make of Owen's 207 mod)
-mk_hash = int(q("select MakeName from Data_Car where Id=1651")[0][0][2:]) >> 16
-car_hash = int(q("select DisplayName from Data_Car where Id=1651")[0][0][2:]) >> 16
+mk_hash = int(q("select MakeName from Data_Car where Id=?", CAR_OLD)[0][0][2:]) >> 16
+car_hash = int(q("select DisplayName from Data_Car where Id=?", CAR_OLD)[0][0][2:]) >> 16
 mk_table_hash = int(q("select DisplayName from List_CarMake where ID=107")[0][0][2:]) >> 16
 S_MAKE, S_MAKE_PROFILE, S_CARMAKE = 64651, 64652, 64653
 S_NAME, S_SHORT = 64651, 64652
@@ -75,7 +76,7 @@ for t in car_tables:
     rows = q(f'select rowid from "{t}" where ' + ' or '.join(where), *a)
     clone(t, 'rowid in (%s)' % ','.join(str(r[0]) for r in rows), [], car_remap)
 
-# stock engine and drivetrain only (no engine/drivetrain swaps for the 207)
+# stock engine and drivetrain only (no engine/drivetrain swaps)
 clone('List_UpgradeEngine', 'Ordinal=? and IsStock=1', [CAR_OLD],
       lambda r: (car_remap(r), r.update(EngineID=ENG, ManufacturerID=make_id)))
 clone('List_UpgradeDrivetrain', 'Ordinal=? and IsStock=1', [CAR_OLD],
@@ -88,12 +89,13 @@ def col_remap(r):
     r['Ordinal'] = CAR; r['ID'] = next_col; next_col += 1
 clone('Combo_Colors', 'Ordinal=?', [CAR_OLD], col_remap)
 
-# ---------------------------------------------------------------- aero: the Atom's wing/bumper aero rows are shared ids;
+# ---------------------------------------------------------------- aero: the donor's wing/bumper aero rows are shared ids;
 # give the STR1 its own (front wing + rear wing ranges, in the game's units: Atom 23-45 front, 34-91 rear)
 next_aero = q('select max(AeroPhysicsID) from List_AeroPhysics')[0][0] + 1
 def own_aero(table, key, val, front):
     global next_aero
     cs = cols('List_AeroPhysics')
+    if not q(f'select 1 from "{table}" where "{key}"=? and IsStock=1', val): print('  no stock aero row in', table)
     for rid, aid in q(f'select Id, AeroPhysicsID from "{table}" where "{key}"=? and IsStock=1', val):
         src_row = q('select * from List_AeroPhysics where AeroPhysicsID=?', aid) or \
                   q('select * from List_AeroPhysics where AeroPhysicsID=?', aid - (CAR - CAR_OLD) * 1000)   # (id shifted by the clone)
@@ -116,7 +118,7 @@ for t in [n for (n,) in q("select name from sqlite_master where type='table' and
     if 'EngineID' in cols(t):
         clone(t, 'EngineID=?', [ENG_OLD], eng_remap)
 clone('List_TorqueCurve', 'TorqueCurveID between ? and ?', [ENG_OLD * 1000, ENG_OLD * 1000 + 999], eng_remap)
-# engine sound: the Porsche Carrera GT's V10 (an engine first drawn up for racing); the Atom V8 has no V10 shriek
+# engine sound: the Porsche Carrera GT's V10 (an engine first drawn up for racing); the donor's V8 has no V10 shriek
 c.execute('''update Data_Engine set MediaName='POR_CarreraGT_03', "EngineMass-kg"=95, Compression=13.5, ConfigID=1,
              CylinderID=5, MomentInertia=0.049, GasTankSize=95, EngineGraphingMaxTorque=330, EngineGraphingMaxPower=540,
              EngineName='Cosworth TJ2005 3.0L V10' where EngineID=?''', (ENG,))
@@ -138,7 +140,7 @@ for i in range(NPTS):
     elif rpm == LIMIT + 100: vals.append(-2.63)                # the game's fuel-cut marker
     else: vals.append(0.0)
 vals[0] = vals[1] = max(vals[10], 0.05)                       # (pull-away torque below 1,000 rpm)
-donor_peak = 385.0                                            # Atom 500 V8 peak torque (Nm); its TorqueScale maps to that
+donor_peak = 637.0                                            # Charger SRT8 6.4 HEMI peak torque (470 lb-ft); its TorqueScale maps to that
 donor_scale = q('select TorqueScale from List_TorqueCurve where TorqueCurveID=?', ENG_OLD * 1000)[0][0]
 sets = ', '.join(f'v{i}=?' for i in range(NPTS))
 for (cid,) in q('select TorqueCurveID from List_TorqueCurve where TorqueCurveID between ? and ?', ENG * 1000, ENG * 1000 + 999):
@@ -184,7 +186,7 @@ c.execute('delete from List_UpgradeTireCompound where Ordinal=? and IsStock=0', 
 c.execute('''update List_UpgradeBrakes set FrontBrakeSize=11, FrontBrakeSizeMM=278.0, FrontBrakeTypeID=5, FrontCaliperPistons=6,
              RearBrakeSize=11, RearBrakeSizeMM=278.0, RearBrakeTypeID=5, RearCaliperPistons=4, GameFrictionScaleBraking=1.15
              where Ordinal=?''', (CAR,))
-# springs/dampers: F1-stiff (the Atom's 46 front -> 160/140), damping up with them
+# springs/dampers: F1-stiff (the Atom's 46 front; now 160/140), damping up with them
 for sid, rate in q('''select s.SpringDamperPhysicsID, case when s.SpringDamperPhysicsID=u.FrontSpringDamperPhysicsID then 160.0 else 140.0 end
                       from List_UpgradeSpringDamper u join List_SpringDamperPhysics s
                       on s.SpringDamperPhysicsID in (u.FrontSpringDamperPhysicsID, u.RearSpringDamperPhysicsID) where u.Ordinal=?''', CAR):
@@ -216,6 +218,7 @@ STRINGS = {'format_version': 1, 'fallback_language': 'EN', 'languages': {'EN': {
     'List_CarMake': {str(S_MAKE): 'Toro Rosso', str(S_MAKE_PROFILE): 'Scuderia Toro Rosso', str(S_CARMAKE): 'Toro Rosso'}}}}
 import json
 json.dump(STRINGS, open('strings_str1.json', 'w'), indent=1)
+print('donor TorqueScale', donor_scale, '-> STR1', donor_scale * PEAK / donor_peak)
 print('make id', make_id, 'car hash', car_hash, 'make hash', mk_hash)
 for t in car_tables + ['List_UpgradeEngine', 'List_UpgradeDrivetrain', 'Combo_Colors', 'List_AeroPhysics', 'List_TorqueCurve']:
     print(t, q(f'select count(*) from "{t}"')[0][0] - sqlite3.connect(SRC).execute(f'select count(*) from "{t}"').fetchone()[0], 'rows added')

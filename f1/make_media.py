@@ -1,10 +1,10 @@
-"""Donor car media renamed for the new car: ARI_Atom_13 -> STR_STR1_06 (same length, so every embedded path
+"""Donor car media renamed for the new car: DOD_ChargerSRT8_12 -> STR_ToroRosso_1_06 (same length, so every embedded path
 can be renamed in place). Texture references (crc32 of the lower-case path) are recomputed for renamed paths."""
 import sys, zipfile, re, struct, zlib
 sys.path.insert(0, '../fh2re'); sys.path.insert(0, '.')
 from modelbin import Bundle
 import fhmat
-OLD, NEW = 'ARI_Atom_13', 'STR_STR1_06'
+OLD, NEW = 'DOD_ChargerSRT8_12', 'STR_ToroRosso_1_06'
 VARIANTS = [(OLD, NEW), (OLD.lower(), NEW.lower()), (OLD.upper(), NEW.upper())]
 def ren_bytes(d):
     for a, b in VARIANTS: d = d.replace(a.encode(), b.encode())

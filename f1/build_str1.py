@@ -1,10 +1,11 @@
-"""Toro Rosso STR1 (2006) on the Ariel Atom 500 V8's media.
+"""Toro Rosso STR1 (2006) on the 2012 Dodge Charger SRT8's media (chosen for its 3.05 m wheelbase: the game's wheel
+animations fix the wheel positions, so the donor has to match the STR1's).
 
 Body, wings, cockpit tub, suspension arms and steering wheel: CTDP's STR1 model (via an Assetto Corsa conversion,
 Sketchfab upload 'acfl_2006_str'), used for Owen's personal mod with CTDP's permission; textures kept (livery).
-The Atom's panels, lights, engine, exhaust, suspension and cabin are dropped; its wheels, brakes and steering
-wheel bone stay and move to the STR1's positions.
-usage: build_str1.py donor_STR_STR1_06.zip out.zip
+The Charger's panels, lights, engine, exhaust, suspension and cabin are dropped; its wheels and brakes stay where
+they are and the steering wheel bone moves to the STR1's wheel.
+usage: build_str1.py donor_STR_ToroRosso_1_06.zip out.zip
 """
 import sys, zipfile, struct, pickle, uuid, re, io, json
 import numpy as np
@@ -18,9 +19,10 @@ from modelbin import Bundle
 import swatch, fhmat
 
 SRC, OUT = sys.argv[1], sys.argv[2]
-MEDIA = 'STR_STR1_06'
+MEDIA = 'STR_ToroRosso_1_06'
 src = zipfile.ZipFile(SRC); names = {n.lower(): n for n in src.namelist()}
 G = pickle.load(open('str1_geo.pkl', 'rb')); parts = G['parts']; wheels = G['wheels']
+assert 'donor_wheels' in G, 'str1_geo.pkl is from the Atom build: re-run str1_geo.py'
 glb = open('src/nefolder.glb', 'rb').read()
 _L = struct.unpack_from('<I', glb, 12)[0]; GJ = json.loads(glb[20:20 + _L]); BIN0 = 20 + _L + 8
 def glb_image(i):
@@ -114,10 +116,12 @@ def fill(path, tops, textured_like, plain, skip_mats=(), xform=None):
     return out
 
 # ---------------------------------------------------------------- body: everything but wheels and steering wheel
+# Charger body_a: group 0 = carpaint + frame (LODs 3/4/8/16/32), 1 = blkplastic_hgl, 2 = undercarriage (blanked),
+# LOD64 = groups 3/4/5 (3 carpaint; 4 and 5 blanked)
 BODY_TOPS = [t for t in parts if not t.startswith('HUB_') and t not in ('STEER_HR', 'm_0', 'm_1')]
 replaced['scene/exterior/platform/body_a.modelbin'] = fill('scene/exterior/platform/body_a.modelbin', BODY_TOPS,
-    textured_like={1: 'carpaint_livery', 3: 'metalpainted_001'},
-    plain={'black': (0, 'blkplastic_rgh_mgl'), 'mirror': (0, 'aluminum_satin')})
+    textured_like={0: 'carpaint', 3: 'carpaint'},
+    plain={'black': (1, 'blkplastic_hgl'), 'mirror': (0, 'frame')})
 
 # ---------------------------------------------------------------- steering wheel, on its bone
 SW = parts['STEER_HR']
@@ -137,15 +141,11 @@ B3 = B_SW[:3, :3]
 def to_bone(V, is_normal=False):
     return V @ B3.T if is_normal else (V - SW_CENTRE) @ B3.T
 replaced['scene/interior/dash/steeringwheel_a.modelbin'] = fill('scene/interior/dash/steeringwheel_a.modelbin', ['STEER_HR'],
-    textured_like={0: 'carpet_001'}, plain={'black': (0, 'metalpainted_001'), 'mirror': (0, 'metalpainted_001')},
+    textured_like={0: 'blkplastic_mgl'}, plain={'black': (0, 'blkplastic_mgl')},
     xform=to_bone)
 
 # ---------------------------------------------------------------- skeleton: steering spindle to the STR1 wheel (every copy)
-# Seen in game: the wheels follow the suspension bones and the database's wheelbase doesn't move them. So the four
-# top-level suspension bones (children of root) move to the STR1's axles: front +0.343 m, rear -0.363 m.
-AXLE_SHIFT = {'boneSuspensionLF': wheels['HUB_LF']['centre'][2] - 1.186, 'boneSuspensionRF': wheels['HUB_RF']['centre'][2] - 1.186,
-              'boneSuspensionLR': wheels['HUB_LR']['centre'][2] + 1.158, 'boneSuspensionRR': wheels['HUB_RR']['centre'][2] + 1.158}
-print('axle shifts', {k: round(float(v), 3) for k, v in AXLE_SHIFT.items()})
+# (the wheels come from the donor's .gr2 animations, so the suspension bones stay as they are)
 def patch_skel(data):
     b = Bundle.read(data); changed = False
     for bl in b.blobs:
@@ -155,9 +155,6 @@ def patch_skel(data):
             L = struct.unpack_from('<I', d, o)[0]; o += 4; bn = bytes(d[o:o + L]).decode(); o += L + 6
             if bn == 'boneSteeringWheelSpindle':
                 struct.pack_into('<3f', d, o + 48, *SW_CENTRE); changed = True
-            if bn in AXLE_SHIFT:          # the corner's whole suspension chain (and its wheel) moves fore/aft
-                t = list(struct.unpack_from('<3f', d, o + 48)); t[2] += AXLE_SHIFT[bn]
-                struct.pack_into('<3f', d, o + 48, *t); changed = True
             o += 64
         bl['data'] = d
     return b.write() if changed else data
@@ -176,23 +173,12 @@ for pt in carb['parts']:
 for up in carb['upgradable_parts']:
     removed += [sm['model']['path'].lower().split('\\')[-1] for sm in up.get('shared_models', [])]
     up['shared_models'] = []
-# wheels, rotors and calipers: from the Atom's corners to the STR1's (wheelbase 3.05 m, narrower track)
+# wheels, rotors and calipers keep the Charger's transforms (the game places them from its wheel animations anyway)
 CORNER = {'lf': wheels['HUB_LF']['centre'], 'rf': wheels['HUB_RF']['centre'], 'lr': wheels['HUB_LR']['centre'], 'rr': wheels['HUB_RR']['centre']}
-moved = []
-for pt in carb['parts']:
-    if pt['part']['type'] not in (4, 43): continue
-    for m in pt['part']['models']:
-        t = list(m['transform']); bone = m['bone_name'].lower()
-        corner = bone[-2:]
-        if corner not in CORNER: continue
-        atom_wheel = {'lf': (-0.892, 0.182, 1.186), 'rf': (0.888, 0.182, 1.186), 'lr': (-0.907, 0.182, -1.158), 'rr': (0.907, 0.182, -1.158)}[corner]
-        # seen in game: the wheels follow the skeleton's suspension bones, not these transforms (moving them changed
-        # nothing). The database places the bones: track from ModelFront/RearTrackOuter, wheelbase by stretching the
-        # skeleton from ModelWheelbase to Wheelbase. So the models keep the Atom's transforms.
-        d = np.zeros(3)
-        t[12] += d[0]; t[13] += d[1]; t[14] += d[2]; m['transform'] = t
-        moved.append((m['path'].split('\\')[-1], corner, np.round(t[12:15], 3).tolist()))
-print('removed', len(removed), 'parts; moved', len(moved), 'wheel/brake models')
+kept = [(m['path'].split('\\')[-1], np.round(m['transform'][12:15], 3).tolist())
+        for pt in carb['parts'] if pt['part']['type'] in (4, 43) for m in pt['part']['models']]
+print('removed', len(removed), 'parts; kept', len(kept), 'wheel/brake models')
+for k in kept: print('  ', *k)
 replaced[f'{MEDIA}.carbin'.lower()] = write_carbin(carb)
 
 # ---------------------------------------------------------------- locators: centre seat, wheel, wheel corners

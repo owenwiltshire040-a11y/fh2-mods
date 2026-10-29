@@ -47,18 +47,27 @@ wheel positions come from the donor's .gr2 animations (can't edit). Fix = new do
 right wheelbase: **Dodge Charger SRT8 2012** (car 1422, engine 882, drivetrain 830, make 11,
 wheelbase 3.052).
 
-### Next steps (Charger rebuild)
-1. make_media.py: OLD='DOD_ChargerSRT8_12', new 18-char media name e.g. 'STR_ToroRosso_1_06';
-   update MEDIA in build_str1.py and build_str1_db.py.
-2. build_str1_db.py: clone from 1422/882/830 instead of 1651/1112/1059; keep all STR1 physics.
-3. str1_geo.py: Charger wheel centres F ±0.93, y≈0.149, z≈1.592; R ±0.94, y≈0.153, z≈-1.418.
-   GROUND_FH2 = ~0.15 - 0.33; centre the body on the Charger axle midpoint (z≈+0.087).
-4. build_str1.py: Charger materials — body_a group 0 = carpaint + frame (LODs 3/4/8/16/32),
-   group 1 = blkplastic_hgl, group 2 = undercarriage, LOD64 groups 3/4/5.
-   textured_like {0:'carpaint',3:'carpaint'}; plain black → (1,'blkplastic_hgl'); mirror → (0,'frame').
-   steeringWheel_a (scene/Interior/Dash/) group 0 has blkplastic_mgl → steering textured_like {0:'blkplastic_mgl'}.
-   Replace atom_wheel refs, delete AXLE_SHIFT/patch_skel suspension shifts, keep locator logic.
-5. Rebuild, preview (f1/preview_str1.py; viewer = `python3 -m http.server 8765` in scan/viewer + `shot.js`),
+### Charger rebuild — scripts done (steps 1–4), build not yet run
+1. make_media.py: DOD_ChargerSRT8_12 -> STR_ToroRosso_1_06 (18 chars both); MEDIA updated in build_str1.py,
+   build_str1_db.py, preview_str1.py. Package bumped to v0.4.0, mod.json/CREDITS say Charger.
+2. build_str1_db.py clones 1422/882/830; STR1 physics unchanged. donor_peak = 637 Nm (SRT8 470 lb-ft) —
+   check the printed donor TorqueScale looks sane. Prints a warning if the Charger has no stock aero row
+   (front bumper / rear wing) to clone. Still reads TJ2005_engine.ini from /mnt/user-data/uploads/... (CTDP files).
+3. str1_geo.py: DONOR_WHEELS (Charger centres), GROUND_FH2 = 0.151 - 0.33, body centred on z = +0.087;
+   pkl now carries donor_wheels (build_str1.py refuses an old Atom pkl).
+4. build_str1.py: Charger materials as planned (body {0,3: carpaint}, black -> (1, blkplastic_hgl), mirror ->
+   (0, frame); steering {0: blkplastic_mgl}, black -> blkplastic_mgl). AXLE_SHIFT / suspension bone shifts and
+   the no-op wheel transform loop are gone; it now just lists the kept wheel/brake transforms. Locators unchanged.
+
+Known gap: the Charger's track is ~1.86 m, the STR1's ~1.49 m, so the wheels will likely sit ~19 cm outboard
+of the STR1's suspension arms (ModelFront/RearTrackOuter is still set to the STR1 track — see if it does anything).
+
+### Next steps
+1. Upload DOD_ChargerSRT8_12.zip, vanilla.slt, nefolder.glb, matI_lod1.bin, eo/ tools and the CTDP ini.
+2. `python3 make_media.py DOD_ChargerSRT8_12.zip donor_STR_ToroRosso_1_06.zip`, `python3 str1_geo.py`,
+   `python3 build_str1.py donor_STR_ToroRosso_1_06.zip str1.zip`, `python3 build_str1_db.py`, mod_diff, id_conflicts.
+   If fill() errors on a material name, print material_names() for body_a / steeringwheel_a and fix the map.
+3. Preview (f1/preview_str1.py; viewer = `python3 -m http.server 8765` in scan/viewer + `shot.js`),
    package, give Owen the unzip command, ask for an overhead screenshot.
 
 ### Later
