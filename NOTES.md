@@ -158,6 +158,28 @@ FH2_ExtraOptions.log; the raw rewrite needs fixing before anything else.
 Later steps: pick the template car (Charger-style, no suspension animations, simplest chain), bone/transform rescaler
 driven by str1_geo-style axle points, fold into build_str1.py, drop the per-model donor hunt.
 
+## GENERIC BUILDER: build_car.py / build_car_db.py + cars/<car>/spec.py (29 Oct)
+Any model on the Charger template. Per car: `cars/<car>/spec.py` (media name, material map, textures, steering wheel,
+hips, eye, physics dict), model in `cars/<car>/src/` (gitignored). Steps, from the repo root:
+  python3 f1/make_media.py f1/in/DOD_ChargerSRT8_12.zip cars/<car>/donor_<MEDIA>.zip <MEDIA>   (18-char media name)
+  python3 fh2re/objgeo.py <model.obj> cars/<car>/geo.pkl <tyre material> --ground <0.149 - tyre radius> --axle-mid 0.0867
+  python3 build_car.py cars/<car>/spec.py cars/<car>/car.zip
+  python3 build_car_db.py cars/<car>/spec.py cars/<car>/custom.slt cars/<car>/strings.json; mod_diff -> database.json; nearest
+  python3 preview/asgame.py cars/<car>/car.zip cars/<car>/database.json --donor f1/in/DOD_ChargerSRT8_12.zip --geo cars/<car>/geo.pkl
+  package: cars/<car>/pkg/<Name>/ (mod.json, CREDITS.txt) + database.json + strings.json + media/cars/<MEDIA>.zip
+Body goes into body_a (paint = the game's 'carpaint' so it is paintable, chrome = 'frame', black = 'blkplastic_hgl',
+textured keys via the interior_lod1 MatI), glass into glassF_a ('gls_windsheild'); every other donor part dropped, so
+no working lights yet (Lights.bin: 12 x 84-byte entries naming the light parts; a later job). Soup vertices are
+welded on position+normal (SketchUp OBJs have a uv per corner; a 470k-face model still makes a 48 MB body_a).
+
+### Peugeot 208 (2021, tonielpro520, CC BY) — v0.1.0 built 29 Oct 23:50, awaiting Owen's check
+cars/peugeot208: car 3208, make Peugeot (id 203, nearest), media PEU_208PureTech_21, 1.2 PureTech 130 EAT8 FWD physics
+(Fiesta Mk7 suspension scaled by mass), model track 1.397 used (real 1.496), wheelbase 2.55 model / 2.54 physics,
+tyres 205/45 R17, drag sized for 129 mph. Driver: Charger set, hips (-0.33, 0.44, 0.0), steering (-0.385, 0.72, 0.40)
+from the model's own wheel (its interior is kept as black plastic, so the Charger steering wheel part is dropped).
+asgame PASS (wheels within 1 cm). Unknowns until seen in game: a 48 MB body_a, the paint material on untextured UVs,
+glass transparency, the 208's own interior geometry vs the driver.
+
 ## RULE: wheel positions come from the database (z, x) and the UNMODIFIED donor zip (y)
 Superseded in part on 29 Oct (see GENERIC DONOR): wheel z and x are set by Data_CarBody (ModelWheelbase,
 BottomCenterWheelbasePosZ, ModelFront/RearTrackOuter). The donor's carbin spindle transforms (part type 43) are still

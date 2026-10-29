@@ -110,6 +110,7 @@ if G:
     # the wheel the game draws: upright end x vs the wheel's inner face
     UPRIGHT = {'DISK', 'FW15C_MECANICS', 'Material_98', 'MCLHUB'}
     for c, hub in (('lf', 'HUB_LF'), ('rf', 'HUB_RF'), ('lr', 'HUB_LR'), ('rr', 'HUB_RR')):
+        if hub not in G['parts']: continue                     # (only the STR1 geometry has upright parts)
         hv = np.concatenate([p['V'] for p in G['parts'][hub] if p['mat'] in UPRIGHT])
         inner = GAME[c][0] - np.sign(GAME[c][0]) * 0.15        # ~half an F1 tyre width inboard of the centre
         reach = hv[:, 0].max() if GAME[c][0] > 0 else hv[:, 0].min()

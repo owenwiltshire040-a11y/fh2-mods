@@ -4,7 +4,7 @@ import sys, zipfile, re, struct, zlib
 sys.path.insert(0, '../fh2re'); sys.path.insert(0, '.')
 from modelbin import Bundle
 import fhmat
-OLD, NEW = 'DOD_ChargerSRT8_12', 'STR_ToroRosso_1_06'
+OLD, NEW = 'DOD_ChargerSRT8_12', (sys.argv[3] if len(sys.argv) > 3 else 'STR_ToroRosso_1_06')
 VARIANTS = [(OLD, NEW), (OLD.lower(), NEW.lower()), (OLD.upper(), NEW.upper())]
 def ren_bytes(d):
     for a, b in VARIANTS: d = d.replace(a.encode(), b.encode())
