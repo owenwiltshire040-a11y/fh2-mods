@@ -237,6 +237,11 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   ControlScales ~1e-6 and ControlOffsets = the seat: offsets shifted by the same delta), skeleton gr2
   with boneSteeringWheel at the STR1 wheel and the `driver` bone left as the Charger's. If he lands in the bucket:
   tune y/z, then recline via the Hips orientation constant, then fold both patches into build_str1.py.
+  RESULT v0.5.3 (23:17): driver INVISIBLE. Either the Hips position is absolute in car space (then (0, -0.233, -0.51)
+  put him 5 cm above the ground inside the engine cover) or the raw-rewritten animation gr2s are rejected.
+  v0.5.4-hipsabs (23:22): same patch with Hips = (0, 0.14, 0.18) absolute. In the bucket -> absolute; high over the
+  nose -> relative to the wheel bone; still invisible -> the animation rewrite is the problem (test: ship ONE
+  rewritten file, e.g. idle.gr2 unmodified but re-written raw, with the other 12 original).
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
