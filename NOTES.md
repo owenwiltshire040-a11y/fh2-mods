@@ -108,6 +108,27 @@ the open question. Two builds, 29 Oct 22:45:
   v0.4.6-wbtest = v0.4.1 media, database only: Data_CarBody Wheelbase & ModelWheelbase 3.05 -> 3.25. If both fronts
   (or all four) move, the DB wheelbase places the wheels on a car without suspension animations (on the Atom it
   did nothing — but the Atom's wheels follow its suspension*.gr2 animations).
+RESULTS 29 Oct 22:45 (Owen's overheads, measured in pixels; method below):
+  v0.4.5-ztest: left and right front tyre centres identical (fractions of nose-tip->rear-wing 0.2214 / 0.2228, equal
+  in every other measure) -> NEITHER the gr2 skeleton (left) NOR the carbin spindle transform (right) moves a wheel
+  fore/aft on the Charger. With the x tests: on a car without suspension animations the gr2 and carbin wheel
+  transforms are irrelevant to where the game draws the wheel.
+  v0.4.6-wbtest (DB Wheelbase & ModelWheelbase 3.05 -> 3.25): front tyres ~10 cm closer to the nose than in the three
+  baseline shots (fraction 0.192/0.201 vs 0.209-0.223; front-centre-to-nose-tip 0.84 m vs 0.89-0.95 m at tyre-height
+  scale). Rear tyres are sunlit on one side so their edge is unreliable (front-centre to rear leading edge 2.84 m vs
+  2.70-2.79 baseline: +5..+13 cm, fits +10 or +20). So: THE DATABASE WHEELBASE MOVES THE WHEELS, at least the fronts.
+  Likely rule (fits every number so far, incl. the Charger's own 1.592/-1.418 = 3.018/2 -/+ 0.087): wheel z =
+  +/- Wheelbase/2 - BottomCenterWheelbasePosZ, x = +/- ModelTrack/1.012/2. I.e. the Charger-style donor already IS
+  the generic donor: media from any car without suspension*.gr2, wheel positions from Data_CarBody. No Granny port
+  needed for those (granny.py stays for Atom-style cars / other edits).
+  Not yet separated: Wheelbase vs ModelWheelbase (both were changed), and whether the rears move too.
+  v0.4.7-wb365 built (22:55): Wheelbase 3.65, ModelWheelbase 3.05, v0.4.1 media. +30 cm per axle is unmistakable:
+  the front tyres would sit level with the front wing's trailing edge. Moved -> Wheelbase alone places them (and the
+  rear move becomes visible); not moved -> ModelWheelbase (then test that one alone).
+Measuring an overhead: nose cone (orange) leftmost column = tip; rear wing white plate leftmost column = wing;
+front tyre = dark run (<55/255) across the rows of each front wheel; the top-of-image wheel is the car's RIGHT when
+the nose points left. Framing differs per shot, so compare ratios (tyre centre - tip)/(wing - tip) or distances
+scaled by the front tyre's pixel diameter (0.66 m); the baseline spread is about +/-0.01 of body length.
 Outcomes (for the old x tests, superseded): (a) wheel moved -> gr2 drives it: step 2 = rescale all four hub bones (and the Atom-style animation tracks
 when present) to the model's axle points. (b) wheel did not move, car loads -> try the same 10 cm on the carbin
 spindleLF transform (one-line build; `preview/asgame.py` will WARN on it by design). (c) car fails to load -> check
