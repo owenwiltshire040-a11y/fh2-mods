@@ -87,3 +87,20 @@ Every rule added should be checked against a real in-game screenshot before trus
   (Textures/lp/Swatches/). Extract both from PEU_207_5door_v14.zip into tex/.
 - build_str1_db.py hard-codes an old TJ2005_engine.ini path — point it at the uploaded file.
 - Python deps: numpy, trimesh, scipy, scikit-learn, pillow, etcpak, texture2ddecoder (pip --break-system-packages).
+
+## Owen's workflow: "drop in a model, get a car back"
+Owen will often be away from his Mac (laptop at home, possibly off) and will drop a new 3D model
+into a cloud session from his phone. He expects back a **finished, installable car mod zip** plus the
+Terminal install command, without having to answer questions along the way. So:
+- Do the whole pipeline unattended: inspect the model, find wheel centres + wheelbase, pick the donor
+  with the closest wheelbase from the donor zips available, build body/textures/interior, set up the
+  DB entry (sensible name, make, price, physics for the car type), package as an Extra Options mod
+  folder with mod.json/database.json/strings.json/CREDITS.txt, `id_conflicts: nearest`.
+- Run the game-accurate preview and fix anything that fails before handing it over; include the
+  PASS/FAIL report and top/side images.
+- Make sensible choices instead of asking; list them briefly at the end (what donor, what was guessed).
+- If no available donor's wheelbase is within ~5 cm, still build on the closest one, say so plainly,
+  and name which donor zip from his Mac would fit better.
+- Only use models he has the right to use (licence that allows it); credit the author in CREDITS.txt.
+  Never commit game files or third-party models to GitHub — code only.
+- In-game testing happens when he's back at his Mac; expect a round or two of tweaks then.
