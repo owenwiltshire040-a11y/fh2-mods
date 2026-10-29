@@ -72,8 +72,14 @@ transforms and skeleton bones had no effect on the Atom), so the donor has to ma
    wheels are 20" and show through the sidepods) — new render meshes in str_tororosso_1_06_wheellf.modelbin.
 
 ### Later
-STR1's own F1 wheels/tyres; downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
+STR1 rim styling (the tyres are already F1-sized from the DB; only the Charger's normalised rim shows); downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
 from other mods (ZS Formula pack clashed with owen-traffic-trucks — fixed with id_conflicts nearest).
+
+## RULE: wheel positions come from the UNMODIFIED donor zip
+Read wheel positions from the donor's carbin spindle transforms (part type 43) in the original donor zip, never from
+our built car: the game ignores edited spindle transforms (it follows the .gr2 animations), so a built car's carbin
+says nothing about where the wheels will be. `preview/asgame.py` takes `--donor` for this and warns when a build has
+changed those transforms. (Decided 29 Oct after the Atom and Charger carbins both matched the game; no Granny reader.)
 
 ## TASK: game-accurate preview ("as-game" check, so Owen needn't screenshot every build)
 Goal: a script `preview/asgame.py car.zip database.json` that places everything the way FH2 does
@@ -89,6 +95,16 @@ and prints PASS/FAIL checks plus top/side/3-4 PNGs (three.js viewer in scan/view
 4. Then add, one rule at a time: lights from Lights.bin (lit material names `*_custom_brake/_head/_reverse/_turn`),
    gauge needle bones, material types (carpaint vs textured).
 Every rule added should be checked against a real in-game screenshot before trusting it.
+**Done 29 Oct: `preview/asgame.py built.zip database.json --donor DONOR.zip [--geo f1/str1_geo.pkl] [--out DIR]`**
+(needs the viewer server for PNGs). Rules in it: 1 wheel y/z from the donor carbin spindles (type 43) with a warning
+if the build changed them; 2 x from ModelFront/RearTrackOuter / 1.012; 3 body + steering wheel as built;
+4 tyre radius/width from Data_Car rim/width/aspect (the car's wheel modelbin is a normalised rim, x 0..1, that the
+game scales to the DB rim size and draws its own tyre on — so the STR1 already runs 13" / 330 mm tyres in game).
+Checks: each wheel within 3 cm of the str1_geo axle point, tyre bottom on the body's ground, floor not below it,
+uprights (DISK/FW15C_MECANICS/Material_98/MCLHUB in the HUB_* parts) reaching the wheel's inner face.
+STR1 on the Charger: all PASS (front wheels 2.2–2.5 cm behind the model's axle, rear 1–2 cm ahead: the 3.011 vs
+3.05 m difference). Negative test with the Atom as donor FAILs with the old -0.43 / +0.28 m. Rule 4 still wants a
+side-on screenshot; lights / gauge needles / material types not done.
 Status 29 Oct: the repo has NO Granny reader yet. The wheel centres used so far are the carbin's spindle transforms
 (`fh2re/carbin.py`, part type 43): Atom 2.344 m / Charger 3.011 m wheelbase, and both matched the game (the Atom
 showed ~2.3 m; the Charger build's overhead screenshot has the wheels on the STR1 axle lines). The Charger's gr2
