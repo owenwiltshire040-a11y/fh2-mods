@@ -233,7 +233,8 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   steering bone (the v0.5.1 evidence; absolute would not have moved him). Orientation is a D4Constant32f (pelvis
   angle), the root track is identity, InitialPlacement is zero.
   v0.5.3-hips (23:20): Atom driver set with Hips constant = (0, 0.14, 0.18) - wheel (0, 0.373, 0.69) = (0, -0.233,
-  -0.51) in all 13 files (granny.py patch; cinematics with keyframed hips would be skipped — none were), skeleton gr2
+  -0.51) in all 13 files (4 have a constant Hips curve: set; 9 are quantised keyframes D3K8uC8u / D3I1K8uC8u with
+  ControlScales ~1e-6 and ControlOffsets = the seat: offsets shifted by the same delta), skeleton gr2
   with boneSteeringWheel at the STR1 wheel and the `driver` bone left as the Charger's. If he lands in the bucket:
   tune y/z, then recline via the Hips orientation constant, then fold both patches into build_str1.py.
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
