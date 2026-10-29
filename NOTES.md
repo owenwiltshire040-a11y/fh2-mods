@@ -216,6 +216,16 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   STR1 wheel (+0.374, -0.390, +0.302) and `driver` by (0, -0.15, +0.25) -> (0, -0.05, +0.15). If he follows:
   next tune the driver bone's position/rotation for a reclined seat (rotation = pitch the root back), and fold the
   two bone edits into build_str1.py (the skeleton.modelbin bone patch already does the same for the wheel model).
+  RESULT v0.5.1 (3/4 + front shots 23:07/23:09): BOTH bones work — hands on the STR1 wheel, body moved forward/down.
+  But he sits ON the tub, not in the bucket, and on the car's RIGHT (x ~ +0.3). Reading: the `driver` bone is the
+  floor point under the seat (Charger: y 0.10 ~ its floor), the driver animation set adds the seat height (~0.3-0.5)
+  and the seat's lateral offset (Charger set: -0.37 LHD; Atom set: +0.30 RHD — v0.5.x carry the Atom set).
+  STR1 bucket from str1_geo (COCKPIT material): seat pan y ~0.08 at z 0.2-0.6, backrest z 0-0.1 rising to y 0.46,
+  deck around the opening y 0.45-0.50, pedal area to z 1.6. v0.5.2-drivertest2 (23:12): driver bone (-0.30, -0.30,
+  0.20) (cancel the Atom offset, 25 cm lower than v0.5.1, hips over the seat pan); steering bone as v0.5.1.
+  Then: recline (driver bone pitch; convention verified: Granny matrices are row-vector, M[:3,:3] = R^T, chain
+  world = local @ parent, inverse-world = inv(world) — max error 0.0 on all 56 Charger bones), then fold the
+  skeleton gr2 edits into build_str1.py (constants DRIVER_POS / DRIVER_PITCH / steering = SW_CENTRE).
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
