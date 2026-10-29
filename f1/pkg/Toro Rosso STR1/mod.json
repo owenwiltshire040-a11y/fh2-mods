@@ -3,7 +3,7 @@
  "id": "owen-toro-rosso-str1",
  "name": "Scuderia Toro Rosso STR1 (2006)",
  "author": "Owen",
- "version": "0.6.0",
+ "version": "0.6.1",
  "description": "2006 Toro Rosso STR1 (Cosworth TJ2005 V10) for personal use. Model, livery and physics data by CTDP (Cars & Tracks Development Project), used with their permission for this personal conversion; not for redistribution. Built on the 2012 Dodge Charger SRT8.",
  "database": "database.json",
  "strings": "strings.json",

@@ -100,8 +100,10 @@ def own_aero(table, key, val, front):
         src_row = q('select * from List_AeroPhysics where AeroPhysicsID=?', aid) or \
                   q('select * from List_AeroPhysics where AeroPhysicsID=?', aid - (CAR - CAR_OLD) * 1000)   # (id shifted by the clone)
         row = dict(zip(cs, src_row[0]))
-        row.update(AeroPhysicsID=next_aero, Drag0=30.0 if front else 70.0, Drag1=60.0 if front else 160.0,
-                   Downforce0=150.0 if front else 250.0, Downforce1=250.0 if front else 400.0, DefaultTuneSlider=0.5)
+        # in the game's range: the strongest vanilla wing row is drag 20-45 / downforce 34-91 (P1 body 310/575);
+        # the first STR1 numbers (150-400 per wing, body 420/640) flipped the car at speed and capped it at 170 mph
+        row.update(AeroPhysicsID=next_aero, Drag0=15.0 if front else 30.0, Drag1=30.0 if front else 60.0,
+                   Downforce0=60.0 if front else 90.0, Downforce1=120.0 if front else 150.0, DefaultTuneSlider=0.5)
         c.execute(f'insert into List_AeroPhysics values ({",".join("?" * len(cs))})', [row[x] for x in cs])
         c.execute(f'update "{table}" set AeroPhysicsID=? where Id=?', (next_aero, rid)); next_aero += 1
     c.execute(f'delete from "{table}" where "{key}"=? and IsStock=0', (val,))     # no aftermarket aero kits
@@ -195,14 +197,15 @@ for sid, rate in q('''select s.SpringDamperPhysicsID, case when s.SpringDamperPh
               (rate, rate * 0.6, rate * 1.6, sid))
 
 # ---------------------------------------------------------------- the car itself
-# drag: sized against the Atom (game top speed 194.5 mph on 500 hp x its 0.744 game torque scale, drag ~215 units)
-# so 723 hp at full torque scale tops out near 190 mph: total ~390 units (body 230, wings ~45 + ~115 at mid setting)
+# drag: sized against the McLaren P1 (903 hp, drag 149 -> 253 mph; top speed ~ (hp/drag)^(1/3)): 723 hp wants a
+# total of ~240 units for 200 mph. Body 170 + wings ~22 + ~45 at the mid slider. (The first guess, 390 total, gave
+# 171 mph by the same formula — and 170 in Owen's hands.)
 rpm = lambda r: r * 2 * math.pi / 60
 c.execute(f'''update Data_Car set Year=2006, MakeID=?, DisplayName=?, ModelShort=?, MediaName=?, MakeName=?,
    CurbWeight=?, WeightDistribution=0.418, NumGears=7, Displacement=2998, CylinderID=5, EngineConfigID=1,
    FrontTireWidthMM=280, FrontTireAspect=59, FrontWheelDiameterIN=13, RearTireWidthMM=340, RearTireAspect=48, RearWheelDiameterIN=13,
    "Time:0-60-sec"=2.6, "Time:0-100-sec"=4.6, "TopSpeed-mph"=196.0, BaseCost=1, PerformanceIndex=0.999,
-   BodyAeroLongitudinalDrag=230.0, GameTorqueScale=1.0, BodyAeroForwardDownforceFront=420.0, BodyAeroForwardDownforceRear=640.0,
+   BodyAeroLongitudinalDrag=170.0, GameTorqueScale=1.0, BodyAeroForwardDownforceFront=300.0, BodyAeroForwardDownforceRear=500.0,
    SimPeakPower=5390.0, SimPeakAngVel=?, SimPeakTorque=?, SimPeakTorqueAngVel=?, SimRedlineAngVel=?,
    SimTimeTo60MPH=2.6, SimTimeTo100MPH=4.6, SimTopSpeed=87.0, SimLatGees60MPH=2.0, SimLatGees120MPH=3.5,
    SimBrakeDistance60MPH=22.0, SimBrakeDistance100MPH=50.0,

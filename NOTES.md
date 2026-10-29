@@ -64,6 +64,14 @@ transforms and skeleton bones had no effect on the Atom), so the donor has to ma
   `python3 -m http.server 8765` and `node shot.js str1.glb out.png '[[0,9,0.01],[7,1.5,0]]' '[0,0.4,0.09]'`.
   Preview of v0.4.0 looked right (body on the Charger axles, livery OK, wheels at the axles but wide).
 
+### Driving feel (29 Oct, Owen: "doesn't want to push past 170 and flips over at high speed")
+Gearing checked: NumGears = forward gears + 1 (GearRatio0 = reverse) on every vanilla car, so 8 = 7 forward; 7th
+tops at 192 mph at the 11,900 limiter. The 170 cap is DRAG: top speed ~ (hp/drag)^(1/3) scaled from the P1
+(903 hp, drag 149 -> 253 mph) gives 171 mph for 723 hp / 390 units. v0.6.1: body drag 230 -> 170, wings
+15-30 / 30-60 (total ~240 -> ~200 mph predicted). Downforce was 2-3x the strongest vanilla car (P1 310/575, best
+wing row 34-91) on a 530 kg car — the likely flip: now body 300/500, wings 60-120 / 90-150. Owen to report; if it
+still flips, next suspects: CMHeight 0.27, the 160/140 spring rates (Atom 46), BlockDimY.
+
 ### Next
 Nothing blocking. The build is reproducible from the Charger donor + in/atom/ARI_Atom_13.zip (driver animations):
 `make_media.py`, `str1_geo.py`, `build_str1.py in/donor_STR_ToroRosso_1_06.zip in/str1.zip`, `build_str1_db.py`,
