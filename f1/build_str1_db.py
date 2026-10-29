@@ -211,6 +211,15 @@ c.execute(f'''update Data_Car set Year=2006, MakeID=?, DisplayName=?, ModelShort
    Thumbnail='game:\\Media\\Stripped\\RC0\\Thumbnail_1651.png' where Id=?''',
           (make_id, f'_&{(car_hash << 16) | S_NAME}', f'_&{(car_hash << 16) | S_SHORT}', MEDIA,
            f'_&{(mk_hash << 16) | S_CARMAKE}', MASS / 100, rpm(16750 * K), PEAK / 100, rpm(15500 * K), rpm(LIMIT), CAR))
+# the Charger's sedan-only flags -> open-wheel single seater (values from the Atom / Caterham / KTM X-Bow rows):
+# IsOpenCockpit picks the open-car driver (helmet, reclined), IsOpenWheel the open-wheel handling of wheel contacts
+c.execute('''update Data_Car set IsOpenCockpit=1, IsOpenWheel=1, ClassID=5, FamilyBodyID=45, FamilySpecialID=1,
+   EnginePlacementID=2, PowertrainID=2, MaterialTypeID=2, BodyAeroWIForceScale=0.55,
+   FrontStockRideHeight=0.10, RearStockRideHeight=0.10 where Id=?''', (CAR,))
+# ride height the model was built at (= stock, so the body is not shifted) and the STR1's own bounding box
+c.execute('''update Data_CarBody set ModelFrontStockRideHeight=0.10, ModelRearStockRideHeight=0.10,
+   PristineBoundingBoxMinX=-1.05, PristineBoundingBoxMaxX=1.05, PristineBoundingBoxMinY=-0.18, PristineBoundingBoxMaxY=0.94,
+   PristineBoundingBoxMinZ=-2.09, PristineBoundingBoxMaxZ=2.58 where Id=?''', (CAR * 1000,))
 c.commit()
 
 STRINGS = {'format_version': 1, 'fallback_language': 'EN', 'languages': {'EN': {
