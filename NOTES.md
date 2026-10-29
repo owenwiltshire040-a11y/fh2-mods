@@ -131,6 +131,15 @@ drawn wheels -> ModelWheelbase is the lever (it moved them when both changed). v
 ModelWheelbase 3.65, Wheelbase 3.05, to confirm (+30 cm per axle: front tyres level with the front wing's trailing
 edge). Then the rule becomes: wheel z = +/- ModelWheelbase/2 - BottomCenterWheelbasePosZ (to verify the rear/offset
 part from that shot), x = +/- ModelTrack/1.012/2; Wheelbase is physics only.
+RESULT v0.4.8-mwb365 (22:58 shot): unmistakable — front tyres at the front-wing endplates, rears out at the
+rear-wing endplates: BOTH axles moved ~30 cm, so ModelWheelbase places the wheel models, symmetrically about the
+wheelbase centre. CONCLUSION (29 Oct): on a car without Animations/suspension*.gr2, the drawn wheel positions are
+  z = +/- ModelWheelbase/2 - BottomCenterWheelbasePosZ, x = +/- ModelTrackOuter/1.012/2 (both Data_CarBody);
+  y = still unproven (the donor's spindle y, 0.15, is used; candidates: ModelStockRideHeight, tyre radius).
+  Wheelbase is physics only. The gr2 skeleton and the carbin wheel transforms do not matter for those cars.
+  => The generic donor is the Charger media + database numbers. Already what the STR1 build does (ModelWheelbase
+  3.05, STR1 track, body centred on z +0.087 = -BottomCenterWheelbasePosZ). granny.py is only needed for cars with
+  suspension animations (Atom-style) — none planned. preview/asgame.py rule 1 now uses the DB (29 Oct 23:05).
 Measuring an overhead: nose cone (orange) leftmost column = tip; rear wing white plate leftmost column = wing;
 front tyre = dark run (<55/255) across the rows of each front wheel; the top-of-image wheel is the car's RIGHT when
 the nose points left. Framing differs per shot, so compare ratios (tyre centre - tip)/(wing - tip) or distances
@@ -142,7 +151,12 @@ FH2_ExtraOptions.log; the raw rewrite needs fixing before anything else.
 Later steps: pick the template car (Charger-style, no suspension animations, simplest chain), bone/transform rescaler
 driven by str1_geo-style axle points, fold into build_str1.py, drop the per-model donor hunt.
 
-## RULE: wheel positions come from the UNMODIFIED donor zip
+## RULE: wheel positions come from the database (z, x) and the UNMODIFIED donor zip (y)
+Superseded in part on 29 Oct (see GENERIC DONOR): wheel z and x are set by Data_CarBody (ModelWheelbase,
+BottomCenterWheelbasePosZ, ModelFront/RearTrackOuter). The donor's carbin spindle transforms (part type 43) are still
+read from the ORIGINAL donor zip for wheel y and as a reference; never from our built car, and `preview/asgame.py`
+warns when a build changed them (the game does not read them, so such an edit is a mistake).
+Original rule text:
 Read wheel positions from the donor's carbin spindle transforms (part type 43) in the original donor zip, never from
 our built car: the game ignores edited spindle transforms (it follows the .gr2 animations), so a built car's carbin
 says nothing about where the wheels will be. `preview/asgame.py` takes `--donor` for this and warns when a build has

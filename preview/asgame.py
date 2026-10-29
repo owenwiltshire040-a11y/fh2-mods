@@ -3,12 +3,16 @@
 
 usage: asgame.py built_car.zip database.json --donor DONOR.zip [--geo f1/str1_geo.pkl] [--out DIR] [--media NAME]
 
-Placement rules (each confirmed against an in-game screenshot, see NOTES.md):
- 1. wheel fore/aft (z) and height (y): the UNMODIFIED donor's carbin wheel-spindle transforms (part type 43).
-    The game follows its .gr2 animations and ignores edited spindle transforms, so they are read from the donor zip,
-    never from the built car, and a build that changed them gets a warning.
+Placement rules (each confirmed against an in-game screenshot, see NOTES.md "GENERIC DONOR"):
+ 1. wheel fore/aft (z): the database — z = +/- ModelWheelbase/2 - BottomCenterWheelbasePosZ (Data_CarBody).
+    Confirmed 29 Oct on the Charger donor: ModelWheelbase 3.05 -> 3.65 moved both axles 30 cm; Wheelbase alone, the
+    carbin spindle transforms and the gr2 skeleton moved nothing (cars WITH Animations/suspension*.gr2, like the
+    Atom, follow those animations instead and ignore all of this).
+    wheel height (y): the UNMODIFIED donor's carbin wheel-spindle transforms (part type 43) — source not yet proven,
+    read from the donor zip, never from the built car.
  2. wheel x: the database's ModelFront/RearTrackOuter = centre-to-centre track x 1.012.
  3. body and steering wheel: the built carbin's transforms (type 2 parts) as-is.
+ 4. tyre size: Data_Car rim diameter, tyre width and aspect.
 """
 import sys, os, re, io, json, struct, zipfile, argparse, subprocess, pickle
 import numpy as np, trimesh
@@ -58,17 +62,17 @@ MEDIA = A.media or media
 db = json.load(open(A.database))
 print(f'car {media} (donor {dmedia}), database {os.path.basename(A.database)}')
 
-# ---------------------------------------------------------------- rule 1: wheels from the donor's spindles
+# ---------------------------------------------------------------- donor spindles: wheel y, and a reference for z
 W_DONOR = spindles(dcarb); W_BUILT = spindles(carb)
 for c in ('lf', 'rf', 'lr', 'rr'):
     if c in W_BUILT and np.abs(W_BUILT[c] - W_DONOR[c]).max() > 1e-3:
         warn(f'build changed the {c.upper()} spindle transform {W_BUILT[c].round(3)} (donor {W_DONOR[c].round(3)}): '
-             'the game ignores that and follows the .gr2; the preview uses the donor values')
-zf = (W_DONOR['lf'][2] + W_DONOR['rf'][2]) / 2; zr = (W_DONOR['lr'][2] + W_DONOR['rr'][2]) / 2
-print(f'  donor spindles: front z {zf:.3f} y {(W_DONOR["lf"][1] + W_DONOR["rf"][1]) / 2:.3f}, '
-      f'rear z {zr:.3f} y {(W_DONOR["lr"][1] + W_DONOR["rr"][1]) / 2:.3f}  (wheelbase {zf - zr:.3f})')
+             'the game does not read it (tested 29 Oct); the preview uses the donor values for y')
+dzf = (W_DONOR['lf'][2] + W_DONOR['rf'][2]) / 2; dzr = (W_DONOR['lr'][2] + W_DONOR['rr'][2]) / 2
+print(f'  donor spindles: front z {dzf:.3f} y {(W_DONOR["lf"][1] + W_DONOR["rf"][1]) / 2:.3f}, '
+      f'rear z {dzr:.3f} y {(W_DONOR["lr"][1] + W_DONOR["rr"][1]) / 2:.3f}  (wheelbase {dzf - dzr:.3f}, for reference only)')
 
-# ---------------------------------------------------------------- rule 2: track from the database
+# ---------------------------------------------------------------- rules 1 + 2: wheelbase and track from the database
 def db_row(table, key, val):
     t = db['tables'].get(table, {})
     for r in t.get('insert', []):
@@ -81,9 +85,12 @@ check('database has the car', car_row is not None, MEDIA)
 body = db_row('Data_CarBody', 'Id', car_row['Id'] * 1000) if car_row else None
 check('database has the car body', body is not None and 'ModelFrontTrackOuter' in body)
 tf = body['ModelFrontTrackOuter'] / TRACK_K; tr = body['ModelRearTrackOuter'] / TRACK_K
-print(f'  track from DB: front {tf:.3f} rear {tr:.3f} (centre-to-centre)')
-GAME = {'lf': np.array([-tf / 2, W_DONOR['lf'][1], W_DONOR['lf'][2]]), 'rf': np.array([tf / 2, W_DONOR['rf'][1], W_DONOR['rf'][2]]),
-        'lr': np.array([-tr / 2, W_DONOR['lr'][1], W_DONOR['lr'][2]]), 'rr': np.array([tr / 2, W_DONOR['rr'][1], W_DONOR['rr'][2]])}
+mid = -body.get('BottomCenterWheelbasePosZ', 0.0); zf = mid + body['ModelWheelbase'] / 2; zr = mid - body['ModelWheelbase'] / 2
+print(f'  from DB: ModelWheelbase {body["ModelWheelbase"]:.3f} about z {mid:+.3f} -> front z {zf:.3f} rear z {zr:.3f}; '
+      f'track front {tf:.3f} rear {tr:.3f} (centre-to-centre); physics Wheelbase {body["Wheelbase"]:.3f}')
+if abs(body['Wheelbase'] - body['ModelWheelbase']) > 0.02: warn('Wheelbase (physics) and ModelWheelbase (drawn) differ')
+GAME = {'lf': np.array([-tf / 2, W_DONOR['lf'][1], zf]), 'rf': np.array([tf / 2, W_DONOR['rf'][1], zf]),
+        'lr': np.array([-tr / 2, W_DONOR['lr'][1], zr]), 'rr': np.array([tr / 2, W_DONOR['rr'][1], zr])}
 
 # ---------------------------------------------------------------- checks against the body's intended axle points
 G = pickle.load(open(A.geo, 'rb')) if os.path.exists(A.geo) else None
