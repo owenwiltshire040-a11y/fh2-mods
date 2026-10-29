@@ -75,6 +75,30 @@ transforms and skeleton bones had no effect on the Atom), so the donor has to ma
 STR1 rim styling (the tyres are already F1-sized from the DB; only the Charger's normalised rim shows); downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
 from other mods (ZS Formula pack clashed with owen-traffic-trucks — fixed with id_conflicts nearest).
 
+## GENERIC DONOR (goal: no more donor-picking; rescale one template car's wheel positions to fit any model)
+Step 1 proof of concept (29 Oct, built, awaiting Owen's Autoshow check): `fh2re/granny.py` reads FH2's .gr2 files
+(Granny v7, 64-bit LE; Oodle1 decoder ported from LunaticInAHat/liboodle, public domain; layout from LSLib — LSLib
+itself has no Oodle code, it calls granny2.dll) and writes them back with every section raw (compression 0, CRC =
+zlib crc32 of everything after byte 104). Verified: a raw file (Atom suspensionLF.gr2) round-trips byte-identical;
+the Charger skeleton decompresses and parses (56 bones) in 0.1 s; `granny.py movebone` shifts a bone's local position
+and fixes the InverseWorldTransform of it and its descendants.
+Test build v0.4.3-gr2test = v0.4.1 media with `scene/STR_ToroRosso_1_06_skeleton.gr2` rewritten: hubLF (parent root,
+child spindleLF) moved 10 cm outward (x -0.832 -> -0.932). Carbin untouched (asgame PASS). The game accepts raw gr2
+files (the Atom's suspension*.gr2 are raw) — if this one loads and the left-front wheel sits 10 cm further out than
+the right-front, the gr2 skeleton drives the wheels on a car without suspension animations.
+What the gr2s say (granny.py info): Atom skeleton hubLF world (-0.908, 0.182, 1.171) = in-game (-0.892, 0.182, 1.186),
+with the wheels on a control-arm chain animated by Animations/suspension*.gr2 (tracks boneControlArmLF... per corner).
+Charger skeleton hubLF/spindleLF world (-0.832, 0.212, 1.272), hubLR (-0.84, 0.236, -1.523) = 2.80 m, but the game
+draws the Charger's wheel at the carbin spindle (-0.93, 0.151, 1.591), 3.01 m. So on the Charger the gr2 rest pose is
+NOT where the wheel is; either the game ignores it (then the carbin transform rules on cars without suspension
+animations, and the generic donor is just carbin edits) or it adds something. The test decides.
+Outcomes: (a) wheel moved -> gr2 drives it: step 2 = rescale all four hub bones (and the Atom-style animation tracks
+when present) to the model's axle points. (b) wheel did not move, car loads -> try the same 10 cm on the carbin
+spindleLF transform (one-line build; `preview/asgame.py` will WARN on it by design). (c) car fails to load -> check
+FH2_ExtraOptions.log; the raw rewrite needs fixing before anything else.
+Later steps: pick the template car (Charger-style, no suspension animations, simplest chain), bone/transform rescaler
+driven by str1_geo-style axle points, fold into build_str1.py, drop the per-model donor hunt.
+
 ## RULE: wheel positions come from the UNMODIFIED donor zip
 Read wheel positions from the donor's carbin spindle transforms (part type 43) in the original donor zip, never from
 our built car: the game ignores edited spindle transforms (it follows the .gr2 animations), so a built car's carbin
