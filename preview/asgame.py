@@ -64,10 +64,7 @@ print(f'car {media} (donor {dmedia}), database {os.path.basename(A.database)}')
 
 # ---------------------------------------------------------------- donor spindles: wheel y, and a reference for z
 W_DONOR = spindles(dcarb); W_BUILT = spindles(carb)
-for c in ('lf', 'rf', 'lr', 'rr'):
-    if c in W_BUILT and np.abs(W_BUILT[c] - W_DONOR[c]).max() > 1e-3:
-        warn(f'build changed the {c.upper()} spindle transform {W_BUILT[c].round(3)} (donor {W_DONOR[c].round(3)}): '
-             'the game does not read it (tested 29 Oct); the preview uses the donor values for y')
+# (the carbin spindle check moves below, once the database wheel positions are known)
 dzf = (W_DONOR['lf'][2] + W_DONOR['rf'][2]) / 2; dzr = (W_DONOR['lr'][2] + W_DONOR['rr'][2]) / 2
 print(f'  donor spindles: front z {dzf:.3f} y {(W_DONOR["lf"][1] + W_DONOR["rf"][1]) / 2:.3f}, '
       f'rear z {dzr:.3f} y {(W_DONOR["lr"][1] + W_DONOR["rr"][1]) / 2:.3f}  (wheelbase {dzf - dzr:.3f}, for reference only)')
@@ -91,6 +88,9 @@ print(f'  from DB: ModelWheelbase {body["ModelWheelbase"]:.3f} about z {mid:+.3f
 if abs(body['Wheelbase'] - body['ModelWheelbase']) > 0.02: warn('Wheelbase (physics) and ModelWheelbase (drawn) differ')
 GAME = {'lf': np.array([-tf / 2, W_DONOR['lf'][1], zf]), 'rf': np.array([tf / 2, W_DONOR['rf'][1], zf]),
         'lr': np.array([-tr / 2, W_DONOR['lr'][1], zr]), 'rr': np.array([tr / 2, W_DONOR['rr'][1], zr])}
+for c in ('lf', 'rf', 'lr', 'rr'):           # the built carbin's wheel transforms should agree with the database position
+    if c in W_BUILT and np.abs(W_BUILT[c] - GAME[c]).max() > 0.03:
+        warn(f'built carbin {c.upper()} wheel transform {W_BUILT[c].round(3)} is not where the database draws the wheel {GAME[c].round(3)}')
 
 # ---------------------------------------------------------------- checks against the body's intended axle points
 G = pickle.load(open(A.geo, 'rb')) if os.path.exists(A.geo) else None

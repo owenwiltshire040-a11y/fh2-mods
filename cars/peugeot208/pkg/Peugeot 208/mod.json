@@ -3,7 +3,7 @@
  "id": "owen-peugeot-208",
  "name": "Peugeot 208 PureTech 130 (2021)",
  "author": "Owen",
- "version": "0.1.0",
+ "version": "0.1.1",
  "description": "2021 Peugeot 208 II 1.2 PureTech 130 GT for personal use. Model '2021 Peugeot 208' by tonielpro520 (Sketchfab, CC BY 4.0). Built on the 2012 Dodge Charger SRT8 as the generic donor.",
  "database": "database.json",
  "strings": "strings.json",

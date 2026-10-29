@@ -134,6 +134,15 @@ def patch_skel_gr2(data):
     sw = next(b for b in B if b['Name'] == 'boneSteeringWheel')
     M = np.array(sw['InverseWorldTransform']).reshape(4, 4); world = -M[3, :3] @ np.linalg.inv(M[:3, :3])
     granny.move_bone(g, 'boneSteeringWheel', list(SW_CENTRE - world)); print('gr2 skeleton: boneSteeringWheel', world.round(3), '->', SW_CENTRE.round(3))
+    # wheel bones to the car's wheel centres (the tyre is placed by the database; the rim/brake bones should agree)
+    for c in ('LF', 'RF', 'LR', 'RR'):
+        tgt = wheels[f'HUB_{c}']['centre']
+        for bn in (f'hub{c}', f'controlArm_{c}'):
+            b = next((x for x in B if x['Name'] == bn), None)
+            if b is None: continue
+            M = np.array(b['InverseWorldTransform']).reshape(4, 4); w = -M[3, :3] @ np.linalg.inv(M[:3, :3])
+            granny.move_bone(g, bn, list(tgt - w))
+        print(f'gr2 skeleton: hub{c}/controlArm_{c} -> {np.round(tgt, 3)}')
     return g.write()
 replaced[f'scene/{MEDIA.lower()}_skeleton.gr2'] = patch_skel_gr2(src.read(names[f'scene/{MEDIA.lower()}_skeleton.gr2']))
 
@@ -150,11 +159,21 @@ if getattr(S, 'AVPINS_TEMPLATE', None):
 # ---------------------------------------------------------------- carbin: keep the filled parts, wheels and brakes; drop the rest
 carb = read_carbin(src.read(names[f'{MEDIA.lower()}.carbin']))
 KEEP = set(S.KEEP_PARTS); removed = []
+# wheel (43) and brake (4) model transforms: from the donor's wheel centres to this car's, per corner
+donor_w = {}
+for pt in carb['parts']:
+    if pt['part']['type'] == 43:
+        for m in pt['part']['models']: donor_w[m['bone_name'].lower()[-2:]] = np.array(m['transform'][12:15], float)
 for pt in carb['parts']:
     keep = []
     for m in pt['part']['models']:
         fn = m['path'].lower().split('\\')[-1]
-        if pt['part']['type'] in (4, 43) or fn in KEEP: keep.append(m)
+        if pt['part']['type'] in (4, 43):
+            c = m['bone_name'].lower()[-2:]
+            if c in donor_w:
+                t = list(m['transform']); d = wheels[f'HUB_{c.upper()}']['centre'] - donor_w[c]; t[12] += d[0]; t[13] += d[1]; t[14] += d[2]; m['transform'] = t
+            keep.append(m)
+        elif fn in KEEP: keep.append(m)
         else: removed.append(fn)
     pt['part']['models'] = keep
 for up in carb['upgradable_parts']:

@@ -177,8 +177,14 @@ cars/peugeot208: car 3208, make Peugeot (id 203, nearest), media PEU_208PureTech
 (Fiesta Mk7 suspension scaled by mass), model track 1.397 used (real 1.496), wheelbase 2.55 model / 2.54 physics,
 tyres 205/45 R17, drag sized for 129 mph. Driver: Charger set, hips (-0.33, 0.44, 0.0), steering (-0.385, 0.72, 0.40)
 from the model's own wheel (its interior is kept as black plastic, so the Charger steering wheel part is dropped).
-asgame PASS (wheels within 1 cm). Unknowns until seen in game: a 48 MB body_a, the paint material on untextured UVs,
-glass transparency, the 208's own interior geometry vs the driver.
+asgame PASS (wheels within 1 cm). IN GAME (Owen, 23:53): loads, paintable red, clear glass with the black interior
+behind it, driver at the wheel, tyres in the arches, drives. Rims: "not attached to the tyre, and don't move"
+(stills show them centred; the complaint is rotation). v0.1.1 (23:58): build_car.py now also moves the gr2
+hubXX/controlArm_XX bones and the carbin wheel/brake transforms to the car's wheel centres, so every source agrees
+with the database (asgame now warns when the built carbin disagrees with the DB position instead of with the
+donor). Open question: do the STR1's rims rotate? If neither car's do, suspect the raw-rewritten skeleton gr2
+(test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
+go back to the Charger wheel for that test).
 
 ## RULE: wheel positions come from the database (z, x) and the UNMODIFIED donor zip (y)
 Superseded in part on 29 Oct (see GENERIC DONOR): wheel z and x are set by Data_CarBody (ModelWheelbase,
