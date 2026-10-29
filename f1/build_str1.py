@@ -16,10 +16,14 @@ from body_swap import set_group, blank_group, material_names
 from gltf_bridge import decode_group
 from carbin import read_carbin, write_carbin
 from modelbin import Bundle
-import swatch, fhmat
+import swatch, fhmat, granny
 
 SRC, OUT = sys.argv[1], sys.argv[2]
 MEDIA = 'STR_ToroRosso_1_06'
+# driver: the Atom's animation set (a low sports-car pose) if its zip is here, else the donor's own (sedan pose);
+# the seat is the 'Hips' track position in each animation, absolute in car space — put it in the STR1's bucket
+DRIVER_ANIMS_ZIP = 'in/atom/ARI_Atom_13.zip'
+DRIVER_HIPS = (0.0, 0.14, 0.18)            # seat pan y 0.08, backrest z 0..0.1 (str1_geo COCKPIT material); 'perfect' 29 Oct
 src = zipfile.ZipFile(SRC); names = {n.lower(): n for n in src.namelist()}
 G = pickle.load(open('str1_geo.pkl', 'rb')); parts = G['parts']; wheels = G['wheels']
 assert 'donor_wheels' in G, 'str1_geo.pkl is from the Atom build: re-run str1_geo.py'
@@ -159,6 +163,30 @@ def patch_skel(data):
         bl['data'] = d
     return b.write() if changed else data
 
+# ---------------------------------------------------------------- skeleton .gr2: the driver's hands follow its boneSteeringWheel
+# (the wheel model itself follows the skeleton.modelbin bone patched above; the gr2 skeleton places nothing else we
+# use — wheels come from the database, see NOTES.md GENERIC DONOR)
+def patch_skel_gr2(data):
+    g = granny.GR2(data); B = g.root()['Skeletons'][0]['Bones']
+    sw = next(b for b in B if b['Name'] == 'boneSteeringWheel')
+    M = np.array(sw['InverseWorldTransform']).reshape(4, 4); world = -M[3, :3] @ np.linalg.inv(M[:3, :3])
+    granny.move_bone(g, 'boneSteeringWheel', list(SW_CENTRE - world))
+    print('gr2 skeleton: boneSteeringWheel', world.round(3), '->', SW_CENTRE.round(3))
+    return g.write()
+replaced[f'scene/{MEDIA.lower()}_skeleton.gr2'] = patch_skel_gr2(src.read(names[f'scene/{MEDIA.lower()}_skeleton.gr2']))
+
+# ---------------------------------------------------------------- driver animations: seat in the bucket
+import os
+drv_zip = zipfile.ZipFile(DRIVER_ANIMS_ZIP) if os.path.exists(DRIVER_ANIMS_ZIP) else src
+drv_names = {n.lower(): n for n in drv_zip.namelist() if n.lower().startswith('scene/drivers/')}
+if drv_zip is src: print('driver animations: ' + DRIVER_ANIMS_ZIP + ' not found, using the donor\'s own set')
+was = granny.track_position_constant(granny.GR2(drv_zip.read(drv_names['scene/drivers/default/idle.gr2'])), 'Hips')
+print('driver animations: seat', np.round(was, 3), '->', DRIVER_HIPS, f'({len(drv_names)} files)')
+for k, n in drv_names.items():
+    g = granny.GR2(drv_zip.read(n)); granny.set_track_position(g, 'Hips', DRIVER_HIPS, was); replaced[k] = g.write()
+avp = src.read(names[f'{MEDIA.lower()}.avpins']).replace(b'Template="4Door_Sedan"', b'Template="LMP_OpenCockpit"')
+replaced[f'{MEDIA.lower()}.avpins'] = avp
+
 # ---------------------------------------------------------------- carbin: keep body, steering wheel, wheels, brakes
 carb = read_carbin(src.read(f'{MEDIA}.carbin'))
 KEEP = {'body_a.modelbin', 'steeringwheel_a.modelbin'}
@@ -211,6 +239,8 @@ for info in src.infolist():
         try: data = patch_skel(data)
         except Exception as e: print('  skel patch skipped', key, e)
     out.writestr(zipfile.ZipInfo(info.filename, date_time=info.date_time), data, compress_type=zipfile.ZIP_DEFLATED)
+for k, v in replaced.items():                       # driver animations the donor zip did not have
+    if k not in names: out.writestr(zipfile.ZipInfo(k, date_time=(2026, 10, 29, 0, 0, 0)), v, compress_type=zipfile.ZIP_DEFLATED)
 for k, v in added.items():
     out.writestr(zipfile.ZipInfo(k, date_time=(2026, 10, 29, 0, 0, 0)), v, compress_type=zipfile.ZIP_DEFLATED)
 out.close(); print('wrote', OUT)

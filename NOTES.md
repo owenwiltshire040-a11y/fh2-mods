@@ -34,7 +34,7 @@ don't port ripped assets from other games (no ZS/FM5 donors), personal use only.
 ## Peugeot 207 (car 3207, media PEU_207SEHDi_08) — done ("it'll do")
 car207/, sheik/, wheel/, tex/gauges_207.py. Latest: PEU_207_5door_v14.zip + peugeot207_database_v7.json.
 
-## Toro Rosso STR1 — v0.4.0 built on the Charger, awaiting Owen's in-game check
+## Toro Rosso STR1 — v0.6.0 on the Charger: wheels, track, driver all right in game (Owen, 29 Oct 23:20: "perfect!")
 Scripts (run from `f1/`, inputs in `f1/in/` which is gitignored):
 `make_media.py in/DOD_ChargerSRT8_12.zip in/donor_STR_ToroRosso_1_06.zip` (rename donor media),
 `str1_geo.py` (glb → str1_geo.pkl), `build_str1.py in/donor_STR_ToroRosso_1_06.zip in/str1.zip`,
@@ -65,11 +65,10 @@ transforms and skeleton bones had no effect on the Atom), so the donor has to ma
   Preview of v0.4.0 looked right (body on the Charger axles, livery OK, wheels at the axles but wide).
 
 ### Next
-1. Owen installs v0.4.0 and sends an overhead screenshot: wheelbase should now be right; check the track.
-2. If the wheels are too wide: try smaller ModelFront/RearTrackOuter, else widen the STR1 suspension arms in
-   str1_geo.py (stretch the HUB_* / arm parts in x to the Charger track) or accept it.
-3. Then the Charger's wheel models: replace with STR1-style F1 wheels/tyres (13" rims, 0.33 m radius; the Charger's
-   wheels are 20" and show through the sidepods) — new render meshes in str_tororosso_1_06_wheellf.modelbin.
+Nothing blocking. The build is reproducible from the Charger donor + in/atom/ARI_Atom_13.zip (driver animations):
+`make_media.py`, `str1_geo.py`, `build_str1.py in/donor_STR_ToroRosso_1_06.zip in/str1.zip`, `build_str1_db.py`,
+mod_diff + id_conflicts nearest, `preview/asgame.py`, package. Possible polish: driver recline (Hips orientation
+constant, same patch mechanism), seat height a few cm, STR1 rim styling, downforce feel.
 
 ### Later
 STR1 rim styling (the tyres are already F1-sized from the DB; only the Charger's normalised rim shows); downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
@@ -242,6 +241,14 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   v0.5.4-hipsabs (23:22): same patch with Hips = (0, 0.14, 0.18) absolute. In the bucket -> absolute; high over the
   nose -> relative to the wheel bone; still invisible -> the animation rewrite is the problem (test: ship ONE
   rewritten file, e.g. idle.gr2 unmodified but re-written raw, with the other 12 original).
+  RESULT v0.5.4 (23:20): "perfect!" — in the bucket, head level with the airbox, hands on the wheel. So the Hips
+  position is ABSOLUTE in car space. DRIVER RULE: hands follow the skeleton gr2's boneSteeringWheel; seat = the
+  'Hips' track position in every scene/Drivers/default/*.gr2 (absolute); the `driver` bone and the avpins template
+  do nothing visible; the animation set only changes the pose (Atom set = low sports pose, kept).
+  Folded into build_str1.py (v0.6.0, 23:25): patch_skel_gr2 (boneSteeringWheel -> SW_CENTRE), driver animations
+  from DRIVER_ANIMS_ZIP (in/atom/ARI_Atom_13.zip; falls back to the donor's set) with Hips -> DRIVER_HIPS
+  (0, 0.14, 0.18) via granny.set_track_position, avpins Template -> LMP_OpenCockpit (harmless). Rebuilt media
+  matches the hand-built v0.5.4 (only float last-bits and texture GUIDs differ); asgame PASS.
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).

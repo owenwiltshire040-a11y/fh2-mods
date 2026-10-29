@@ -298,6 +298,40 @@ def move_bone(g, name, d):
     assert moved, f'no bone {name!r}; bones: {[b[0] for b in bones(g)]}'
     return moved
 
+def floats_addr(g, st, member):
+    """(section, offset) and count of a struct member's float data: inline Real32[n], or a reference-to-array"""
+    t, name, child, n = next(m for m in g.struct_def(*st['_def']) if m[1] == member); s, o = st['_addr'][member]
+    if t == T_REAL32: return (s, o), n
+    if t == T_REFARRAY: return g.deref(s, o + 4), g.u32(s, o)
+    raise ValueError(f'{member}: member type {t}')
+
+def set_track_position(g, track_name, target, was):
+    """FH2 driver animations keep the seat in the 'Hips' transform track's position curve, an absolute car-space
+    position (confirmed 29 Oct). Sets it to `target`: a constant curve (D3Constant32f) is overwritten; a quantised
+    keyframe curve (D3K8uC8u, D3I1K8uC8u: ControlScales ~1e-6, ControlOffsets = the seat) has its ControlOffsets
+    shifted by target - was, where `was` is the set's seat (the constant from its idle.gr2). Returns what was done."""
+    import struct as _st
+    done = []
+    for tg in g.root().get('TrackGroups') or []:
+        for tt in tg.get('TransformTracks') or []:
+            if tt['Name'] != track_name: continue
+            pc = tt['PositionCurve']['CurveData']; hdr = next(k for k in pc if k.startswith('CurveDataHeader'))
+            if 'Constant' in hdr:
+                (s, o), n = floats_addr(g, pc, 'Controls'); assert n == 3; g.set_floats(s, o, list(target)); done.append('constant')
+            elif 'ControlOffsets' in pc:
+                (s, o), n = floats_addr(g, pc, 'ControlOffsets'); assert n == 3
+                old = _st.unpack_from('<3f', g.sections[s]['data'], o)
+                g.set_floats(s, o, [old[i] + target[i] - was[i] for i in range(3)]); done.append(hdr[16:] + ' offsets')
+            else: raise ValueError(f'{track_name}: curve {hdr} not handled')
+    return done
+
+def track_position_constant(g, track_name):
+    """the constant position of a transform track (None if it is keyframed)"""
+    for tg in g.root().get('TrackGroups') or []:
+        for tt in tg.get('TransformTracks') or []:
+            if tt['Name'] == track_name:
+                pc = tt['PositionCurve']['CurveData']; return list(pc['Controls']) if 'Controls' in pc else None
+
 def describe(g):
     r = g.root()
     print(f'granny v{g.version}, {len(g.raw)} bytes, tag {g.tag:08x}, sections', [(h["comp"], h["size"]) for h in g.sections if h["size"]])
