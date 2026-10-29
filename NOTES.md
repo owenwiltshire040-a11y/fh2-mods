@@ -64,3 +64,18 @@ wheelbase 3.052).
 ### Later
 STR1's own F1 wheels/tyres; downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
 from other mods (ZS Formula pack clashed with owen-traffic-trucks — fixed with id_conflicts nearest).
+
+## TASK: game-accurate preview ("as-game" check, so Owen needn't screenshot every build)
+Goal: a script `preview/asgame.py car.zip database.json` that places everything the way FH2 does
+and prints PASS/FAIL checks plus top/side/3-4 PNGs (three.js viewer in scan/viewer, `shot.js`).
+1. **Wheels from the .gr2.** FH2 wheel positions come from `scene/<media>_skeleton.gr2`
+   / Animations/*.gr2 (Granny v7, compressed), NOT the carbin transforms or DB wheelbase.
+   Write a read-only Granny reader (port the relevant parts of an open-source reader,
+   e.g. LSLib's Granny/BitKnit/Oodle0-1 code) to get wheel/suspension bone rest positions.
+   Validate: Atom donor must come out ≈2.3 m wheelbase (what the game showed), Charger ≈3.05 m.
+2. Track width = DB ModelFrontTrackOuter/ModelRearTrackOuter (≈ centre-to-centre × 1.012) — confirmed on the 207.
+3. Checks: each wheel centre vs the body's intended axle point (str1_geo wheels) — fail if > 3 cm;
+   tyre bottom vs ground; wheel inside the arch/wishbone ends.
+4. Then add, one rule at a time: lights from Lights.bin (lit material names `*_custom_brake/_head/_reverse/_turn`),
+   gauge needle bones, material types (carpaint vs textured).
+Every rule added should be checked against a real in-game screenshot before trusting it.
