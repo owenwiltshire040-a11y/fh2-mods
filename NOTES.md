@@ -79,3 +79,11 @@ and prints PASS/FAIL checks plus top/side/3-4 PNGs (three.js viewer in scan/view
 4. Then add, one rule at a time: lights from Lights.bin (lit material names `*_custom_brake/_head/_reverse/_turn`),
    gauge needle bones, material types (carpaint vs textured).
 Every rule added should be checked against a real in-game screenshot before trusting it.
+
+## Setup gotchas (files the scripts expect)
+- Viewer: `cd scan/viewer && npm install` (three@0.160). Serve with `python3 -m http.server 8765` there; `node shot.js ...`.
+- build_str1.py reads two texture templates from `../tex/`: `PEU_207SEHDi_08_Interior_DIFF_7b3d1f55-...swatchbin`
+  (zip path Textures/LOD/Swatches/) and `PEU_207SEHDi_08_Rad_Fixed_DiffuseFrontReflector_fa6144d2-...swatchbin`
+  (Textures/lp/Swatches/). Extract both from PEU_207_5door_v14.zip into tex/.
+- build_str1_db.py hard-codes an old TJ2005_engine.ini path — point it at the uploaded file.
+- Python deps: numpy, trimesh, scipy, scikit-learn, pillow, etcpak, texture2ddecoder (pip --break-system-packages).

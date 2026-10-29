@@ -1,0 +1,20 @@
+<!doctype html><html><body style="margin:0;background:#fff">
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const p=new URLSearchParams(location.search);
+const file=p.get('f'), views=JSON.parse(p.get('v')), tgt=JSON.parse(p.get('t')||'[0,0.6,0]'), S=+(p.get('s')||500), lit=p.get('lit');
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); r.setSize(S*3,S*Math.ceil(views.length/3)); document.body.appendChild(r.domElement);
+r.setScissorTest(true); r.setClearColor(0xffffff);
+const scene=new THREE.Scene();
+if(lit){scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5)); const d=new THREE.DirectionalLight(0xffffff,1.5); d.position.set(3,5,2); scene.add(d);}
+else scene.add(new THREE.AmbientLight(0xffffff,3));
+new GLTFLoader().load(file, g=>{
+  g.scene.traverse(o=>{ if(o.isMesh){ if(lit){o.material=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:!!o.geometry.attributes.color,roughness:0.35,metalness:0.1,side:THREE.DoubleSide,flatShading:false}); o.geometry.computeVertexNormals();} else {const m=o.material; o.material=new THREE.MeshBasicMaterial({map:m.map,color:m.map?0xffffff:(m.color||0x999999),side:THREE.DoubleSide,vertexColors:!!o.geometry.attributes.color});} }});
+  scene.add(g.scene);
+  views.forEach((e,i)=>{ const cam=new THREE.PerspectiveCamera(35,1,0.05,100); cam.position.set(...e); cam.lookAt(...tgt);
+    const x=(i%3)*S, y=(Math.ceil(views.length/3)-1-Math.floor(i/3))*S; r.setViewport(x,y,S,S); r.setScissor(x,y,S,S); r.render(scene,cam); });
+  document.title='done';
+});
+</script></body></html>
