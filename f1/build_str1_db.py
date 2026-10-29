@@ -123,7 +123,7 @@ c.execute('''update Data_Engine set MediaName='POR_CarreraGT_03', "EngineMass-kg
              CylinderID=5, MomentInertia=0.049, GasTankSize=95, EngineGraphingMaxTorque=330, EngineGraphingMaxPower=540,
              EngineName='Cosworth TJ2005 3.0L V10' where EngineID=?''', (ENG,))
 import re as _re
-_t = _re.sub(r'//.*', '', open('/mnt/user-data/uploads/Formula_One_2006_by_CTDP_v1/_str_extract/str/TJ2005_engine.ini', encoding='latin1').read())
+_t = _re.sub(r'//.*', '', open('in/TJ2005_engine.ini', encoding='latin1').read())
 RPMT = [tuple(map(float, m)) for m in _re.findall(r'RPMTorque=\(\s*([-\d.]+),\s*([-\d.]+),\s*([-\d.]+)\)', _t)]
 # The game's rev tables stop at 12,000 rpm (121 points of 100 rpm; past that the engine is cut), so the V10 is
 # mapped into that range: rpm x K, torque / K (same power at every road speed), gear ratios x K (same speed per gear).

@@ -7,3 +7,7 @@
 *.bin
 *.pkl
 __pycache__/
+eo/
+f1/in/
+scan/viewer/vendor/
+scan/viewer/*.glb

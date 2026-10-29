@@ -15,8 +15,9 @@ Never delete Owen's files — move them to `_parts/`.
 - `vanilla.slt` (stock game database) — needed by both `build_*_db.py` scripts
 - `f1/src/nefolder.glb` — the 2006 Toro Rosso STR1 model (CTDP F1 2006, via Sketchfab). Owen states
   he has CTDP's permission for personal use. Credit CTDP; never redistribute.
-- `f1/matI_lod1.bin` (MatI template, extracted from the built 207 `interior_lod1`)
-- Third-party tools: Extra Options repo (`eo/`, needs `eo/tools/mod_diff.py`), FH2 Manager (`fh2m/`), ftx.
+- `f1/matI_lod1.bin` (MatI template; `f1/extract_mati.py PEU_207_5door_v14.zip` regenerates it)
+- Third-party tools: Extra Options repo (`eo/`, github.com/RokkuDayo/ForzaHorizon2_ExtraOptions, needs `eo/tools/mod_diff.py`), FH2 Manager (`fh2m/`), ftx.
+- `f1/in/`: the donor zip, PEU_207_5door_v14.zip, TJ2005_engine.ini and build outputs (gitignored).
 
 ## Ground rules
 Don't decrypt protected mod files (CTDP GMTs are encrypted), don't edit/decrypt saves,
@@ -33,42 +34,42 @@ don't port ripped assets from other games (no ZS/FM5 donors), personal use only.
 ## Peugeot 207 (car 3207, media PEU_207SEHDi_08) — done ("it'll do")
 car207/, sheik/, wheel/, tex/gauges_207.py. Latest: PEU_207_5door_v14.zip + peugeot207_database_v7.json.
 
-## Toro Rosso STR1 — IN PROGRESS
-Scripts: `f1/str1_geo.py` (glb → str1_geo.pkl), `f1/make_media.py` (rename donor media),
-`f1/build_str1.py donor.zip out.zip`, `f1/build_str1_db.py` (→ custom_str1.slt, then
-`eo/tools/mod_diff.py database vanilla.slt custom_str1.slt -o database_str1.json --updates override --force`,
-then set `id_conflicts` to `nearest`). Package = `f1/pkg/Toro Rosso STR1/` (mod id owen-toro-rosso-str1, v0.3.3).
-Car 3651, make "Toro Rosso", price 1 CR, Carrera GT sound, V10 to 11,900 rpm, 8 gears, works in game and passes 140 mph.
+## Toro Rosso STR1 — v0.4.0 built on the Charger, awaiting Owen's in-game check
+Scripts (run from `f1/`, inputs in `f1/in/` which is gitignored):
+`make_media.py in/DOD_ChargerSRT8_12.zip in/donor_STR_ToroRosso_1_06.zip` (rename donor media),
+`str1_geo.py` (glb → str1_geo.pkl), `build_str1.py in/donor_STR_ToroRosso_1_06.zip in/str1.zip`,
+`build_str1_db.py` (→ custom_str1.slt + strings_str1.json; reads `in/TJ2005_engine.ini`), then
+`python3 ../eo/tools/mod_diff.py database ../car207/vanilla.slt custom_str1.slt -o database_str1.json --updates override --force`
+and set `policy.id_conflicts` to `nearest` in the JSON. `extract_mati.py in/PEU_207_5door_v14.zip` regenerates matI_lod1.bin.
+Package = `f1/pkg/Toro Rosso STR1/` (mod.json, CREDITS.txt) + database.json + strings.json + `media/cars/STR_ToroRosso_1_06.zip`;
+mod id owen-toro-rosso-str1, v0.4.0. Car 3651, make "Toro Rosso" (id 202), price 1 CR, Carrera GT sound, V10 to 11,900 rpm.
+Python deps: numpy trimesh scipy pillow texture2ddecoder etcpak. Extra Options repo = github.com/RokkuDayo/ForzaHorizon2_ExtraOptions (clone to `eo/`).
 
-### Current problem: wheelbase
-On the Ariel Atom donor the wheels sit ~2.3 m apart; STR1 axles are 3.05 m apart.
-DB Wheelbase/ModelWheelbase, carbin transforms and skeleton bones all had NO effect —
-wheel positions come from the donor's .gr2 animations (can't edit). Fix = new donor with the
-right wheelbase: **Dodge Charger SRT8 2012** (car 1422, engine 882, drivetrain 830, make 11,
-wheelbase 3.052).
+### Donor: Dodge Charger SRT8 2012 (car 1422, engine 882, drivetrain 830, media DOD_ChargerSRT8_12)
+Chosen for its 3.052 m wheelbase: wheel positions come from the donor's .gr2 animations (DB Wheelbase, carbin
+transforms and skeleton bones had no effect on the Atom), so the donor has to match the STR1's 3.05 m.
+- Media renamed DOD_ChargerSRT8_12 -> STR_ToroRosso_1_06 (18 chars each). make_media.fix_model now just rewrites the
+  crc32 after every renamed texture path (the Charger's headlight MatIs use a param type fhmat.retexture doesn't know;
+  ErrorShader MatIs are empty).
+- Charger body_a materials: group 0 carpaint + frame (LODs 3..32), 1 blkplastic_hgl, 2 undercarriage, LOD64 groups 3/4/5.
+  Build uses textured_like {0,3: carpaint}, black -> (1, blkplastic_hgl), mirror -> (0, frame); steering wheel group 0
+  blkplastic_mgl. Wheels/brakes keep the Charger's transforms; only the steering spindle bone moves.
+- Charger wheel centres (FH2 space): F ±0.93, y 0.149, z 1.592; R ±0.94, y 0.153, z -1.418. Body centred on z +0.087,
+  GROUND_FH2 = 0.151 - 0.33. STR1's own hubs land at F ±0.74 z 1.616, R ±0.71 z -1.434 — so the Charger wheels sit
+  ~19 cm outboard of the STR1 suspension arms (track 1.86 m vs 1.49 m). ModelFront/RearTrackOuter is set to the STR1
+  track in the DB; see whether that pulls the wheels in (it probably doesn't, like Wheelbase didn't).
+- donor_peak = 637 Nm (the Charger's TorqueScale is 637.79, i.e. its peak torque; STR1 scale -> 445.8).
+- Preview: `preview_str1.py in/str1.zip in/str1_preview.glb`, then in scan/viewer: `npm install three@0.160.0` somewhere
+  and copy `build/` + `examples/jsm/` to `scan/viewer/vendor/three/` (CDNs are blocked in the cloud session),
+  `python3 -m http.server 8765` and `node shot.js str1.glb out.png '[[0,9,0.01],[7,1.5,0]]' '[0,0.4,0.09]'`.
+  Preview of v0.4.0 looked right (body on the Charger axles, livery OK, wheels at the axles but wide).
 
-### Charger rebuild — scripts done (steps 1–4), build not yet run
-1. make_media.py: DOD_ChargerSRT8_12 -> STR_ToroRosso_1_06 (18 chars both); MEDIA updated in build_str1.py,
-   build_str1_db.py, preview_str1.py. Package bumped to v0.4.0, mod.json/CREDITS say Charger.
-2. build_str1_db.py clones 1422/882/830; STR1 physics unchanged. donor_peak = 637 Nm (SRT8 470 lb-ft) —
-   check the printed donor TorqueScale looks sane. Prints a warning if the Charger has no stock aero row
-   (front bumper / rear wing) to clone. Still reads TJ2005_engine.ini from /mnt/user-data/uploads/... (CTDP files).
-3. str1_geo.py: DONOR_WHEELS (Charger centres), GROUND_FH2 = 0.151 - 0.33, body centred on z = +0.087;
-   pkl now carries donor_wheels (build_str1.py refuses an old Atom pkl).
-4. build_str1.py: Charger materials as planned (body {0,3: carpaint}, black -> (1, blkplastic_hgl), mirror ->
-   (0, frame); steering {0: blkplastic_mgl}, black -> blkplastic_mgl). AXLE_SHIFT / suspension bone shifts and
-   the no-op wheel transform loop are gone; it now just lists the kept wheel/brake transforms. Locators unchanged.
-
-Known gap: the Charger's track is ~1.86 m, the STR1's ~1.49 m, so the wheels will likely sit ~19 cm outboard
-of the STR1's suspension arms (ModelFront/RearTrackOuter is still set to the STR1 track — see if it does anything).
-
-### Next steps
-1. Upload DOD_ChargerSRT8_12.zip, vanilla.slt, nefolder.glb, matI_lod1.bin, eo/ tools and the CTDP ini.
-2. `python3 make_media.py DOD_ChargerSRT8_12.zip donor_STR_ToroRosso_1_06.zip`, `python3 str1_geo.py`,
-   `python3 build_str1.py donor_STR_ToroRosso_1_06.zip str1.zip`, `python3 build_str1_db.py`, mod_diff, id_conflicts.
-   If fill() errors on a material name, print material_names() for body_a / steeringwheel_a and fix the map.
-3. Preview (f1/preview_str1.py; viewer = `python3 -m http.server 8765` in scan/viewer + `shot.js`),
-   package, give Owen the unzip command, ask for an overhead screenshot.
+### Next
+1. Owen installs v0.4.0 and sends an overhead screenshot: wheelbase should now be right; check the track.
+2. If the wheels are too wide: try smaller ModelFront/RearTrackOuter, else widen the STR1 suspension arms in
+   str1_geo.py (stretch the HUB_* / arm parts in x to the Charger track) or accept it.
+3. Then the Charger's wheel models: replace with STR1-style F1 wheels/tyres (13" rims, 0.33 m radius; the Charger's
+   wheels are 20" and show through the sidepods) — new render meshes in str_tororosso_1_06_wheellf.modelbin.
 
 ### Later
 STR1's own F1 wheels/tyres; downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
