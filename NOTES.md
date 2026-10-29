@@ -92,6 +92,12 @@ Charger skeleton hubLF/spindleLF world (-0.832, 0.212, 1.272), hubLR (-0.84, 0.2
 draws the Charger's wheel at the carbin spindle (-0.93, 0.151, 1.591), 3.01 m. So on the Charger the gr2 rest pose is
 NOT where the wheel is; either the game ignores it (then the carbin transform rules on cars without suspension
 animations, and the generic donor is just carbin edits) or it adds something. The test decides.
+RESULT 29 Oct (Owen's Autoshow overhead, v0.4.3-gr2test): the car loads with the raw gr2 (so the rewrite is accepted
+by the game) and the left-front wheel did NOT move — measured on the screenshot: nose-cone centre row 342.5, front
+tyre outer edges at rows 150 / 534 → half-spans 192 / 191.5 px, symmetric to 1 px where 10 cm would be ~27 px.
+Outcome (b). Next test built: v0.4.4-carbintest = v0.4.1 media with the carbin's type-43 spindleLF wheel transform
+x -0.93 -> -1.03 (asgame WARNs on it, as designed). Driver in that screenshot: still the upright sedan pose, seated
+left of centre (v0.4.1 flags alone do not fix it; v0.4.2's Atom animations still untested).
 Outcomes: (a) wheel moved -> gr2 drives it: step 2 = rescale all four hub bones (and the Atom-style animation tracks
 when present) to the model's axle points. (b) wheel did not move, car loads -> try the same 10 cm on the carbin
 spindleLF transform (one-line build; `preview/asgame.py` will WARN on it by design). (c) car fails to load -> check
