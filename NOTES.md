@@ -207,6 +207,15 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   Charger; both cars also carry their own `scene/Drivers/default/*.gr2` (compressed). Data_Car.IsOpenCockpit=1 on every
   open car in the vanilla DB (set from v0.4.1). If the driver still sits upright, next tries: the Atom's avpins
   Template, then the Atom's scene/Drivers/ gr2s (in/atom/ARI_Atom_13.zip, uploaded 29 Oct) in the STR1 media.
+  RESULT v0.5.0 (= v0.4.2 content; side-on shot 29 Oct 23:02): no change — still upright, high, behind the cockpit,
+  hands reaching to about (y 0.75, z 0.4) = the Charger gr2 skeleton's boneSteeringWheel world position
+  (-0.374, 0.763, 0.388), not the STR1 wheel (0, 0.373, 0.69). The gr2 skeleton also has a `driver` bone (parent
+  `body`, local (0, 0.10, -0.10)) where his hips are. So the driver is placed by the gr2 skeleton: `driver` bone =
+  body root, `boneSteeringWheel` = hand target; the animation set and avpins template did nothing visible.
+  v0.5.1-drivertest (23:10): v0.5.0 media with the skeleton gr2 edited by granny.py: boneSteeringWheel moved to the
+  STR1 wheel (+0.374, -0.390, +0.302) and `driver` by (0, -0.15, +0.25) -> (0, -0.05, +0.15). If he follows:
+  next tune the driver bone's position/rotation for a reclined seat (rotation = pitch the root back), and fold the
+  two bone edits into build_str1.py (the skeleton.modelbin bone patch already does the same for the wheel model).
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
