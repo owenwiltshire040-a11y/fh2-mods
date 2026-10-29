@@ -226,6 +226,16 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   Then: recline (driver bone pitch; convention verified: Granny matrices are row-vector, M[:3,:3] = R^T, chain
   world = local @ parent, inverse-world = inv(world) — max error 0.0 on all 56 Charger bones), then fold the
   skeleton gr2 edits into build_str1.py (constants DRIVER_POS / DRIVER_PITCH / steering = SW_CENTRE).
+  RESULT v0.5.2 (front + side 23:11): the `driver` bone move did NOTHING (same spot as v0.5.1, still on the car's
+  right, still on top). So v0.5.1's move came from boneSteeringWheel alone. FOUND the seat: every driver animation
+  (scene/Drivers/default/*.gr2) has a 'Hips' transform track whose PositionCurve is a D3Constant32f:
+  Charger (-0.397, 0.507, -0.039) = its LHD seat, Atom (+0.313, 0.202, -0.238) = its RHD seat — relative to the
+  steering bone (the v0.5.1 evidence; absolute would not have moved him). Orientation is a D4Constant32f (pelvis
+  angle), the root track is identity, InitialPlacement is zero.
+  v0.5.3-hips (23:20): Atom driver set with Hips constant = (0, 0.14, 0.18) - wheel (0, 0.373, 0.69) = (0, -0.233,
+  -0.51) in all 13 files (granny.py patch; cinematics with keyframed hips would be skipped — none were), skeleton gr2
+  with boneSteeringWheel at the STR1 wheel and the `driver` bone left as the Charger's. If he lands in the bucket:
+  tune y/z, then recline via the Hips orientation constant, then fold both patches into build_str1.py.
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
