@@ -125,6 +125,12 @@ RESULTS 29 Oct 22:45 (Owen's overheads, measured in pixels; method below):
   v0.4.7-wb365 built (22:55): Wheelbase 3.65, ModelWheelbase 3.05, v0.4.1 media. +30 cm per axle is unmistakable:
   the front tyres would sit level with the front wing's trailing edge. Moved -> Wheelbase alone places them (and the
   rear move becomes visible); not moved -> ModelWheelbase (then test that one alone).
+RESULT v0.4.7-wb365 (22:55 shot): front tyres NOT moved (fraction 0.234 vs baselines 0.220-0.224; tyre leading edge
+to nose 0.54 m vs 0.49-0.52; the 3.25/3.25 build gave 0.19 / 0.42-0.51). So Wheelbase alone does nothing to the
+drawn wheels -> ModelWheelbase is the lever (it moved them when both changed). v0.4.8-mwb365 built (23:00):
+ModelWheelbase 3.65, Wheelbase 3.05, to confirm (+30 cm per axle: front tyres level with the front wing's trailing
+edge). Then the rule becomes: wheel z = +/- ModelWheelbase/2 - BottomCenterWheelbasePosZ (to verify the rear/offset
+part from that shot), x = +/- ModelTrack/1.012/2; Wheelbase is physics only.
 Measuring an overhead: nose cone (orange) leftmost column = tip; rear wing white plate leftmost column = wing;
 front tyre = dark run (<55/255) across the rows of each front wheel; the top-of-image wheel is the car's RIGHT when
 the nose points left. Framing differs per shot, so compare ratios (tyre centre - tip)/(wing - tip) or distances
