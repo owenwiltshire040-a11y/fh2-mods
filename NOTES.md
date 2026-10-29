@@ -126,3 +126,6 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   Charger; both cars also carry their own `scene/Drivers/default/*.gr2` (compressed). Data_Car.IsOpenCockpit=1 on every
   open car in the vanilla DB (set from v0.4.1). If the driver still sits upright, next tries: the Atom's avpins
   Template, then the Atom's scene/Drivers/ gr2s (in/atom/ARI_Atom_13.zip, uploaded 29 Oct) in the STR1 media.
+  v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
+  Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
+  known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
