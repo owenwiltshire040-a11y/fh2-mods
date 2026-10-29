@@ -98,7 +98,17 @@ tyre outer edges at rows 150 / 534 → half-spans 192 / 191.5 px, symmetric to 1
 Outcome (b). Next test built: v0.4.4-carbintest = v0.4.1 media with the carbin's type-43 spindleLF wheel transform
 x -0.93 -> -1.03 (asgame WARNs on it, as designed). Driver in that screenshot: still the upright sedan pose, seated
 left of centre (v0.4.1 flags alone do not fix it; v0.4.2's Atom animations still untested).
-Outcomes: (a) wheel moved -> gr2 drives it: step 2 = rescale all four hub bones (and the Atom-style animation tracks
+RESULT v0.4.4-carbintest (Owen's overhead, 29 Oct): no move either (nose centre row 291.5, tyre outer edges 67 / 515,
+half-spans 224.5 / 223.5 px; 10 cm = ~29 px). LESSON: both tests moved x, and the DB's ModelFront/RearTrackOuter sets
+x (it is what pulled the Charger track in to the STR1's) — so neither test could have shown anything. Wheelbase (z) is
+the open question. Two builds, 29 Oct 22:45:
+  v0.4.5-ztest = v0.4.1 media with gr2 hubLF z +0.10 (LEFT front) AND carbin spindleRF wheel transform z +0.10
+  (RIGHT front): whichever front wheel sits 10 cm ahead of the other names the source (left -> gr2, right -> carbin,
+  both -> both, neither -> neither).
+  v0.4.6-wbtest = v0.4.1 media, database only: Data_CarBody Wheelbase & ModelWheelbase 3.05 -> 3.25. If both fronts
+  (or all four) move, the DB wheelbase places the wheels on a car without suspension animations (on the Atom it
+  did nothing — but the Atom's wheels follow its suspension*.gr2 animations).
+Outcomes (for the old x tests, superseded): (a) wheel moved -> gr2 drives it: step 2 = rescale all four hub bones (and the Atom-style animation tracks
 when present) to the model's axle points. (b) wheel did not move, car loads -> try the same 10 cm on the carbin
 spindleLF transform (one-line build; `preview/asgame.py` will WARN on it by design). (c) car fails to load -> check
 FH2_ExtraOptions.log; the raw rewrite needs fixing before anything else.
