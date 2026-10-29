@@ -9,5 +9,5 @@
 __pycache__/
 eo/
 f1/in/
-scan/viewer/vendor/
+scan/viewer/node_modules/
 scan/viewer/*.glb

@@ -74,3 +74,39 @@ transforms and skeleton bones had no effect on the Atom), so the donor has to ma
 ### Later
 STR1's own F1 wheels/tyres; downforce tuning; rain light; move traffic mods' Combo_Colors IDs away
 from other mods (ZS Formula pack clashed with owen-traffic-trucks — fixed with id_conflicts nearest).
+
+## TASK: game-accurate preview ("as-game" check, so Owen needn't screenshot every build)
+Goal: a script `preview/asgame.py car.zip database.json` that places everything the way FH2 does
+and prints PASS/FAIL checks plus top/side/3-4 PNGs (three.js viewer in scan/viewer, `shot.js`).
+1. **Wheels from the .gr2.** FH2 wheel positions come from `scene/<media>_skeleton.gr2`
+   / Animations/*.gr2 (Granny v7, compressed), NOT the carbin transforms or DB wheelbase.
+   Write a read-only Granny reader (port the relevant parts of an open-source reader,
+   e.g. LSLib's Granny/BitKnit/Oodle0-1 code) to get wheel/suspension bone rest positions.
+   Validate: Atom donor must come out ≈2.3 m wheelbase (what the game showed), Charger ≈3.05 m.
+2. Track width = DB ModelFrontTrackOuter/ModelRearTrackOuter (≈ centre-to-centre × 1.012) — confirmed on the 207.
+3. Checks: each wheel centre vs the body's intended axle point (str1_geo wheels) — fail if > 3 cm;
+   tyre bottom vs ground; wheel inside the arch/wishbone ends.
+4. Then add, one rule at a time: lights from Lights.bin (lit material names `*_custom_brake/_head/_reverse/_turn`),
+   gauge needle bones, material types (carpaint vs textured).
+Every rule added should be checked against a real in-game screenshot before trusting it.
+Status 29 Oct: the repo has NO Granny reader yet. The wheel centres used so far are the carbin's spindle transforms
+(`fh2re/carbin.py`, part type 43): Atom 2.344 m / Charger 3.011 m wheelbase, and both matched the game (the Atom
+showed ~2.3 m; the Charger build's overhead screenshot has the wheels on the STR1 axle lines). The Charger's gr2
+files are all Oodle1-compressed (section compression type 2), as are the Atom's skeleton and driver animations;
+only the Atom's `Animations/suspension*.gr2` are uncompressed. The Charger has no suspension*.gr2 at all, which is
+probably why its carbin transforms place the wheels. Track: the overhead screenshot measured ~1.64 m outer-to-outer
+at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in (rule 2 confirmed on the STR1 too).
+
+## Setup gotchas (files the scripts expect)
+- Viewer: `cd scan/viewer && npm install` (three@0.160). Serve with `python3 -m http.server 8765` there; `node shot.js ...`.
+- build_str1.py reads two texture templates from `../tex/`: `PEU_207SEHDi_08_Interior_DIFF_7b3d1f55-...swatchbin`
+  (zip path Textures/LOD/Swatches/) and `PEU_207SEHDi_08_Rad_Fixed_DiffuseFrontReflector_fa6144d2-...swatchbin`
+  (Textures/lp/Swatches/). Extract both from PEU_207_5door_v14.zip into tex/.
+- build_str1_db.py hard-codes an old TJ2005_engine.ini path — point it at the uploaded file.
+- Python deps: numpy, trimesh, scipy, scikit-learn, pillow, etcpak, texture2ddecoder (pip --break-system-packages).
+- matI_lod1.bin: `cd f1 && python3 extract_mati.py in/PEU_207_5door_v14.zip`.
+- Cloud session: CDNs (cdnjs, jsdelivr) are blocked, registry.npmjs.org and PyPI are not — hence the local three in node_modules.
+- Driver pose: avpins is the points-of-interest XML, `Template="LMP_OpenCockpit"` on the Atom vs `"4Door_Sedan"` on the
+  Charger; both cars also carry their own `scene/Drivers/default/*.gr2` (compressed). Data_Car.IsOpenCockpit=1 on every
+  open car in the vanilla DB (set from v0.4.1). If the driver still sits upright, next tries: the Atom's avpins
+  Template, then the Atom's scene/Drivers/ gr2s (in/atom/ARI_Atom_13.zip, uploaded 29 Oct) in the STR1 media.

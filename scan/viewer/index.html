@@ -1,30 +1,20 @@
-<!doctype html>
-<html><head><meta charset="utf-8"><title>loading</title>
-<style>body{margin:0;background:#dfe3e8}canvas{display:block}</style>
-<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js",
- "three/addons/":"./vendor/three/examples/jsm/"}}</script>
-</head><body>
+<!doctype html><html><body style="margin:0;background:#fff">
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 <script type="module">
-// ?f=model.glb&v=[[x,y,z],...]&t=[tx,ty,tz]&lit=1 : renders each view into one tiled canvas, then sets the title to 'done'
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-const q = new URLSearchParams(location.search);
-const views = JSON.parse(q.get('v') || '[[6,2,0],[0,2,6],[0,8,0.01]]'), tgt = JSON.parse(q.get('t') || '[0,0.6,0]');
-const W = 1500, H = 1000, cols = Math.min(views.length, 3), rows = Math.ceil(views.length / cols);
-const r = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true}); r.setSize(W, H); document.body.appendChild(r.domElement);
-const sc = new THREE.Scene(); sc.background = new THREE.Color(0xdfe3e8);
-sc.add(new THREE.HemisphereLight(0xffffff, 0x667788, q.get('lit') ? 2.0 : 3.0));
-const d = new THREE.DirectionalLight(0xffffff, q.get('lit') ? 2.5 : 1.0); d.position.set(3, 6, 4); sc.add(d);
-const grid = new THREE.GridHelper(8, 16, 0x8899aa, 0xb0bcc8); sc.add(grid);
-new GLTFLoader().load(q.get('f'), g => {
-  g.scene.traverse(o => { if (o.isMesh) { o.material.side = THREE.DoubleSide; if (o.material.map) o.material.map.colorSpace = THREE.SRGBColorSpace; } });
-  sc.add(g.scene);
-  r.setScissorTest(true);
-  views.forEach((v, i) => {
-    const w = W / cols, h = H / rows, x = (i % cols) * w, y = H - h - Math.floor(i / cols) * h;
-    const cam = new THREE.PerspectiveCamera(35, w / h, 0.05, 100); cam.position.set(...v); cam.up.set(0, 1, 0); cam.lookAt(...tgt);
-    r.setViewport(x, y, w, h); r.setScissor(x, y, w, h); r.render(sc, cam);
-  });
-  document.title = 'done';
-}, undefined, e => { console.log('load error', e); document.title = 'done'; });
+const p=new URLSearchParams(location.search);
+const file=p.get('f'), views=JSON.parse(p.get('v')), tgt=JSON.parse(p.get('t')||'[0,0.6,0]'), S=+(p.get('s')||500), lit=p.get('lit');
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true}); r.setSize(S*3,S*Math.ceil(views.length/3)); document.body.appendChild(r.domElement);
+r.setScissorTest(true); r.setClearColor(0xffffff);
+const scene=new THREE.Scene();
+if(lit){scene.add(new THREE.HemisphereLight(0xffffff,0x444444,1.5)); const d=new THREE.DirectionalLight(0xffffff,1.5); d.position.set(3,5,2); scene.add(d);}
+else scene.add(new THREE.AmbientLight(0xffffff,3));
+new GLTFLoader().load(file, g=>{
+  g.scene.traverse(o=>{ if(o.isMesh){ if(lit){o.material=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:!!o.geometry.attributes.color,roughness:0.35,metalness:0.1,side:THREE.DoubleSide,flatShading:false}); o.geometry.computeVertexNormals();} else {const m=o.material; o.material=new THREE.MeshBasicMaterial({map:m.map,color:m.map?0xffffff:(m.color||0x999999),side:THREE.DoubleSide,vertexColors:!!o.geometry.attributes.color});} }});
+  scene.add(g.scene);
+  views.forEach((e,i)=>{ const cam=new THREE.PerspectiveCamera(35,1,0.05,100); cam.position.set(...e); cam.lookAt(...tgt);
+    const x=(i%3)*S, y=(Math.ceil(views.length/3)-1-Math.floor(i/3))*S; r.setViewport(x,y,S,S); r.setScissor(x,y,S,S); r.render(scene,cam); });
+  document.title='done';
+});
 </script></body></html>
