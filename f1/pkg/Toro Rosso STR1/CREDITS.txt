@@ -1,0 +1,10 @@
+Scuderia Toro Rosso STR1 (2006) for Forza Horizon 2 - Owen's personal mod. NOT FOR REDISTRIBUTION.
+
+Car model, textures/livery and physics reference data:
+  CTDP - Cars & Tracks Development Project, "CTDP F1 2006 for rFactor" (c) 2008-2010 CTDP.
+  Used for this personal, non-distributed conversion with CTDP's permission (obtained by Owen).
+  The model files came via an Assetto Corsa conversion ("acfl_2006_str") uploaded to Sketchfab as
+  "2006 Scuderia Toro Rosso STR1" by Dave Love; the original work is CTDP's.
+Physics figures (mass, weight distribution, wheelbase, engine torque curve, gearing) from CTDP's STR1 setup files.
+Base car in FH2: 2013 Ariel Atom 500 V8 (wheels, brakes, steering column). Engine sound: Porsche Carrera GT V10.
+Team names, sponsor logos and trademarks belong to their owners; shown only in this private build.

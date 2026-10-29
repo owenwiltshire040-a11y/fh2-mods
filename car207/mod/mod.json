@@ -1,0 +1,12 @@
+{
+ "format_version": 1,
+ "id": "owen-peugeot-207",
+ "name": "Peugeot 207 SE Premium HDi (2008)",
+ "author": "Owen",
+ "version": "0.1.0",
+ "description": "Owen's own 2008 Peugeot 207 SE Premium 1.6 HDi 90, 5-door, 5-speed. Placeholder body from the 2014 Fiesta ST until the scanned 207 is ready.",
+ "database": "database.json",
+ "strings": "strings.json",
+ "media": "media",
+ "dependencies": []
+}

@@ -1,0 +1,9 @@
+*.zip
+*.slt
+*.glb
+*.gr2
+*.modelbin
+*.swatchbin
+*.bin
+*.pkl
+__pycache__/
