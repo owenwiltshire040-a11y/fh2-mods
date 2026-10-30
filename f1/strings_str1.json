@@ -1,0 +1,17 @@
+{
+ "format_version": 1,
+ "fallback_language": "EN",
+ "languages": {
+  "EN": {
+   "Data_Car": {
+    "64651": "STR1",
+    "64652": "STR1"
+   },
+   "List_CarMake": {
+    "64651": "Toro Rosso",
+    "64652": "Scuderia Toro Rosso",
+    "64653": "Toro Rosso"
+   }
+  }
+ }
+}

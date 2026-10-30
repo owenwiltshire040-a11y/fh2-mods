@@ -7,3 +7,11 @@
 *.bin
 *.pkl
 __pycache__/
+eo/
+f1/in/
+scan/viewer/node_modules/
+scan/viewer/*.glb
+cars/*/src/
+cars/*/*.png
+cars/*/*.json
+cars/*/*.log

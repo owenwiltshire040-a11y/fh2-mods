@@ -1,10 +1,10 @@
-"""Donor car media renamed for the new car: ARI_Atom_13 -> STR_STR1_06 (same length, so every embedded path
+"""Donor car media renamed for the new car: DOD_ChargerSRT8_12 -> STR_ToroRosso_1_06 (same length, so every embedded path
 can be renamed in place). Texture references (crc32 of the lower-case path) are recomputed for renamed paths."""
 import sys, zipfile, re, struct, zlib
 sys.path.insert(0, '../fh2re'); sys.path.insert(0, '.')
 from modelbin import Bundle
 import fhmat
-OLD, NEW = 'ARI_Atom_13', 'STR_STR1_06'
+OLD, NEW = 'DOD_ChargerSRT8_12', (sys.argv[3] if len(sys.argv) > 3 else 'STR_ToroRosso_1_06')
 VARIANTS = [(OLD, NEW), (OLD.lower(), NEW.lower()), (OLD.upper(), NEW.upper())]
 def ren_bytes(d):
     for a, b in VARIANTS: d = d.replace(a.encode(), b.encode())
@@ -12,17 +12,19 @@ def ren_bytes(d):
 def ren_name(n):
     return re.sub(re.escape(OLD), NEW, n, flags=re.I)
 def fix_model(raw):
+    """every renamed texture path in a MatI is followed by crc32(lower path): recompute it (and the Modl TRef list)"""
     b = Bundle.read(raw); remap = {}
     for bl in b.blobs:
-        if bl['tag'] != 'MatI': continue
-        inner = Bundle.read(bytes(bl['data']))
-        mt = [x for x in inner.blobs if x['tag'] == 'MTPR']
-        if not mt: continue
-        paths = [p.decode('latin1') for p in re.findall(rb'[Gg]ame:\\[ -~]+?\.swatchbin', bytes(mt[0]['data']))]
-        if not any(NEW.lower() in p.lower() for p in paths): continue
-        for p in paths:
-            remap[zlib.crc32(re.sub(re.escape(NEW), OLD, p, flags=re.I).lower().encode())] = fhmat.crc(p)
-        bl['data'] = bytearray(fhmat.retexture(bl['data'], paths))
+        if bl['tag'] != 'MatI' or not len(bl['data']): continue        # (ErrorShader instances are empty)
+        d = bytearray(bl['data']); hit = False
+        for m in re.finditer(rb'[Gg]ame:\\[ -~]+?\.swatchbin', bytes(d)):
+            p = m.group().decode('latin1')
+            if NEW.lower() not in p.lower(): continue
+            old = re.sub(re.escape(NEW), OLD, p, flags=re.I)
+            oc, nc = fhmat.crc(old), fhmat.crc(p)
+            assert struct.unpack_from('<I', d, m.end())[0] == oc, (p, 'crc not where expected')
+            struct.pack_into('<I', d, m.end(), nc); remap[oc] = nc; hit = True
+        if hit: bl['data'] = d
     if remap:
         for bl in b.blobs:
             if bl['tag'] == 'Modl':

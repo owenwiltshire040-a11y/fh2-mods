@@ -8,6 +8,7 @@ from gltf_bridge import decode_group
 from carbin import read_carbin
 from modelbin import Bundle
 import swatch
+MEDIA = 'STR_ToroRosso_1_06'
 z = zipfile.ZipFile(sys.argv[1]); names = {n.lower(): n for n in z.namelist()}
 c = read_carbin(z.read([n for n in z.namelist() if n.endswith('.carbin')][0]))
 def skel_world(p):
@@ -21,7 +22,7 @@ def skel_world(p):
 texcache = {}
 def tex_of(p, mat_blob):
     s = bytes(mat_blob['data']).lower()
-    m = re.search(rb'game:\\media\\cars\\str_str1_06\\textures\\str1\\swatches\\([ -~]+?_diff|[ -~]+?)\.swatchbin', s)
+    m = re.search(rb'game:\\media\\cars\\' + MEDIA.lower().encode() + rb'\\textures\\str1\\swatches\\([ -~]+?_diff|[ -~]+?)\.swatchbin', s)
     if not m: return None
     key = next((n for n in names if n.endswith(m.group(1).decode() + '.swatchbin')), None)
     if key is None: return None

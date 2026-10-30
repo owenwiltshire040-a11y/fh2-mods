@@ -1,40 +1,21 @@
-# Roadmap: "drop in a model, get a car back" (no donor-picking)
-Written 29 Oct 2026. Work branch: claude/upbeat-ride-q9oqy7. ⏸ = waiting on an in-game check by Owen.
+# Roadmap: "drop in a model, get a car back"
+Updated 30 Oct 2026 after merging Fable's branch. Details per car in NOTES.md.
 
 ## Done
-- STR1 builds end to end on the Charger donor; wheels land on the STR1 axle lines in game (v0.4.0/v0.4.1).
-- Track width follows the database (confirmed on the 207 and STR1).
-- preview/asgame.py: as-game placement checks + renders.
-- fh2re/granny.py: reads FH2 .gr2 files (Oodle1 decoder ported) and writes them back uncompressed; can move bones.
+- No more donor-picking: the Charger is the generic donor. Wheels are placed by Data_CarBody ModelWheelbase
+  (fore/aft) and ModelFront/RearTrackOuter (side to side); the gr2/carbin wheel transforms don't matter on it.
+- build_car.py + build_car_db.py + cars/<car>/spec.py: model in, mod out. fh2re/objgeo.py (OBJ), fh2re/glbgeo.py (glb),
+  fh2re/rimbuild.py (the model's own rims in the game's wheel part), fh2re/granny.py (gr2 read/write).
+- preview/asgame.py checks wheel placement against the database rules.
+- Cars: STR1 v0.6.1 (driver in the cockpit, aero in range), Peugeot 208 v0.1.4 (keeper), Volvo V70 v0.1.3 (track pick pending).
+- Track rule of thumb: set the track so the tyre face sits ~4 cm beyond the body's arch lip.
 
-## Phase 1: the deciding test ⏸ (about 10 min of Owen's time)
-Install v0.4.3-gr2test; in the Autoshow, look straight down at the STR1.
-- Left-front wheel 10 cm further out than the right-front → the .gr2 skeleton drives wheels. Go to Phase 2 (gr2 route).
-- Wheels symmetrical, car loads → try the same 10 cm on the carbin transform instead (one quick build, one more check).
-- Car won't load → send FH2_ExtraOptions.log; fix the writer first.
-Also waiting: v0.4.2 (open-cockpit driver/camera template) — is the driver sitting in the cockpit?
+## Next
+1. Working lights: map the model's lamp materials onto the donor's 12 light parts / Lights.bin (see DONOR ZIP ANATOMY).
+2. Fold the track rule of thumb into build_car.py (measure the arch lips automatically).
+3. Interior: the model's own interior is kept as black plastic; use real materials/textures; dials.
+4. STR1 polish: own rim styling, driver recline, top-speed/stability feel.
+5. Odds and ends: rain light, traffic mods' colour IDs, 207 vinyls.
 
-## Phase 2: automatic wheel fitting (1–2 sessions + 1 check)
-- Rescaler: move all four hubs (whichever route Phase 1 proves) to the model's axle points.
-- Fold into build_str1.py; asgame.py checks the result. STR1 rebuilt with it as proof.
-
-## Phase 3: template cars (a few sessions + a check per template)
-- Road-car template (Charger-style: no suspension animations, simplest).
-- Open-wheeler template (STR1: driver pose, seat, cockpit camera).
-- Maybe a small hatchback/van template later.
-- Driver seat position and hand/steering-wheel placement rescaled per model.
-
-## Phase 4: model-in, car-out pipeline (the long one: several sessions)
-- Auto-detect wheels/axles, body vs glass vs lights vs interior from any model.
-- Materials (carpaint vs textured vs chrome vs glass) and textures.
-- Lights wired up automatically (head/brake/reverse/indicator).
-- Interior: use the template's cockpit and dials unless the model has a usable one.
-- Physics from the car type (mass, power, gearing, aero) + database entry + packaging.
-- asgame.py grows a check for each rule as it's confirmed in game.
-
-## Phase 5: polish (any time)
-STR1's own F1 wheels/tyres; downforce tuning; rain light; move traffic mods' colour IDs; 207 vinyl mapping.
-
-## How far away
-Wheel fitting without picking a donor: one in-game check + ~1–2 sessions, if Phase 1 works.
-Reliable "any model in, finished car out": weeks of sessions, with roughly 5–10 quick in-game checks along the way.
+## Each new car costs
+One spec.py + a build + 1–3 quick in-game checks (track, rims, driver).

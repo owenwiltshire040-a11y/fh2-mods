@@ -1,0 +1,9 @@
+Peugeot 208 PureTech 130 (2021) for Forza Horizon 2 - Owen's personal mod.
+
+Car model: "2021 Peugeot 208" by tonielpro520, https://sketchfab.com/ (Sketchfab), licensed CC BY 4.0
+  (https://creativecommons.org/licenses/by/4.0/). Converted from the SketchUp OBJ; wheels, tyres and brakes are the
+  game's own (the model's were not used), the body paint uses the game's paint material.
+Physics figures from Peugeot's published 208 II 1.2 PureTech 130 GT EAT8 data; suspension and anti-roll bars scaled
+  from the game's Ford Fiesta Mk7 (not published by Peugeot).
+Base car in FH2: 2012 Dodge Charger SRT8 (skeleton, driver, wheels, brakes). Engine sound: Fiat 500 Abarth 1.4 Turbo.
+Peugeot and 208 are trademarks of Stellantis; shown only in this private build.
