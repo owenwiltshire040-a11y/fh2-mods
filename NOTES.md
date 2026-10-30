@@ -486,5 +486,8 @@ fill() made every body surface double-sided (two_sided: an inward twin with -N a
 outward copy) for SketchUp models with unreliable winding. If the game draws carpaint without back-face culling,
 the inward twin wins the depth tie and the panel shades as if it faced the other way. ONE_SIDED=True (body only;
 glass stays two-sided) builds it like stock: one copy, wound to the model normal. Omoda 5 test build sent.
-Ruled out: winding convention (ours = stock), tangents (real unit tangents, as stock), AO UV constants (body_a
-has no AO texture).
+Ruled out: winding convention (ours = stock), tangents (real unit tangents, as stock), an AO texture of body_a's
+own (there is none; its 19 TRef textures are all _library ones).
+Omoda single-sided test in game: wheels perfect (LIP_GAP 0.08), shade side STILL dark and the paint shows no sky
+reflections even in the sun -> no environment/ambient light at all. Next test (TRANSFER_UV): TEXCOORD1-4 (and
+TEXCOORD0 on untextured keys) per vertex from the nearest stock body_a vertex instead of one constant texel.
