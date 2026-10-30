@@ -206,6 +206,8 @@ if getattr(S, 'LIGHTS', None):
                                                    f'game:\\media\\cars\\{MEDIA.lower()}\\', chmsl, one_tail)
     if one_tail:
         tl = model_c['tail']; replaced['lights.bin'] = lightbuild.add_brake_lights(replaced['lights.bin'], [tl, tl * [-1, 1, 1]])
+    if 'turn_r' in lamps:
+        Vt = lamps['turn_r'][0]; replaced['lights.bin'] = lightbuild.add_rear_indicators(replaced['lights.bin'], Vt[Vt[:, 0] < 0].mean(0))
     print('  lamp centres (left):', {k: np.round(v, 3).tolist() for k, v in model_c.items()})
 
 # ---------------------------------------------------------------- body and glass

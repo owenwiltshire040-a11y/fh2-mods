@@ -239,3 +239,21 @@ def add_brake_lights(d, centres):
         struct.pack_into('<3f', e, 12, *c); struct.pack_into('<3f', e, 44, *c); extra += e
     print(f'  Lights.bin: +{len(centres)} brake lights (flags 0x45)')
     return bytes(head) + struct.pack('<I', cnt + len(centres)) + bytes(body[:76 * cnt]) + bytes(extra) + bytes(body[76 * cnt:])
+
+
+def add_rear_indicators(d, centre_left):
+    """rear indicators: copies of the donor's front side-indicator light (type 4: flags 0x15 left / 0x14 right) at the
+    model's rear indicator lamps, tied to the part of the type-7 tail lights (the 207 template tail part)"""
+    o = 8; n = struct.unpack_from('<I', d, o)[0]; o += 4
+    for _ in range(n): L = struct.unpack_from('<I', d, o)[0]; o += 6 + L
+    cnt = struct.unpack_from('<I', d, o)[0]; head = d[:o]; body = bytearray(d[o + 4:])
+    ent = [bytearray(body[76 * i:76 * i + 76]) for i in range(cnt)]
+    t4 = {struct.unpack_from('<I', e, 4)[0]: e for e in ent if struct.unpack_from('<I', e, 0)[0] == 4}
+    tail_part = next(struct.unpack_from('<i', e, 8)[0] for e in ent if struct.unpack_from('<I', e, 0)[0] == 7)
+    extra = bytearray()
+    for flags, c in ((0x15, centre_left), (0x14, centre_left * [-1, 1, 1])):
+        src = t4.get(flags) or next(iter(t4.values()))
+        e = bytearray(src); struct.pack_into('<Ii', e, 4, flags, tail_part)
+        struct.pack_into('<3f', e, 12, *c); struct.pack_into('<3f', e, 44, *c); extra += e
+    print('  Lights.bin: +2 rear indicators (flags 0x15 / 0x14)')
+    return bytes(head) + struct.pack('<I', cnt + 2) + bytes(body[:76 * cnt]) + bytes(extra) + bytes(body[76 * cnt:])
