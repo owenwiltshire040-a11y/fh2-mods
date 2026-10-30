@@ -52,7 +52,7 @@ PHYSICS = dict(
     drivetrain=dict(drivetype=1, mounting=2, shift_system=1, gears=[3.077, 1.818, 1.185, 0.886, 0.717, 0.610], final_drive=4.00,
                     reverse=-3.0, shift_time=0.25, lsd=(0.0, 0.0, 0.0, 0.0), clutch_nm=900.0),
     body=dict(mass=1515.0, weight_front=0.61, cm_height=0.55, block=(1.80, 1.15, 4.73), height=1.49, length=4.733, width=1.804, wheelbase=2.755,
-              model_wheelbase=2.755, track_front=1.65, track_rear=1.65, ride_height=0.16, bbox=(-1.05, 1.05, -0.18, 1.33, -2.25, 2.47)),
+              model_wheelbase=2.755, track_front=1.75, track_rear=1.75, ride_height=0.16, bbox=(-1.05, 1.05, -0.18, 1.33, -2.25, 2.47)),
     tyres=dict(width_front=235, width_rear=235, aspect_front=45, aspect_rear=45, rim_in=17, compound=4),
     brakes=dict(front_mm=316.0, front_type=2, front_pistons=1, rear_mm=288.0, rear_type=2, rear_pistons=1, friction=1.0),
     suspension=dict(front=(46.116 * _K, 3.3003 * _K, 4.9505 * _K), rear=(29.484 * _K, 2.1101 * _K, 3.1651 * _K), swaybar_front=7.2576 * _K, swaybar_rear=4.8384 * _K),
