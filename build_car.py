@@ -22,6 +22,7 @@ import swatch, fhmat, granny
 
 spec_path, OUT = sys.argv[1], sys.argv[2]
 _s = importlib.util.spec_from_file_location('carspec', spec_path); S = importlib.util.module_from_spec(_s); _s.loader.exec_module(S)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fh2re')); import autotrack; autotrack.apply(S)   # track_front/rear = 'auto'
 MEDIA = S.MEDIA
 src = zipfile.ZipFile(S.DONOR_ZIP); names = {n.lower(): n for n in src.namelist()}
 G = pickle.load(open(S.GEO, 'rb')); parts = G['parts']; model_wheels = G['wheels']

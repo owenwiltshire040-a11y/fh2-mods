@@ -457,3 +457,9 @@ the 207 part's groups 1/3, which have their own vertex layout). v0.2.2: the whol
 (f1/lamp_tail_part.modelbin, one part for both sides): groups 1/3 brake emitter 3 mm behind, 0/2 red lens + reverse
 (+ indicator); taillightr_a dropped, rear lights re-tied to taillightl_a; +2 pure brake lights (type 7, flags 0x45)
 as the 207 had (its type 10 0x45). Needs the 207 mod installed (template texture refs).
+
+## AUTO TRACK (30 Oct, Opus): fh2re/autotrack.py, PHYSICS body track_front/track_rear = 'auto'
+track = 2 * (arch lip + 0.04 - tyre width / 2); lip = widest paint vertex within 15 cm fore/aft of the axle and
+0-50 cm above the wheel centre. 208: lips 0.838 / 0.851 (= Fable's hand measurement) -> 1.551 / 1.578; the in-game
+confirmed values are 1.55 / 1.54, so the front matches and the rear may want a smaller gap (spec LIP_GAP overrides) —
+check the rear on the next car built with 'auto'. Existing specs keep their explicit, confirmed tracks.

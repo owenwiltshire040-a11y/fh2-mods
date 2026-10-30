@@ -9,6 +9,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 spec_path, DST, STRINGS_OUT = sys.argv[1:4]
 _s = importlib.util.spec_from_file_location('carspec', spec_path); S = importlib.util.module_from_spec(_s); _s.loader.exec_module(S)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fh2re')); import autotrack; autotrack.apply(S)   # track_front/rear = 'auto'
 P = S.PHYSICS; MEDIA = S.MEDIA
 SRC = f'{HERE}/car207/vanilla.slt'
 CAR_OLD, CAR = 1422, P['car_id']; ENG_OLD, ENG = 882, P['car_id']; DT_OLD, DT = 830, P['car_id']
