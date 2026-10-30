@@ -1,0 +1,12 @@
+{
+ "format_version": 1,
+ "id": "owen-chery-omoda-5",
+ "name": "Chery Omoda 5 290T (2023)",
+ "author": "Owen",
+ "version": "0.1.0",
+ "description": "2023 Chery Omoda 5 1.6 TGDI 290T for personal use. Model '2023 Chery Omoda 5 290T' by Ddiaz Design (Sketchfab, CC BY-NC-SA 4.0). Built on the 2012 Dodge Charger SRT8 as the generic donor.",
+ "database": "database.json",
+ "strings": "strings.json",
+ "media": "media",
+ "dependencies": []
+}

@@ -1,0 +1,9 @@
+Chery Omoda 5 290T (2023) - Forza Horizon 2 add-on car, personal use.
+
+3D model: "2023 Chery Omoda 5 290T" by Ddiaz Design
+  https://sketchfab.com/3d-models/2023-chery-omoda-5-290t-d9ff826c2bf14d81a4fa3c9b6b707376
+  Licence: CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+  Changes: converted to FH2's formats, re-scaled to the real wheelbase, wheels/lamps/interior re-mapped onto the
+  game's parts. Non-commercial; if this mod is shared, it must be under the same licence.
+Built on the 2012 Dodge Charger SRT8 (game files, not included in any shared copy).
+Chery logo: supplied by Owen for the make badge.

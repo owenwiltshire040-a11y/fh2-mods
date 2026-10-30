@@ -18,13 +18,15 @@ def parse_frame(spec):
         tok = tok.strip(); s = -1.0 if tok.startswith('-') else 1.0; ax = 'xyz'.index(tok.lstrip('+-')); perm.append(ax); sign.append(s)
     return perm, np.array(sign)
 
-def load(fn, frame, scale, skip_mats, rim_node=None, rim_mats=(), skip_nodes=()):
+def load(fn, frame, scale, skip_mats, rim_node=None, rim_mats=(), skip_nodes=(), tag_nodes=()):
     sc = trimesh.load(fn, force='scene'); g = sc.graph; perm, sign = parse_frame(frame)
     mirror = np.prod(sign) * np.linalg.det(np.eye(3)[perm]) < 0            # does the axis map flip handedness?
     body, rim = {}, {}
     for node in g.nodes_geometry:
         T, geom = g[node]; m = sc.geometry[geom]; mat = getattr(getattr(m.visual, 'material', None), 'name', None)
         F = m.faces
+        for pre, tag in tag_nodes:                   # e.g. hub_=RIM_: wheels baked into the body keep a material of their own
+            if node.startswith(pre): mat = f'{tag}{mat}'
         if rim_node and node.startswith(rim_node) and mat in rim_mats:
             V = m.vertices * scale; N = m.vertex_normals                     # local: x depth (face at min x), y/z wheel plane
             rim.setdefault(mat, []).append(dict(node=node, mat=mat, V=V[F].reshape(-1, 3), N=N[F].reshape(-1, 3), UV=np.zeros((len(F) * 3, 2))))
@@ -47,8 +49,10 @@ if __name__ == '__main__':
     ap.add_argument('--ground', type=float, required=True, help='FH2 y of the tyre contact patch'); ap.add_argument('--axle-mid', type=float, default=0.0)
     ap.add_argument('--rim-node', default=None); ap.add_argument('--rim-mats', default=''); ap.add_argument('--skip-mats', default='')
     ap.add_argument('--skip-nodes', default='', help='node name prefixes to leave out of the body (e.g. the other wheels)')
+    ap.add_argument('--tag-nodes', default='', help='prefix=TAG,...: materials of nodes starting with prefix become TAG+material (wheels baked into the body: hub_=RIM_)')
     A = ap.parse_args()
-    body, rim = load(A.glb, A.frame, A.scale, set(A.skip_mats.split(',')) - {''}, A.rim_node, set(A.rim_mats.split(',')) - {''}, [p for p in A.skip_nodes.split(',') if p])
+    body, rim = load(A.glb, A.frame, A.scale, set(A.skip_mats.split(',')) - {''}, A.rim_node, set(A.rim_mats.split(',')) - {''}, [p for p in A.skip_nodes.split(',') if p],
+                      [tuple(t.split('=', 1)) for t in A.tag_nodes.split(',') if '=' in t])
     zf, zr, yc, xh = [float(x) for x in A.wheels.split(',')]; s = A.scale; r = A.tyre_radius * s
     W = {'HUB_LF': np.array([-xh, yc, zf]) * s, 'HUB_RF': np.array([xh, yc, zf]) * s, 'HUB_LR': np.array([-xh, yc, zr]) * s, 'HUB_RR': np.array([xh, yc, zr]) * s}
     off = np.array([0.0, A.ground - (yc * s - r), A.axle_mid - (zf + zr) / 2 * s])
