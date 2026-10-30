@@ -66,7 +66,7 @@ PHYSICS = dict(
     suspension=dict(front=(46.116 * _K, 3.3003 * _K, 4.9505 * _K), rear=(29.484 * _K, 2.1101 * _K, 3.1651 * _K), swaybar_front=7.2576 * _K, swaybar_rear=4.8384 * _K),
     aero_front=(5.0, 5.0, 0.0, 0.0), aero_rear=(0.0, 0.0, 0.0, 0.0),
     car=dict(year=2012, t60=14.0, t100=60.0, top_mph=85.0, price=85000, pi=0.15, drag=186.1 * 0.60 / 0.33 * 4.0, downforce_front=0.0, downforce_rear=-1.0, wi_force=1.5,
-             ratings=(2.0, 3.0, 2.0, 2.0, 2.0), steer_deg=40.0, **{'class': 0}, family_model=1, family_body=1, family_special=3, engine_placement=1, powertrain=1,
+             ratings=(2.0, 3.0, 2.0, 2.0, 2.0), steer_deg=40.0, **{'class': 0}, bucket=38, family_model=1, family_body=1, family_special=3, engine_placement=1, powertrain=1,
              material=1, open_cockpit=0, open_wheel=0, thumbnail_of=1082),
 )
 

@@ -55,6 +55,9 @@ for t in car_tables:
             where.append(f'"{k}"=?'); a.append(CAR_OLD); where.append(f'"{k}" between ? and ?'); a += [CAR_OLD * 1000, CAR_OLD * 1000 + 999]
     rows = q(f'select rowid from "{t}" where ' + ' or '.join(where), *a)
     clone(t, 'rowid in (%s)' % ','.join(str(r[0]) for r in rows), [], car_remap)
+# Autoshow category (Data_Car_Buckets.CarBucket; the Charger's 31 = Modern Muscle): 23 Hot Hatch, 25 Super Hot Hatch,
+# 19 Super Saloons, 38 Unlimited Off-road (Raptor, Ram Runner), 39 SUVs (X5 M, Cayenne), 40 Off-road (H1, Gurkha)
+if P['car'].get('bucket'): c.execute('update Data_Car_Buckets set CarBucket=?, BucketHero=0 where CarId=?', (P['car']['bucket'], CAR))
 clone('List_UpgradeEngine', 'Ordinal=? and IsStock=1', [CAR_OLD], lambda r: (car_remap(r), r.update(EngineID=ENG, ManufacturerID=make_id)))
 clone('List_UpgradeDrivetrain', 'Ordinal=? and IsStock=1', [CAR_OLD], lambda r: (car_remap(r), r.update(DrivetrainID=DT, ManufacturerId=make_id)))
 next_col = q('select max(ID) from Combo_Colors')[0][0] + P['colour_offset']
