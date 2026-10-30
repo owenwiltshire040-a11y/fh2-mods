@@ -24,7 +24,13 @@ spec_path, OUT = sys.argv[1], sys.argv[2]
 _s = importlib.util.spec_from_file_location('carspec', spec_path); S = importlib.util.module_from_spec(_s); _s.loader.exec_module(S)
 MEDIA = S.MEDIA
 src = zipfile.ZipFile(S.DONOR_ZIP); names = {n.lower(): n for n in src.namelist()}
-G = pickle.load(open(S.GEO, 'rb')); parts = G['parts']; wheels = G['wheels']
+G = pickle.load(open(S.GEO, 'rb')); parts = G['parts']; model_wheels = G['wheels']
+# the wheel positions the game will use: the model's axle points, with x from the spec's track when it gives one
+# (the database draws the tyre at +/- track/2; the carbin and gr2 wheel transforms below follow the same point)
+wheels = {k: dict(v, centre=v['centre'].copy()) for k, v in model_wheels.items()}
+if hasattr(S, 'PHYSICS'):
+    for k, w in wheels.items():
+        tr = S.PHYSICS['body']['track_front' if k.endswith('F') else 'track_rear']; w['centre'][0] = np.sign(w['centre'][0]) * tr / 2
 replaced, added = {}, {}
 
 # ---------------------------------------------------------------- textures (BC7, written on the game's own layouts)
@@ -118,7 +124,7 @@ if glass_mats:
 if getattr(S, 'RIM_MATERIALS', None):
     import rimbuild
     wpath = next(n for n in names if n.endswith('_wheellf.modelbin'))
-    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, wheels['HUB_LF']['centre'])
+    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'])
     try:
         import trimesh; trimesh.Trimesh(rim_prev[0] * [1, 1, 1], rim_prev[1], process=False).export(os.path.splitext(OUT)[0] + '_rim.glb')
     except Exception as e: print('  (rim preview skipped:', e, ')')

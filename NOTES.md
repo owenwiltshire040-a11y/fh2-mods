@@ -189,6 +189,11 @@ wheel/build_wheel.py did the 207's — fh2re/rimbuild.py: scale the LF wheel to 
 (x = depth outward -x), single-sided by the model's normals, size morphs (width -0.9 on x>0.5, diameter 1.3247 y/z,
 unknown row from the nearest donor vertex), AO UVs from the nearest front-facing donor rim vertex, the donor's
 inner_rim barrel kept, its hub/lugs/badge dropped. Spec: RIM_MATERIALS. 21k tris. Not yet seen in game.
+IN GAME v0.1.2 (Owen 00:08): rims spin and look right, but "floating nuts" and "wheels too close together".
+v0.1.3 (00:12): the rim's unknown morph row is now zero (the donor's values, up to +/-0.037, had displaced the nut
+bosses); track from the spec (real 1.496/1.483 — the model's wheels sit 5 cm in from its arches) for the database,
+the carbin and the gr2 alike (build_car.py uses PHYSICS body track for wheel x; the rim is still cut from the model's
+own wheel centre). asgame --tol 0.06 for such deliberate offsets.
 (Earlier open question, now moot: do the STR1's rims rotate? v0.6.2-origskel can be ignored.) If neither car's do, suspect the raw-rewritten skeleton gr2
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
