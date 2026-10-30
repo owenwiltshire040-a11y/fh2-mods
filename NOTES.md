@@ -477,3 +477,12 @@ Reference = the ZS/MSF Williams FW24 add-on (numbers only). Changed: TireModelNa
 FixListingRearFricScale 1.35 -> 2.5, Lat/Long*ScalarMax 0.99 -> 1.2, *ScalarClamp 4.95 -> 6.0, WeightDistribution
 0.418 -> 0.45, wing aero front DF 187.5-312.5 (LateralDrag 11.5), rear 450-750 (27), rear toe -0.5 / camber -1.5,
 front camber -2.0. Owen 30 Oct: "looks to be alright". Fold into build_str1_db.py when the STR1 is next rebuilt.
+
+## LIGHTING: one side of our cars dark (Owen 30 Oct) — test: single-sided bodies (spec ONE_SIDED)
+Stock bodies are single-sided (winding agrees with the normal, ~87% of paint normals point outward). build_car's
+fill() made every body surface double-sided (two_sided: an inward twin with -N at the same depth, drawn after the
+outward copy) for SketchUp models with unreliable winding. If the game draws carpaint without back-face culling,
+the inward twin wins the depth tie and the panel shades as if it faced the other way. ONE_SIDED=True (body only;
+glass stays two-sided) builds it like stock: one copy, wound to the model normal. Omoda 5 test build sent.
+Ruled out: winding convention (ours = stock), tangents (real unit tangents, as stock), AO UV constants (body_a
+has no AO texture).

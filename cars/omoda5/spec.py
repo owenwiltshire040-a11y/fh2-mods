@@ -83,3 +83,5 @@ LIGHTS = {
 
 # Autoshow presentation (package_car.py): new make Chery with Owen's logo, thumbnail in the model's grey
 PRESENT = dict(paint='424749', logo_png=f'{HERE}/src/chery_logo.png', icon_base='Chery')
+
+ONE_SIDED = True     # good glb normals: single-sided like the game's own cars (double-sided twins shade one side dark)

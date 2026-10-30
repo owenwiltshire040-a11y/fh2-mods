@@ -75,6 +75,15 @@ def weld(V, N, UV):
     key = np.round(np.c_[V, N], 4); _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
     return V[first], N[first], UV[first], inv.reshape(-1).astype(np.int64)
 
+def one_sided(V, N, UV):
+    """single-sided like the game's own cars: each triangle wound to agree with its (outward) model normal. The
+    double-sided copy (two_sided) puts an inward-facing twin at the same depth; drawn after the outward one it can win
+    and shade the panel as if it faced the other way (one side of the car lit, the other black)."""
+    V, N, UV, I = weld(V, N, UV); T = I.reshape(-1, 3).copy()
+    g = np.cross(V[T[:, 1]] - V[T[:, 0]], V[T[:, 2]] - V[T[:, 0]]); flip = np.einsum('ij,ij->i', g, N[T].mean(1)) < 0
+    T[flip] = T[flip][:, [0, 2, 1]]
+    return V, N, UV, T.reshape(-1)
+
 def two_sided(V, N, UV):
     V, N, UV, I = weld(V, N, UV); n = len(V); T = I.reshape(-1, 3)
     return (np.r_[V, V], np.r_[N, -N], np.r_[UV, UV], np.r_[T, T[:, [0, 2, 1]] + n].reshape(-1))
@@ -113,7 +122,7 @@ def fill(path, materials, textured_like, plain, xform=None):
         if gid not in plan: blank_group(p, gid); continue
         Ps, Ns, UVs, by, base = [], [], [], {}, 0
         for mname, k in plan[gid].items():
-            V, N, UV, I = two_sided(*Sp[k])
+            V, N, UV, I = (one_sided if getattr(S, 'ONE_SIDED', False) and 'body_a' in path else two_sided)(*Sp[k])
             Ps.append(V); Ns.append(N); UVs.append(UV); by[mname] = I + base; base += len(V)
         set_group(p, gid, dict(P=np.concatenate(Ps), N=np.concatenate(Ns), UV=np.concatenate(UVs), UVconst=uvc), by)
     out = p.build(); Part(out)
