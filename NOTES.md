@@ -463,3 +463,9 @@ track = 2 * (arch lip + 0.04 - tyre width / 2); lip = widest paint vertex within
 0-50 cm above the wheel centre. 208: lips 0.838 / 0.851 (= Fable's hand measurement) -> 1.551 / 1.578; the in-game
 confirmed values are 1.55 / 1.54, so the front matches and the rear may want a smaller gap (spec LIP_GAP overrides) —
 check the rear on the next car built with 'auto'. Existing specs keep their explicit, confirmed tracks.
+
+## STR1 rain light (30 Oct, Opus): f1/str1_lights.py
+Post-processes a built STR1 zip: REAR_LIGHT panel (6 tris, centre x 0, y 0.365, z -2.09, facing -z) -> the 207
+tail-lamp template as taillightl_a (lens + brake emitter), the Charger's taillightl_a carbin entry added back, and a
+Lights.bin with one part and two lights there: tail (type 7, 0x20045) and brake (type 7, 0x45). Run after
+f1/str1_rims.py. Waiting on in-game check.
