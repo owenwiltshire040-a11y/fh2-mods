@@ -150,7 +150,7 @@ def donor_centres(src, names):
     return out
 
 
-def lights_bin(d, model_c, donor_c, media_root, chmsl=None):
+def lights_bin(d, model_c, donor_c, media_root, chmsl=None, one_tail=False):
     """re-tie every light to head/taillight l/r and move it from the donor's lamp to the model's.
     model_c / donor_c: {'head': left centre, 'tail': left centre} (right side = mirrored x)."""
     o = 8; n = struct.unpack_from('<I', d, o)[0]; o += 4; paths = []
@@ -180,6 +180,7 @@ def lights_bin(d, model_c, donor_c, media_root, chmsl=None):
         name = path.split('\\')[-1].lower(); side = 'r' if ('r_a' in name or 'rhl' in name) and 'ctl' not in name else 'l'
         kind = 'head' if ('head' in name or 'fog' in name or 'hl_' in name or 'rhl' in name or 'lhl' in name) else 'tail'
         if kind not in model_c: return path
+        if kind == 'tail' and one_tail: side = 'l'                 # the 207-template tail part covers both sides
         return f'{media_root}scene\\exterior\\{ROOT_SUB[kind]}\\{kind}light{side}_a.modelbin'
     out = bytearray(d[:12])
     for pth, tail in paths:
@@ -187,3 +188,54 @@ def lights_bin(d, model_c, donor_c, media_root, chmsl=None):
     out += struct.pack('<I', cnt) + body
     print('  Lights.bin:', cnt, 'lights re-tied to', sorted({retie(p).split('\\')[-1] for p, _ in paths}))
     return bytes(out)
+
+
+# ---------------------------------------------------------------------------------------------- 207-template tail part
+# The 207's tail-lamp part (Fiesta-derived, one part for both sides) lights by day: brake emitter in groups 1/3 (their
+# own vertex layout), red lens / reverse / indicator in groups 0/2. Moving those materials into the Charger's part
+# drew nothing, so the whole 207 part is used as the template instead (f1/lamp_tail_part.modelbin).
+TPL_MATS = {'tail_lens': 'gls_patternCH1_009_custom_red', 'brake': 'LBK_smoothChrome_custom_brake',
+            'reverse': 'LBK_standardCH1_003_custom_reverse', 'turn_r': 'LBK_standardCH1_003_custom_turn'}
+
+
+def build_tail_from_207(template, lamps):
+    p = Part(template); nm = material_names(p)
+    layers = {}                      # group -> [(V, N, material)]
+    if 'tail' in lamps:
+        V, N = lamps['tail']
+        for g in (0, 2): layers.setdefault(g, []).append((V, N, TPL_MATS['tail_lens']))
+        for g in (1, 3): layers.setdefault(g, []).append((V - N * 0.003, N, TPL_MATS['brake']))
+    for fn in ('reverse', 'turn_r'):
+        if fn in lamps:
+            V, N = lamps[fn]
+            for g in (0, 2): layers.setdefault(g, []).append((V, N, TPL_MATS[fn]))
+    for gid in p.group_order:
+        if gid not in layers: blank_group(p, gid); continue
+        Ps, Nn, UVs, by, base, const = [], [], [], {}, 0, None
+        for V, N, m in layers[gid]:
+            uv, c = _donor_uv(p, nm, gid, m)
+            if uv is None: print(f'    tail template group {gid}: no {m}'); continue
+            P2, N2, I = _two_sided(V, N)
+            Ps.append(P2); Nn.append(N2); UVs.append(np.tile(uv, (len(P2), 1)))
+            by[m] = np.concatenate([by[m], I + base]) if m in by else I + base; base += len(P2); const = const or c
+        if not Ps: blank_group(p, gid); continue
+        P = np.concatenate(Ps)
+        set_group(p, gid, dict(P=P, N=np.concatenate(Nn), UV=np.concatenate(UVs), UVconst=const,
+                               UVtan=np.stack([P[:, 2] * 0.5, P[:, 1] * 0.5], 1)), by)
+        print(f'    taillight (207 template) group {gid}: ' + ', '.join(f'{m} {len(i) // 6}' for m, i in by.items()))
+    out = p.build(); Part(out); return out
+
+
+def add_brake_lights(d, centres):
+    """append pure brake lights (type 7 = the Charger's red tail preset, flags 0x45 = brake only, as the 207's type-10
+    brake lights) at the given points, tied to the part of the existing type-7 lights"""
+    o = 8; n = struct.unpack_from('<I', d, o)[0]; o += 4
+    for _ in range(n): L = struct.unpack_from('<I', d, o)[0]; o += 6 + L
+    cnt = struct.unpack_from('<I', d, o)[0]; head = d[:o]; body = bytearray(d[o + 4:])
+    t7 = next(76 * i for i in range(cnt) if struct.unpack_from('<I', body, 76 * i)[0] == 7)
+    extra = bytearray()
+    for c in centres:
+        e = bytearray(body[t7:t7 + 76]); struct.pack_into('<I', e, 4, 0x45)
+        struct.pack_into('<3f', e, 12, *c); struct.pack_into('<3f', e, 44, *c); extra += e
+    print(f'  Lights.bin: +{len(centres)} brake lights (flags 0x45)')
+    return bytes(head) + struct.pack('<I', cnt + len(centres)) + bytes(body[:76 * cnt]) + bytes(extra) + bytes(body[76 * cnt:])

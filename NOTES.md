@@ -445,3 +445,8 @@ emitter 3 mm behind. Head lamps use the Charger's 'hl_hb' in headlightl/r group 
 Lights.bin: all 58 lights re-tied to head/taillight l/r and moved by (model lamp centre - donor emitter centre);
 CHMSL row re-centred on spec LIGHTS['chmsl'] (light points only). taillightc_a (centre reverse) is skinned to a bone:
 not used. 208 v0.2 test: lights at night OK (Owen 12:19); day brake/reverse missing -> materials above (v0.2.1 test).
+v0.2.1 in game: tail lamps drew NOTHING (the 207 materials added into the Charger part; the brake material sits in
+the 207 part's groups 1/3, which have their own vertex layout). v0.2.2: the whole 207 tail part is the template
+(f1/lamp_tail_part.modelbin, one part for both sides): groups 1/3 brake emitter 3 mm behind, 0/2 red lens + reverse
+(+ indicator); taillightr_a dropped, rear lights re-tied to taillightl_a; +2 pure brake lights (type 7, flags 0x45)
+as the 207 had (its type 10 0x45). Needs the 207 mod installed (template texture refs).

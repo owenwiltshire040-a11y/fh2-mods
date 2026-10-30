@@ -12,6 +12,7 @@ z = zipfile.ZipFile(sys.argv[1]); n = next(x for x in z.namelist() if x.lower().
 p = Part(z.read(n))
 WANT = {'LBK_smoothChrome_custom_brake': 'brake', 'LBK_standardCH1_003_custom_reverse': 'reverse', 'LBK_standardCH1_003_custom_turn': 'turn',
         'gls_patternCH1_009_custom_red': 'redlens'}   # red lamp glass (no light mask): the tail lamps' outer layer
+open(os.path.join(HERE, 'lamp_tail_part.modelbin'), 'wb').write(z.read(n)); print('wrote lamp_tail_part.modelbin (the 207 tail-lamp part, both sides)')
 for bl in p.b.blobs:
     if bl['tag'] != 'MatI': continue
     name = p.b.meta(bl, 'Name').decode('latin1')
