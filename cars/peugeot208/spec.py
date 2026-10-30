@@ -46,7 +46,7 @@ AVPINS_TEMPLATE = None
 _K = 1090 / 970
 PHYSICS = dict(
     car_id=3208, make_offset=3, make='Peugeot', make_profile='Automobiles Peugeot', make_code='PEU', make_country=4, make_icon='ARI',
-    string_base=64208, colour_offset=120, name='208 PureTech 130', short_name='208',
+    string_base=64218, colour_offset=120, name='208 PureTech 130', short_name='208',  # string_base 64208 clashed with the 207 mod (30 Oct)
     engine=dict(name='1.2L I3 - Turbo', sound='FIA_500AbarthSS_10', mass=95.0, compression=10.5, config=3, cylinders=11, aspiration=2, boost=1.2,
                 inertia=0.11, tank=44, displacement=1199, peak_hp=130, peak_nm=230, redline=6200, stall=750.0, start=3000.0,
                 curve=[(0, 110), (1000, 150), (1500, 205), (1750, 230), (3500, 230), (4500, 205), (5500, 169), (6000, 150), (6200, 140)]),

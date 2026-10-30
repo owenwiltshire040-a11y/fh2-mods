@@ -398,3 +398,21 @@ Terminal install command, without having to answer questions along the way. So:
 - Only use models he has the right to use (licence that allows it); credit the author in CREDITS.txt.
   Never commit game files or third-party models to GitHub — code only.
 - In-game testing happens when he's back at his Mac; expect a round or two of tweaks then.
+
+## AUTOSHOW PRESENTATION: thumbnails, make logos (30 Oct, Opus)
+Learned from a working add-on car (the ZS/MSF Williams FW24, structure only):
+- UI swatchbins (tex/uiswatch.py): 84-byte header (car textures: 83), ONE BC7 level, GCN 2D-tiled like car textures,
+  zero-padded to 4 KB. Thumbnails 816x459 (_Big) / 192x108 (_Small); make logos 220x184 (Manu_Logo_<CODE>) and
+  440x376 (L_Manu_Logo_<CODE>); transparent backgrounds. Files go in the mod's media/stripped/RC0/.
+- Data_Car.Thumbnail = game:\Media\Stripped\RC0\Thumbnail_<carId>.png (the game appends _Big/_Small, .swatchbin).
+- List_CarMake.IconPath / IconPathLarge point at the logo swatchbins; IconPathBase = make name without spaces
+  (vanilla: 'AstonMartin'). Our older builds borrowed ARI/REN logos and other cars' thumbnails.
+- The 207's old thumbnails had an 83-byte header (car-texture style) — wrong for UI swatchbins.
+Tools: fh2re/carpreview.py (any car zip -> glb, --paint, --tyres from DB sizes since the game draws tyres itself),
+scan/viewer/thumb.html + thumb.js (transparent 3/4 render, `node thumb.js car.glb out.png 816 459 -50 10`),
+fh2re/presentation.py (writes thumbnails + logos into a mod folder, rewires the DB, or moves a car onto an existing make).
+Applied 30 Oct: STR1 (own TORO ROSSO wordmark), 207 (PEUGEOT wordmark, new thumbnails), 208 (onto the 207 mod's
+Peugeot make 201, depends on owen-peugeot-207), V70 (onto vanilla Volvo make 53, real logo).
+RULES: make string_base unique across ALL of Owen's mods (the 208's 64208 overwrote the 207's short name; now 64218).
+Use a vanilla make when one exists (List_CarMake: Volvo 53, Ferrari 13, ...). build_car_db.py should grow a
+`use_make` option and call presentation.py at the end — not done yet.
