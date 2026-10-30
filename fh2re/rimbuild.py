@@ -3,7 +3,7 @@
 The game's wheel part is a normalised rim: x is depth (outward = -x, the face around x 0..0.05, the barrel back at
 x = 1), y/z the wheel plane, face radius R = 0.1397; the game scales it to the car's rim diameter through per-vertex
 size morphs (4 x half4: (width: -0.9 on barrel-back vertices else 0, 0, 0, 1), (0, 1.3247 y, 1.3247 z, 0),
-(0, 0, 0, 1), one unknown row copied from the nearest donor vertex). Wheels draw without back-face culling, so the
+(0, 0, 0, 1), one unknown row left at zero — copying the donor's displaced small details). Wheels draw without back-face culling, so the
 new geometry is single-sided, wound by the model's own normals. AO/mask UV sets are borrowed from the nearest
 front-facing donor rim vertex, as the 207 build did.
 """
@@ -73,7 +73,8 @@ def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',)):
     M0 = np.frombuffer(b''.join(morph), '<f2').reshape(len(morph), 4, 4)
     nm = np.zeros((len(sP), 4, 4), np.float16)
     nm[:, 0, 0] = np.where(sP[:, 0] > 0.5, -0.9, 0.0); nm[:, 0, 3] = 1
-    nm[:, 1, 1] = DIAM * sP[:, 1]; nm[:, 1, 2] = DIAM * sP[:, 2]; nm[:, 2, 3] = 1; nm[:, 3] = M0[src, 3]
+    nm[:, 1, 1] = DIAM * sP[:, 1]; nm[:, 1, 2] = DIAM * sP[:, 2]; nm[:, 2, 3] = 1
+    nm[:, 3] = 0            # the unknown row: the donor's values (up to +/-0.037) shoved the 208's nut bosses off the face (v0.1.2)
     rows = keepM + [nm[i].tobytes() for i in range(len(nm))]
     p.groups[gid]['morph'] = rows + rows[:1]
     out = p.build(); Part(out)

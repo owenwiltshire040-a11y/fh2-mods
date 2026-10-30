@@ -32,7 +32,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('car'); ap.add_argument('database'); ap.add_argument('--donor', required=True)
 ap.add_argument('--geo', default=f'{ROOT}/f1/str1_geo.pkl', help='str1_geo.pkl with the intended wheel centres')
 ap.add_argument('--out', default=None); ap.add_argument('--media', default=None)
-ap.add_argument('--no-render', action='store_true')
+ap.add_argument('--no-render', action='store_true'); ap.add_argument('--tol', type=float, default=TOL_WHEEL, help='m, wheel vs model axle point')
 A = ap.parse_args()
 out_dir = os.path.abspath(A.out or os.path.dirname(os.path.abspath(A.car))); os.makedirs(out_dir, exist_ok=True)
 
@@ -98,7 +98,7 @@ if G:
     want = {'lf': G['wheels']['HUB_LF'], 'rf': G['wheels']['HUB_RF'], 'lr': G['wheels']['HUB_LR'], 'rr': G['wheels']['HUB_RR']}
     for c in ('lf', 'rf', 'lr', 'rr'):
         d = GAME[c] - want[c]['centre']
-        check(f'wheel {c.upper()} on the body axle point', np.abs(d).max() <= TOL_WHEEL,
+        check(f'wheel {c.upper()} on the body axle point', np.abs(d).max() <= A.tol,
               f'game {GAME[c].round(3)} intended {want[c]["centre"].round(3)} delta {d.round(3)}')
     ground = G['ground']
     for c in ('lf', 'rr'):

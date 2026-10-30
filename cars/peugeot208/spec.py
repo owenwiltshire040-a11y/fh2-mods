@@ -41,7 +41,7 @@ AVPINS_TEMPLATE = None
 # ---------------------------------------------------------------- physics (build_car_db.py)
 # 208 II 1.2 PureTech 130 GT EAT8 (2021): 1,199 cc I3 turbo, 130 hp at 5,500, 230 Nm at 1,750, 8-speed auto, FWD;
 # kerb 1,165 kg EC (-75 kg driver = 1,090), 4,055 x 1,745 x 1,430 mm, wheelbase 2,540; 205/45 R17; discs 283 / 249 mm;
-# 0-62 8.7 s, 129 mph; Cd ~0.29. Suspension/anti-roll: the game's Fiesta Mk7 (970 kg) scaled by mass, as the 207 mod did.
+# 0-62 8.7 s, 129 mph; Cd ~0.29. Track: the real 1.496 / 1.483 (the model has 1.397: its tyres sit 5 cm in from the arches). Suspension/anti-roll: the game's Fiesta Mk7 (970 kg) scaled by mass, as the 207 mod did.
 _K = 1090 / 970
 PHYSICS = dict(
     car_id=3208, make_offset=3, make='Peugeot', make_profile='Automobiles Peugeot', make_code='PEU', make_country=4, make_icon='ARI',
@@ -52,7 +52,7 @@ PHYSICS = dict(
     drivetrain=dict(drivetype=1, mounting=2, shift_system=4, gears=[5.25, 3.03, 1.95, 1.46, 1.22, 1.00, 0.81, 0.67], final_drive=3.56,
                     reverse=-4.0, shift_time=0.2, lsd=(0.0, 0.0, 0.0, 0.0), clutch_nm=700.0),
     body=dict(mass=1090.0, weight_front=0.62, cm_height=0.52, block=(1.75, 1.10, 4.06), height=1.43, length=4.055, width=1.745, wheelbase=2.54,
-              model_wheelbase=2.55, track_front=1.397, track_rear=1.397, ride_height=0.16, bbox=(-0.95, 0.95, -0.17, 1.42, -1.87, 2.19)),
+              model_wheelbase=2.55, track_front=1.496, track_rear=1.483, ride_height=0.16, bbox=(-0.95, 0.95, -0.17, 1.42, -1.87, 2.19)),
     tyres=dict(width_front=205, width_rear=205, aspect_front=45, aspect_rear=45, rim_in=17, compound=4),
     brakes=dict(front_mm=283.0, front_type=2, front_pistons=1, rear_mm=249.0, rear_type=2, rear_pistons=1, friction=1.0),
     suspension=dict(front=(46.116 * _K, 3.3003 * _K, 4.9505 * _K), rear=(29.484 * _K, 2.1101 * _K, 3.1651 * _K), swaybar_front=7.2576 * _K, swaybar_rear=4.8384 * _K),
