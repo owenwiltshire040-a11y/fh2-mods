@@ -114,6 +114,15 @@ replaced['scene/exterior/platform/body_a.modelbin'] = fill('scene/exterior/platf
 if glass_mats:
     replaced['scene/exterior/windows/glassf_a.modelbin'] = fill('scene/exterior/windows/glassf_a.modelbin', glass_mats, {}, S.GLASS_PLAIN)
 
+# ---------------------------------------------------------------- the model's own rim into the donor wheel part (spins, scales with the tyre)
+if getattr(S, 'RIM_MATERIALS', None):
+    import rimbuild
+    wpath = next(n for n in names if n.endswith('_wheellf.modelbin'))
+    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, wheels['HUB_LF']['centre'])
+    try:
+        import trimesh; trimesh.Trimesh(rim_prev[0] * [1, 1, 1], rim_prev[1], process=False).export(os.path.splitext(OUT)[0] + '_rim.glb')
+    except Exception as e: print('  (rim preview skipped:', e, ')')
+
 # ---------------------------------------------------------------- skeleton (modelbin copies): steering spindle to the model's wheel
 SW_CENTRE = np.array(S.STEER, float)
 def patch_skel(data):

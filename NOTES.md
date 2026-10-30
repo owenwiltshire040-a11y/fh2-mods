@@ -182,7 +182,14 @@ behind it, driver at the wheel, tyres in the arches, drives. Rims: "not attached
 (stills show them centred; the complaint is rotation). v0.1.1 (23:58): build_car.py now also moves the gr2
 hubXX/controlArm_XX bones and the carbin wheel/brake transforms to the car's wheel centres, so every source agrees
 with the database (asgame now warns when the built carbin disagrees with the DB position instead of with the
-donor). Open question: do the STR1's rims rotate? If neither car's do, suspect the raw-rewritten skeleton gr2
+donor). Owen (00:00): the rims that "don't move" were the 208 model's OWN wheels, baked into the body as black metal
+(Carro_Metal_Preto is exactly the four wheel envelopes); the Charger rims underneath spin fine. v0.1.2 (00:05): the
+model's wheel (Carro_Roda, Roda_1, Metal_Preto, Cromado cap) goes into the donor wheel part instead, the way
+wheel/build_wheel.py did the 207's — fh2re/rimbuild.py: scale the LF wheel to R 0.1397 in the part's space
+(x = depth outward -x), single-sided by the model's normals, size morphs (width -0.9 on x>0.5, diameter 1.3247 y/z,
+unknown row from the nearest donor vertex), AO UVs from the nearest front-facing donor rim vertex, the donor's
+inner_rim barrel kept, its hub/lugs/badge dropped. Spec: RIM_MATERIALS. 21k tris. Not yet seen in game.
+(Earlier open question, now moot: do the STR1's rims rotate? v0.6.2-origskel can be ignored.) If neither car's do, suspect the raw-rewritten skeleton gr2
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
 

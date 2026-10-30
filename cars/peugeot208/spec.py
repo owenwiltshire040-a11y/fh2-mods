@@ -21,7 +21,7 @@ MATERIALS = {                                         # model material -> ('plai
     'Carro_Refletor_Farol': ('plain', 'chrome'), 'Carro_Refletor_Farol_1': ('plain', 'chrome'),
     'Carro_Refletor_Lanterna': ('plain', 'chrome'), 'Carro_Refletor_Lanterna_1': ('plain', 'chrome'),
     'Carro_Plastico': ('plain', 'black'), 'Carro_Plastico_1': ('plain', 'black'),
-    'Carro_Metal_Preto': ('plain', 'black'), 'Carro_Metal_Preto_1': ('plain', 'black'), 'Carro_Interno': ('plain', 'black'),
+    'Carro_Metal_Preto': None, 'Carro_Metal_Preto_1': ('plain', 'black'), 'Carro_Interno': ('plain', 'black'),   # Metal_Preto = the rim spokes
     'Carro_Metal_Vermelho': ('textured', 'red'), 'Carro_Metal_Vermelho_1': ('textured', 'red'),
     'Carro_Vidros': ('plain', 'glass'), 'Carro_Vidros_1': ('plain', 'glass'), 'Carro_Vidro_R_': ('plain', 'glass'),
     'Carro_Pneu1': None, 'Carro_Roda': None, 'Carro_Roda_1': None, 'Carro_Freio': None, 'Carro_Freio_Disco': None,
@@ -30,6 +30,7 @@ MATERIALS = {                                         # model material -> ('plai
 BODY_PLAIN = {'paint': (0, 'carpaint'), 'chrome': (0, 'frame'), 'black': (1, 'blkplastic_hgl')}
 BODY_TEXTURED_LIKE = {0: 'carpaint', 3: 'carpaint'}
 GLASS_PLAIN = {'glass': (0, 'gls_windsheild')}
+RIM_MATERIALS = ['Carro_Roda', 'Carro_Roda_1', 'Carro_Metal_Preto', 'Carro_Cromado']   # the 208's wheel -> the game's wheel part
 KEEP_PARTS = {'body_a.modelbin', 'glassf_a.modelbin'}  # the 208's own interior (steering wheel, seats) is in the body
 STEER = (-0.385, 0.72, 0.40)
 HIPS = (-0.33, 0.44, 0.00)
