@@ -416,3 +416,9 @@ Peugeot make 201, depends on owen-peugeot-207), V70 (onto vanilla Volvo make 53,
 RULES: make string_base unique across ALL of Owen's mods (the 208's 64208 overwrote the 207's short name; now 64218).
 Use a vanilla make when one exists (List_CarMake: Volvo 53, Ferrari 13, ...). build_car_db.py should grow a
 `use_make` option and call presentation.py at the end — not done yet.
+
+## STR1 own rims (30 Oct, Opus): f1/str1_rims.py
+Post-processes a built STR1 car zip with fh2re/rimbuild.py (the 208 route): model HUB_LF rims from str1_geo.pkl,
+MCLHUB -> wheel part 'rim' (silver), MCLRIM + MCLSPOKES_OP -> 'black' (the model's rims are anthracite, ~RGB 62);
+*_BLUR motion-blur copies and the see-through MCLSPOKES duplicate left out. Model rim radius 0.195 m (incl. flange)
+-> R 0.1397. Waiting on Owen's in-game check. Fold into build_str1.py once confirmed.
