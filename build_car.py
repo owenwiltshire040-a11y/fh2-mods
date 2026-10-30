@@ -119,6 +119,10 @@ if getattr(S, 'LIGHTS', None):
     import lightbuild
     chmsl = lightbuild.centre_of(parts, S.LIGHTS['chmsl']) if 'chmsl' in S.LIGHTS else None
     lamps = lightbuild.take_lamps(parts, S.LIGHTS)
+    tail_c = lamps['tail'][0][lamps['tail'][0][:, 0] < 0].mean(0) if 'tail' in lamps else None   # before the CHMSL joins the tail
+    if 'chmsl' in S.LIGHTS and 'tail' in lamps:   # the third brake light's lamp body lights with the tail/brake part too
+        ch = lightbuild.take_lamps(parts, {'tail': dict(S.LIGHTS['chmsl'])})
+        if 'tail' in ch: lamps['tail'] = tuple(np.concatenate([a, b]) for a, b in zip(lamps['tail'], ch['tail']))
     TAIL_TPL = os.path.join(HERE, 'f1', 'lamp_tail_part.modelbin')   # the 207's day-working tail part (f1/extract_lamp_mati.py)
     one_tail = os.path.exists(TAIL_TPL) and 'tail' in lamps
     if one_tail:
@@ -132,6 +136,7 @@ if getattr(S, 'LIGHTS', None):
             replaced[key] = lightbuild.build_part(src.read(names[key]), side, kind, lamps)
             LIGHT_PARTS.add(f'{kind}light{side}_a.modelbin')
     model_c = {k: lamps[f][0][lamps[f][0][:, 0] < 0].mean(0) for k, f in (('head', 'head'), ('tail', 'tail')) if f in lamps}
+    if tail_c is not None: model_c['tail'] = tail_c
     replaced['lights.bin'] = lightbuild.lights_bin(src.read(names['lights.bin']), model_c, lightbuild.donor_centres(src, names),
                                                    f'game:\\media\\cars\\{MEDIA.lower()}\\', chmsl, one_tail)
     if one_tail:
