@@ -28,7 +28,7 @@ Don't decrypt protected mod files (CTDP GMTs are encrypted), don't edit/decrypt 
 - MatI = Grub bundle (MATI base path + MTPR params; texture param = LEB128 path + crc32(lower path)).
 - Modl blob: u16 counts @0 meshes, @2 buffers, @4 layouts, @6 materials. TRef lists crc32 of texture paths.
   New render meshes must go after ALL existing meshes (shadow ranges).
-- Lights.bin: 76-byte entries. Engine sound = Data_Engine.MediaName → FMOD PG events (traffic cars have none).
+- Lights.bin: name table + 58 x 76-byte light entries (see DONOR ZIP ANATOMY). Engine sound = Data_Engine.MediaName → FMOD PG events (traffic cars have none).
 - Torque table max 121 entries @100 rpm → 12,000 rpm cap; STR1 rescales rpm by K=11900/16700.
 
 ## Peugeot 207 (car 3207, media PEU_207SEHDi_08) — done ("it'll do")
@@ -169,7 +169,7 @@ hips, eye, physics dict), model in `cars/<car>/src/` (gitignored). Steps, from t
   package: cars/<car>/pkg/<Name>/ (mod.json, CREDITS.txt) + database.json + strings.json + media/cars/<MEDIA>.zip
 Body goes into body_a (paint = the game's 'carpaint' so it is paintable, chrome = 'frame', black = 'blkplastic_hgl',
 textured keys via the interior_lod1 MatI), glass into glassF_a ('gls_windsheild'); every other donor part dropped, so
-no working lights yet (Lights.bin: 12 x 84-byte entries naming the light parts; a later job). Soup vertices are
+no working lights yet (Lights.bin names the 12 light parts and places 58 light sources on them; a later job). Soup vertices are
 welded on position+normal (SketchUp OBJs have a uv per corner; a 470k-face model still makes a 48 MB body_a).
 
 ### Peugeot 208 (2021, tonielpro520, CC BY) — v0.1.4 (30 Oct 00:20): done to the STR1's standard
@@ -326,3 +326,59 @@ at the front = the DB's ModelFrontTrackOuter 1.504 pulled the Charger wheels in 
   v0.4.2 (29 Oct) = v0.4.1 + both of those: the 13 `scene/Drivers/default/*.gr2` from the Atom and the avpins
   Template set to LMP_OpenCockpit (made by hand from in/str1.zip, not by build_str1.py yet — fold it in once it's
   known to work; the Atom's driver sits at its RHD seat, x +0.3, so he may land off-centre).
+
+## DONOR ZIP ANATOMY (30 Oct, every file in DOD_ChargerSRT8_12.zip and what build_car.py does with it)
+Everything not listed as "rewritten" is carried over with the Charger's values (make_media.py only renames the media).
+- `<media>.carbin` (41 KB): the part list = what the game loads for each upgrade part id (1422000 CarBody, 1422001
+  FrontBumper race, 11038 WheelStyle...), each part's modelbin path and transform; type 2 = body parts, 43 = wheel
+  spindles, 4 = brakes. Rewritten: pruned to KEEP_PARTS + wheels/brakes, wheel/brake transforms moved.
+  `.carbin_debug` = the exporter's part-name table (PG-LEAM-BS08, 2014/08/14), unused by the game.
+- `physicsdefinition.bin` (2,244 B): the COLLISION HULL. Header 1,0,20,1; bbox half-extents at byte 84 (x 0.951,
+  y 0.650, z 2.532 + 2.672); then two blocks (hdr 48 B: 0.650, 0.0025, 2, 5, 1040, flags, 0, 48, 0, 62, 0, 1040) of
+  62 vertices x 16 B (u32 0, x, y, z): block 1 = the convex hull of the Charger (x +/-0.951, y 0..1.301, z -2.530..
+  2.535, 112 faces, 8.97 m3), block 2 = the same hull with every y < 0.2 raised to 0.2 (the underbody hull: ground
+  clearance). NOT rewritten: the 208 (4.06 m) and V70 (4.73 m) collide as a 5.07 x 1.90 m Charger; Data_CarBody
+  PristineBoundingBox* is set from spec but is probably only the camera/garage box. Fix = emit the model's own hull
+  (scipy ConvexHull of the body soup, decimated to ~60 verts) in this layout — not done yet.
+- `Locators.xml` (62 locators, 4x4 SceneTransform in car space + bone): camera/UI anchors (carLocator_wheelLF
+  -0.940,0.152,1.591; headlightL; hood; trunk; seatCamLF -0.38,1.05,-0.20; steeringWheel -0.375,0.754,0.371;
+  gauges; dashboard; doorLF..RR + door handles on the door bones; entryDoor*; skirt*), audio points (Audio_Engine,
+  Audio_Intake, Audio_Exhaust, Exhaust_001/002 = the backfire flames at the tailpipes, engineSmoke), paddleShift*,
+  stickShift, Handbrake. The Hero cinematic cameras attach to these. Rewritten: wheel locators only (build_str1).
+- `Lights.bin` (DEADBEEF, ver 1): u32 count=12, then 12 x (u32 len, modelbin path, u16 flag 1 or 27) naming the
+  light parts, then u32 58 + 58 entries x 76 B = (u32 type, u32 flags, u32 part index, pos xyz, 0, quaternion xyzw,
+  pos2 xyz, 0, quat2 xyzw) + 4 zero bytes. Types: 0 CHMSL LEDs (10 in a row), 1 DRL?, 2 fog, 3 indicators F,
+  4 side repeaters?, 5/6 high beam L/R, 8/9 low beam L/R (quat tilts 10 deg down), 7 tail (flags 0x20045), 10 reverse,
+  11 tail LEDs (15 per side). Each light = a point ON the lit part; glow sprites/beam come from LightPresets.bin.
+  Since the light parts are dropped, nothing lights up. A custom car needs: lit material names on the body
+  (`*_custom_head/_brake/_reverse/_turn` in the 207 mod) or re-pointing these entries at body_a + new positions.
+- `LightPresets.bin` (LDIB/PRST): per-light-type look (colour, intensity, cone, the xenon headlight beam projection
+  textures from cars/_library). `_debug` = same with names. Carried over.
+- `<media>.avpins` (XML, Template="4Door_Sedan"): Forzavista points of interest: 5 views (EngineView, 4 seat cams on
+  the seatCam locators), 64 POIs (open/close each door/hood/trunk, ChangeColor, Dimensions, EngineInfo...) each with
+  cursor Pos, Apex/Distance, preconditions and PartVisibilityAffects. Rewritten: Template only (STR1).
+- `Animations/*.gr2` (16): door/hood/trunk open+close, fuel/speedo/tacho needles, wiperFront — one transform track
+  each on the skeleton bone (boneDoorLF...). `Animations/<media>.gsf` = Granny state file: the AnimationSlots (16)
+  -> these files, model hint `..\carscene\DOD_ChargerSRT8_12\Export\scene\DOD_ChargerSRT8_12_fullMesh.gr2`.
+  Carried over (the parts they move are gone, harmless).
+- `scene/<media>_skeleton.gr2` (56 bones; listed by `fh2re/granny.py info`): root -> root_bone{Wipers,Hood,Door*,
+  Gauges,SteeringWheel,Trunk} (pivots in a y-up/forward export frame, 1.7-1.87 m), hubLF..RR = controlArm_LF..RR =
+  the wheel centres (-0.832,0.212,1.272 / -0.840,0.236,-1.523), spindleXX under the hubs, boneSteeringWheel +
+  boneSteeringWheelSpindle, body, driver (0,0.1,-0.1 under body), rotor*_center, wiper blades + locators, hood
+  struts. Rewritten: boneSteeringWheel, hubXX/controlArm_XX. `_skeleton.modelbin` = the same skeleton as a Grub
+  Skel blob (steering spindle patched).
+- `scene/Drivers/default/*.gr2` (13): driver animations, 130 tracks (Hips = seat, absolute), ...
+- `scene/Exterior/**`, `scene/Interior/**`: 90 modelbins, one per part, grouped by upgrade slot; `*_AO.swatchbin`
+  beside them = per-part baked occlusion; `__SLOD` = the super-low LOD used at distance. Kept: body_a, glassF_a
+  (rewritten), wheelLF, calipers/rotors, controlArms; everything else dropped.
+- `Materials/*.materialbin` (paint, glass, INT_*): the car-specific shader instances (paint -> livery test textures,
+  glass -> mask) referenced by the MatIs; `Shaders/*.shaderbin + 256 .vso/.pso` = compiled HLSL per material x
+  scenario x platform (pc/durango). Carried over.
+- `Textures/`: AO (30), Damage (impactMask/splatterMask), wiper masks, gauges DIFF/LITE, interior DIFF/GLOS/LITE,
+  LOD, lp (licence plate), symbol; `Textures/Livery/Swatches` + `LiveryMasks/*.swatchbin` + `Masks.xml` = the
+  livery editor projections (per-view origin/scale/axes); `UI/*.xaml` + `DigitalGauge/` = the Charger's LCD
+  odometer/gear display (WPF page: UseMPH, MaxSpeed 120, Shift_D/R storyboards). Carried over.
+- `ManufacturerColors.bin` (burG/LCNM): the 5 stock paints (Redline Red Pearl, Black, Tungsten, Bright Silver,
+  White) as library carcolor materialbins + RGB. Carried over (Charger colours in the paint shop).
+- `Cinematics/AV_Hero_Tour.xml` + 13 subtitle files: the Forzavista hero-tour camera path (cameras attached to
+  carLocator_wheelLF/hood/headlightL/gauges...). `SizeReport.xml`, `BuildNumber.txt`: exporter reports, unused.
