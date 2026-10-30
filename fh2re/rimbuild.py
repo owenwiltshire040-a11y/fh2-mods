@@ -26,11 +26,11 @@ def rim_soup(parts, materials, centre, zone=0.36):
             if keep.any(): Vs.append(V[keep].reshape(-1, 3)); Ns.append(N[keep].reshape(-1, 3))
     return np.concatenate(Vs), np.concatenate(Ns)
 
-def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',), black_materials=()):
+def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',), black_materials=(), r_ref=None):
     """wheel_bytes: the donor's wheelLF modelbin. parts/materials/centre: the model's rim geometry (FH2 space) and
     the wheel centre it sits on (the car's left wheel: outward = -x, as in the wheel part). Returns the new modelbin."""
     Vall, _ = rim_soup(parts, list(materials) + list(black_materials), centre)
-    x_outer = Vall[:, 0].min(); rmax = np.hypot(Vall[:, 1] - centre[1], Vall[:, 2] - centre[2]).max(); scale = R / rmax
+    x_outer = Vall[:, 0].min(); rmax = r_ref or np.hypot(Vall[:, 1] - centre[1], Vall[:, 2] - centre[2]).max(); scale = R / rmax   # r_ref: the radius that should land on the game's rim size (e.g. the tyre's inner edge when the model's lip runs under the tyre)
     def prep(mats):
         V, N = rim_soup(parts, mats, centre)
         return orient(np.stack([(V[:, 0] - x_outer) * scale, (V[:, 1] - centre[1]) * scale, (V[:, 2] - centre[2]) * scale], 1), N)
