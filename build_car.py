@@ -121,7 +121,15 @@ def transfer_uv(p, gid, P, N, UV, plain):
     (lighting test: one side of our cars stays dark and the paint shows no sky reflections)."""
     from scipy.spatial import cKDTree
     dP, dN, dT = donor_channels(p, gid)
-    if len(dP) < 50: return UV, None
+    if getattr(S, 'TRANSFER_UV', False) == 'roof' or len(dP) < 50:
+        # one value per group: the stock group's most exposed roof point (the old bright_uv took the black-plastic
+        # group's texel for every surface: paint lit like matte trim, no sky light or reflections)
+        k = int(np.argmax(dN[:, 1] * 2 + dP[:, 1] - np.abs(dP[:, 0]) - np.abs(dP[:, 2] - dP[:, 2].mean()) * 0.3))
+        const = {j: dT[j][k] for j in (1, 2, 3, 4) if j in dT}; UV = UV.copy()
+        if 0 in dT:
+            for a, b in plain: UV[a:b] = dT[0][k]
+        print(f'    group {gid}: TEXCOORD1-4 (+0 on plain) = the stock roof point {np.round(dP[k], 2)}')
+        return UV, const
     lo, hi, nlo, nhi = dP.min(0), dP.max(0), P.min(0), P.max(0)
     q = (dP - lo) / np.maximum(hi - lo, 1e-6) * (nhi - nlo) + nlo
     dist, idx = cKDTree(q).query(P, k=8)

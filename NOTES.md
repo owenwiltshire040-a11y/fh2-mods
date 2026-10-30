@@ -491,3 +491,11 @@ own (there is none; its 19 TRef textures are all _library ones).
 Omoda single-sided test in game: wheels perfect (LIP_GAP 0.08), shade side STILL dark and the paint shows no sky
 reflections even in the sun -> no environment/ambient light at all. Next test (TRANSFER_UV): TEXCOORD1-4 (and
 TEXCOORD0 on untextured keys) per vertex from the nearest stock body_a vertex instead of one constant texel.
+
+### LIGHTING FOUND (30 Oct): the shading channels
+TRANSFER_UV='nearest' in game: sky reflections and shade-side fill came back (Owen: "looks very good") but with dark
+blotches on the doors/quarters -- the stock body_a is only the shell, so our doors mapped onto stock door jambs.
+Root cause of the original darkness: bright_uv() picked the up-most vertex of ANY group, which was the black-plastic
+group's (TEXCOORD3 = (0.01, 0.02)); every surface was then shaded with the trim's occlusion/sky values (no
+environment light, matte). Fix (TRANSFER_UV='roof'): per group, TEXCOORD1-4 (+TEXCOORD0 on untextured keys) = the
+stock group's own most exposed roof point (carpaint group 0: TEXCOORD3 (0.694, 0.600)). Test 3 sent.

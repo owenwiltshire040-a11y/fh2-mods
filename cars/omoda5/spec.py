@@ -87,4 +87,4 @@ PRESENT = dict(paint='424749', logo_png=f'{HERE}/src/chery_logo.png', icon_base=
 ONE_SIDED = True     # good glb normals: single-sided like the game's own cars (double-sided twins shade one side dark)
 
 LIP_GAP = 0.08       # 0.04 (the 208 rule) left the wheels too far in on this SUV (Owen 30 Oct)
-TRANSFER_UV = True   # lighting test: per-vertex TEXCOORD0-4 from the nearest stock body vertex
+TRANSFER_UV = 'roof'   # shading channels = the stock paint's roof point per group ('nearest' per-vertex left dark door-jamb blotches)
