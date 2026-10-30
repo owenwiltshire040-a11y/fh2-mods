@@ -141,6 +141,10 @@ c.execute('delete from List_UpgradeTireCompound where Ordinal=? and IsStock=0', 
 K = P['brakes']
 c.execute('''update List_UpgradeBrakes set FrontBrakeSizeMM=?, FrontBrakeTypeID=?, FrontCaliperPistons=?, RearBrakeSizeMM=?, RearBrakeTypeID=?, RearCaliperPistons=?,
              GameFrictionScaleBraking=? where Ordinal=?''', (K['front_mm'], K['front_type'], K['front_pistons'], K['rear_mm'], K['rear_type'], K['rear_pistons'], K['friction'], CAR))
+# every stock car has Model*StockRideHeight == its springs' DefRideHeight; a different model value draws the body
+# lower/higher on its wheels (DAF at 0.30 vs the Charger springs' 0.1625 sat ~14 cm down, Owen 30 Oct)
+for (rh,) in q('select s.DefRideHeight from List_UpgradeSpringDamper u join List_SpringDamperPhysics s on s.SpringDamperPhysicsID=u.FrontSpringDamperPhysicsID where u.Ordinal=? and u.IsStock=1', CAR):
+    if abs(rh - B['ride_height']) > 0.005: print(f'  WARNING ride_height {B["ride_height"]} != the springs\' DefRideHeight {rh:.4f}: the body will be drawn offset')
 Su = P['suspension']
 for sid, front in q('''select s.SpringDamperPhysicsID, s.SpringDamperPhysicsID=u.FrontSpringDamperPhysicsID from List_UpgradeSpringDamper u join List_SpringDamperPhysics s
                        on s.SpringDamperPhysicsID in (u.FrontSpringDamperPhysicsID, u.RearSpringDamperPhysicsID) where u.Ordinal=?''', CAR):

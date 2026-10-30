@@ -60,7 +60,7 @@ PHYSICS = dict(
                     reverse=-6.0, shift_time=0.45, lsd=(0.0, 0.0, 0.0, 0.0), clutch_nm=6000.0),
     body=dict(mass=7200.0, weight_front=0.68, cm_height=1.10, block=(2.49, 3.0, 6.0), height=3.9, length=6.0, width=2.49, wheelbase=3.80,
               model_wheelbase=3.80, track_front=round(2 * (1.025 * 1.018 + 0.05), 3), track_rear=round(2 * (0.882 * 1.018 + 0.05), 3),
-              ride_height=0.30, bbox=(-1.55, 1.55, -0.35, 3.62, -2.77, 3.37)),
+              ride_height=0.1625, bbox=(-1.55, 1.55, -0.35, 3.62, -2.77, 3.37)),
     tyres=dict(width_front=385, width_rear=450, aspect_front=60, aspect_rear=50, rim_in=22, compound=1),
     brakes=dict(front_mm=430.0, front_type=2, front_pistons=2, rear_mm=430.0, rear_type=2, rear_pistons=2, friction=0.9),
     suspension=dict(front=(46.116 * _K, 3.3003 * _K, 4.9505 * _K), rear=(29.484 * _K, 2.1101 * _K, 3.1651 * _K), swaybar_front=7.2576 * _K, swaybar_rear=4.8384 * _K),
@@ -81,3 +81,6 @@ LIGHTS = {
 
 # Autoshow presentation: new make DAF (Netherlands), wordmark logo, white cab
 PRESENT = dict(paint='e8e8ea', logo_text='DAF', icon_base='DAF')
+
+# collision: the cab + chassis (mirrors clipped), floor 35 cm up like the Charger's 20 cm (Owen 30 Oct: drove through a lamp post)
+COLLISION_HULL = dict(half_width=1.25, floor_y=0.0)

@@ -295,6 +295,11 @@ for up in carb['upgradable_parts']:
     removed += [sm['model']['path'].lower().split('\\')[-1] for sm in up.get('shared_models', [])]; up['shared_models'] = []
 print('removed', len(removed), 'donor parts; kept', sorted(KEEP))
 replaced[f'{MEDIA.lower()}.carbin'] = write_carbin(carb)
+if getattr(S, 'COLLISION_HULL', None):   # the model's own collision hull instead of the Charger's (fh2re/hull.py)
+    import hull
+    Hc = S.COLLISION_HULL
+    pts = np.concatenate([p['V'] for k, v in parts.items() if not k.startswith('RIM_') for p in v])
+    replaced['physicsdefinition.bin'] = hull.build(src.read(names['physicsdefinition.bin']), pts, Hc['half_width'], Hc['floor_y'])
 
 # ---------------------------------------------------------------- locators: cameras and the wheel corners
 loc = src.read(names['locators.xml']).decode('utf-8')
