@@ -1,6 +1,6 @@
 """Volvo V70 (P2) T5 — on the Charger generic donor.
 
-Model: "Volvo V70" by KOElkast1007 (Sketchfab, https://sketchfab.com/3d-models/volvo-v70-61bb5ad577754b8ead80a85e94cbf644),
+Model (its arches are 2.815 m apart = the P3 V70's wheelbase, so the body is probably the 2007-16 shape; physics stay P2 T5 as asked): "Volvo V70" by KOElkast1007 (Sketchfab, https://sketchfab.com/3d-models/volvo-v70-61bb5ad577754b8ead80a85e94cbf644),
 glb with GTA-style material names. The body nodes are Z-up / Y-forward (+Y = front), the wheel nodes sit in their own
 Y-up frame with the rim face at negative local x. Model units are ~1.088 x metres (3.00 between the arches for a
 2.755 m wheelbase): --scale 0.9183. Arch centres (body frame) y +2.2 / -0.8, tyre centre height z 0.31 (lip 0.73),
@@ -52,7 +52,7 @@ PHYSICS = dict(
     drivetrain=dict(drivetype=1, mounting=2, shift_system=1, gears=[3.077, 1.818, 1.185, 0.886, 0.717, 0.610], final_drive=4.00,
                     reverse=-3.0, shift_time=0.25, lsd=(0.0, 0.0, 0.0, 0.0), clutch_nm=900.0),
     body=dict(mass=1515.0, weight_front=0.61, cm_height=0.55, block=(1.80, 1.15, 4.73), height=1.49, length=4.733, width=1.804, wheelbase=2.755,
-              model_wheelbase=2.755, track_front=1.75, track_rear=1.75, ride_height=0.16, bbox=(-1.05, 1.05, -0.18, 1.33, -2.25, 2.47)),
+              model_wheelbase=2.815, track_front=1.75, track_rear=1.75, ride_height=0.16, bbox=(-1.05, 1.05, -0.18, 1.33, -2.25, 2.47)),
     tyres=dict(width_front=235, width_rear=235, aspect_front=45, aspect_rear=45, rim_in=17, compound=4),
     brakes=dict(front_mm=316.0, front_type=2, front_pistons=1, rear_mm=288.0, rear_type=2, rear_pistons=1, friction=1.0),
     suspension=dict(front=(46.116 * _K, 3.3003 * _K, 4.9505 * _K), rear=(29.484 * _K, 2.1101 * _K, 3.1651 * _K), swaybar_front=7.2576 * _K, swaybar_rear=4.8384 * _K),
