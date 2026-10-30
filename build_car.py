@@ -113,6 +113,23 @@ def fill(path, materials, textured_like, plain, xform=None):
     print(f'  {path.split("/")[-1]}: ' + ', '.join(f'{k} {len(v[0]) // 3}' for k, v in Sp.items()))
     return out
 
+# ---------------------------------------------------------------- lamps (taken out of the body, into the donor's light parts)
+LIGHT_PARTS = set()
+if getattr(S, 'LIGHTS', None):
+    import lightbuild
+    chmsl = lightbuild.centre_of(parts, S.LIGHTS['chmsl']) if 'chmsl' in S.LIGHTS else None
+    lamps = lightbuild.take_lamps(parts, S.LIGHTS)
+    for kind in ('head', 'tail'):
+        if not any(lightbuild.EMIT[f][0] == kind for f in lamps): continue
+        for side in ('l', 'r'):
+            key = next(n for n in names if n.endswith(f'/{kind}light{side}_a.modelbin'))
+            replaced[key] = lightbuild.build_part(src.read(names[key]), side, kind, lamps)
+            LIGHT_PARTS.add(f'{kind}light{side}_a.modelbin')
+    model_c = {k: lamps[f][0][lamps[f][0][:, 0] < 0].mean(0) for k, f in (('head', 'head'), ('tail', 'tail')) if f in lamps}
+    replaced['lights.bin'] = lightbuild.lights_bin(src.read(names['lights.bin']), model_c, lightbuild.donor_centres(src, names),
+                                                   f'game:\\media\\cars\\{MEDIA.lower()}\\', chmsl)
+    print('  lamp centres (left):', {k: np.round(v, 3).tolist() for k, v in model_c.items()})
+
 # ---------------------------------------------------------------- body and glass
 body_mats = [m for m, plan in S.MATERIALS.items() if plan and plan[1] in S.BODY_PLAIN or (plan and plan[0] == 'textured')]
 glass_mats = [m for m, plan in S.MATERIALS.items() if plan and plan[1] in S.GLASS_PLAIN]
@@ -174,7 +191,7 @@ if getattr(S, 'AVPINS_TEMPLATE', None):
 
 # ---------------------------------------------------------------- carbin: keep the filled parts, wheels and brakes; drop the rest
 carb = read_carbin(src.read(names[f'{MEDIA.lower()}.carbin']))
-KEEP = set(S.KEEP_PARTS); removed = []
+KEEP = set(S.KEEP_PARTS) | LIGHT_PARTS; removed = []
 # wheel (43) and brake (4) model transforms: from the donor's wheel centres to this car's, per corner
 donor_w = {}
 for pt in carb['parts']:

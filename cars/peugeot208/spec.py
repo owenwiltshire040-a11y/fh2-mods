@@ -62,3 +62,10 @@ PHYSICS = dict(
              ratings=(4.0, 5.5, 4.0, 5.0, 4.0), steer_deg=35.0, **{'class': 0}, family_model=1, family_body=1, family_special=3, engine_placement=1, powertrain=0,
              material=1, open_cockpit=0, open_wheel=0, thumbnail_of=1082),
 )
+
+# working lamps (fh2re/lightbuild.py): box = ((|x|, y, z) min, max) in FH2 space
+LIGHTS = {
+    'head': dict(mats=['Carro_Refletor_Farol_1'], box=((0.0, 0.40, 1.50), (1.2, 0.75, 2.2))),            # headlamp units (not the wing repeaters / fog bits)
+    'tail': dict(mats=['Carro_Metal_Vermelho', 'Carro_Refletor_Lanterna_1'], box=((0.0, 0.60, -1.80), (1.2, 0.90, -1.40))),  # rear corner lamps (not the spoiler CHMSL)
+    'chmsl': dict(mats=['Carro_Metal_Vermelho'], box=((0.0, 0.95, -1.45), (1.2, 1.25, -1.25))),   # third brake light in the spoiler (light points only)
+}
