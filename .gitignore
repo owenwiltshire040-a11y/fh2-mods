@@ -14,3 +14,4 @@ scan/viewer/*.glb
 cars/*/src/
 cars/*/*.png
 cars/*/*.json
+cars/*/*.log

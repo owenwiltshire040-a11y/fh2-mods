@@ -20,8 +20,8 @@ Never delete Owen's files — move them to `_parts/`.
 - `f1/in/`: the donor zip, PEU_207_5door_v14.zip, TJ2005_engine.ini and build outputs (gitignored).
 
 ## Ground rules
-Don't decrypt protected mod files (CTDP GMTs are encrypted), don't edit/decrypt saves,
-don't port ripped assets from other games (no ZS/FM5 donors), personal use only.
+Don't decrypt protected mod files (CTDP GMTs are encrypted), don't edit/decrypt saves, personal use only.
+(The "no ripped assets from other games" rule was removed by Owen on 30 Oct.)
 
 ## Formats (see fh2re/, tex/, f1/fhmat.py)
 - swatchbin: data @0x53, BC7 = fmt 0x2e, GCN tiled (mips 0–2 2D, 3+ 1D). `tex/swatch.py write_like(template, rgba)`.
@@ -210,6 +210,15 @@ never trust SketchUp normals for winding on the face planes; the unknown morph r
 (Earlier open question, now moot: do the STR1's rims rotate? v0.6.2-origskel can be ignored.) If neither car's do, suspect the raw-rewritten skeleton gr2
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
+
+### Volvo V70 T5 (P2, 2005; model by KOElkast1007, Sketchfab free licence; Owen's call on the GTA-style asset) — v0.1.0 (30 Oct 00:35)
+cars/volvov70: car 3700, make Volvo (204), media VOL_V70T5_2005_P2_ (18 chars — a 16-char name silently corrupted the
+renamed modelbins: make_media must keep the length), 2.4 T5 260 hp / 350 Nm, M66 6-speed, FWD, 1,515 kg, Focus RS
+'09 sound (Volvo I5). fh2re/glbgeo.py: the glb's body nodes are Z-up/Y-forward and its wheel nodes sit in their own
+Y-up frame, so the body frame is given (--frame=-x,z,y), wheel centres come from the body's arches (y 2.2 / -0.8,
+lip 0.73 -> centre 0.31, half track 0.86, model units; scale 0.9183 for a 2.755 wheelbase) and the rim from the
+wheel_lf.child_ node's local coords (face at min x, as the wheel part wants). asgame PASS. Not yet seen in game.
+Pipeline note: never `| head` a script that writes its output at the end (SIGPIPE killed glbgeo before the dump).
 
 ## RULE: wheel positions come from the database (z, x) and the UNMODIFIED donor zip (y)
 Superseded in part on 29 Oct (see GENERIC DONOR): wheel z and x are set by Data_CarBody (ModelWheelbase,

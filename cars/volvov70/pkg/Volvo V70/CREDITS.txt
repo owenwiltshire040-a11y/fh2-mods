@@ -1,0 +1,10 @@
+Volvo V70 T5 (2005) for Forza Horizon 2 - Owen's personal mod. NOT FOR REDISTRIBUTION.
+
+Car model: "Volvo V70" by KOElkast1007 (https://sketchfab.com/koelkastasbers),
+  https://sketchfab.com/3d-models/volvo-v70-61bb5ad577754b8ead80a85e94cbf644 — downloaded under its free licence,
+  used only in this private build. Tyres and brakes are the game's; the model's rim is used; body paint is the
+  game's paint material.
+Physics figures from Volvo's published V70 II T5 data (2.4 turbo I5, 260 hp / 350 Nm, M66 6-speed); suspension
+  and anti-roll bars scaled from the game's Ford Fiesta Mk7.
+Base car in FH2: 2012 Dodge Charger SRT8 (skeleton, driver, wheels, brakes). Engine sound: Ford Focus RS 2009 (Volvo 2.5 I5 turbo).
+Volvo and V70 are trademarks of Volvo Car Corporation; shown only in this private build.
