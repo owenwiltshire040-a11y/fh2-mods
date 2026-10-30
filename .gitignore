@@ -15,3 +15,6 @@ cars/*/src/
 cars/*/*.png
 cars/*/*.json
 cars/*/*.log
+cars/*/build/
+eo
+car207/vanilla.slt

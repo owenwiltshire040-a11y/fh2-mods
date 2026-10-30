@@ -155,7 +155,9 @@ if getattr(S, 'RIM_MATERIALS', None):
     import rimbuild
     wpath = next(n for n in names if n.endswith('_wheellf.modelbin'))
     replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'],
-                                                   black_materials=getattr(S, 'RIM_BLACK_MATERIALS', ()))
+                                                   black_materials=getattr(S, 'RIM_BLACK_MATERIALS', ()),
+                                                   r_ref=getattr(S, 'RIM_R_REF', None),            # radius of the outermost FRONT-facing rim geometry (NOTES: rim size rule)
+                                                   trust_normals=getattr(S, 'RIM_TRUST_NORMALS', False))  # True for models with good normals (AC/rFactor/glb); SketchUp: False
     try:
         import trimesh; trimesh.Trimesh(rim_prev[0] * [1, 1, 1], rim_prev[1], process=False).export(os.path.splitext(OUT)[0] + '_rim.glb')
     except Exception as e: print('  (rim preview skipped:', e, ')')

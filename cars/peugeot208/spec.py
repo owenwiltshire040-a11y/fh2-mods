@@ -70,3 +70,6 @@ LIGHTS = {
     'reverse': dict(mats=['Carro_Refletor_Lanterna'], box=((0.0, 0.10, -1.90), (0.2, 0.25, -1.70))),  # the low centre strip in the bumper
     'chmsl': dict(mats=['Carro_Metal_Vermelho'], box=((0.0, 0.95, -1.45), (1.2, 1.25, -1.25))),   # third brake light in the spoiler (light points only)
 }
+
+# Autoshow presentation (package_car.py): onto the 207 mod's Peugeot make, thumbnail in red
+PRESENT = dict(paint='b8121b', use_make=(201, '_&857995983'), depends='owen-peugeot-207')

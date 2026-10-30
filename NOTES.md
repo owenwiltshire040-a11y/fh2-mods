@@ -388,6 +388,13 @@ Everything not listed as "rewritten" is carried over with the Charger's values (
 Owen will often be away from his Mac (laptop at home, possibly off) and will drop a new 3D model
 into a cloud session from his phone. He expects back a **finished, installable car mod zip** plus the
 Terminal install command, without having to answer questions along the way. So:
+- ONE COMMAND: `python3 package_car.py cars/<car>/spec.py OUTDIR` -> finished mod folder (car zip with body, glass,
+  rims, lamps; database.json with nearest; strings; thumbnail; make logo or an existing make). Inputs it needs:
+  cars/<car>/donor_<MEDIA>.zip (f1/make_media.py, run from f1/), cars/<car>/geo.pkl (objgeo/glbgeo), car207/vanilla.slt,
+  eo/ (Extra Options repo), tex/ templates, f1/matI_lod1.bin, f1/lamp_*.bin + lamp_tail_part.modelbin
+  (f1/extract_lamp_mati.py on the 207 car zip), the viewer's node_modules (three@0.160) and playwright.
+  Spec extras: LIGHTS (head/tail/reverse/chmsl mats + boxes), RIM_R_REF / RIM_TRUST_NORMALS, PRESENT (paint,
+  use_make or logo_text/logo_png, depends). package_car refuses a string_base that clashes with another mod.
 - Do the whole pipeline unattended with build_car.py on the Charger generic donor (no donor-picking any more:
   ModelWheelbase/track in the DB place the wheels): write cars/<car>/spec.py, build body/rims/glass, set up the
   DB entry (sensible name, make, price, physics for the car type), package as an Extra Options mod
