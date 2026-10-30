@@ -1,0 +1,6 @@
+DAF XF105.510 4x2 (2012) - Forza Horizon 2 add-on, personal use.
+3D model: "low poly DAF xf105" by Alvin.Woodly
+  https://sketchfab.com/3d-models/low-poly-daf-xf105-51f67c0bd11440dcbe0d1141f5d3508f
+  Licence: CC BY 4.0. Changes: converted to FH2's formats, scaled to the real 3.80 m wheelbase, lamps and wheels
+  re-mapped onto the game's parts.
+Built on the 2012 Dodge Charger SRT8; engine sound from the Terradyne Gurkha (game files, not included).

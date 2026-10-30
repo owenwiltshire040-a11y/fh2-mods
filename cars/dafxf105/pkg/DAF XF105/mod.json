@@ -1,0 +1,12 @@
+{
+ "format_version": 1,
+ "id": "owen-daf-xf105",
+ "name": "DAF XF105.510 4x2 (2012)",
+ "author": "Owen",
+ "version": "0.1.0",
+ "description": "DAF XF105.510 tractor unit for personal use. Model 'low poly DAF xf105' by Alvin.Woodly (Sketchfab, CC BY 4.0). Built on the 2012 Dodge Charger SRT8 as the generic donor; engine sound from the Terradyne Gurkha.",
+ "database": "database.json",
+ "strings": "strings.json",
+ "media": "media",
+ "dependencies": []
+}
