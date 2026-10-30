@@ -121,7 +121,7 @@ def transfer_uv(p, gid, P, N, UV, plain):
     (lighting test: one side of our cars stays dark and the paint shows no sky reflections)."""
     from scipy.spatial import cKDTree
     dP, dN, dT = donor_channels(p, gid)
-    if getattr(S, 'TRANSFER_UV', False) == 'roof' or len(dP) < 50:
+    if getattr(S, 'TRANSFER_UV', 'roof') == 'roof' or len(dP) < 50:
         # one value per group: the stock group's most exposed roof point (the old bright_uv took the black-plastic
         # group's texel for every surface: paint lit like matte trim, no sky light or reflections)
         k = int(np.argmax(dN[:, 1] * 2 + dP[:, 1] - np.abs(dP[:, 0]) - np.abs(dP[:, 2] - dP[:, 2].mean()) * 0.3))
@@ -146,7 +146,7 @@ def fill(path, materials, textured_like, plain, xform=None):
     """put the model materials into the donor part at `path`. textured_like: {group: template material} whose
     meshes (every LOD) are cloned per texture key; plain: {key: (group, donor material)} for untextured bits."""
     p = Part(src.read(names[path])); uvc = bright_uv(p); nm = material_names(p)
-    if getattr(S, 'TRANSFER_UV', False) and 'body_a' in path:
+    if getattr(S, 'TRANSFER_UV', 'roof') and 'body_a' in path:
         for _g in p.group_order: donor_channels(p, _g)
     Sp = soup(materials)
     if xform: Sp = {k: (xform(V), xform(N, True), UV) for k, (V, N, UV) in Sp.items()}
@@ -171,7 +171,7 @@ def fill(path, materials, textured_like, plain, xform=None):
             V, N, UV, I = (one_sided if getattr(S, 'ONE_SIDED', False) and 'body_a' in path else two_sided)(*Sp[k])
             Ps.append(V); Ns.append(N); UVs.append(UV); by[mname] = I + base; base += len(V)
         P_, N_, UV_ = np.concatenate(Ps), np.concatenate(Ns), np.concatenate(UVs); const = uvc
-        if getattr(S, 'TRANSFER_UV', False) and 'body_a' in path:
+        if getattr(S, 'TRANSFER_UV', 'roof') and 'body_a' in path:
             UV_, const = transfer_uv(p, gid, P_, N_, UV_, plain_ranges(plan[gid], Ps))
         set_group(p, gid, dict(P=P_, N=N_, UV=UV_, UVconst=const), by)
     out = p.build(); Part(out)

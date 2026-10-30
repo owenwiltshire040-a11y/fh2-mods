@@ -498,4 +498,7 @@ blotches on the doors/quarters -- the stock body_a is only the shell, so our doo
 Root cause of the original darkness: bright_uv() picked the up-most vertex of ANY group, which was the black-plastic
 group's (TEXCOORD3 = (0.01, 0.02)); every surface was then shaded with the trim's occlusion/sky values (no
 environment light, matte). Fix (TRANSFER_UV='roof'): per group, TEXCOORD1-4 (+TEXCOORD0 on untextured keys) = the
-stock group's own most exposed roof point (carpaint group 0: TEXCOORD3 (0.694, 0.600)). Test 3 sent.
+stock group's own most exposed roof point (carpaint group 0: TEXCOORD3 (0.694, 0.600)).
+CONFIRMED in game 30 Oct (Owen: "that's fixed it!!!"). 'roof' is now build_car's DEFAULT. 208 rebuilt with it.
+Still on the old values: the 207 (car207/body_sheik.py bright_uv1) and the STR1 (f1/build_str1.py) - rebuild them
+the same way (per-group stock roof point of their own donors).
