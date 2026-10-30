@@ -462,7 +462,9 @@ as the 207 had (its type 10 0x45). Needs the 207 mod installed (template texture
 track = 2 * (arch lip + 0.04 - tyre width / 2); lip = widest paint vertex within 15 cm fore/aft of the axle and
 0-50 cm above the wheel centre. 208: lips 0.838 / 0.851 (= Fable's hand measurement) -> 1.551 / 1.578; the in-game
 confirmed values are 1.55 / 1.54, so the front matches and the rear may want a smaller gap (spec LIP_GAP overrides) —
-check the rear on the next car built with 'auto'. Existing specs keep their explicit, confirmed tracks.
+check the rear on the next car built with 'auto'.
+CONFIRMED 30 Oct: the 208 rebuilt with 'auto' (1.551 / 1.578) is "spot on" (Owen) - the hand 1.54 rear was too far in.
+Use track='auto' (LIP_GAP 0.04) for every new car.
 
 ## STR1 rain light (30 Oct, Opus): f1/str1_lights.py
 Post-processes a built STR1 zip: REAR_LIGHT panel (6 tris, centre x 0, y 0.365, z -2.09, facing -z) -> the 207
@@ -474,4 +476,4 @@ f1/str1_rims.py. Waiting on in-game check.
 Reference = the ZS/MSF Williams FW24 add-on (numbers only). Changed: TireModelName a -> OW_F1,
 FixListingRearFricScale 1.35 -> 2.5, Lat/Long*ScalarMax 0.99 -> 1.2, *ScalarClamp 4.95 -> 6.0, WeightDistribution
 0.418 -> 0.45, wing aero front DF 187.5-312.5 (LateralDrag 11.5), rear 450-750 (27), rear toe -0.5 / camber -1.5,
-front camber -2.0. Waiting on Owen's drive. Fold into build_str1_db.py once confirmed.
+front camber -2.0. Owen 30 Oct: "looks to be alright". Fold into build_str1_db.py when the STR1 is next rebuilt.
