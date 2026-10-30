@@ -429,4 +429,7 @@ v4: the source spokes are ONLY side walls (MCLSPOKES_OP, every tri edge-on) — 
 disc (MCLSPOKES) whose alpha was lost in the AC->Sketchfab conversion ('clear spokes with black outlines' in game).
 str1_rims.py now polygonizes the walls' 2D outline (shapely) = the 10 windows, builds face = annulus r 0.045-0.143
 minus windows, triangulated (earcut), laid on the walls' front-edge depth x(r), facing out. Same trick for any
-model whose spokes come from alpha textures. pip: shapely mapbox_earcut. Waiting on in-game check.
+model whose spokes come from alpha textures. pip: shapely mapbox_earcut.
+v5: RULE for rimbuild r_ref: the game's rim face reaches R (0.1397) right at the front (donor 'rim'/'black' r max
+0.1393 at x~0); the tyre starts there. So r_ref = the radius of the outermost FRONT-facing rim geometry (STR1: spoke
+outer edge 0.143), not the tyre inner edge or a lip hidden under the tyre. Waiting on in-game check.

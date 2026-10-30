@@ -61,11 +61,14 @@ v3 = np.stack([x, v2[:, 0] + centre[1], v2[:, 1] + centre[2]], 1)
 Vf = v3[f2].reshape(-1, 3); Nf = np.tile([-1.0, 0, 0], (len(Vf), 1))   # faces out (-x on the left wheel)
 parts['SPOKE_FACE'] = [dict(V=Vf, N=Nf)]
 BLACK = BLACK + ['SPOKE_FACE']
+for p in parts['MCLRIM']:
+    V = p['V'].reshape(-1, 3, 3); r = np.hypot(V[..., 1] - centre[1], V[..., 2] - centre[2]).max(1); k = r <= r_out * 1.01
+    p['V'] = V[k].reshape(-1, 3); p['N'] = p['N'].reshape(-1, 3, 3)[k].reshape(-1, 3)
 print(f'  spoke faces: {len(f2)} tris, {face.area * 1e4:.0f} cm2 (disc r {r_in}-{r_out:.3f} minus {len(getattr(windows, "geoms", [windows]))} windows)')
 src = zipfile.ZipFile(sys.argv[2])
 wheel = [n for n in src.namelist() if n.lower().endswith('wheellf.modelbin')]
 assert len(wheel) == 1, wheel
-new, _ = rimbuild.build_rim(src.read(wheel[0]), parts, SILVER, centre, black_materials=BLACK, r_ref=R_REF, trust_normals=True)
+new, _ = rimbuild.build_rim(src.read(wheel[0]), parts, SILVER, centre, black_materials=BLACK, r_ref=r_out, trust_normals=True)   # the game's rim face reaches R at the front (donor 'rim'/'black' r 0.1393 at x~0), so the spokes' outer edge must land on R
 with zipfile.ZipFile(sys.argv[3], 'w', zipfile.ZIP_DEFLATED) as out:
     for i in src.infolist():
         out.writestr(i, new if i.filename == wheel[0] else src.read(i.filename))
