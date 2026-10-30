@@ -85,3 +85,5 @@ LIGHTS = {
 PRESENT = dict(paint='424749', logo_png=f'{HERE}/src/chery_logo.png', icon_base='Chery')
 
 ONE_SIDED = True     # good glb normals: single-sided like the game's own cars (double-sided twins shade one side dark)
+
+LIP_GAP = 0.08       # 0.04 (the 208 rule) left the wheels too far in on this SUV (Owen 30 Oct)

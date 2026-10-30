@@ -465,6 +465,8 @@ confirmed values are 1.55 / 1.54, so the front matches and the rear may want a s
 check the rear on the next car built with 'auto'.
 CONFIRMED 30 Oct: the 208 rebuilt with 'auto' (1.551 / 1.578) is "spot on" (Owen) - the hand 1.54 rear was too far in.
 Use track='auto' (LIP_GAP 0.04) for every new car.
+Omoda 5 (SUV, 215/55 R18, lip 0.916): 0.04 -> 1.698 'still too far in' (Owen); test build at LIP_GAP 0.08 -> 1.778.
+If that's right, the gap may scale with tyre size/sidewall (208: 205/45 R17 sidewall 92 mm; Omoda 118 mm).
 
 ## STR1 rain light (30 Oct, Opus): f1/str1_lights.py
 Post-processes a built STR1 zip: REAR_LIGHT panel (6 tris, centre x 0, y 0.365, z -2.09, facing -z) -> the 207
