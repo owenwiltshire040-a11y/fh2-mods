@@ -433,3 +433,15 @@ model whose spokes come from alpha textures. pip: shapely mapbox_earcut.
 v5: RULE for rimbuild r_ref: the game's rim face reaches R (0.1397) right at the front (donor 'rim'/'black' r max
 0.1393 at x~0); the tyre starts there. So r_ref = the radius of the outermost FRONT-facing rim geometry (STR1: spoke
 outer edge 0.143), not the tyre inner edge or a lip hidden under the tyre. Waiting on in-game check.
+
+## LAMPS (30 Oct, Opus): fh2re/lightbuild.py, spec LIGHTS
+How FH2 lights a lamp: a lamp MATERIAL glows when a Lights.bin light on the SAME PART is active and its flags
+overlap the material's light mask (MatI param 0x493073a0, int): tail+brake 0x45 (Charger type 7 flags 0x20045),
+reverse 0x1 (type 10 flags 0x1), indicator 0x15/0x14/0x11 (types 3/4). The Charger's own tail LED material has mask
+0x20, which no Charger light carries -> it only shows glow sprites at night, no brake by day. So the rear lamps use
+the 207's lamp materials (f1/extract_lamp_mati.py PEU_207SEHDi_08.zip -> f1/lamp_{brake,reverse,turn,redlens}.bin,
+gitignored), added to the Charger tail parts with fhmat.add_material/add_mesh. Tail = red glass lens outside + brake
+emitter 3 mm behind. Head lamps use the Charger's 'hl_hb' in headlightl/r group 0 (+ LOD64 group 2).
+Lights.bin: all 58 lights re-tied to head/taillight l/r and moved by (model lamp centre - donor emitter centre);
+CHMSL row re-centred on spec LIGHTS['chmsl'] (light points only). taillightc_a (centre reverse) is skinned to a bone:
+not used. 208 v0.2 test: lights at night OK (Owen 12:19); day brake/reverse missing -> materials above (v0.2.1 test).

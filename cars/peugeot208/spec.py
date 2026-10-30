@@ -67,5 +67,6 @@ PHYSICS = dict(
 LIGHTS = {
     'head': dict(mats=['Carro_Refletor_Farol_1'], box=((0.0, 0.40, 1.50), (1.2, 0.75, 2.2))),            # headlamp units (not the wing repeaters / fog bits)
     'tail': dict(mats=['Carro_Metal_Vermelho', 'Carro_Refletor_Lanterna_1'], box=((0.0, 0.60, -1.80), (1.2, 0.90, -1.40))),  # rear corner lamps (not the spoiler CHMSL)
+    'reverse': dict(mats=['Carro_Refletor_Lanterna'], box=((0.0, 0.10, -1.90), (0.2, 0.25, -1.70))),  # the low centre strip in the bumper
     'chmsl': dict(mats=['Carro_Metal_Vermelho'], box=((0.0, 0.95, -1.45), (1.2, 1.25, -1.25))),   # third brake light in the spoiler (light points only)
 }

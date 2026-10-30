@@ -21,11 +21,25 @@ from body_swap import set_group, blank_group, material_names
 from gltf_bridge import decode_group
 
 ROOT_SUB = {'head': 'primarylights', 'tail': 'secondarylights'}
-EMIT = {  # function -> (part kind, group near, group far, donor material)
-    'head': ('head', 0, 2, 'hl_hb'), 'drl': ('head', 0, 2, 'drl'), 'turn_f': ('head', 1, 3, 'turnSignal'),
-    'tail': ('tail', 0, 2, 'lbk_led_001'),
+EMIT = {  # function -> (part kind, group near, group far, material, added material blob or None)
+    'head': ('head', 0, 2, 'hl_hb', None), 'drl': ('head', 0, 2, 'drl', None), 'turn_f': ('head', 1, 3, 'turnSignal', None),
+    # rear: the 207's lamp materials (f1/extract_lamp_mati.py), installed into the Charger tail parts. Their light mask
+    # (param 0x493073a0) matches the Charger's Lights.bin flags: tail+brake 0x45 (type 7 = 0x20045), reverse 0x1 (type 10).
+    # The Charger's own lbk_led_001 has mask 0x20, which no light drives: no brake glow by day.
+    'tail': ('tail', 0, 2, 'LBK_smoothChrome_custom_brake', 'brake'),
+    'reverse': ('tail', 0, 2, 'LBK_standardCH1_003_custom_reverse', 'reverse'),
+    'turn_r': ('tail', 0, 2, 'LBK_standardCH1_003_custom_turn', 'turn'),
 }
-FAR_MAT = {('tail', 2): 'reflector_003'}     # the tail part's LOD64 group has no LED material: draw the far copy as its reflector
+import os
+LAMP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'f1')
+FAR_MAT = {}
+LENS = 'gls_patternCH1_009_custom_red'
+
+
+def _tex_paths(blob):
+    """texture paths referenced by a MatI blob (for the model's TRef list)"""
+    import re
+    return [m.decode('latin1') for m in re.findall(rb'[Gg]ame:\\[ -~]+?\.swatchbin', blob)]
 
 
 def centre_of(parts, spec):
@@ -78,22 +92,42 @@ def _donor_uv(p, nm, gid, mat):
 
 def build_part(data, side, kind, lamps):
     """one donor light part (side 'l'/'r', kind 'head'/'tail') filled with the model's lamps of that side"""
+    import fhmat
     p = Part(data); nm = material_names(p)
-    plan = {}
+    plan = {}; added = {}
     for fn, (V, N) in lamps.items():
-        k, gnear, gfar, mat = EMIT[fn]
+        k, gnear, gfar, mat, blob = EMIT[fn]
+        if k == kind and blob and mat not in added and mat not in nm.values():
+            mid = fhmat.add_material(p, mat, open(os.path.join(LAMP_DIR, f'lamp_{blob}.bin'), 'rb').read())
+            for gid in (gnear, gfar):
+                like = next((r for r in p.render if r['group'] == gid), None)
+                if like is not None: fhmat.add_mesh(p, like, mid)
+            added[mat] = mid; nm = material_names(p)
         if k != kind: continue
         s = V.reshape(-1, 3, 3).mean(1)[:, 0]; sel = (s < 0) if side == 'l' else (s > 0)
         if not sel.any(): continue
         Vs = V.reshape(-1, 3, 3)[sel].reshape(-1, 3); Ns = N.reshape(-1, 3, 3)[sel].reshape(-1, 3)
-        for gid, m in ((gnear, mat), (gfar, FAR_MAT.get((kind, gfar), mat))):
-            if gid in p.groups: plan.setdefault(gid, []).append((Vs, Ns, m))
+        layers = [(Vs, mat)]
+        if fn == 'tail':   # red glass outside, the glowing layer 3 mm behind it (off = red lamp, on = glow through red)
+            layers = [(Vs - Ns * 0.003, mat), (Vs, LENS)]
+            if LENS not in added and LENS not in nm.values():
+                blob_d = open(os.path.join(LAMP_DIR, 'lamp_redlens.bin'), 'rb').read()
+                mid = fhmat.add_material(p, LENS, blob_d, _tex_paths(blob_d))
+                for gid in (gnear, gfar):
+                    like = next((r for r in p.render if r['group'] == gid), None)
+                    if like is not None: fhmat.add_mesh(p, like, mid)
+                added[LENS] = mid; nm = material_names(p)
+        for Vl, m in layers:
+            for gid, mm in ((gnear, m), (gfar, FAR_MAT.get((kind, gfar), m))):
+                if gid in p.groups: plan.setdefault(gid, []).append((Vl, Ns, mm))
     for gid in p.group_order:
         if gid not in plan: blank_group(p, gid); continue
         Ps, Nn, UVs, by, base, const = [], [], [], {}, 0, None
         for V, N, m in plan[gid]:
             uv, c = _donor_uv(p, nm, gid, m)
-            if uv is None: print(f'    {kind}{side} group {gid}: no {m} in donor, skipped'); continue
+            if uv is None:                               # an added material: no donor UVs of its own; the AO/mask sets from any donor lamp mesh
+                uv, c = next(((u, cc) for u, cc in (_donor_uv(p, nm, gid, x) for x in ('lbk_led_001', 'chrome', 'reflector_003', 'lbk_smoothchrome')) if u is not None), (None, None))
+            if uv is None: print(f'    {kind}{side} group {gid}: no UVs for {m}, skipped'); continue
             P2, N2, I = _two_sided(V, N)
             Ps.append(P2); Nn.append(N2); UVs.append(np.tile(uv, (len(P2), 1)))
             by[m] = np.concatenate([by[m], I + base]) if m in by else I + base; base += len(P2); const = const or c
