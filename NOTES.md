@@ -469,3 +469,9 @@ Post-processes a built STR1 zip: REAR_LIGHT panel (6 tris, centre x 0, y 0.365, 
 tail-lamp template as taillightl_a (lens + brake emitter), the Charger's taillightl_a carbin entry added back, and a
 Lights.bin with one part and two lights there: tail (type 7, 0x20045) and brake (type 7, 0x45). Run after
 f1/str1_rims.py. Waiting on in-game check.
+
+## STR1 high-speed stability (30 Oct, Opus): f1/str1_stability.py on the mod's database.json
+Reference = the ZS/MSF Williams FW24 add-on (numbers only). Changed: TireModelName a -> OW_F1,
+FixListingRearFricScale 1.35 -> 2.5, Lat/Long*ScalarMax 0.99 -> 1.2, *ScalarClamp 4.95 -> 6.0, WeightDistribution
+0.418 -> 0.45, wing aero front DF 187.5-312.5 (LateralDrag 11.5), rear 450-750 (27), rear toe -0.5 / camber -1.5,
+front camber -2.0. Waiting on Owen's drive. Fold into build_str1_db.py once confirmed.
