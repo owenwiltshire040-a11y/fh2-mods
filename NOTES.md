@@ -219,6 +219,10 @@ Y-up frame, so the body frame is given (--frame=-x,z,y), wheel centres come from
 lip 0.73 -> centre 0.31, half track 0.86, model units; scale 0.9183 for a 2.755 wheelbase) and the rim from the
 wheel_lf.child_ node's local coords (face at min x, as the wheel part wants). asgame PASS. Not yet seen in game.
 Pipeline note: never `| head` a script that writes its output at the end (SIGPIPE killed glbgeo before the dump).
+IN GAME v0.1.0 (00:39): "looks good other than the tracking" — wheels deep in the arches. TRACK RULE OF THUMB (208
+and V70): the game draws the wheel ~5 cm per side inboard of x = ModelTrackOuter/1.012/2; set the track so the
+DB tyre face (x + width/2) sits ~4 cm beyond the body's arch lip (208: lip 0.838 -> 1.55; V70: lip 0.90 -> 1.65).
+v0.1.1 (00:42): track 1.65.
 
 ## RULE: wheel positions come from the database (z, x) and the UNMODIFIED donor zip (y)
 Superseded in part on 29 Oct (see GENERIC DONOR): wheel z and x are set by Data_CarBody (ModelWheelbase,

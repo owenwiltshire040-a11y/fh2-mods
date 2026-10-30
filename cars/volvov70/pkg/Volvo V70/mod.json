@@ -3,7 +3,7 @@
  "id": "owen-volvo-v70",
  "name": "Volvo V70 T5 (2005)",
  "author": "Owen",
- "version": "0.1.0",
+ "version": "0.1.1",
  "description": "2005 Volvo V70 (P2) T5 for personal use. Model 'Volvo V70' by KOElkast1007 (Sketchfab, free licence). Built on the 2012 Dodge Charger SRT8 as the generic donor.",
  "database": "database.json",
  "strings": "strings.json",
