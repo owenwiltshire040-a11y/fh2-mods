@@ -500,5 +500,6 @@ group's (TEXCOORD3 = (0.01, 0.02)); every surface was then shaded with the trim'
 environment light, matte). Fix (TRANSFER_UV='roof'): per group, TEXCOORD1-4 (+TEXCOORD0 on untextured keys) = the
 stock group's own most exposed roof point (carpaint group 0: TEXCOORD3 (0.694, 0.600)).
 CONFIRMED in game 30 Oct (Owen: "that's fixed it!!!"). 'roof' is now build_car's DEFAULT. 208 rebuilt with it.
-Still on the old values: the 207 (car207/body_sheik.py bright_uv1) and the STR1 (f1/build_str1.py) - rebuild them
-the same way (per-group stock roof point of their own donors).
+Older builds: fh2re/fix_shading.py car.zip donor.zip out.zip [parts] patches a built zip in place. STR1 (Charger
+donor) had the black-trim texel (TEXCOORD3 0.01,0.016 -> 0.694,0.600); the 207 (Fiesta ST donor, body_sheik's
+directional bright_uv1) was already near (0.519 -> 0.587), so it changes little. Both patched 30 Oct.
