@@ -1,0 +1,59 @@
+<!doctype html><html><body style="margin:0;background:transparent">
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+// Car thumbnail in the game's style: transparent background, 3/4 front-left view, soft ground shadow.
+// ?f=car.glb&w=816&h=459[&yaw=deg][&pitch=deg][&fit=0.9]
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+const p = new URLSearchParams(location.search);
+const W = +(p.get('w') || 816), H = +(p.get('h') || 459);
+const yaw = (+(p.get('yaw') ?? -35)) * Math.PI / 180, pitch = (+(p.get('pitch') ?? 9)) * Math.PI / 180, fit = +(p.get('fit') || 0.8);
+const r = new THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
+r.setSize(W, H); r.setClearColor(0x000000, 0); r.outputColorSpace = THREE.SRGBColorSpace;
+r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
+document.body.appendChild(r.domElement);
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x303030, 1.2));
+const sun = new THREE.DirectionalLight(0xffffff, 2.2); sun.position.set(-3, 6, 4); scene.add(sun);
+new GLTFLoader().load(p.get('f'), g => {
+  g.scene.traverse(o => {
+    if (!o.isMesh) return;
+    const m = o.material, n = (o.name || '').toLowerCase();
+    const glass = m.transparent || (m.opacity !== undefined && m.opacity < 1);
+    const paint = n.includes('carpaint');
+    o.material = new THREE.MeshStandardMaterial({
+      map: m.map || null, color: m.map ? 0xffffff : (m.color || new THREE.Color(0x888888)),
+      vertexColors: !!o.geometry.attributes.color, side: THREE.DoubleSide,
+      roughness: glass ? 0.05 : paint ? 0.22 : 0.5, metalness: paint ? 0.35 : 0.1,
+      transparent: glass, opacity: glass ? 0.55 : 1, envMapIntensity: paint || glass ? 1.4 : 0.8});
+    if (m.map) o.material.map.colorSpace = THREE.SRGBColorSpace;
+    o.geometry.computeVertexNormals();
+  });
+  scene.add(g.scene);
+  const box = new THREE.Box3().setFromObject(g.scene), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3());
+  // soft contact shadow: a radial-gradient disc under the car
+  const cv = document.createElement('canvas'); cv.width = cv.height = 256; const x = cv.getContext('2d');
+  const gr = x.createRadialGradient(128, 128, 10, 128, 128, 128); gr.addColorStop(0, 'rgba(0,0,0,0.55)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+  x.fillStyle = gr; x.fillRect(0, 0, 256, 256);
+  const sh = new THREE.Mesh(new THREE.PlaneGeometry(size.x * 1.35, size.z * 1.15), new THREE.MeshBasicMaterial({map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false}));
+  sh.rotation.x = -Math.PI / 2; sh.position.set(c.x, box.min.y + 0.005, c.z); scene.add(sh);
+  // camera: front-left 3/4 (car's +z is its nose), framed to fill `fit` of the image
+  const cam = new THREE.PerspectiveCamera(28, W / H, 0.05, 200);
+  const dir = new THREE.Vector3(Math.sin(yaw) * Math.cos(pitch), Math.sin(pitch), Math.cos(yaw) * Math.cos(pitch));
+  const rad = size.length() / 2;
+  let dist = rad / Math.sin(THREE.MathUtils.degToRad(cam.fov / 2)) * 0.8;
+  for (let i = 0; i < 25; i++) {   // shrink/grow until the car spans `fit` of the frame
+    cam.position.copy(c).addScaledVector(dir, dist); cam.lookAt(c); cam.updateMatrixWorld();
+    const pts = []; for (const X of [box.min.x, box.max.x]) for (const Y of [box.min.y, box.max.y]) for (const Z of [box.min.z, box.max.z]) pts.push(new THREE.Vector3(X, Y, Z).project(cam));
+    const sx = Math.max(...pts.map(q => q.x)) - Math.min(...pts.map(q => q.x)), sy = Math.max(...pts.map(q => q.y)) - Math.min(...pts.map(q => q.y));
+    dist *= Math.max(sx / (2 * fit), sy / (2 * fit)) ** 0.7;
+  }
+  // centre the car's projected outline in the frame (bbox centre != image centre in perspective)
+  const pts = []; for (const X of [box.min.x, box.max.x]) for (const Y of [box.min.y, box.max.y]) for (const Z of [box.min.z, box.max.z]) pts.push(new THREE.Vector3(X, Y, Z).project(cam));
+  const mx = (Math.max(...pts.map(q => q.x)) + Math.min(...pts.map(q => q.x))) / 2, my = (Math.max(...pts.map(q => q.y)) + Math.min(...pts.map(q => q.y))) / 2;
+  cam.setViewOffset(W, H, mx * W / 2, -my * H / 2 - H * 0.05, W, H);
+  r.render(scene, cam); document.title = 'done';
+});
+</script></body></html>
