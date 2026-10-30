@@ -73,3 +73,6 @@ LIGHTS = {
 
 # Autoshow presentation (package_car.py): onto the 207 mod's Peugeot make, thumbnail in red
 PRESENT = dict(paint='b8121b', use_make=(201, '_&857995983'), depends='owen-peugeot-207')
+
+# cabin: matte dark cloth instead of gloss black plastic (the model's interior is one untextured shell)
+INTERIOR = dict(mats=['Carro_Interno'], colour=(40, 40, 44))

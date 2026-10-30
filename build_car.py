@@ -46,6 +46,12 @@ def make_texture(tag, img, size, brighten=False):
     data = bytearray(swatch.write_like(tpl, rgba)); data[0x30:0x40] = g.bytes_le
     fn = f'{MEDIA}_{tag}_{g}.swatchbin'; added[f'Textures/{MEDIA.lower()}/Swatches/{fn}'] = bytes(data)
     return f'Game:\\Media\\cars\\{MEDIA}\\Textures\\{MEDIA.lower()}\\Swatches\\{fn}'
+if getattr(S, 'INTERIOR', None):   # cabin surfaces: matte textured 'interior_lod1' with a fine cloth grain instead of gloss black plastic
+    _rng = np.random.default_rng(7); _c = np.array(S.INTERIOR.get('colour', (38, 38, 42)), float)
+    _n = _rng.normal(0, 1, (512, 512)); _n = (_n + np.roll(_n, 1, 0) + np.roll(_n, 1, 1)) / 3
+    S.TEXTURES['cabin'] = (Image.fromarray(np.clip(_c[None, None] * (1 + 0.10 * _n[..., None]), 0, 255).astype(np.uint8)), 512, False)
+    for _m in S.INTERIOR['mats']: S.MATERIALS[_m] = ('textured', 'cabin')
+    print('interior: matte cloth for', S.INTERIOR['mats'])
 PATH = {k: make_texture(k, img, size, br) for k, (img, size, br) in S.TEXTURES.items()}
 GLOS = make_texture('gloss', Image.new('RGB', (512, 512), (150, 150, 150)), 512)
 print('textures:', len(added))
