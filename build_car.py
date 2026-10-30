@@ -124,7 +124,8 @@ if glass_mats:
 if getattr(S, 'RIM_MATERIALS', None):
     import rimbuild
     wpath = next(n for n in names if n.endswith('_wheellf.modelbin'))
-    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'])
+    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'],
+                                                   black_materials=getattr(S, 'RIM_BLACK_MATERIALS', ()))
     try:
         import trimesh; trimesh.Trimesh(rim_prev[0] * [1, 1, 1], rim_prev[1], process=False).export(os.path.splitext(OUT)[0] + '_rim.glb')
     except Exception as e: print('  (rim preview skipped:', e, ')')

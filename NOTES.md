@@ -194,6 +194,13 @@ v0.1.3 (00:12): the rim's unknown morph row is now zero (the donor's values, up 
 bosses); track from the spec (real 1.496/1.483 — the model's wheels sit 5 cm in from its arches) for the database,
 the carbin and the gr2 alike (build_car.py uses PHYSICS body track for wheel x; the rim is still cut from the model's
 own wheel centre). asgame --tol 0.06 for such deliberate offsets.
+v0.1.3 in game (00:14): nuts still floating, wheels still a little inboard. v0.1.4 (00:20): (a) rim winding no
+longer trusts the model's normals on the face planes — triangles facing +/-x near the front are wound to face out,
+deeper ones to face the barrel (243 black-spoke triangles were inward: the nut recesses, which made the nut heads
+look detached); (b) RIM_BLACK_MATERIALS -> the wheel part's group 1 'black' material (Metal_Preto spokes), the
+machined faces + cap stay 'rim' silver; (c) track 1.55 / 1.54 by eye (arch lips measure 0.838 F / 0.850 R, so the
+tyre face already reached the lip at 1.496 — the inboard look is probably the rim sitting deep in the tyre, see
+whether this helps).
 (Earlier open question, now moot: do the STR1's rims rotate? v0.6.2-origskel can be ignored.) If neither car's do, suspect the raw-rewritten skeleton gr2
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
