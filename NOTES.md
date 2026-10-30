@@ -172,7 +172,7 @@ textured keys via the interior_lod1 MatI), glass into glassF_a ('gls_windsheild'
 no working lights yet (Lights.bin: 12 x 84-byte entries naming the light parts; a later job). Soup vertices are
 welded on position+normal (SketchUp OBJs have a uv per corner; a 470k-face model still makes a 48 MB body_a).
 
-### Peugeot 208 (2021, tonielpro520, CC BY) — v0.1.0 built 29 Oct 23:50, awaiting Owen's check
+### Peugeot 208 (2021, tonielpro520, CC BY) — v0.1.4 (30 Oct 00:20): done to the STR1's standard
 cars/peugeot208: car 3208, make Peugeot (id 203, nearest), media PEU_208PureTech_21, 1.2 PureTech 130 EAT8 FWD physics
 (Fiesta Mk7 suspension scaled by mass), model track 1.397 used (real 1.496), wheelbase 2.55 model / 2.54 physics,
 tyres 205/45 R17, drag sized for 129 mph. Driver: Charger set, hips (-0.33, 0.44, 0.0), steering (-0.385, 0.72, 0.40)
@@ -201,6 +201,12 @@ look detached); (b) RIM_BLACK_MATERIALS -> the wheel part's group 1 'black' mate
 machined faces + cap stay 'rim' silver; (c) track 1.55 / 1.54 by eye (arch lips measure 0.838 F / 0.850 R, so the
 tyre face already reached the lip at 1.496 — the inboard look is probably the rim sitting deep in the tyre, see
 whether this helps).
+v0.1.4 in game (00:20, rear-low and side wheel close-ups): black spokes with machined faces, lion cap, nuts in
+their recesses, Brembo through the spokes, tyre flush with the arch front and rear. KEEPER.
+Left for both cars: working lights (the donor light parts are dropped; Lights.bin names them — a later job), and
+cosmetic polish on request. Generic-builder lessons from the 208, now in build_car.py / rimbuild.py: a model's wheels
+must come OUT of the body (find them by material bounding boxes = the wheel envelopes) and go into the wheel part;
+never trust SketchUp normals for winding on the face planes; the unknown morph row stays zero; track by eye.
 (Earlier open question, now moot: do the STR1's rims rotate? v0.6.2-origskel can be ignored.) If neither car's do, suspect the raw-rewritten skeleton gr2
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
