@@ -37,7 +37,7 @@ print(f'  MCLRIM: kept {sum(len(p["V"]) for p in parts["MCLRIM"]) // 3} tris ins
 src = zipfile.ZipFile(sys.argv[2])
 wheel = [n for n in src.namelist() if n.lower().endswith('wheellf.modelbin')]
 assert len(wheel) == 1, wheel
-new, _ = rimbuild.build_rim(src.read(wheel[0]), parts, SILVER, centre, black_materials=BLACK, r_ref=R_REF)
+new, _ = rimbuild.build_rim(src.read(wheel[0]), parts, SILVER, centre, black_materials=BLACK, r_ref=R_REF, trust_normals=True)
 with zipfile.ZipFile(sys.argv[3], 'w', zipfile.ZIP_DEFLATED) as out:
     for i in src.infolist():
         out.writestr(i, new if i.filename == wheel[0] else src.read(i.filename))

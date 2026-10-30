@@ -421,4 +421,7 @@ Use a vanilla make when one exists (List_CarMake: Volvo 53, Ferrari 13, ...). bu
 Post-processes a built STR1 car zip with fh2re/rimbuild.py (the 208 route): model HUB_LF rims from str1_geo.pkl,
 MCLHUB -> wheel part 'rim' (silver), MCLRIM + MCLSPOKES_OP -> 'black' (the model's rims are anthracite, ~RGB 62);
 *_BLUR motion-blur copies and the see-through MCLSPOKES duplicate left out. Model rim radius 0.195 m (incl. flange)
--> R 0.1397. Waiting on Owen's in-game check. Fold into build_str1.py once confirmed.
+-> R 0.1397. v2 (30 Oct): spokes/hub recentred on the barrel axis (they were 6-8 mm off: wheel wobbled), scale
+reference = tyre inner radius 0.167 (rimbuild r_ref) with the under-tyre lip trimmed. v3: rimbuild trust_normals=True —
+the 208's SketchUp rule 'flat faces deeper than 3 cm face the barrel' turned the STR1's dished hub/spokes inside out
+(invisible rims in game). Use trust_normals for models with good normals (AC/rFactor sources). Waiting on in-game check.

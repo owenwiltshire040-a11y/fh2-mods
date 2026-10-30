@@ -26,14 +26,14 @@ def rim_soup(parts, materials, centre, zone=0.36):
             if keep.any(): Vs.append(V[keep].reshape(-1, 3)); Ns.append(N[keep].reshape(-1, 3))
     return np.concatenate(Vs), np.concatenate(Ns)
 
-def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',), black_materials=(), r_ref=None):
+def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',), black_materials=(), r_ref=None, trust_normals=False):
     """wheel_bytes: the donor's wheelLF modelbin. parts/materials/centre: the model's rim geometry (FH2 space) and
     the wheel centre it sits on (the car's left wheel: outward = -x, as in the wheel part). Returns the new modelbin."""
     Vall, _ = rim_soup(parts, list(materials) + list(black_materials), centre)
     x_outer = Vall[:, 0].min(); rmax = r_ref or np.hypot(Vall[:, 1] - centre[1], Vall[:, 2] - centre[2]).max(); scale = R / rmax   # r_ref: the radius that should land on the game's rim size (e.g. the tyre's inner edge when the model's lip runs under the tyre)
     def prep(mats):
         V, N = rim_soup(parts, mats, centre)
-        return orient(np.stack([(V[:, 0] - x_outer) * scale, (V[:, 1] - centre[1]) * scale, (V[:, 2] - centre[2]) * scale], 1), N)
+        return orient(np.stack([(V[:, 0] - x_outer) * scale, (V[:, 1] - centre[1]) * scale, (V[:, 2] - centre[2]) * scale], 1), N, trust_normals)
     sP, sN, sT = prep(materials)
     print(f'  rim: {len(sT)} silver tris, model rim radius {rmax:.3f} m -> R {R}')
     p = Part(wheel_bytes); names = material_names(p)
@@ -44,7 +44,7 @@ def build_rim(wheel_bytes, parts, materials, centre, keep_donor=('inner_rim',), 
     out = p.build(); Part(out)
     return out, (np.concatenate([sP] + ([bP] if black_materials else [])), np.concatenate([sT] + ([bT + len(sP)] if black_materials else [])))
 
-def orient(P, N):
+def orient(P, N, trust_normals=False):
     """single-sided triangles with smoothed normals; returns (per-corner P, N, T)"""
     T = np.arange(len(P)).reshape(-1, 3)
     T = np.arange(len(P)).reshape(-1, 3)
@@ -55,7 +55,9 @@ def orient(P, N):
     # the front of the wheel faces OUT (-x), anything facing +/-x deeper in faces the barrel (+x); walls keep theirs
     cx = P[T].mean(1)[:, 0]; facey = np.abs(fn[:, 0]) > 0.6
     want_out = facey & (cx < 0.03); want_in = facey & (cx >= 0.03)
-    bad = (want_out & (fn[:, 0] > 0)) | (want_in & (fn[:, 0] < 0)); T[bad] = T[bad][:, [0, 2, 1]]
+    bad = (want_out & (fn[:, 0] > 0)) | (want_in & (fn[:, 0] < 0))
+    if trust_normals: bad[:] = False   # models with good normals (e.g. the STR1's): deep-dished faces really do face out
+    T[bad] = T[bad][:, [0, 2, 1]]
     g = np.cross(P[T[:, 1]] - P[T[:, 0]], P[T[:, 2]] - P[T[:, 0]]); fn = g / np.maximum(np.linalg.norm(g, axis=1, keepdims=True), 1e-12)
     print(f'  rim: re-wound {bad.sum()} face triangles by position (model normals disagreed)')
     # weld + smooth normals within 50 degrees
