@@ -211,7 +211,7 @@ never trust SketchUp normals for winding on the face planes; the unknown morph r
 (test: ship the ORIGINAL compressed skeleton gr2 with no bone edits and see if rims turn; the driver's hands would
 go back to the Charger wheel for that test).
 
-### Volvo V70 T5 (P2, 2005; model by KOElkast1007, Sketchfab free licence; Owen's call on the GTA-style asset) — v0.1.0 (30 Oct 00:35)
+### Volvo V70 T5 (P2, 2005; model by KOElkast1007, Sketchfab free licence; GTA-like art style only: GTA has no V70, so not a game rip (Owen, 30 Oct)) — v0.1.0 (30 Oct 00:35)
 cars/volvov70: car 3700, make Volvo (204), media VOL_V70T5_2005_P2_ (18 chars — a 16-char name silently corrupted the
 renamed modelbins: make_media must keep the length), 2.4 T5 260 hp / 350 Nm, M66 6-speed, FWD, 1,515 kg, Focus RS
 '09 sound (Volvo I5). fh2re/glbgeo.py: the glb's body nodes are Z-up/Y-forward and its wheel nodes sit in their own
