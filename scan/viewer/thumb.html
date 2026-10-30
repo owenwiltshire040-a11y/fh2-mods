@@ -25,7 +25,7 @@ new GLTFLoader().load(p.get('f'), g => {
     const paint = n.includes('carpaint');
     o.material = new THREE.MeshStandardMaterial({
       map: m.map || null, color: m.map ? 0xffffff : (m.color || new THREE.Color(0x888888)),
-      vertexColors: !!o.geometry.attributes.color, side: THREE.DoubleSide,
+      vertexColors: !!o.geometry.attributes.color, side: p.get('single') ? THREE.FrontSide : THREE.DoubleSide,
       roughness: glass ? 0.05 : paint ? 0.22 : 0.5, metalness: paint ? 0.35 : 0.1,
       transparent: glass, opacity: glass ? 0.55 : 1, envMapIntensity: paint || glass ? 1.4 : 0.8});
     if (m.map) o.material.map.colorSpace = THREE.SRGBColorSpace;

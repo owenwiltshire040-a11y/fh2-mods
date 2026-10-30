@@ -424,4 +424,9 @@ MCLHUB -> wheel part 'rim' (silver), MCLRIM + MCLSPOKES_OP -> 'black' (the model
 -> R 0.1397. v2 (30 Oct): spokes/hub recentred on the barrel axis (they were 6-8 mm off: wheel wobbled), scale
 reference = tyre inner radius 0.167 (rimbuild r_ref) with the under-tyre lip trimmed. v3: rimbuild trust_normals=True —
 the 208's SketchUp rule 'flat faces deeper than 3 cm face the barrel' turned the STR1's dished hub/spokes inside out
-(invisible rims in game). Use trust_normals for models with good normals (AC/rFactor sources). Waiting on in-game check.
+(invisible rims in game). Use trust_normals for models with good normals (AC/rFactor sources).
+v4: the source spokes are ONLY side walls (MCLSPOKES_OP, every tri edge-on) — the faces were an alpha-cut textured
+disc (MCLSPOKES) whose alpha was lost in the AC->Sketchfab conversion ('clear spokes with black outlines' in game).
+str1_rims.py now polygonizes the walls' 2D outline (shapely) = the 10 windows, builds face = annulus r 0.045-0.143
+minus windows, triangulated (earcut), laid on the walls' front-edge depth x(r), facing out. Same trick for any
+model whose spokes come from alpha textures. pip: shapely mapbox_earcut. Waiting on in-game check.
