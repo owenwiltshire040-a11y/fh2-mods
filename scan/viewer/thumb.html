@@ -8,7 +8,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 const p = new URLSearchParams(location.search);
 const W = +(p.get('w') || 816), H = +(p.get('h') || 459);
-const yaw = (+(p.get('yaw') ?? -35)) * Math.PI / 180, pitch = (+(p.get('pitch') ?? 9)) * Math.PI / 180, fit = +(p.get('fit') || 0.8);
+const yaw = (+(p.get('yaw') ?? -35)) * Math.PI / 180, pitch = (+(p.get('pitch') ?? 9)) * Math.PI / 180, fit = +(p.get('fit') || 0.92);
+const DONE = new WeakSet();
 const r = new THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
 r.setSize(W, H); r.setClearColor(0x000000, 0); r.outputColorSpace = THREE.SRGBColorSpace;
 r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
@@ -23,11 +24,15 @@ new GLTFLoader().load(p.get('f'), g => {
     const m = o.material, n = (o.name || '').toLowerCase();
     const glass = m.transparent || (m.opacity !== undefined && m.opacity < 1);
     const paint = n.includes('carpaint');
+    // glTF vertex colours are linear; the preview builder writes sRGB values (dark tyres/plastics came out light grey)
+    const ca = o.geometry.attributes.color;
+    if (ca && !DONE.has(ca)) { const cc = new THREE.Color(); for (let i = 0; i < ca.count; i++) { cc.setRGB(ca.getX(i), ca.getY(i), ca.getZ(i)); cc.convertSRGBToLinear(); ca.setXYZ(i, cc.r, cc.g, cc.b); } DONE.add(ca); ca.needsUpdate = true; }
+    const tyre = n.startsWith('tyre');
     o.material = new THREE.MeshStandardMaterial({
       map: m.map || null, color: m.map ? 0xffffff : (m.color || new THREE.Color(0x888888)),
       vertexColors: !!o.geometry.attributes.color, side: p.get('single') ? THREE.FrontSide : THREE.DoubleSide,
-      roughness: glass ? 0.05 : paint ? 0.22 : 0.5, metalness: paint ? 0.35 : 0.1,
-      transparent: glass, opacity: glass ? 0.55 : 1, envMapIntensity: paint || glass ? 1.4 : 0.8});
+      roughness: glass ? 0.05 : paint ? 0.22 : tyre ? 0.9 : 0.5, metalness: paint ? 0.35 : tyre ? 0 : 0.1,
+      transparent: glass, opacity: glass ? 0.55 : 1, envMapIntensity: paint || glass ? 1.4 : tyre ? 0.3 : 0.8});
     if (m.map) o.material.map.colorSpace = THREE.SRGBColorSpace;
     o.geometry.computeVertexNormals();
   });

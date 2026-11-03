@@ -79,7 +79,7 @@ if socket.socket().connect_ex(('127.0.0.1', 8765)) != 0:
     srv = subprocess.Popen([sys.executable, '-m', 'http.server', '8765'], cwd=viewer, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL); time.sleep(1)
 env = dict(os.environ); env['NODE_PATH'] = os.pathsep.join(filter(None, [os.path.join(viewer, 'node_modules'),
           subprocess.run(['npm', 'root', '-g'], capture_output=True, text=True).stdout.strip()]))
-subprocess.run(['node', 'thumb.js', os.path.basename(glb), png, '816', '459', '-50', '10'], cwd=viewer, env=env, check=True)
+subprocess.run(['node', 'thumb.js', os.path.basename(glb), png, '816', '459', '-62', '7'], cwd=viewer, env=env, check=True)
 if srv: srv.terminate()
 shutil.copy(glb, os.path.join(work,'fit-preview.glb'))
 os.remove(glb)

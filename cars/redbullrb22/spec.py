@@ -87,7 +87,7 @@ PHYSICS = {
     'suspension': {'front': (160.0, 8.0, 11.0), 'rear': (160.0, 8.0, 11.0), 'swaybar_front': 70.0, 'swaybar_rear': 55.0},
     'aero_front': (5.0, 5.0, 0.0, 0.0), 'aero_rear': (0.0, 0.0, 0.0, 0.0),
     'car': {'year': 2026, 't60': 2.4, 't100': 4.3, 'top_mph': 211.0, 'price': 2500000, 'pi': 0.999, 'drag': 200.0,
-            'downforce_front': 300.0, 'downforce_rear': 500.0, 'wi_force': 0.55, 'ratings': (10.0, 10.0, 10.0, 10.0, 9.5),
+            'downforce_front': 300.0, 'downforce_rear': 500.0, 'wi_force': 1.05, 'ratings': (10.0, 10.0, 10.0, 10.0, 9.5),
             'steer_deg': 24.0, 'class': 6, 'family_model': 1, 'family_body': 1, 'family_special': 1, 'engine_placement': 2,
             'powertrain': 0, 'material': 3, 'open_cockpit': 1, 'open_wheel': 1, 'thumbnail_of': 2018, 'bucket': 26},
 }
