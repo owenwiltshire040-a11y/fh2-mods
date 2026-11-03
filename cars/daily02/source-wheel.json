@@ -1,0 +1,37 @@
+{
+  "name": "Ford Focus Mk1",
+  "slug": "daily02",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Focus Mk1/source.glb",
+  "selected": [
+    {
+      "node": "138",
+      "material": "chrome",
+      "triangles": 3276
+    }
+  ],
+  "spindle_axis": [
+    0.9999999981215348,
+    4.928397601565082e-06,
+    6.10953459029647e-05
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 0.227273170579319,
+  "normalisation_scale": 1.0027580440712962,
+  "source_depth": 0.19054748591936443,
+  "fitted_depth": 0.19107302428320472,
+  "tyres": {
+    "width_front": 205,
+    "width_rear": 205,
+    "aspect_front": 40,
+    "aspect_rear": 40,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.29789999999999994,
+  "source_tyre_radius": 0.29942748091603055,
+  "triangles": 3276,
+  "geometry_sha256": "4f42ff036b4083d389521cd88edf10853ca530a48ae7451f4b5746a967f74b56",
+  "status": "source geometry selected; built validation pending"
+}

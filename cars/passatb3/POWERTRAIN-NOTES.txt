@@ -1,0 +1,12 @@
+Passat B3 0.4.0 — engine and gearbox progression
+
+Stock remains 134.1 bhp / 180 Nm, 1,984 cc and a five-speed manual.
+Gearboxes: stock five-speed 3.684 final / 0.25 s shift; street five-speed 3.684 / 0.22 s; sport closer-ratio five-speed 3.94 / 0.15 s; race six-speed 4.10 / 0.10 s; rally six-speed 4.40 / 0.08 s. Uses Golf FWD upgrade levels for existing tuning unlock rules.
+Clutch tiers 350 / 450 / 600 / 800 Nm; driveline progression adapted from Golf.
+All engine component upgrade records replaced with Golf Mk2 16V structure and prices. Torque gains moderated for cumulative balance. Capacity progression 1984 / 2020 / 2060 / 2100 cc.
+Cams alone: approximately 134 / 145 / 156 / 170 bhp, with 6800 / 7000 / 7400 / 7800 rpm limits. Every cam has its own 121-sample curve and fuel-cut marker.
+A simple multiplicative estimate for all naturally aspirated upgrades is 252 bhp. This is an estimate, not a verified in-game result. Golf-derived forced-induction upgrade records are included and require balance checks in-game. Graph headroom enlarged to show upgraded output.
+
+Validated database integrity, upgrade IDs, cam curve references, fuel cutoffs, gear ordering and unused slots, stock torque multipliers, weight records, axle midpoint, archive CRC, and insert-only export against original database. In-game power, PI, gear tuning, upgrade menu labels and forced-induction behavior await user confirmation.
+
+Retains steel wheels, badge and handling fixes. User confirmed weight-reduction displays 2657 / 2495 / 2305 lb; the earlier 95-percent weight hypothesis was disproved and no mass compensation was made.

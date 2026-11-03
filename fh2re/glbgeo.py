@@ -23,7 +23,9 @@ def load(fn, frame, scale, skip_mats, rim_node=None, rim_mats=(), skip_nodes=(),
     mirror = np.prod(sign) * np.linalg.det(np.eye(3)[perm]) < 0            # does the axis map flip handedness?
     body, rim = {}, {}
     for node in g.nodes_geometry:
-        T, geom = g[node]; m = sc.geometry[geom]; mat = getattr(getattr(m.visual, 'material', None), 'name', None)
+        T, geom = g[node]; m = sc.geometry[geom]
+        if not isinstance(m, trimesh.Trimesh): continue
+        mat = getattr(getattr(m.visual, 'material', None), 'name', None)
         F = m.faces
         for pre, tag in tag_nodes:                   # e.g. hub_=RIM_: wheels baked into the body keep a material of their own
             if node.startswith(pre): mat = f'{tag}{mat}'
@@ -47,9 +49,10 @@ if __name__ == '__main__':
     ap.add_argument('--wheels', required=True, help='model units, body frame: front z, rear z, centre height, half track (after --frame, before scale)')
     ap.add_argument('--tyre-radius', type=float, required=True, help='model units')
     ap.add_argument('--ground', type=float, required=True, help='FH2 y of the tyre contact patch'); ap.add_argument('--axle-mid', type=float, default=0.0)
+    ap.add_argument('--centre-x', type=float, default=0., help='source X centre after frame, before scale')
     ap.add_argument('--rim-node', default=None); ap.add_argument('--rim-mats', default=''); ap.add_argument('--skip-mats', default='')
     ap.add_argument('--skip-nodes', default='', help='node name prefixes to leave out of the body (e.g. the other wheels)')
-    ap.add_argument('--wheel-tag', action='store_true', help='triangles inside the four wheel cylinders become RIM_<material> (any model: wheels found by position, not node name)')
+    ap.add_argument('--wheel-tag', action='store_true', help='triangles inside the four wheel cylinders become RIM_<material> (wheels found by position, not node name)')
     ap.add_argument('--tag-nodes', default='', help='prefix=TAG,...: materials of nodes starting with prefix become TAG+material (wheels baked into the body: hub_=RIM_)')
     A = ap.parse_args()
     body, rim = load(A.glb, A.frame, A.scale, set(A.skip_mats.split(',')) - {''}, A.rim_node, set(A.rim_mats.split(',')) - {''}, [p for p in A.skip_nodes.split(',') if p],
@@ -58,7 +61,7 @@ if __name__ == '__main__':
     W = {'HUB_LF': np.array([-xh, yc, zf]) * s, 'HUB_RF': np.array([xh, yc, zf]) * s, 'HUB_LR': np.array([-xh, yc, zr]) * s, 'HUB_RR': np.array([xh, yc, zr]) * s}
     off = np.array([0.0, A.ground - (yc * s - r), A.axle_mid - (zf + zr) / 2 * s])
     for lst in body.values():
-        for p in lst: p['V'] = p['V'] + off
+        for p in lst: p['V'] = p['V'] + off - np.array([A.centre_x * s, 0., 0.])
     wheels = {k: dict(centre=c + off, radius=r) for k, c in W.items()}
     if A.wheel_tag:
         def in_wheels(V):

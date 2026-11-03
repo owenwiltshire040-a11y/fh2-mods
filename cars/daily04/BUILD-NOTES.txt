@@ -1,0 +1,7 @@
+Ford Mondeo Mk3
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/ford-mondeo-mk3-2000-2007-21218c9ba9564a778cdd96d9b08721fe
+Scale 0.00991468; source axle spacing 277.770000; target axle spacing 2.754m. Source wheel radius 0.3374m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 17 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

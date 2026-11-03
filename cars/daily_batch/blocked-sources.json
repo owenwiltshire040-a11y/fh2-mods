@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Volvo 850 Estate",
+    "status": "source conversion blocked",
+    "reason": "The supplied HQLM file yields no geometry instances in the reader. The IVF file references geometry indices 6\u201341 but only one geometry is decoded. Needs a compatible RenderWare reader or an standard export from the author."
+  },
+  {
+    "name": "Volvo 850 Saloon",
+    "status": "source conversion blocked",
+    "reason": "The archive contains GTA IV .wft/.wtd assets. The current importer supports GLB, OBJ and GTA SA RenderWare, so this needs a GTA IV geometry/texture conversion first."
+  }
+]

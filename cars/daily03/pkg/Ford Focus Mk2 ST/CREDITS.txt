@@ -1,0 +1,25 @@
+2006 Ford Focus ST
+Creator: Ddiaz Design
+Creator page: https://sketchfab.com/ddiaz-design
+Source: https://sketchfab.com/3d-models/2006-ford-focus-st-a6fd998a789c473da6c5736ad62bae8f
+Listing licence: CC Attribution-NonCommercial-ShareAlike
+Licence link: http://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Original listing description:
+Repositorio de modelos 3D de Ddiaz Design
+
+![](https://img.tipcars.com/fotky_magazin_40/20502/0)
+
+Previewing an exciting new performance model - the new Focus ST - Ford is demonstrating to performance enthusiasts they don't have long to wait for another special model from Ford Team RS. The new Focus ST - sporting around 220PS and finished in brilliant orange for its Geneva preview - will be introduced towards the end of 2005.
+
+Instagram del proyecto: https://www.instagram.com/ddiaz.design/
+
+Paypal Donations: https://paypal.me/sergiodd
+
+Based on a Need For Speed Edge/Online 3d model
+
+Credits: https://www.facebook.com/p/GM25-100042237200164/
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

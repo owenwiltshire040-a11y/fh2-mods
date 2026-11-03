@@ -1,0 +1,15 @@
+2002 Opel Zafira
+Creator: tonielpro520
+Creator page: https://sketchfab.com/tonielpro520
+Source: https://sketchfab.com/3d-models/2002-opel-zafira-04d9c63c3b364688b192077fc23d8a2c
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+2002 Opel Zafira
+![](https://assets.adac.de/image/upload/v1/Autodatenbank/Fahrzeugbilder/im05558-1-opel-zafira-a.jpg)
+Free
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

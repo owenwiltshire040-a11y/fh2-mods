@@ -31,7 +31,12 @@ def skel_world(p):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('zip'); ap.add_argument('out'); ap.add_argument('--paint', default='b0b0b4')
     ap.add_argument('--tyres', help='front width mm, front rim in, rear width mm, rear rim in (e.g. 205,17,205,17)')
+    ap.add_argument('--fit-spec', help='car spec: actual tyre dimensions and explicit runtime wheel profile')
     a = ap.parse_args()
+    fit = None
+    if a.fit_spec:
+        from wheelfit import load_spec, positions
+        fit = positions(load_spec(a.fit_spec))
     paint = [int(a.paint[i:i + 2], 16) for i in (0, 2, 4)] + [255]
     z = zipfile.ZipFile(a.zip); base = {n.lower().rsplit('/', 1)[-1]: n for n in z.namelist()}
     names = {n.lower(): n for n in z.namelist()}
@@ -62,12 +67,21 @@ def main():
             try: W = skel_world(p)
             except Exception: W = None
             T = np.array(m['transform'], float).reshape(4, 4)
-            if re.search(r'(^|/)wheel', path) or 'wheels/' in path:
-                wheel_centres.append((path, T[3, :3] * [-1, 1, 1]))
+            is_wheel = p_['part']['type'] == 43
+            corner = m.get('bone_name','').lower()[-2:]
+            # Brakes have their own inward offset from the rim face. Replacing
+            # their transform with the spindle position puts rotors over spokes.
+            if fit and p_['part']['type'] == 43 and corner in fit:
+                T = T.copy(); T[3,:3] = fit[corner]['reference']
+            if is_wheel:
+                wheel_centres.append((path, np.array(fit[corner]['tyre_centre']) * [-1,1,1] if fit and corner in fit else T[3,:3] * [-1,1,1], corner))
             for r in p.render:
                 if not struct.unpack_from('<H', r['blob']['data'], 4)[0] & 1 or len(set(r['indices'])) < 4: continue
                 d, _ = decode_group(p, r['group'])
-                P = d['POSITION'][:, :3].astype(float); b = struct.unpack_from('<h', r['blob']['data'], 2)[0]
+                P = d['POSITION'][:, :3].astype(float)
+                if is_wheel and fit and corner in fit:
+                    P = morph_rim(P, p.groups[r['group']].get('morph'), fit[corner]['rim_radius'], fit[corner]['width'])
+                b = struct.unpack_from('<h', r['blob']['data'], 2)[0]
                 if W is not None and b > 1 and 'steering' in path: P = P @ W[b][:3, :3] + W[b][3, :3]
                 P = P @ T[:3, :3] + T[3, :3]
                 mm = trimesh.Trimesh(P * [-1, 1, 1], np.array(r['indices']).reshape(-1, 3)[:, ::-1], process=False)
@@ -80,6 +94,8 @@ def main():
                 elif img is not None and 'TEXCOORD0' in d:
                     uv = d['TEXCOORD0'][:, :2].copy(); uv[:, 1] = 1 - uv[:, 1]
                     mm.visual = trimesh.visual.TextureVisuals(uv=uv, image=img)
+                elif mname == 'inner_rim':
+                    mm.visual.face_colors = [22, 22, 24, 255]
                 elif 'chrome' in mname or 'frame' in mname or 'alum' in mname or 'rim' in mname:
                     mm.visual.face_colors = [185, 188, 192, 255]
                 elif 'tire' in mname or 'tyre' in mname or 'rubber' in mname:
@@ -87,15 +103,33 @@ def main():
                 else:
                     mm.visual.face_colors = [22, 22, 24, 255] if 'black' in mname or 'blk' in mname else [70, 70, 76, 255]
                 s.add_geometry(mm, node_name=f'{path}|{mname}|{n}'); n += 1
-    if a.tyres:   # the game draws tyres at runtime from the DB sizes; add them around each wheel part
+    if fit:
+        for path, centre, corner in wheel_centres:
+            t = fit[corner]
+            s.add_geometry(tyre(centre, t['rim_radius']+.01, t['radius'], t['width']), node_name=f'tyre|{path}|{len(s.geometry)}')
+    elif a.tyres:   # the game draws tyres at runtime from the DB sizes; add them around each wheel part
         fw, fd, rw, rd = [float(v) for v in a.tyres.split(',')]
-        for path, centre in wheel_centres:
+        for path, centre, corner in wheel_centres:
             front = centre[2] > 0
             w, rim_in = (fw, fd) if front else (rw, rd)
             asp = 0.6 if rim_in <= 13 and w >= 250 else 0.5
+            print('WARNING: legacy --tyres assumes aspect; use --fit-spec for measured preview')
             r_in = rim_in * 0.0254 / 2 + 0.01; r_out = rim_in * 0.0254 / 2 + w / 1000 * asp
             s.add_geometry(tyre(centre, r_in, r_out, w / 1000), node_name=f'tyre|{path}|{len(s.geometry)}')
     s.export(a.out); print('exported', n, 'meshes')
+
+
+def morph_rim(P, rows, rim_radius, width):
+    """Apply the builder's diameter morph and approximate donor barrel width morph."""
+    result=P.copy();diameter=(rim_radius/.1397-1)/1.3247
+    if rows is not None:
+        morph=np.frombuffer(b''.join(rows),'<f2').reshape(-1,4,4)[:len(P)]
+        result += morph[:,1,:3].astype(float)*diameter
+        # Builder donor barrel X=1, width morph X=-.9. Not an engine-derived width calibration.
+        result += morph[:,0,:3].astype(float)*((1-width)/.9)
+    else:
+        result[:,1:]*=rim_radius/.1397
+    return result
 
 
 def tyre(c, r_in, r_out, w, seg=72):

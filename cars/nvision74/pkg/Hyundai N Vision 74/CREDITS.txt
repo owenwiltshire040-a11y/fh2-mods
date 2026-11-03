@@ -1,0 +1,1 @@
+Personal conversion of the model supplied by Owen in 2023-hyundai-n-vision-74-concept. Original model author/license not included in supplied folder; retain source provenance. Hyundai vehicle design/trademarks belong to their owners. Conversion tools: fh2-mods and Extra Options.

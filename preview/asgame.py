@@ -29,11 +29,25 @@ TRACK_K = 1.012                     # ModelTrackOuter / centre-to-centre track (
 TOL_WHEEL = 0.03                    # m, wheel centre vs the body's intended axle point
 
 ap = argparse.ArgumentParser()
-ap.add_argument('car'); ap.add_argument('database'); ap.add_argument('--donor', required=True)
+ap.add_argument('car'); ap.add_argument('database'); ap.add_argument('--donor', help='required for legacy mode')
 ap.add_argument('--geo', default=f'{ROOT}/f1/str1_geo.pkl', help='str1_geo.pkl with the intended wheel centres')
 ap.add_argument('--out', default=None); ap.add_argument('--media', default=None)
 ap.add_argument('--no-render', action='store_true'); ap.add_argument('--tol', type=float, default=TOL_WHEEL, help='m, wheel vs model axle point')
+ap.add_argument('--spec', help='explicit profile: use measured fit report and corrected built-wheel preview')
 A = ap.parse_args()
+if A.spec:
+    from pathlib import Path
+    from wheelfit import load_spec, report
+    checked=report(load_spec(A.spec));out=Path(A.out or os.path.dirname(os.path.abspath(A.car)));out.mkdir(parents=True,exist_ok=True)
+    (out/'wheel-fit.json').write_text(json.dumps(checked,indent=2)+'\n')
+    if not checked['valid']:
+        print('FIT BLOCKED: '+'; '.join(checked['errors']));sys.exit(1)
+    if not A.no_render:
+        subprocess.run([sys.executable,f'{ROOT}/fh2re/carpreview.py',A.car,str(out/'fit-preview.glb'),'--fit-spec',os.path.abspath(A.spec)],check=True)
+    print('Profile fit passed; report:',out/'wheel-fit.json');sys.exit(0)
+if not A.donor: ap.error('--donor is required in legacy mode; use --spec for profile-based checks')
+print('WARNING: legacy preview assumes wheel centres and uses schematic rims. Use --spec for explicit reference and rim morphs.')
+
 out_dir = os.path.abspath(A.out or os.path.dirname(os.path.abspath(A.car))); os.makedirs(out_dir, exist_ok=True)
 
 fails = []

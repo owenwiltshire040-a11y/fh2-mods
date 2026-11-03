@@ -1,0 +1,2 @@
+Lower the selected source headlamp assemblies by 80 mm to meet the bonnet edge.
+['Object_162', 'Object_155', 'Object_148', 'Object_279', 'Object_261', 'Object_277', 'Object_273', 'Object_259', 'Object_165', 'Object_158', 'Object_291', 'Object_365']

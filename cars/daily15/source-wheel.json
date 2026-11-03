@@ -1,0 +1,37 @@
+{
+  "name": "Citroen Xsara",
+  "slug": "daily15",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Citroen Xsara/source.glb",
+  "selected": [
+    {
+      "node": "wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "triangles": 4065
+    }
+  ],
+  "spindle_axis": [
+    0.9999996489496623,
+    -0.0003906375008697368,
+    -0.0007412846249942772
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 0.26038611962673924,
+  "normalisation_scale": 0.8752386660498349,
+  "source_depth": 0.20806831200594642,
+  "fitted_depth": 0.18210943184732542,
+  "tyres": {
+    "width_front": 205,
+    "width_rear": 205,
+    "aspect_front": 35,
+    "aspect_rear": 35,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.28764999999999996,
+  "source_tyre_radius": 0.2841239892183289,
+  "triangles": 4065,
+  "geometry_sha256": "7337a596ed2b1f1a750a76ad0d21877efdc2657dc90399945645dba0431f0209",
+  "status": "source geometry selected; built validation pending"
+}

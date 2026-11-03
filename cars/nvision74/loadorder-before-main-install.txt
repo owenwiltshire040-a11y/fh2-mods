@@ -1,0 +1,41 @@
+# Add one mod folder name per line. Later entries have higher asset priority.
+ZS FM5 Common
+ZS Supercars Down Under Pack
+ZS Formula Racing Pack
+ZS Classic Formula Pack
+ZS Regularly Priced Hatch Pack
+Extra Options - Garage Revving
+Extra Options - Weather Control
+SatNavVoice_EN_TGT_v1
+Owen Test - Bulge Bonnet
+Peugeot 207
+Traffic Cars Unlocked
+Traffic Cars Unlocked - Bus & Truck
+Williams FW24
+Toro Rosso STR1
+Peugeot 208
+Volvo V70
+Chery Omoda 5
+DAF XF105
+Volkswagen Passat B3
+Tesla Model Y 2025
+Peugeot 107 2006
+Jordan EJ11 2001
+Daily - Ford Fiesta 2002
+Daily - Ford Focus Mk1
+Daily - Ford Focus Mk2 ST
+Daily - Ford Mondeo Mk3
+Daily - Opel Corsa C
+Daily - Opel Astra G
+Daily - Opel Astra H
+Daily - Opel Vectra B
+Daily - Opel Vectra C
+Daily - Opel Zafira A
+Daily - Volkswagen Polo Mk3
+Daily - Volkswagen Polo Mk4
+Daily - Ford Ka
+Daily - Renault Laguna II
+Daily - Citroen Xsara
+Daily - Volvo S60R
+Daily - Volkswagen Passat B5.5
+Daily - Fiat Punto Mk2

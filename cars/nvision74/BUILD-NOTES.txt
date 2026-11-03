@@ -1,0 +1,11 @@
+Source: supplied local GLB. Hyundai official dimensions and powertrain target: https://www.hyundai-n.com/en/models/rolling-lab/n-vision-74
+Uniform scale to measured 2.905m wheelbase. Source extras extend past published overall dimensions. Common source front rim design used on four animated corners; rear source wheels not baked into body. Provisional 2000kg, gearing, cockpit/handling. FH2 battery-electric approximation of hydrogen-electric drivetrain. Runtime exterior inspection required.
+
+Rebuild from Passat B3 Build with /Users/owen/Downloads/fh2-mods-main/.venv/bin/python: prepare_source.py, configure.py, finalize.py, then package_car.py cars/nvision74/spec.py output, fix_identity.py and check_build.py. The renamed donor is derived once with f1/make_media.py and HYU_NVision74_23_A (18 chars). Source steering wheel is retained static.
+Wheel atlas UVs are shifted by whole tiles per triangle before packing, preserving original repeat sampling. First private-engine inspection exposed inherited red paint; final profile sets sequence 1 to silver.
+
+Final identity fix gives the .carbin ordinal 4301 instead of inherited Charger 1422. Paint rows use offset 9000 to avoid daily09 collisions; steering/skeleton and donor-compatible upgrade references are preserved.
+
+Final exterior accepted from capture c20024e19a934181a25513e1686e4626. Fixed satin silver finish uses a textured body shader; body repainting is not supported in this version. Head/tail pixel emitters wired; switch behaviour requires driving validation. Source steering retained static. No main-game installation was changed; package installed in private renderer only.
+
+0.1.1 arch clearance correction: body and cabin raised 25mm around unchanged wheel centres; tyre aspect 30 -> 29 front/rear to reproduce measured source radii. Collision bounds and cockpit anchors follow body. Suspension minimum limited to 0.1475m so upgrades lower at most 15mm relative to stock. Measured outer-arch static gaps 34-39mm and minimum-upgrade gaps 19-24mm; dynamic suspension clearance still requires driving validation. Rebuild: run clearance_fix.py after finalize.py before packaging. Prior 0.1.0 retained in backups/nvision74-before-clearance-0.1.0.

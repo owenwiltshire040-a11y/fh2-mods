@@ -1,0 +1,187 @@
+{
+  "scale": 1.0007595658397628,
+  "offset": [
+    0.0,
+    -0.20367794687142607,
+    -0.040671297040815305
+  ],
+  "source_wheelbase": 2.902795135974884,
+  "wheelbase": 2.905,
+  "wheels": {
+    "LF": {
+      "centre": [
+        0.8357308371500707,
+        0.3471389230485559,
+        1.542000025510788
+      ],
+      "radius": 0.3511012532111454,
+      "width": 0.29043544299647583
+    },
+    "RF": {
+      "centre": [
+        -0.8357308058584729,
+        0.3471389226480705,
+        1.542000096247314
+      ],
+      "radius": 0.3511012570760773,
+      "width": 0.2904354415994347
+    },
+    "LR": {
+      "centre": [
+        0.8178807810585538,
+        0.3620099262214121,
+        -1.360795110464096
+      ],
+      "radius": 0.3668000600898351,
+      "width": 0.34657867088288663
+    },
+    "RR": {
+      "centre": [
+        -0.8178807491434055,
+        0.3620099250864068,
+        -1.3607950973213896
+      ],
+      "radius": 0.3668000647549928,
+      "width": 0.3465786703532685
+    }
+  },
+  "textures": {
+    "SOURCE_RIM": "deee7790f4.png",
+    "Hyundai_NVision74Concept_2023_LightA_Diffuse": "d1b79a3a86.png",
+    "Hyundai_NVision74Concept_2023_InteriorA_DiffuseAOSO": "f94a4d320f.png",
+    "STEERING_SOURCE": "f94a4d320f.png",
+    "Global_Texture_Coloured_Diffuse": "d050f0abb9.png",
+    "Paint": "56d7f824c8.png",
+    "Window": "41dfc0a6c9.png",
+    "Hyundai_NVision74Concept_2023_InteriorA_Emissive": "475dc7879a.png",
+    "Hyundai_NVision74Concept_2023_Grille5A_DiffuseAOSO": "74b5aaa404.png",
+    "Hyundai_NVision74Concept_2023_Grille4A_DiffuseAOSO": "53dcebe715.png",
+    "Hyundai_NVision74Concept_2023_Grille3A_DiffuseAOSO": "d396929a03.png",
+    "Hyundai_NVision74Concept_2023_Grille2A_DiffuseAOSO": "bd971f3d22.png",
+    "Hyundai_NVision74Concept_2023_Grille1A_DiffuseAOSO": "5834a89f47.png",
+    "Global_Texture_Carbon1M_Diffuse": "686289ec15.png",
+    "Global_Texture_Carbon1_Diffuse": "57d709e8ec.png",
+    "Hyundai_NVision74Concept_2023_BadgeA_DiffuseAOSO": "42e0da1aa6.png"
+  },
+  "mapping": {
+    "SOURCE_RIM": null,
+    "Hyundai_NVision74Concept_2023_LightA_Diffuse": [
+      "textured",
+      "td1b79a3a86"
+    ],
+    "Hyundai_NVision74Concept_2023_InteriorA_DiffuseAOSO": [
+      "textured",
+      "tf94a4d320f"
+    ],
+    "STEERING_SOURCE": [
+      "textured",
+      "tf94a4d320f"
+    ],
+    "Global_Texture_Coloured_Diffuse": [
+      "textured",
+      "td050f0abb9"
+    ],
+    "Paint": [
+      "plain",
+      "paint"
+    ],
+    "Window": [
+      "plain",
+      "glass"
+    ],
+    "Hyundai_NVision74Concept_2023_InteriorA_Emissive": [
+      "textured",
+      "t475dc7879a"
+    ],
+    "Hyundai_NVision74Concept_2023_Grille5A_DiffuseAOSO": [
+      "textured",
+      "t74b5aaa404"
+    ],
+    "Hyundai_NVision74Concept_2023_Grille4A_DiffuseAOSO": [
+      "textured",
+      "t53dcebe715"
+    ],
+    "Hyundai_NVision74Concept_2023_Grille3A_DiffuseAOSO": [
+      "textured",
+      "td396929a03"
+    ],
+    "Hyundai_NVision74Concept_2023_Grille2A_DiffuseAOSO": [
+      "textured",
+      "tbd971f3d22"
+    ],
+    "Hyundai_NVision74Concept_2023_Grille1A_DiffuseAOSO": [
+      "textured",
+      "t5834a89f47"
+    ],
+    "Global_Texture_Carbon1M_Diffuse": [
+      "textured",
+      "t686289ec15"
+    ],
+    "Global_Texture_Carbon1_Diffuse": [
+      "textured",
+      "t57d709e8ec"
+    ],
+    "Hyundai_NVision74Concept_2023_BadgeA_DiffuseAOSO": [
+      "textured",
+      "t42e0da1aa6"
+    ]
+  },
+  "triangles": {
+    "\ucef4\ud3ec\ub10c\ud2b8#17": 3842,
+    "\ucef4\ud3ec\ub10c\ud2b8#33": 72,
+    "\ucef4\ud3ec\ub10c\ud2b8#31": 248,
+    "\ucef4\ud3ec\ub10c\ud2b8#21": 4185,
+    "\ucef4\ud3ec\ub10c\ud2b8#29": 38,
+    "\ucef4\ud3ec\ub10c\ud2b8#25": 476,
+    "G-Light05": 452,
+    "G-Light04": 120,
+    "G-Light03": 1400,
+    "G-Light02": 182,
+    "G-Light01": 1200,
+    "G-Interior13": 26207,
+    "\ucef4\ud3ec\ub10c\ud2b8#7": 8,
+    "\ucef4\ud3ec\ub10c\ud2b8#5": 12,
+    "G-Interior16": 1089,
+    "G-Interior15": 899,
+    "G-Interior14": 2246,
+    "G-Interior12": 207,
+    "G-Interior11": 140,
+    "G-Interior10": 140,
+    "G-Interior09": 168,
+    "G-Interior08": 8742,
+    "G-Interior07": 1584,
+    "G-Interior06": 256,
+    "G-Interior05": 460,
+    "G-Interior04": 355,
+    "G-Interior03": 6743,
+    "G-Interior02": 16082,
+    "G-Interior01": 280,
+    "G-Coloured06": 45620,
+    "G-Coloured13": 588,
+    "G-Coloured12": 544,
+    "G-Coloured11": 458,
+    "G-Coloured10": 1040,
+    "G-Coloured09": 1244,
+    "G-Coloured08": 110,
+    "G-Coloured07": 4068,
+    "G-Coloured05": 176,
+    "G-Coloured04": 9543,
+    "G-Coloured03": 6073,
+    "G-Coloured02": 2306,
+    "G-Coloured01": 6296,
+    "G-Hyundai_NVision74Concept_2023Paint_Geo_lodA": 16127,
+    "G-Hyundai_NVision74Concept_2023WindowInside_Geo_lodA": 458,
+    "G-Hyundai_NVision74Concept_2023Window_Geo_lodA": 1824,
+    "G-Hyundai_NVision74Concept_2023SeatBelt_Geo_lodA": 2178,
+    "G-Hyundai_NVision74Concept_2023Interior_Emissive_Geo_lodA": 4,
+    "G-Hyundai_NVision74Concept_2023GrilleNoAlpha5_Geo_lodA": 30,
+    "G-Hyundai_NVision74Concept_2023GrilleNoAlpha4_Geo_lodA": 94,
+    "G-Hyundai_NVision74Concept_2023GrilleNoAlpha3_Geo_lodA": 710,
+    "G-Hyundai_NVision74Concept_2023GrilleNoAlpha2_Geo_lodA": 2,
+    "G-Hyundai_NVision74Concept_2023GrilleAlpha1_Geo_lodA": 1344,
+    "G-Hyundai_NVision74Concept_2023Carbon1M_Geo_lodA": 966,
+    "G-Hyundai_NVision74Concept_2023Carbon1_Geo_lodA": 1766,
+    "G-Hyundai_NVision74Concept_2023Base_Geo_lodA": 960,
+    "G-Hyundai_NVision74Concept_2023Badge_Geo_lodA": 171467
+  }
+}

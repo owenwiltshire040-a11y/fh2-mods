@@ -1,0 +1,7 @@
+Ford Ka
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://free3d.com/3d-model/ford-ka-893896.html
+Scale 0.39522956; source axle spacing 6.193869; target axle spacing 2.448m. Source wheel radius 0.2716m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 13 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

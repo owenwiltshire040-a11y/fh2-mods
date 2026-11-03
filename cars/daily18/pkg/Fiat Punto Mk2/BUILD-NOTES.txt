@@ -1,0 +1,7 @@
+Fiat Punto Mk2
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://www.gtaall.com/gta-san-andreas/cars/92541-fiat-punto-2002.html
+Scale 0.86803105; source axle spacing 2.834000; target axle spacing 2.460m. Source wheel radius 0.2995m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 14 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

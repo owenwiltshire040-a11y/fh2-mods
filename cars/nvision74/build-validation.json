@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "car_id": 4301,
+  "power_kw": 500.00000000000006,
+  "torque_nm": 900.0,
+  "drivetrain": "native electric RWD",
+  "wheelbase": 2.905,
+  "source_wheel_triangles": 8861,
+  "geometry_sha256": "b00bacb80b3d1284ac23f9e41811a1e9f7e1fd6500b722b5a657d35f839dcb72",
+  "source_steering": "static",
+  "runtime": "see runtime-validation.json after capture",
+  "arch_clearance": {
+    "lf": {
+      "static_gap_m": 0.0344492697027704,
+      "minimum_upgrade_gap_m": 0.01944926970277039
+    },
+    "rf": {
+      "static_gap_m": 0.03910835616860597,
+      "minimum_upgrade_gap_m": 0.02410835616860596
+    },
+    "lr": {
+      "static_gap_m": 0.036412863038146115,
+      "minimum_upgrade_gap_m": 0.0214128630381461
+    },
+    "rr": {
+      "static_gap_m": 0.037519363663756466,
+      "minimum_upgrade_gap_m": 0.022519363663756453
+    }
+  }
+}

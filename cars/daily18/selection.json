@@ -1,0 +1,61 @@
+{
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Fiat Punto Mk2/source.glb",
+  "chosen": [
+    "chassis_hi__a48m0",
+    "ped_frontseat__a47m0",
+    "bump_rear_hi_ok__a42m0",
+    "bump_rear_dummy__a41m0",
+    "bump_front_hi_ok__a39m0",
+    "bump_front_dummy__a38m0",
+    "door_lf_hi_ok__a36m0",
+    "door_lf_dummy__a35m0",
+    "door_rf_hi_ok__a33m0",
+    "door_rf_dummy__a32m0",
+    "bonnet_hi_ok__a30m0",
+    "bonnet_dummy__a29m0",
+    "exhaust__a28m0",
+    "windscreen_hi_ok__a26m0",
+    "boot_hi_ok__a23m0",
+    "boot_dummy__a22m0",
+    "wing_lf_hi_ok__a20m0",
+    "wing_lf_dummy__a19m0",
+    "wing_rf_hi_ok__a17m0",
+    "wing_rf_dummy__a16m0",
+    "chassis_dummy__a15m0",
+    "brakelights__a14m0",
+    "reverselights__a13m0",
+    "headlights__a12m0",
+    "indicators_back__a10m0",
+    "taillights__a9m0",
+    "punto__a0m0"
+  ],
+  "dropped": [
+    "indicators_front__a11m0",
+    "steerwheel_dummy__a49m0",
+    "wheel02__a8m0",
+    "wheel_lb_dummy__a7m0",
+    "wheel__a6m0",
+    "wheel_rf_dummy__a5m0",
+    "wheel01__a4m0",
+    "wheel_rb_dummy__a3m0",
+    "wheel03__a2m0",
+    "wheel_lf_dummy__a1m0"
+  ],
+  "frame": "-x,z,y",
+  "scale": 0.86803105151729,
+  "source_front": 1.359,
+  "source_rear": -1.475,
+  "source_y": -0.666,
+  "bounds": [
+    [
+      -0.9527884815979272,
+      0.00763229095111384,
+      -1.712918351857428
+    ],
+    [
+      0.9527883781205623,
+      1.4707516310454762,
+      2.106955612079409
+    ]
+  ]
+}

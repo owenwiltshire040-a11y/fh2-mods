@@ -1,0 +1,12 @@
+Passat B3 0.3.0 — handling upgrades
+
+Upgrade structure adapted from FH2 stock Golf Mk2 GTI (car 353).
+Tyres: original compound plus street/sport/race/rally source choices; widths 195/205/215/225 mm front and rear; 14/15/16/17 inch rim sizes. Steel rim uses game diameter morphs.
+Weight: 1230 / 1205.4 / 1131.6 / 1045.5 kg, using Golf proportional reductions.
+Suspension: Golf stock/sport/race/rally progression and limits, relative to Passat baseline rates and ride height. Anti-roll bar stages restored using Golf relative stiffness and limits.
+Brakes: Golf stock/street/sport/race physics tiers. No extra brake meshes introduced.
+Differential: Golf FWD stock/street/sport/race records; rear and centre locking disabled.
+Corrected inherited displacement upgrade entries from 6424 cc V8 values to a 1984 cc baseline.
+
+Build checks: SQLite integrity, valid suspension/anti-roll references, ordered tuning limits, archive CRC, manifest paths, insert-only database delta. Original stock database unchanged. In-game upgrade menu, tuning unlocks, wheel clearance on wide/large choices, PI and handling balance are pending user confirmation.
+Engine power progression and transmission tuning remain for a later pass. Retains wheel placement and boot-badge fixes from 0.2.2.

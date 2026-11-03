@@ -1,0 +1,703 @@
+[
+  {
+    "name": "Ford Fiesta 2002",
+    "slug": "daily01",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Fiesta 2002/ford_fiesta_mk5_2002-2014.glb",
+    "selected": [
+      {
+        "node": "teker_0-material",
+        "material": "teker.0",
+        "triangles": 644
+      }
+    ],
+    "spindle_axis": [
+      0.9999999166889003,
+      0.000112986324750543,
+      -0.00039224518214250637
+    ],
+    "nominal_rim_in": 14,
+    "nominal_radius": 0.17779999999999999,
+    "outer_lip_radius": 0.1898,
+    "source_outer_radius": 0.18081839104300723,
+    "normalisation_scale": 1.0496719880382992,
+    "source_depth": 0.025089325042917936,
+    "fitted_depth": 0.026335561696338772,
+    "tyres": {
+      "width_front": 185,
+      "width_rear": 185,
+      "aspect_front": 70,
+      "aspect_rear": 70,
+      "rim_in": 14,
+      "compound": 3
+    },
+    "tyre_radius": 0.3073,
+    "source_tyre_radius": 0.30613163481953287,
+    "triangles": 644,
+    "geometry_sha256": "b1a0fc880538cc73b13125ed3b3a61ef8c3d48cfc746cc9b3b024ed6f4018eee",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Ford Focus Mk1",
+    "slug": "daily02",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Focus Mk1/source.glb",
+    "selected": [
+      {
+        "node": "138",
+        "material": "chrome",
+        "triangles": 3276
+      }
+    ],
+    "spindle_axis": [
+      0.9999999981215348,
+      4.928397601565082e-06,
+      6.10953459029647e-05
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 0.227273170579319,
+    "normalisation_scale": 1.0027580440712962,
+    "source_depth": 0.19054748591936443,
+    "fitted_depth": 0.19107302428320472,
+    "tyres": {
+      "width_front": 205,
+      "width_rear": 205,
+      "aspect_front": 40,
+      "aspect_rear": 40,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.29789999999999994,
+    "source_tyre_radius": 0.29942748091603055,
+    "triangles": 3276,
+    "geometry_sha256": "4f42ff036b4083d389521cd88edf10853ca530a48ae7451f4b5746a967f74b56",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Ford Focus Mk2 ST",
+    "slug": "daily03",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Focus Mk2 ST/2006_ford_focus_st.glb",
+    "selected": [
+      {
+        "node": "F:M_Rim_High_F:phong14SG1_0",
+        "material": "Fphong14SG1",
+        "triangles": 2125
+      }
+    ],
+    "spindle_axis": [
+      0.9999410581497207,
+      0.010853819145158206,
+      -0.00027356239037304724
+    ],
+    "nominal_rim_in": 18,
+    "nominal_radius": 0.2286,
+    "outer_lip_radius": 0.2406,
+    "source_outer_radius": 0.002440375106533967,
+    "normalisation_scale": 98.5914007054928,
+    "source_depth": 0.002138178721572407,
+    "fitted_depth": 0.2108060351185035,
+    "tyres": {
+      "width_front": 225,
+      "width_rear": 225,
+      "aspect_front": 40,
+      "aspect_rear": 40,
+      "rim_in": 18,
+      "compound": 3
+    },
+    "tyre_radius": 0.3186,
+    "source_tyre_radius": 0.31727891156462584,
+    "triangles": 2125,
+    "geometry_sha256": "beaf9e73a0a7736fe9c708590cf738c7483f3775f4b9b63f54f9ab0eb2c63127",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Ford Mondeo Mk3",
+    "slug": "daily04",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Mondeo Mk3/source.glb",
+    "selected": [
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.009",
+        "material": "rim.001",
+        "triangles": 2184
+      },
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.008",
+        "material": "rim.001",
+        "triangles": 350
+      },
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.005",
+        "material": "rim.001",
+        "triangles": 18210
+      },
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.003",
+        "material": "rim.001",
+        "triangles": 960
+      },
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.002",
+        "material": "rim.001",
+        "triangles": 2648
+      },
+      {
+        "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.001",
+        "material": "rim.001",
+        "triangles": 2112
+      }
+    ],
+    "spindle_axis": [
+      0.9999999117492175,
+      2.570643588439515e-05,
+      0.0004193336811710777
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 24.770379157845852,
+    "normalisation_scale": 0.009200505109257247,
+    "source_depth": 24.273202612711295,
+    "fitted_depth": 0.22332572465628664,
+    "tyres": {
+      "width_front": 225,
+      "width_rear": 225,
+      "aspect_front": 55,
+      "aspect_rear": 55,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.33965,
+    "source_tyre_radius": 0.33739647910141485,
+    "triangles": 26464,
+    "geometry_sha256": "3f7248ca9b34d64c50cdad959d2f920d2daf3994b83c9c4b16a75e58e36bfb04",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Corsa C",
+    "slug": "daily05",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Corsa C/opel_corsa_c_3-door_2000-2006.glb",
+    "selected": [
+      {
+        "node": "gray-material_1",
+        "material": "gray",
+        "triangles": 1010
+      }
+    ],
+    "spindle_axis": [
+      0.9999999999978687,
+      -7.983486616237126e-07,
+      1.9039975738626106e-06
+    ],
+    "nominal_rim_in": 14,
+    "nominal_radius": 0.17779999999999999,
+    "outer_lip_radius": 0.1898,
+    "source_outer_radius": 0.2508957063575561,
+    "normalisation_scale": 0.7564896297169491,
+    "source_depth": 0.06658054497133678,
+    "fitted_depth": 0.05036749181171929,
+    "tyres": {
+      "width_front": 185,
+      "width_rear": 185,
+      "aspect_front": 40,
+      "aspect_rear": 40,
+      "rim_in": 14,
+      "compound": 3
+    },
+    "tyre_radius": 0.2518,
+    "source_tyre_radius": 0.24910000000000002,
+    "triangles": 1010,
+    "geometry_sha256": "b7f5d34736af4257be5860c75709995973f4a4f4f14c717422817435d825b084",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Astra G",
+    "slug": "daily06",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra G/opel_astra_g_1998-2004.glb",
+    "selected": [
+      {
+        "node": "Object_25",
+        "material": "wheel",
+        "triangles": 20120
+      }
+    ],
+    "spindle_axis": [
+      0.999999999999911,
+      3.0065661994591956e-07,
+      -2.9575567547597855e-07
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 2.4457042968747134,
+    "normalisation_scale": 0.093183791798226,
+    "source_depth": 2.2210235941226246,
+    "fitted_depth": 0.20696340017367032,
+    "tyres": {
+      "width_front": 205,
+      "width_rear": 205,
+      "aspect_front": 40,
+      "aspect_rear": 40,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.29789999999999994,
+    "source_tyre_radius": 0.30083091928087924,
+    "triangles": 20120,
+    "geometry_sha256": "cf7812815cfa3deb04cbafbcd68ceaf35a91bb0ec948f5c0a4da13f467cdbae7",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Astra H",
+    "slug": "daily07",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra H/opel_astra_h_2004-2014.glb",
+    "selected": [
+      {
+        "node": "Object_611",
+        "material": "956_24",
+        "triangles": 320
+      }
+    ],
+    "spindle_axis": [
+      0.9999893259821229,
+      -0.0022224446442506798,
+      -0.004050760622743166
+    ],
+    "nominal_rim_in": 16,
+    "nominal_radius": 0.2032,
+    "outer_lip_radius": 0.2152,
+    "source_outer_radius": 0.023709046586055812,
+    "normalisation_scale": 9.076704085037619,
+    "source_depth": 0.0008643651297324264,
+    "fitted_depth": 0.007845586504006352,
+    "tyres": {
+      "width_front": 195,
+      "width_rear": 195,
+      "aspect_front": 45,
+      "aspect_rear": 45,
+      "rim_in": 16,
+      "compound": 3
+    },
+    "tyre_radius": 0.29095,
+    "source_tyre_radius": 0.29235526315789473,
+    "triangles": 320,
+    "geometry_sha256": "9ec1989f65b1ba881988e4217f41396ab0eb9053e09e96a498968333152fa793",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Vectra B",
+    "slug": "daily08",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra B/opel_vectra_b_2001.glb",
+    "selected": [
+      {
+        "node": "alloy15-material_1",
+        "material": "alloy15",
+        "triangles": 2034
+      }
+    ],
+    "spindle_axis": [
+      0.999998709379249,
+      0.0002759848415731553,
+      -0.0015827419889173724
+    ],
+    "nominal_rim_in": 15,
+    "nominal_radius": 0.1905,
+    "outer_lip_radius": 0.2025,
+    "source_outer_radius": 0.21352159788896202,
+    "normalisation_scale": 0.9483818124352292,
+    "source_depth": 0.17483254985176055,
+    "fitted_depth": 0.16580801050108518,
+    "tyres": {
+      "width_front": 185,
+      "width_rear": 185,
+      "aspect_front": 60,
+      "aspect_rear": 60,
+      "rim_in": 15,
+      "compound": 3
+    },
+    "tyre_radius": 0.3015,
+    "source_tyre_radius": 0.30448812949640286,
+    "triangles": 2034,
+    "geometry_sha256": "8ea9bba95db44d82e64f7525ffd6107870d3358c56bd34769fadfbb29625d315",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Vectra C",
+    "slug": "daily09",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra C/opel_vectra_c_2002-2005.glb",
+    "selected": [
+      {
+        "node": "htvectrac_metal-material_1",
+        "material": "htvectrac_metal",
+        "triangles": 12840
+      },
+      {
+        "node": "htvectrac_chrome-material_7",
+        "material": "htvectrac_chrome",
+        "triangles": 2492
+      }
+    ],
+    "spindle_axis": [
+      0.9999999612624406,
+      0.00011115600413356765,
+      0.0002551851485701747
+    ],
+    "nominal_rim_in": 16,
+    "nominal_radius": 0.2032,
+    "outer_lip_radius": 0.2152,
+    "source_outer_radius": 0.21866292339843227,
+    "normalisation_scale": 0.9841631889640368,
+    "source_depth": 0.18998993275028647,
+    "fitted_depth": 0.1869810980865848,
+    "tyres": {
+      "width_front": 195,
+      "width_rear": 195,
+      "aspect_front": 55,
+      "aspect_rear": 55,
+      "rim_in": 16,
+      "compound": 3
+    },
+    "tyre_radius": 0.31045,
+    "source_tyre_radius": 0.30566037735849055,
+    "triangles": 15332,
+    "geometry_sha256": "752c47d3ed45e9f782bcd797cb524325a1ee4fcb3cb8955e879d58836d90138f",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Opel Zafira A",
+    "slug": "daily10",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Zafira A/2002_opel_zafira.glb",
+    "selected": [
+      {
+        "node": "Object_30",
+        "material": "Carro_Roda",
+        "triangles": 3785
+      }
+    ],
+    "spindle_axis": [
+      0.9999988795365297,
+      0.0014956470750972515,
+      6.297231251396378e-05
+    ],
+    "nominal_rim_in": 16,
+    "nominal_radius": 0.2032,
+    "outer_lip_radius": 0.2152,
+    "source_outer_radius": 0.2184607246641514,
+    "normalisation_scale": 0.985074092063165,
+    "source_depth": 0.04449889658134439,
+    "fitted_depth": 0.04383471014768048,
+    "tyres": {
+      "width_front": 195,
+      "width_rear": 195,
+      "aspect_front": 50,
+      "aspect_rear": 50,
+      "rim_in": 16,
+      "compound": 3
+    },
+    "tyre_radius": 0.30069999999999997,
+    "source_tyre_radius": 0.3032140707964602,
+    "triangles": 3785,
+    "geometry_sha256": "d4fd2fc19de8aab2dc384051137ba45713028880f76b802dcf477bca858388c7",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Volkswagen Polo Mk3",
+    "slug": "daily11",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk3/volkswagen_polo_6n_mk3_1994-2009.glb",
+    "selected": [
+      {
+        "node": "Object_55",
+        "material": "jante",
+        "triangles": 8492
+      }
+    ],
+    "spindle_axis": [
+      0.9999992455988813,
+      -3.918282523186688e-05,
+      0.001227707772402593
+    ],
+    "nominal_rim_in": 16,
+    "nominal_radius": 0.2032,
+    "outer_lip_radius": 0.2152,
+    "source_outer_radius": 0.2533849928599638,
+    "normalisation_scale": 0.8493004955464463,
+    "source_depth": 0.22289995123115916,
+    "fitted_depth": 0.1893090390379022,
+    "tyres": {
+      "width_front": 195,
+      "width_rear": 195,
+      "aspect_front": 45,
+      "aspect_rear": 45,
+      "rim_in": 16,
+      "compound": 3
+    },
+    "tyre_radius": 0.29095,
+    "source_tyre_radius": 0.2887008670520232,
+    "triangles": 8492,
+    "geometry_sha256": "12d4181e36420f19ba0f00b7cb0a0f4a648d1d8a67eceb74b0f98d9dc2fdb5af",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Volkswagen Polo Mk4",
+    "slug": "daily12",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk4/volkswagen_polo_3-door_mk4_2001__2009.glb",
+    "selected": [
+      {
+        "node": "desirefx.me_038_rim_0",
+        "material": "material",
+        "triangles": 27736
+      }
+    ],
+    "spindle_axis": [
+      0.9999996952376553,
+      -0.0006072960869050036,
+      0.0004906282293136992
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 0.022223508800486378,
+    "normalisation_scale": 10.254906281721464,
+    "source_depth": 0.022958886426664677,
+    "fitted_depth": 0.23299999999999998,
+    "tyres": {
+      "width_front": 225,
+      "width_rear": 225,
+      "aspect_front": 45,
+      "aspect_rear": 45,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.31715,
+    "source_tyre_radius": 0.3199264490785239,
+    "triangles": 27736,
+    "geometry_sha256": "3288efaf0eee0a2d6ba234edeb009eea0d3bc6c2399f280f9e0aebd877db9d2b",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Ford Ka",
+    "slug": "daily13",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Ka/source.glb",
+    "selected": [
+      {
+        "node": "blinn1SG",
+        "material": "blinn1SG",
+        "triangles": 2502
+      }
+    ],
+    "spindle_axis": [
+      0.9338230575379485,
+      0.014456086517437657,
+      -0.35744302870958017
+    ],
+    "nominal_rim_in": 13,
+    "nominal_radius": 0.1651,
+    "outer_lip_radius": 0.1771,
+    "source_outer_radius": 0.5569947047927785,
+    "normalisation_scale": 0.3179563440659412,
+    "source_depth": 0.5119864356541355,
+    "fitted_depth": 0.16278933529194117,
+    "tyres": {
+      "width_front": 185,
+      "width_rear": 185,
+      "aspect_front": 60,
+      "aspect_rear": 60,
+      "rim_in": 13,
+      "compound": 3
+    },
+    "tyre_radius": 0.2761,
+    "source_tyre_radius": 0.27159763313609464,
+    "triangles": 2502,
+    "geometry_sha256": "a06bfbc82ccd0ad538123deba0d44121db0cdb611d3bd1ac10f84125b441b014",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Renault Laguna II",
+    "slug": "daily14",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Renault Laguna II/source.glb",
+    "selected": [
+      {
+        "node": "wheel_2__a0m2",
+        "material": "exterieur",
+        "triangles": 128
+      },
+      {
+        "node": "wheel_2__a0m1",
+        "material": "silv",
+        "triangles": 1502
+      }
+    ],
+    "spindle_axis": [
+      0.9999701839432986,
+      -0.005850548318031954,
+      -0.005040070315367013
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 0.22961483399322852,
+    "normalisation_scale": 0.9925316933431265,
+    "source_depth": 0.30748893312906195,
+    "fitted_depth": 0.23299999999999998,
+    "tyres": {
+      "width_front": 225,
+      "width_rear": 225,
+      "aspect_front": 45,
+      "aspect_rear": 45,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.31715,
+    "source_tyre_radius": 0.3158506163886875,
+    "triangles": 1630,
+    "geometry_sha256": "be9997fa376ce1b88bf603e337cfd33acb6e28554dbce8cc80cc0c1e0eec7b3a",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Citroen Xsara",
+    "slug": "daily15",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Citroen Xsara/source.glb",
+    "selected": [
+      {
+        "node": "wheel__a0m2",
+        "material": "car_hp_c4sedan_texture",
+        "triangles": 4065
+      }
+    ],
+    "spindle_axis": [
+      0.9999996489496623,
+      -0.0003906375008697368,
+      -0.0007412846249942772
+    ],
+    "nominal_rim_in": 17,
+    "nominal_radius": 0.21589999999999998,
+    "outer_lip_radius": 0.2279,
+    "source_outer_radius": 0.26038611962673924,
+    "normalisation_scale": 0.8752386660498349,
+    "source_depth": 0.20806831200594642,
+    "fitted_depth": 0.18210943184732542,
+    "tyres": {
+      "width_front": 205,
+      "width_rear": 205,
+      "aspect_front": 35,
+      "aspect_rear": 35,
+      "rim_in": 17,
+      "compound": 3
+    },
+    "tyre_radius": 0.28764999999999996,
+    "source_tyre_radius": 0.2841239892183289,
+    "triangles": 4065,
+    "geometry_sha256": "7337a596ed2b1f1a750a76ad0d21877efdc2657dc90399945645dba0431f0209",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Volvo S60R",
+    "slug": "daily16",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volvo S60R/source.glb",
+    "selected": [
+      {
+        "node": "Volvo_Ratas __a22m0",
+        "material": "wheel",
+        "triangles": 1592
+      }
+    ],
+    "spindle_axis": [
+      0.999999491925897,
+      -0.0008488344648758004,
+      0.0005437168372214874
+    ],
+    "nominal_rim_in": 18,
+    "nominal_radius": 0.2286,
+    "outer_lip_radius": 0.2406,
+    "source_outer_radius": 0.2770526176030594,
+    "normalisation_scale": 0.8684270954794371,
+    "source_depth": 0.27590356770403757,
+    "fitted_depth": 0.2396021339336316,
+    "tyres": {
+      "width_front": 235,
+      "width_rear": 235,
+      "aspect_front": 40,
+      "aspect_rear": 40,
+      "rim_in": 18,
+      "compound": 3
+    },
+    "tyre_radius": 0.3226,
+    "source_tyre_radius": 0.32404838709677414,
+    "triangles": 1592,
+    "geometry_sha256": "fa4e941bb1b924b366513166d67af56fe66de9dae7efcabe4e8f82c699bf662a",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Volkswagen Passat B5.5",
+    "slug": "daily17",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volkswagen Passat B5.5/source.glb",
+    "selected": [
+      {
+        "node": "wheel__a0m1",
+        "material": "mallory",
+        "triangles": 9740
+      }
+    ],
+    "spindle_axis": [
+      0.9999984275551624,
+      -0.0007613556978081524,
+      -0.0016016318878220245
+    ],
+    "nominal_rim_in": 20,
+    "nominal_radius": 0.254,
+    "outer_lip_radius": 0.266,
+    "source_outer_radius": 0.30861498856323477,
+    "normalisation_scale": 0.8619153633411327,
+    "source_depth": 0.25944435562562773,
+    "fitted_depth": 0.22361907604586895,
+    "tyres": {
+      "width_front": 235,
+      "width_rear": 235,
+      "aspect_front": 20,
+      "aspect_rear": 20,
+      "rim_in": 20,
+      "compound": 3
+    },
+    "tyre_radius": 0.301,
+    "source_tyre_radius": 0.3014136690647482,
+    "triangles": 9740,
+    "geometry_sha256": "e0f405d22664fc1c41b79a4b43783a7ae68dd185fc52dfb005f701698ea4b5c0",
+    "status": "source geometry selected; built validation pending"
+  },
+  {
+    "name": "Fiat Punto Mk2",
+    "slug": "daily18",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Fiat Punto Mk2/source.glb",
+    "selected": [
+      {
+        "node": "wheel__a6m0",
+        "material": "rgba_204_204_204_255",
+        "triangles": 3757
+      }
+    ],
+    "spindle_axis": [
+      0.9999908604349662,
+      -0.004275400150604478,
+      -2.9684874296355504e-07
+    ],
+    "nominal_rim_in": 14,
+    "nominal_radius": 0.17779999999999999,
+    "outer_lip_radius": 0.1898,
+    "source_outer_radius": 0.23464499283012427,
+    "normalisation_scale": 0.8088815265596114,
+    "source_depth": 0.19497665663205827,
+    "fitted_depth": 0.1577130156600285,
+    "tyres": {
+      "width_front": 185,
+      "width_rear": 185,
+      "aspect_front": 65,
+      "aspect_rear": 65,
+      "rim_in": 14,
+      "compound": 3
+    },
+    "tyre_radius": 0.29805,
+    "source_tyre_radius": 0.29947071277346504,
+    "triangles": 3757,
+    "geometry_sha256": "4bcde06b44b6391f5da36c2a7436ea305ecae45c3895746ef2d5f4de5e691280",
+    "status": "source geometry selected; built validation pending"
+  }
+]

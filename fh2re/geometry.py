@@ -42,8 +42,9 @@ class Part:
         ib = next(bl for bl in b.blobs if bl['tag'] == 'IndB')
         self.ib_blob = ib
         n = u32(ib['data'], 0)
-        assert struct.unpack_from('<H', ib['data'], 8)[0] == 4, 'expected 32-bit indices'
-        idx = list(struct.unpack_from('<%dI' % n, ib['data'], 16))
+        stride=struct.unpack_from('<H', ib['data'], 8)[0]
+        assert stride in (2,4), 'unsupported index size'
+        idx = list(struct.unpack_from('<%d%s' % (n, 'I' if stride == 4 else 'H'), ib['data'], 16))
         bufs = {}
         for bl in b.blobs:
             if bl['tag'] in ('VerB', 'MBuf'):

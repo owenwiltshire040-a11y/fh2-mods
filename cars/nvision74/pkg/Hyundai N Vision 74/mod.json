@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "id": "owen-hyundai-nvision74",
+  "name": "Hyundai N Vision 74 (2023)",
+  "author": "Owen",
+  "version": "0.1.1",
+  "description": "Supplied N Vision 74 model, original textured source wheels, detailed cabin and native electric RWD. Personal conversion; hydrogen simulation and handling approximate.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": []
+}

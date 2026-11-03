@@ -1,0 +1,37 @@
+{
+  "name": "Volvo S60R",
+  "slug": "daily16",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volvo S60R/source.glb",
+  "selected": [
+    {
+      "node": "Volvo_Ratas __a22m0",
+      "material": "wheel",
+      "triangles": 1592
+    }
+  ],
+  "spindle_axis": [
+    0.999999491925897,
+    -0.0008488344648758004,
+    0.0005437168372214874
+  ],
+  "nominal_rim_in": 18,
+  "nominal_radius": 0.2286,
+  "outer_lip_radius": 0.2406,
+  "source_outer_radius": 0.2770526176030594,
+  "normalisation_scale": 0.8684270954794371,
+  "source_depth": 0.27590356770403757,
+  "fitted_depth": 0.2396021339336316,
+  "tyres": {
+    "width_front": 235,
+    "width_rear": 235,
+    "aspect_front": 40,
+    "aspect_rear": 40,
+    "rim_in": 18,
+    "compound": 3
+  },
+  "tyre_radius": 0.3226,
+  "source_tyre_radius": 0.32404838709677414,
+  "triangles": 1592,
+  "geometry_sha256": "fa4e941bb1b924b366513166d67af56fe66de9dae7efcabe4e8f82c699bf662a",
+  "status": "source geometry selected; built validation pending"
+}

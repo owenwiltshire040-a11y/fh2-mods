@@ -1,0 +1,4 @@
+Upstream: https://github.com/Parik27/DragonFF
+Retrieved from master ZIP on 2026-11-01. Used only gtaLib standalone format readers.
+Source archive SHA256: b42a4532c075830dc179d1890511f63f48e9f654e21a167ac67c3c7049dbbd62
+Licence: GPL-3.0; see LICENSE and source headers.

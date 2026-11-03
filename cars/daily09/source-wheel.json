@@ -1,0 +1,42 @@
+{
+  "name": "Opel Vectra C",
+  "slug": "daily09",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra C/opel_vectra_c_2002-2005.glb",
+  "selected": [
+    {
+      "node": "htvectrac_metal-material_1",
+      "material": "htvectrac_metal",
+      "triangles": 12840
+    },
+    {
+      "node": "htvectrac_chrome-material_7",
+      "material": "htvectrac_chrome",
+      "triangles": 2492
+    }
+  ],
+  "spindle_axis": [
+    0.9999999612624406,
+    0.00011115600413356765,
+    0.0002551851485701747
+  ],
+  "nominal_rim_in": 16,
+  "nominal_radius": 0.2032,
+  "outer_lip_radius": 0.2152,
+  "source_outer_radius": 0.21866292339843227,
+  "normalisation_scale": 0.9841631889640368,
+  "source_depth": 0.18998993275028647,
+  "fitted_depth": 0.1869810980865848,
+  "tyres": {
+    "width_front": 195,
+    "width_rear": 195,
+    "aspect_front": 55,
+    "aspect_rear": 55,
+    "rim_in": 16,
+    "compound": 3
+  },
+  "tyre_radius": 0.31045,
+  "source_tyre_radius": 0.30566037735849055,
+  "triangles": 15332,
+  "geometry_sha256": "752c47d3ed45e9f782bcd797cb524325a1ee4fcb3cb8955e879d58836d90138f",
+  "status": "source geometry selected; built validation pending"
+}

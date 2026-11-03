@@ -1,0 +1,37 @@
+{
+  "name": "Ford Focus Mk2 ST",
+  "slug": "daily03",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Focus Mk2 ST/2006_ford_focus_st.glb",
+  "selected": [
+    {
+      "node": "F:M_Rim_High_F:phong14SG1_0",
+      "material": "Fphong14SG1",
+      "triangles": 2125
+    }
+  ],
+  "spindle_axis": [
+    0.9999410581497207,
+    0.010853819145158206,
+    -0.00027356239037304724
+  ],
+  "nominal_rim_in": 18,
+  "nominal_radius": 0.2286,
+  "outer_lip_radius": 0.2406,
+  "source_outer_radius": 0.002440375106533967,
+  "normalisation_scale": 98.5914007054928,
+  "source_depth": 0.002138178721572407,
+  "fitted_depth": 0.2108060351185035,
+  "tyres": {
+    "width_front": 225,
+    "width_rear": 225,
+    "aspect_front": 40,
+    "aspect_rear": 40,
+    "rim_in": 18,
+    "compound": 3
+  },
+  "tyre_radius": 0.3186,
+  "source_tyre_radius": 0.31727891156462584,
+  "triangles": 2125,
+  "geometry_sha256": "beaf9e73a0a7736fe9c708590cf738c7483f3775f4b9b63f54f9ab0eb2c63127",
+  "status": "source geometry selected; built validation pending"
+}

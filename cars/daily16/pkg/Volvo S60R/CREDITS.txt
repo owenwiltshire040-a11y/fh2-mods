@@ -1,0 +1,7 @@
+Volvo S60R
+Creator/provenance: Listing: original FM3; conversion/edit Willeris a.k.a. Junioras
+Source: https://www.gtainside.com/sanandreas/cars/44192-volvo-s60r/
+
+Downloaded as an archive only. No installer or mod code was run. This is not yet a Forza-ready car. Preserve original credits. Free download does not establish permission to redistribute; review the original listing and provenance before publishing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

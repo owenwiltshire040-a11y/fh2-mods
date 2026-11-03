@@ -1,0 +1,7 @@
+Citroen Xsara
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://www.gtainside.com/sanandreas/cars/134885-2004-citroen-xsara-coup/
+Scale 0.85579515; source axle spacing 2.968000; target axle spacing 2.540m. Source wheel radius 0.2841m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 17 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

@@ -1,0 +1,26 @@
+/* Experimental cold boot: preserve native player/presentation setup and return
+   control before the tested automatic Pause route. Do not enable city streaming. */
+static const char renderer_lean_flow[]=
+"<state id=\"cold_boot\"><parameter id=\"start_driving\" type=\"bool\" value=\"true\" />"
+"<behavior id=\"GameControlWrapper\" /><behavior id=\"NetworBlockMatchmakingSessionJoinWrapper\" />"
+"<node state=\"free_roam_start_ie.apply_feature_state_to_game\" />"
+"<node state=\"global.disable_track_streaming\" />"
+"<node state=\"global.wait_for_loading_complete\" />"
+"<node state=\"global.set_initial_car_override\" />"
+"<node state=\"global.clear_score_manager\" /><node state=\"global.reset_game\" />"
+"<node state=\"global.set_race_connectivity_offline\" />"
+"<node state=\"global.load_player_car\" set_focus_car=\"false\" />"
+"<node state=\"global.set_ready\" /><node state=\"global.setup_game_players\" />"
+"<node state=\"global.setup_score_manager\" /><node state=\"global.setup_scoreboard_manager\" />"
+"<node state=\"global.setup_gameplaylog_manager\" />"
+"<node state=\"global.prepare_for_open_world_mode\" />"
+"<node state=\"global.set_player_lobby_state_in_freeroam\" />"
+"<node state=\"global.reset_game\" /><node state=\"global.route_assignment_free_roam\" />"
+"<node state=\"global.set_ui_context_is_in_singleplayer_freeroam\" />"
+"<node state=\"global.black_out\" /><node state=\"ui_screens.show_hud_and_continue\" />"
+"<node state=\"global.start_race\" /><node state=\"global.start_driving\" />"
+"<node state=\"global.disable_track_streaming\" />"
+"<node state=\"global.enable_car_control\" /><node state=\"global.unblock_pause_entry\" />"
+"<node state=\"global.disable_mixer_snapshot\" snapshot=\"BASE_Loading\" />"
+"<node state=\"global.broadcast_event\" event=\"EnterFreeRoamOffline\" />"
+"</state>";

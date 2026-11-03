@@ -1,0 +1,15 @@
+Ford Fiesta MK5 2002-2014
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/ford-fiesta-mk5-2002-2014-a77a1fd3e00c4854962662b401b12101
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+2002–2008 (Europe)
+2002–2010 (Mexico)
+2002–2014 (Brazil)
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

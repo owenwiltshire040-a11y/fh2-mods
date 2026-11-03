@@ -1,0 +1,6 @@
+Passat 0.5.0: lamps and cabin
+
+Connected source headlamp surfaces, tail/brake surfaces, reversing lamps, front/rear indicators and front wing repeaters to the game lamp materials and light definitions. Tail template uses the existing 207 method with shared game-library textures. Fog lamps remain decorative. Headlamp beams and tail light points repositioned to the Passat. Source geometry has no identified third brake lamp.
+Cabin geometry grouped by source node ancestry. Added procedural cloth seat material, charcoal dashboard, grey trim, static gauge face and orange needle materials. No live gauge animation or functional dashboard warning indicators added. Driver and cockpit camera positions retained for user review.
+Fixed builder handling of empty body fragments after lamp extraction. All gameplay database records match installed 0.4.2 exactly, including the zero-throttle fix.
+Checks: built lamp parts decode, load through carbin, required cabin textures exist, archive CRC passes, engine safety fields retained. Exterior preview rendered. In-game checks still needed: low/high beams, daytime/night tail and brake lights, reverse, indicators/hazards, interior texture orientation and cockpit visibility.

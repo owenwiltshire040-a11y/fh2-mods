@@ -1,0 +1,7 @@
+Volkswagen Polo Mk4
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/volkswagen-polo-3-door-mk4-2001-2009-6fd9f1259b8248059e32f983cf5b0cf7
+Scale 10.28041289; source axle spacing 0.239290; target axle spacing 2.460m. Source wheel radius 0.3199m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 17 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

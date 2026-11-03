@@ -1,0 +1,10 @@
+Model: Volkswagen Passat B3 by Driving501
+https://sketchfab.com/3d-models/volkswagen-passat-b3-e9423d2b16814101aeabe870bc37299b
+License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+Changes: stock part selection, material conversion, scale and FH2 game conversion.
+Built for Owen using fh2-mods tools and user-provided game assets.
+
+Steel wheel: Volkswagen Passat B3 Steel Wheel by Driving501
+https://sketchfab.com/3d-models/volkswagen-passat-b3-steel-wheel-6c6e6722f02943d2abbca048c33eb54a
+License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+Changes: orientation and conversion to FH2 rim geometry.

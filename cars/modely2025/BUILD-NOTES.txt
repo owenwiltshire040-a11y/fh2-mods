@@ -1,0 +1,9 @@
+Tesla Model Y AWD (2025) — first test build 0.1.0
+
+Model: BloxBloger, CC BY-NC 4.0. Attribution and noncommercial restriction in CREDITS.txt.
+Model dimensions matched to about 2.890 m wheelbase. Reference dimensions: Tesla 2025+ European Model Y manual, https://www.tesla.com/ownersmanual/modely/en_eu/Owners_Manual.pdf
+Native FH2 Model S electric motor system; aggregated AWD approximation, single speed, 295 kW / roughly 396 bhp / 500 Nm provisional motor curve, 16000 rpm limit. Motor/battery mass and battery capacity are provisional; no claim of an exact Model Y variant simulation. Model S motor sound reference retained.
+Vehicle mass target 1992 kg; weight reduction 1952.2 / 1892.4 / 1792.8 kg. Motor upgrades +10/+20/+30% torque. Chassis tuning and differential options retained; original ICE engine/component links removed.
+Model wheels extracted from material-merged geometry, game tyres 255/40 R20; source tyre/brake meshes removed. Wheel fit and material fidelity need in-game review. Limited interior separation, provisional driver/camera placement. Head/front bar and tail/brake emitter surfaces connected. Reverse lamps, turn indicators and detailed/live cockpit instruments not configured in this first build.
+Checks: SQLite integrity, motor ownership links, complete torque curve including positive zero-throttle braking, cutoffs, single-speed slots, AWD type, wheelbase, package manifest/CRC and rendered built archive preview. No in-game validation yet. Passat package unchanged.
+Restart game, find Tesla / Model Y AWD in Autoshow. First checks: spawn/load, no petrol engine sound, single forward gear, acceleration/regen, wheel fit, camera and lamps.

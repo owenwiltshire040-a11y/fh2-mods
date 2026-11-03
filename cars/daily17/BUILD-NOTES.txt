@@ -1,0 +1,9 @@
+Volkswagen Passat B5.5
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://www.gta.cz/eng/san-andreas/download/volkswagen-passat-b5-5/
+Scale 0.88391105; source axle spacing 3.058000; target axle spacing 2.703m. Source wheel radius 0.3014m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 20 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.
+
+Visual review: Original fixed blue body colour retained.

@@ -1,0 +1,37 @@
+{
+  "name": "Opel Corsa C",
+  "slug": "daily05",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Corsa C/opel_corsa_c_3-door_2000-2006.glb",
+  "selected": [
+    {
+      "node": "gray-material_1",
+      "material": "gray",
+      "triangles": 1010
+    }
+  ],
+  "spindle_axis": [
+    0.9999999999978687,
+    -7.983486616237126e-07,
+    1.9039975738626106e-06
+  ],
+  "nominal_rim_in": 14,
+  "nominal_radius": 0.17779999999999999,
+  "outer_lip_radius": 0.1898,
+  "source_outer_radius": 0.2508957063575561,
+  "normalisation_scale": 0.7564896297169491,
+  "source_depth": 0.06658054497133678,
+  "fitted_depth": 0.05036749181171929,
+  "tyres": {
+    "width_front": 185,
+    "width_rear": 185,
+    "aspect_front": 40,
+    "aspect_rear": 40,
+    "rim_in": 14,
+    "compound": 3
+  },
+  "tyre_radius": 0.2518,
+  "source_tyre_radius": 0.24910000000000002,
+  "triangles": 1010,
+  "geometry_sha256": "b7f5d34736af4257be5860c75709995973f4a4f4f14c717422817435d825b084",
+  "status": "source geometry selected; built validation pending"
+}

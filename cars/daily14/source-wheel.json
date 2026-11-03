@@ -1,0 +1,42 @@
+{
+  "name": "Renault Laguna II",
+  "slug": "daily14",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Renault Laguna II/source.glb",
+  "selected": [
+    {
+      "node": "wheel_2__a0m2",
+      "material": "exterieur",
+      "triangles": 128
+    },
+    {
+      "node": "wheel_2__a0m1",
+      "material": "silv",
+      "triangles": 1502
+    }
+  ],
+  "spindle_axis": [
+    0.9999701839432986,
+    -0.005850548318031954,
+    -0.005040070315367013
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 0.22961483399322852,
+  "normalisation_scale": 0.9925316933431265,
+  "source_depth": 0.30748893312906195,
+  "fitted_depth": 0.23299999999999998,
+  "tyres": {
+    "width_front": 225,
+    "width_rear": 225,
+    "aspect_front": 45,
+    "aspect_rear": 45,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.31715,
+  "source_tyre_radius": 0.3158506163886875,
+  "triangles": 1630,
+  "geometry_sha256": "be9997fa376ce1b88bf603e337cfd33acb6e28554dbce8cc80cc0c1e0eec7b3a",
+  "status": "source geometry selected; built validation pending"
+}

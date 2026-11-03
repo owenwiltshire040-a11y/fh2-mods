@@ -44,8 +44,10 @@ def make_texture(tag, img, size, brighten=False):
         a = np.asarray(img).astype(np.float32) / 255; img = Image.fromarray((np.clip((a ** 0.75) * 1.35, 0, 1) * 255).astype(np.uint8))
     rgba = np.dstack([np.array(img), np.full((size, size), 255, np.uint8)])
     data = bytearray(swatch.write_like(tpl, rgba)); data[0x30:0x40] = g.bytes_le
-    fn = f'{MEDIA}_{tag}_{g}.swatchbin'; added[f'Textures/{MEDIA.lower()}/Swatches/{fn}'] = bytes(data)
-    return f'Game:\\Media\\cars\\{MEDIA}\\Textures\\{MEDIA.lower()}\\Swatches\\{fn}'
+    fn = f'{tag}_{g.hex[:12]}.swatchbin'; added[f'Textures/custom/Swatches/{fn}'] = bytes(data)
+    path = f'Game:\\Media\\cars\\{MEDIA}\\Textures\\custom\\Swatches\\{fn}'
+    assert len(path.encode('latin1')) < 120
+    return path
 if getattr(S, 'INTERIOR', None):   # cabin surfaces: matte textured 'interior_lod1' with a fine cloth grain instead of gloss black plastic
     _rng = np.random.default_rng(7); _c = np.array(S.INTERIOR.get('colour', (38, 38, 42)), float)
     _n = _rng.normal(0, 1, (512, 512)); _n = (_n + np.roll(_n, 1, 0) + np.roll(_n, 1, 1)) / 3
@@ -65,6 +67,7 @@ def soup(materials):
         if plan is None or m not in parts: continue
         kind, key = plan
         for p in parts[m]:
+            if len(p['V']) == 0: continue
             uv = p['UV'].copy(); uv[:, 1] = 1 - uv[:, 1]
             by.setdefault(key, []).append((p['V'], p['N'], uv))
     return {k: tuple(np.concatenate([x[i] for x in v]) for i in range(3)) for k, v in by.items()}
@@ -72,7 +75,7 @@ def soup(materials):
 def weld(V, N, UV):
     """index the soup: identical (position, normal, uv) corners become one vertex (the OBJ shared them anyway)"""
     # on position + normal only: SketchUp writes a fresh uv per face corner, and these parts carry no texture of their own
-    key = np.round(np.c_[V, N], 4); _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
+    key = np.round(np.c_[V, N, UV] if getattr(S,'PRESERVE_UV_SEAMS',False) else np.c_[V,N], 4); _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
     return V[first], N[first], UV[first], inv.reshape(-1).astype(np.int64)
 
 def one_sided(V, N, UV):
@@ -208,26 +211,52 @@ if getattr(S, 'LIGHTS', None):
         tl = model_c['tail']; replaced['lights.bin'] = lightbuild.add_brake_lights(replaced['lights.bin'], [tl, tl * [-1, 1, 1]])
     if 'turn_r' in lamps:
         Vt = lamps['turn_r'][0]; replaced['lights.bin'] = lightbuild.add_rear_indicators(replaced['lights.bin'], Vt[Vt[:, 0] < 0].mean(0))
+    if getattr(S,'LAMP_CLEANUP',None):
+        import runpy
+        replaced['lights.bin']=runpy.run_path(os.path.join(S.HERE,S.LAMP_CLEANUP))['apply'](replaced['lights.bin'],lamps)
     print('  lamp centres (left):', {k: np.round(v, 3).tolist() for k, v in model_c.items()})
 
 # ---------------------------------------------------------------- body and glass
 body_mats = [m for m, plan in S.MATERIALS.items() if plan and plan[1] in S.BODY_PLAIN or (plan and plan[0] == 'textured')]
+steering_mats = getattr(S,'STEERING_MATERIALS',[])
+body_mats = [m for m in body_mats if m not in steering_mats]
 glass_mats = [m for m, plan in S.MATERIALS.items() if plan and plan[1] in S.GLASS_PLAIN]
 replaced['scene/exterior/platform/body_a.modelbin'] = fill('scene/exterior/platform/body_a.modelbin', body_mats, S.BODY_TEXTURED_LIKE, S.BODY_PLAIN)
 if glass_mats:
     replaced['scene/exterior/windows/glassf_a.modelbin'] = fill('scene/exterior/windows/glassf_a.modelbin', glass_mats, {}, S.GLASS_PLAIN)
 
+if steering_mats:
+    skeleton=Bundle.read(src.read(names[f'scene/{MEDIA.lower()}_skeleton.modelbin']))
+    for bl in skeleton.blobs:
+        if bl['tag']!='Skel': continue
+        d=bl['data']; count=struct.unpack_from('<H',d,0)[0]; off=2
+        for _ in range(count):
+            length=struct.unpack_from('<I',d,off)[0];off+=4
+            bone=bytes(d[off:off+length]).decode();off+=length+6
+            if bone=='boneSteeringWheelSpindle': basis=np.array(struct.unpack_from('<16f',d,off)).reshape(4,4)[:3,:3]
+            off+=64
+    centre=np.array(S.STEER,float)
+    def steering_to_bone(V,is_normal=False):
+        return V@basis.T if is_normal else (V-centre)@basis.T
+    replaced['scene/interior/dash/steeringwheel_a.modelbin']=fill('scene/interior/dash/steeringwheel_a.modelbin',steering_mats,{0:'blkplastic_mgl'},{},xform=steering_to_bone)
+
 # ---------------------------------------------------------------- the model's own rim into the donor wheel part (spins, scales with the tyre)
 if getattr(S, 'RIM_MATERIALS', None):
     import rimbuild
     wpath = next(n for n in names if n.endswith('_wheellf.modelbin'))
-    replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'],
+    if getattr(S, 'RIM_SOURCE_TEXTURE', None):
+        replaced[wpath], rim_prev = rimbuild.build_source_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS,
+            model_wheels['HUB_LF']['centre'], S.RIM_R_REF, PATH[S.RIM_SOURCE_TEXTURE], GLOS, TPL_MATI)
+    else:
+        replaced[wpath], rim_prev = rimbuild.build_rim(src.read(names[wpath]), parts, S.RIM_MATERIALS, model_wheels['HUB_LF']['centre'],
                                                    black_materials=getattr(S, 'RIM_BLACK_MATERIALS', ()),
                                                    r_ref=getattr(S, 'RIM_R_REF', None),            # radius of the outermost FRONT-facing rim geometry (NOTES: rim size rule)
                                                    trust_normals=getattr(S, 'RIM_TRUST_NORMALS', False))  # True for models with good normals (AC/rFactor/glb); SketchUp: False
     try:
         import trimesh; trimesh.Trimesh(rim_prev[0] * [1, 1, 1], rim_prev[1], process=False).export(os.path.splitext(OUT)[0] + '_rim.glb')
     except Exception as e: print('  (rim preview skipped:', e, ')')
+elif getattr(S, 'REQUIRE_SOURCE_WHEELS', False):
+    raise ValueError('This car requires reviewed source wheels; donor rim fallback is disabled')
 
 # ---------------------------------------------------------------- skeleton (modelbin copies): steering spindle to the model's wheel
 SW_CENTRE = np.array(S.STEER, float)
@@ -298,7 +327,7 @@ replaced[f'{MEDIA.lower()}.carbin'] = write_carbin(carb)
 if getattr(S, 'COLLISION_HULL', None):   # the model's own collision hull instead of the Charger's (fh2re/hull.py)
     import hull
     Hc = S.COLLISION_HULL
-    pts = np.concatenate([p['V'] for k, v in parts.items() if not k.startswith('RIM_') for p in v])
+    pts = np.concatenate([p['V'] for k, v in parts.items() if not k.startswith('RIM_') and (not Hc.get('materials') or k in Hc['materials']) for p in v if len(p['V'])])
     replaced['physicsdefinition.bin'] = hull.build(src.read(names['physicsdefinition.bin']), pts, Hc['half_width'], Hc['floor_y'])
 
 # ---------------------------------------------------------------- locators: cameras and the wheel corners

@@ -1,0 +1,37 @@
+{
+  "name": "Volkswagen Polo Mk3",
+  "slug": "daily11",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk3/volkswagen_polo_6n_mk3_1994-2009.glb",
+  "selected": [
+    {
+      "node": "Object_55",
+      "material": "jante",
+      "triangles": 8492
+    }
+  ],
+  "spindle_axis": [
+    0.9999992455988813,
+    -3.918282523186688e-05,
+    0.001227707772402593
+  ],
+  "nominal_rim_in": 16,
+  "nominal_radius": 0.2032,
+  "outer_lip_radius": 0.2152,
+  "source_outer_radius": 0.2533849928599638,
+  "normalisation_scale": 0.8493004955464463,
+  "source_depth": 0.22289995123115916,
+  "fitted_depth": 0.1893090390379022,
+  "tyres": {
+    "width_front": 195,
+    "width_rear": 195,
+    "aspect_front": 45,
+    "aspect_rear": 45,
+    "rim_in": 16,
+    "compound": 3
+  },
+  "tyre_radius": 0.29095,
+  "source_tyre_radius": 0.2887008670520232,
+  "triangles": 8492,
+  "geometry_sha256": "12d4181e36420f19ba0f00b7cb0a0f4a648d1d8a67eceb74b0f98d9dc2fdb5af",
+  "status": "source geometry selected; built validation pending"
+}

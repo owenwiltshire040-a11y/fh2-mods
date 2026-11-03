@@ -1,0 +1,316 @@
+{
+  "timestamp": "20261101-225110",
+  "backup": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/backups/daily-source-wheels-v1/installed-20261101-225110",
+  "installed": [
+    {
+      "name": "Ford Fiesta 2002",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Fiesta 2002",
+      "sha256": {
+        "mod.json": "fcaf9ffeb25bd247038d4d48ae17688ef11ff790e1be7755af878dc487fe8ea6",
+        "CREDITS.txt": "557524e9c4b4d5f247adfe71d285e7037ad73baebedb541fa2cf2ef903a7b079",
+        "BUILD-NOTES.txt": "9a4c98d974a9bcc77e5947e6ce6e207a3f1025a503002c97c693bd681a30c230",
+        "wheel-build.json": "3cf323929c53ee67eec34b5aedc1fb8ca9eb7665506db155101f5393b69203b7",
+        "database.json": "aaef856e0c960604c4a87d4ee23c4b5adefcebc54c7cd5cdcb866141e9caf861",
+        "strings.json": "dcec2dfb5dd7396afde325c7c56884b05d58a294e00a709af65d434042c962a1",
+        "wheel-fit.json": "e69e8dc7c8a8674631bb1f0de62903e878642b7479ab2711b94601fcb87d846f",
+        "source-wheel.json": "8d60b5493b51088ce5efc83d5fc22915bce7655c52e35e3d0ad23fb0308c8fe9",
+        "media/cars/FOR_daily01_2002__.zip": "cd0f5d241ebb4e60cc8991f26e0c4c5fb34fdb785c8c58fe058c989cf34313d9",
+        "media/stripped/RC0/Thumbnail_5001_Small.swatchbin": "e16deae396d1980a413d27e91e9648a77df5fc86eae9dbdbd60b6f398fee3f2f",
+        "media/stripped/RC0/Thumbnail_5001_Big.swatchbin": "db05c5b2e49fa8c48a398ab7cb2c883400924365d55ddb2673476d90e7a6e069"
+      }
+    },
+    {
+      "name": "Ford Focus Mk1",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk1",
+      "sha256": {
+        "mod.json": "e279571775c9e67847db690dded8985f045e16003adcc5bcddec00416ec6cef1",
+        "CREDITS.txt": "6b62f2fb018952462b0cac1cf251524bbe2a239aef6546ecd98d90fc2896bb7c",
+        "BUILD-NOTES.txt": "084bd42604a19f3707bbed3f89724abb249d7e27b3edf8b578caea0b2dec2263",
+        "wheel-build.json": "1a137f9f98677affdbdf84ef1e04f73378b8e77611df0254e18b602762f7647a",
+        "database.json": "a278cae2be3e3f23a16fbce8c0f5889de20ee5716ca5c607860cf8b679f58421",
+        "strings.json": "acf27702f1163be6cd9a34919a506329689b41bab26c851f8de1666ddb9e9ea8",
+        "wheel-fit.json": "b848ca5cecd937a6a7afc9d75cd7fcf8386fb5bfbeaeb54fea5c222e1d8d3567",
+        "source-wheel.json": "1cb0f49fc27218c1b076a28e2b20fd4dcc5cafe00913cdd1773ca3266f2f8b66",
+        "media/cars/FOR_daily02_2001__.zip": "2f2f9e8371c3d5195e4f620420b0268bb025e5aa47e3407f95a3421f7f68bb2d",
+        "media/stripped/RC0/Thumbnail_5002_Small.swatchbin": "12c3de4992d8f2aae3f4413e6bf98bfb3ead0ddd74d40027bf907471a8ccbe16",
+        "media/stripped/RC0/Thumbnail_5002_Big.swatchbin": "a93cf648bf5e7654ce41c5080080223f6e18271d7b1505c8b8ef9662c93f4147"
+      }
+    },
+    {
+      "name": "Ford Focus Mk2 ST",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk2 ST",
+      "sha256": {
+        "mod.json": "cf9d1bf58b6944f5db667f2bf4e9ff51e4537c882b63152d642b7c38edd8fce5",
+        "CREDITS.txt": "070827656d7da4a4508915e05067827260d7a63a8f48429af49b2b9c4479266d",
+        "BUILD-NOTES.txt": "baa2e12da93a34aba7c74083c48daeee443fde66941314fbb0cb81092d7ce878",
+        "wheel-build.json": "fb5a4582580a9a9c765bec2e45e6eda902601996261da2c59a4102a70f2b234d",
+        "database.json": "5ed08a058c516bedfd6aa3c87e50e49aacc2f628d90e29023ac13e3352d5c1c0",
+        "strings.json": "18c1dd57ad523c0fc88969684ab78c7f3ce049c14f9164cb614876695835439b",
+        "wheel-fit.json": "5b1380e920b230826b1e16119b9d7390bc92c659cc2af2d140642734a118bed0",
+        "source-wheel.json": "b36cf95c1b199c4c35a574b6915bc9297daf018092e0571da708f047136f7e6d",
+        "media/cars/FOR_daily03_2006__.zip": "58e674cc65ccc84042e40b106d37eb34f7b0780732e797a49398275714766077",
+        "media/stripped/RC0/Thumbnail_5003_Big.swatchbin": "bf87190d04447cac21f0cf40c8d8ac21831eb7afacd2c439efeabf1a3db76fc8",
+        "media/stripped/RC0/Thumbnail_5003_Small.swatchbin": "3baed11bb8177d462303c554b2feec3d45463b9a05c7d3c01b78281f7ca36ef1"
+      }
+    },
+    {
+      "name": "Ford Mondeo Mk3",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Mondeo Mk3",
+      "sha256": {
+        "mod.json": "cde8cce63c7a024a0ec5f0357851cc9ba77c441d003d3970c455ff998f46ab5f",
+        "CREDITS.txt": "3537c2f6470029dc5063c2c815a3aa4157c89beda09e804409f5cfd676238cf5",
+        "BUILD-NOTES.txt": "21d9e4e04252345c1bc4b18a9c943a9e74e018b0336f7fa701c8fbb6a9ad84c4",
+        "wheel-build.json": "e7f8d83530b80fd153be53905791739a4aed43f5e662e1f270c3fe845affa2f2",
+        "database.json": "885f412051bd7a872913648225dfa852ca2df974b2dba486b5c95dad556878f4",
+        "strings.json": "b190ed935583b3847d140247e0b5d75b4f4672ffea3e52e053777a9a706e6543",
+        "wheel-fit.json": "8698dfb09f067098c3948e63febb5e6db56c488fe375dcb18bd53489ae88fb49",
+        "source-wheel.json": "25d00b977c284f87a9472d512364de5f2d8baab3a424d6732d840447f6fa4eac",
+        "media/cars/FOR_daily04_2003__.zip": "4e0c675877fd54f4c04a0a26e8fccf32853138080400bdba7b41d4ade498f4b5",
+        "media/stripped/RC0/Thumbnail_5004_Big.swatchbin": "922266d8a4a6e8ba8cc3b358476acca24e3990b052b972c88148c3abfde7f97f",
+        "media/stripped/RC0/Thumbnail_5004_Small.swatchbin": "f75965cf495e64a05b09579a4e930be99d05d609d336a29dba67ffd294630dcc"
+      }
+    },
+    {
+      "name": "Opel Corsa C",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Corsa C",
+      "sha256": {
+        "mod.json": "7f5179157bfd3d9f0240b25db16408e5b525f311752ee851b7afe1a74df70068",
+        "CREDITS.txt": "5641b8c76a4b0e0d37f4374c6de868e632ce88531888e59d8d6aeeb3ded6118d",
+        "BUILD-NOTES.txt": "2846b30f5afec2ce041d720f1da9f741a29bd728ef49e7b74404a5c3a349eaef",
+        "wheel-build.json": "5896383a5a5938a33c3b0294a1d92cfa38f58dbacb1c01418c22bebced6a86a4",
+        "database.json": "c72adaa43e698bf424cb8247425b1a110676946163a3618c6581105591bf4737",
+        "strings.json": "2a0f5720b677a1d8962506a43cf1e2fc3cf22c549d54ace1ba84e38aed8aea3c",
+        "wheel-fit.json": "824e488cd3a16144dcdc18ec0d9127ef9661dd99b5db4aede2b931880dd79efe",
+        "source-wheel.json": "39c31da7f62e3bdaaf24cc6c4ab501c8db338418685c271340b4c96cb78901b8",
+        "media/cars/OPE_daily05_2003__.zip": "22a23b9cb43df644e4cf953d2e853f8634a2c5665a8fdfcf1896061749e0f415",
+        "media/stripped/RC0/Manu_Logo_OPE.swatchbin": "93fcf19e62068e66f2a39a9cca840ee3d47aca5f2a2963a5b86ba9d4a4a30055",
+        "media/stripped/RC0/Thumbnail_5005_Small.swatchbin": "8f7f33fcbab3cd8925dd0b160cb29185fca59f70112c999a657a6d7c778a05ad",
+        "media/stripped/RC0/L_Manu_Logo_OPE.swatchbin": "32a32678cef90ab9d249fa204002622367a3f782b302408595ccd04e25594abc",
+        "media/stripped/RC0/Thumbnail_5005_Big.swatchbin": "80f5f55211955b26cd519f630fb4dc1229ac4947c36fe02594a4f344198fc8be"
+      }
+    },
+    {
+      "name": "Opel Astra G",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra G",
+      "sha256": {
+        "mod.json": "23421b02cb8a2bb6a70ee7b61c51dc57a8cbb8fce27868c9eb8214ead35588da",
+        "CREDITS.txt": "347764ddcc93df018daf3c4791b58dcac6dd8325150012ad0555c1b1b6dbda2f",
+        "BUILD-NOTES.txt": "7e6918aa9510da12744c3491c1b1edbbec9b57e9b12aa56ad99000c7458bf2eb",
+        "wheel-build.json": "32eb5837a6572a056d5d22f6c10b67b8148c5fa7bf577d7d1230559e0fe604fd",
+        "database.json": "6a83e4febcb34b4dd5ca0c7b9549a14f116a744ae11585edaa43e8ba900c8bda",
+        "strings.json": "d9b1c295fc96cde8669f8c154ad4eeba4f9e502af152162d7cea9138d3da238d",
+        "wheel-fit.json": "29375a51e763493601dfa3bf5456e5dc347b157c0c08005b8956eb9e4cd4ac99",
+        "source-wheel.json": "0e88449c7f89d857e2da931d4dec9b0cc5be7bbff5a6ed5730a31b72aba341a4",
+        "media/cars/OPE_daily06_2001__.zip": "0fedb9fdfe71b7d79b6636d219bbfcbd474b348a19775af745fc03fa1a0d4d4a",
+        "media/stripped/RC0/Thumbnail_5006_Small.swatchbin": "80d461f3259c8328f7a82a323dd59de6837a7aac8089a76cc460972b3d692251",
+        "media/stripped/RC0/Thumbnail_5006_Big.swatchbin": "32027c7d870bae0f1108691bc5a8ea659314892725aa21054f9f44bd7896f640"
+      }
+    },
+    {
+      "name": "Opel Astra H",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra H",
+      "sha256": {
+        "mod.json": "85734f262cc3afa78924770319035ce053171a436273c01849e4d8bb66c0fda6",
+        "CREDITS.txt": "3ed2b527294dee552b9802804f42575608ad829dceda63cb12b95e929a8a8d4f",
+        "BUILD-NOTES.txt": "dc0cd148ac5c87ad10cb3c4a7741a886502cf7e17f018a6675c7771272a994ee",
+        "wheel-build.json": "0d62d1e316a2d5c5ee50d55ea6f54e11fb36cfeca45bcb1bc0e6c5ce82d06f8f",
+        "database.json": "290918840c3c4929638ab02cee00339c9d41db3b112d5f30888d0726c2b69b02",
+        "strings.json": "cb1cef55650e0e1144e11a07838e0b37efccffe5f7840a9b4ff868fa3fcdd625",
+        "wheel-fit.json": "f6c193b7b1731b9dfbbc33463f1159a5a05f204e2808a5ca6ce2f298643a8fb2",
+        "source-wheel.json": "8a813677710b328e8a97dffa40801f121168c14de4ede99d62b0764aaec27d27",
+        "media/cars/OPE_daily07_2005__.zip": "9ed09daa9418e92c1a4f134c6ed4d75a91a086a5a73f5068a9a1e92dcf5f20fc",
+        "media/stripped/RC0/Thumbnail_5007_Big.swatchbin": "12ae27cf637c925a8716190cecbe40f14f33f389b4359f9dcdf682d90fe69203",
+        "media/stripped/RC0/Thumbnail_5007_Small.swatchbin": "07ad976e36da72f0f1385f20db84b320de0f58da771d34d350e36fed0270f7a6"
+      }
+    },
+    {
+      "name": "Opel Vectra B",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra B",
+      "sha256": {
+        "mod.json": "cc4eb6f81ea426b464219a77462afb8f0e9c7348715de08bd7416efacf5f28ba",
+        "CREDITS.txt": "0ebc43094afda90951ba7acaf6c3658c91a0681ed2c23d599cf2b287e018de44",
+        "BUILD-NOTES.txt": "45f956712f66b5b553ee309352e7c3e98e07c7de05136d7bf6870ea75c881a1e",
+        "wheel-build.json": "f593a87b53f15492f8a711fe6b85a245cc7aee349e9ff31debc2eac12afabac5",
+        "database.json": "0bfb6765349079ae8c896888306f7f4724cbab05251649b43d88527396f77af2",
+        "strings.json": "9b92e559dcd13e631cf97418e7af4f7c082833be0462c4ada9e4ed27a3521e2e",
+        "wheel-fit.json": "6667abac4b1b9af68ba8307f5097ef50f07291a7f3208ead432f263ae0283a2e",
+        "source-wheel.json": "fd385a6ff57d0e492b544bdc8016a18a2c4f919987b62b87d0fd229f7900a1a8",
+        "media/cars/OPE_daily08_2001__.zip": "a5f74a5b6f13fc691f2993a9175e99bf90162af71964e55b843b572e5eecb440",
+        "media/stripped/RC0/Thumbnail_5008_Small.swatchbin": "b0a95911f8bfde9ecfcc2087654709f4417700eed90c6a766f07d5f31fe229b7",
+        "media/stripped/RC0/Thumbnail_5008_Big.swatchbin": "59ab429f260249af8b9affac65873ebfead279407045191e2b4512af96802406"
+      }
+    },
+    {
+      "name": "Opel Vectra C",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra C",
+      "sha256": {
+        "mod.json": "2522c8fa4edc873fe47e0244cb0874bf71e3c614ec45fb39bc8e59bbb3574428",
+        "CREDITS.txt": "f777a3905c61849e4c7f913e3cf222d56590c737e109283900d61c242ab585a7",
+        "BUILD-NOTES.txt": "3da3475781c31f7980ea8bac39a37b107a6b5e15778a8a22a07555899d5c9f0d",
+        "wheel-build.json": "c6c1eef50ddc2d3d3b1621318a9b6354941639d48a110f8abb98018fd2bd58f0",
+        "database.json": "1b25c8e2ad83589ec725ddd6f3fca5821b512a746c0b0fea326c41b64fadccb3",
+        "strings.json": "a00985e1cb9b88c2202d5c66ada25c3d24fd9c2b812b3d5a33b89a913a8d4cb2",
+        "wheel-fit.json": "194a41b2c33106580ad59f646224f7b60144477d57bfe5436fc8470c3985b6a7",
+        "source-wheel.json": "2683d526cd331ba8844a35fd105d8dcda380f0489fc50a0dd38444e96e0efcec",
+        "media/cars/OPE_daily09_2003__.zip": "cc19e5212412ad919b280a7ecddc5d9c3bdac6903a0ac9cbc54fc8c2740404a0",
+        "media/stripped/RC0/Thumbnail_5009_Small.swatchbin": "dad509b6c8efa2d6429bd723c0efe95e21579fd1d2b9b0971a06032abdbd450e",
+        "media/stripped/RC0/Thumbnail_5009_Big.swatchbin": "a1d6028e63ccdc0a82fccc32f6ceb512709d4581d396037208acd0651adf0194"
+      }
+    },
+    {
+      "name": "Opel Zafira A",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Zafira A",
+      "sha256": {
+        "mod.json": "554b19f06231f000aa2223fd923f22967f268dae0d01507d233ea23c1965bcd7",
+        "CREDITS.txt": "95bb4357bcde66a07e5605012a853da0a384a544a1dc9a6c893aa1d43ad82a18",
+        "BUILD-NOTES.txt": "3360e5e2fc1e9598b7cd515b6f26c5afd83635efe259159a061ca2d7fb9bce39",
+        "wheel-build.json": "2bd6d970490a5fa615ae5647c48efebf3878dacf7d7dc7defa035d2339714444",
+        "database.json": "8ff84adad7162ae5a7e6a420df519c42325ca5e83f8f2648e578884ad1024087",
+        "strings.json": "b23abd4ad3672c3c1d3bc4a3e42dca4841d3d1e86de3f4c6edd8f47d2f52a9f5",
+        "wheel-fit.json": "52033c2ac70f835f6f6192e0ea19eb2a5718bb0c22389754eb45bc1bba2441e9",
+        "source-wheel.json": "5ae914b77476933679e6c81f22884ff71e50a5b7729b8b37c6ab28d12609a387",
+        "media/cars/OPE_daily10_2002__.zip": "e6937585a1b0f58f32b2f3a75742655b182b4109168fca37011325b5c62f6922",
+        "media/stripped/RC0/Thumbnail_5010_Big.swatchbin": "7ef590d948af590b3ce2910918450712a9c1b55cc0b1fe9c8361f3f691531f50",
+        "media/stripped/RC0/Thumbnail_5010_Small.swatchbin": "835c77f8ed8e9e0c2ebdd2e40b5de64c767ea4c0e1fc99f2ad7f5a5dc75992b3"
+      }
+    },
+    {
+      "name": "Volkswagen Polo Mk3",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk3",
+      "sha256": {
+        "mod.json": "9614973087b5c1982bfab32c0b2d99fe20da0341e56494e6859c002f02d76eb2",
+        "CREDITS.txt": "412760a4e34ad273b47aef9453718bc702385968bda3a5c60a7ca5a9cfce4c1e",
+        "BUILD-NOTES.txt": "b352c24071f84575908741d24b9db1141708dbf4c2d9fd2226b754b77988f0b3",
+        "wheel-build.json": "04e0dadd2d34867c5d663253d7ef84f87dda707c2e42c34f9f132d1342dd905b",
+        "database.json": "1d85edb985033e14e8bd70d9afb66c49e15468e83f8ec5c89ec32399ef3073b2",
+        "strings.json": "99d14753a489e3d59197ed7fbf568eecf1b5ef0ebdcb4979f455991fc721d124",
+        "wheel-fit.json": "99ee01530ee7f9810a40566b29c81d3b1f3c084beeda5a6ebc5b43a4fb8d27f4",
+        "source-wheel.json": "7d09834bada39fbc38645b3e67c0ba4b9ef4cf6bfccf9d10125a01c6bc1fc52c",
+        "media/cars/VW_daily11_1996___.zip": "6d5998b08f09809aa0733996ba3d7a82e7639c57b60bf8c8cad8ab1b5b6ca7bd",
+        "media/stripped/RC0/Thumbnail_5011_Small.swatchbin": "1add4fff4db01489eee5bf2125eb4e73733edf106cdf910c23d2b2f5d41191ca",
+        "media/stripped/RC0/Thumbnail_5011_Big.swatchbin": "4edd560976d61bfd7769fe0abc205701d1de8463e495cf5d7dd61c0d25dfcb06"
+      }
+    },
+    {
+      "name": "Volkswagen Polo Mk4",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk4",
+      "sha256": {
+        "mod.json": "bb661784c5b179e4eb32b48910ce3e9b747722b36c73607c2078ab3ccac51125",
+        "CREDITS.txt": "a31f411bcdddbac593c0df74ce2b94cac8d04c063115c132a2788d893df70fe0",
+        "BUILD-NOTES.txt": "19b71d9cba2aebbdad38028accdb3a031528ca88365cea49d5c3f14926f9d705",
+        "wheel-build.json": "85b509620700b6435810042b883471a5bdbf0901e1be5dac1a4b10168c55bc42",
+        "database.json": "598238a26425f2aedd998673c721d7f9e830fae1f95e2f6b0b95c42db06ab3f2",
+        "strings.json": "fe4a8d43e401494286c0bcd849566588952c57b6a5361683621eaf06785a37af",
+        "wheel-fit.json": "b7d23e2105cedef2019b41df22b12413b838ab257598e98d9c82f786f4ee5a22",
+        "source-wheel.json": "bb9eb1838fcd5a414509f7e3f60fdf6f4b0bd7ae51c8466f1143b43ca663e597",
+        "media/cars/VW_daily12_2003___.zip": "94333a426efe4e31526e2ab66bad7db126b03e2859541802513638ff691f447a",
+        "media/stripped/RC0/Thumbnail_5012_Big.swatchbin": "fc424edf00d262c71435f053c85ba9d6c507acddd461de8ca371d9d2bc9ffd47",
+        "media/stripped/RC0/Thumbnail_5012_Small.swatchbin": "54f381ddf8f068d8a39d8ecf0d9c1dc28276d84422284fe18d8e2c16d3061265"
+      }
+    },
+    {
+      "name": "Ford Ka",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Ka",
+      "sha256": {
+        "mod.json": "d728f5751f117e42e1bb2eb895b32e431744acb98dbb87b9d7e33ce0f7f8f0c7",
+        "CREDITS.txt": "55d277f8eb7a02db081769c60aeeb97165420c83b792d018d4b72e91af135a2b",
+        "BUILD-NOTES.txt": "1158da3910b5c5873489b7dadccb73a2e35ea4812968f3472bdb7d35a201698b",
+        "wheel-build.json": "4939710198dc0dbafe75fa4f2dfbd7ab6dff8540ef5c959a59023d3116ca0273",
+        "database.json": "b17bdc9636716ecebe3022b7db9674acdc536a11da30f6b2cb7c2d69abd45c48",
+        "strings.json": "cf0b9ba5d0b1b675bb63b2039200721f21b85da2e0d32e18d5fc4bc4ec2f831d",
+        "wheel-fit.json": "1e8402c63a7a9ad7b62f556439f3ea352713075591f0dba66ada114d059a5212",
+        "source-wheel.json": "01224ba4311e8ed9dbfb9c66b27c984f2e8b4a68fa0c43d9e4e48ac6ad1a1fbd",
+        "media/cars/FOR_daily13_2000__.zip": "95c2e74fefca8fa7c7f8fb6a1535fb941b7835759888062a04f8ec6f28d1abbe",
+        "media/stripped/RC0/Thumbnail_5013_Big.swatchbin": "60867734f8bbe715ef9cc862d45d1b072e59dff014c2f69e2257fac577ea1f74",
+        "media/stripped/RC0/Thumbnail_5013_Small.swatchbin": "9da2ba0a3aab80a5df008749ae4b566239f1ba60062e26e3944cb0cff41cc45a"
+      }
+    },
+    {
+      "name": "Renault Laguna II",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Renault Laguna II",
+      "sha256": {
+        "mod.json": "0649270b2f8242523d3889aef3a3f136127ee21a44150d64557d6ca73ef371a3",
+        "CREDITS.txt": "71c77571af6e3aad80526086e1764b201ca434e06dd7d98ff0b2f9b1ce18a537",
+        "BUILD-NOTES.txt": "0dfed4fa3fa01cd1c43b4a4236b0789e38db4f299a4b11257347e9beb2c9fb3a",
+        "wheel-build.json": "0b4f3b49d6b1e38cae3636d7f85e86a98b086d8e4630752c4cc8d246fb3c3e8d",
+        "database.json": "6b5d4a851acd52e45a38bdc6fdb1fd049a7c0ad0043808d95bf7ca8553cc4311",
+        "strings.json": "e76406414a895899bf253425f2a79c47589c23d6b3bcbf0b7c4784eebdc57e11",
+        "wheel-fit.json": "ebe6f7bc56f64fc5358b70dd4d6060d33c8fc718bc0887a3a66b789902afd1d3",
+        "source-wheel.json": "41312e72342dd5dd2a9acb0b8d6faf13f1340d7c76bd227e7b7500ee29bfd283",
+        "media/cars/REN_daily14_2003__.zip": "05dfb696cc8aa654c20cdb410e32fcd198162c4c9a9bed8df1b5ea3ec3161ff1",
+        "media/stripped/RC0/Thumbnail_5014_Big.swatchbin": "39a7a9635ab92eddee01a4b7f1d8c789e8d2e127f44dabe4e10ca17658754f9c",
+        "media/stripped/RC0/Thumbnail_5014_Small.swatchbin": "7e5e591955dd0cc04ebf049330a92bedcdade9fe92370cd10525c916bfe7f36f"
+      }
+    },
+    {
+      "name": "Citroen Xsara",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Citroen Xsara",
+      "sha256": {
+        "mod.json": "a92ef618d3e33fb707ff95b0f46dd6d55873bce375705838ae27a72983238043",
+        "CREDITS.txt": "74d09b51e57b0aacd86708a753a720d85084482218429a4f28416349aec83460",
+        "BUILD-NOTES.txt": "9442d0a925eb16e0f6b0ab5c74bf4af74db8fe370f8dc07f3f3734abf56115cb",
+        "wheel-build.json": "a6b31254a2b12fb71891c8d0a9498b77441b8c100543d82467e025101b5bbd5d",
+        "database.json": "e602295ffc3c562b60eafdacf572a28b111a35a7652dbe778ddac079404820d7",
+        "strings.json": "dec5e43edfb0c08e4cbdd402c386d2fdcc1b20c646440156a95ea2c4dbe911a3",
+        "wheel-fit.json": "c6e887dc01075fc66a1a7bfb421b36816f02ce24080a6fe42d03ed4f5fcaed2e",
+        "source-wheel.json": "03871e35e4074ff98157a0d85a833b4d7f62d7b4ddb1587f829c860862a10ea5",
+        "media/cars/CIT_daily15_2004__.zip": "d79dcdf9ed0bd26d1c18572f13cf6ebcc400e7948bbf462aa9c311c116ef85b7",
+        "media/stripped/RC0/L_Manu_Logo_CIT.swatchbin": "bccbd517d00eb24e626dabb04af6e95a01225184d984258239568ffcbb985823",
+        "media/stripped/RC0/Manu_Logo_CIT.swatchbin": "6b340f9be791ce3178e7451a0072582d21b51b9785ec6974acd636a78b62b6f9",
+        "media/stripped/RC0/Thumbnail_5015_Small.swatchbin": "4af27bc1ce669d2c1a999b0dc98bd74bee1a10f1e66d8d8d1e4fa04633322da5",
+        "media/stripped/RC0/Thumbnail_5015_Big.swatchbin": "9451c216ce4427adc721baaafeb692d527892b7be3a2bcb7799147459df1e66c"
+      }
+    },
+    {
+      "name": "Volvo S60R",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volvo S60R",
+      "sha256": {
+        "mod.json": "79ddf769cd9a960c59ba75670e0442b0ac2b665792f969c91206bbebfdac428e",
+        "CREDITS.txt": "ab6bb42fbbb73fa9a4f4b8cff98a49177e25799469dd88393ce8b18ffc4fb31b",
+        "BUILD-NOTES.txt": "66a3102a02a16af93b7cd4962afde1758b951954ec40b4a2a2a159a280cc0c65",
+        "wheel-build.json": "e442b5b20c8f7ceed792f1987046ba2f5bfd088e9863b77c63eda139d0512649",
+        "database.json": "2fe4a76ff0fbc3f5aafa54cdfb556f25e13c742941b0e1a25cc0b326fab594db",
+        "strings.json": "0ad6b0da322fa4d748c8e943c1a52dbaecb51528827899ba31a9a7687e33ad6c",
+        "wheel-fit.json": "273ba692b6b14bbfc26e073709f5556af22ea50e3ac223176630f2aab76c3f3d",
+        "source-wheel.json": "b51fbcadcbb00445a8d8c7bc1e5b05888b794bd71165712a414b15d34bb36c28",
+        "media/cars/VOL_daily16_2004__.zip": "49815aff2b026c9f51097d32036e5294bd6a883eb79349acb25713ca04337aef",
+        "media/stripped/RC0/Thumbnail_5016_Small.swatchbin": "1987f74b293710dd604a42793fbd024a62856ae28a663235f25454bc167ccf82",
+        "media/stripped/RC0/Thumbnail_5016_Big.swatchbin": "ecc44e1a894dcf6972d33a03caba979c2f14b838abb02361badbc820b0f21fba"
+      }
+    },
+    {
+      "name": "Volkswagen Passat B5.5",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Passat B5.5",
+      "sha256": {
+        "mod.json": "f1d29fa722533fb8bdd0c389fd8a4ae2a9981e0b2e6e3e8b847bdd63b797fb61",
+        "CREDITS.txt": "37505667c2f20beaf436a8ea5c73d17415841ddc4bea4bdfde14bc5940dacdda",
+        "BUILD-NOTES.txt": "5ecbca2878923c8e6a6d392572029180adade99803263cdd70483385fdf569b6",
+        "wheel-build.json": "458ae3d864f5eb4aa00e08e661dce9812cc6b48714ec25c0385d21e9310e3932",
+        "database.json": "3c56a9b5bc7a81ce81c47684dbf5119d0c5ea5c65d48fa5fba3dd0941f649b14",
+        "strings.json": "226cd534a0476d384b83e2fd7602086fee18c4196e7b412a0dcc5a90fd3d8ae9",
+        "wheel-fit.json": "e14790257c9ae0bb9ccb6a2312cc041ed9844f077af1c4214c8df737f3e509df",
+        "source-wheel.json": "c4642b0d7aa3906cb585c9baa0639fbc1d8cb460eec485e13a47668c58131891",
+        "media/cars/VW_daily17_2003___.zip": "bc6b5df5a2ae590c6971730d3632888e237cbd6349153397a9391b7318c22bb7",
+        "media/stripped/RC0/Thumbnail_5017_Small.swatchbin": "e585faf22efde0ad8ca25f7c2b4566d1a7fefedae60c016d8441626703a1e995",
+        "media/stripped/RC0/Thumbnail_5017_Big.swatchbin": "7db3b0f944cd0283dc9f283247422e662385aac0d10a43b909d0ae2a23e76654"
+      }
+    },
+    {
+      "name": "Fiat Punto Mk2",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Fiat Punto Mk2",
+      "sha256": {
+        "mod.json": "f35d3561db81eca7fba04c831342dc4156aedd514bfdea897cc5627bbf217176",
+        "CREDITS.txt": "49c6434f41c3c7e8bd86fffec7c2ce7cecba37f709b9a526dc378744e64a31b8",
+        "BUILD-NOTES.txt": "1ef96b719b95a205c302167304e65ff91fedd9de7e5d4ec7d5ebe20e60c6b5d2",
+        "wheel-build.json": "b6fef80a6c26b16c6b72123c1c0213d2be0f55bed9f213cdde35151f9577a408",
+        "database.json": "5161f2eae827a5719f245ffad5056ed771a45f42ab67e5aee4ced8949520c8f2",
+        "strings.json": "5f630e202da54a35923778de53d4f9481caf739de7d39aa542adc0cbd9778615",
+        "wheel-fit.json": "ef367aa905932c799627109be2a1588fd03da5e7673a16545aba842e3a4a1bfa",
+        "source-wheel.json": "0aa2d6b095a4e90b38c8cafb193753cc64d25be0ae152dfb399737a34d1942af",
+        "media/cars/FIA_daily18_2002__.zip": "a8118afaa668a7792a12f4332277ddeeee1ede3e653974e4c488078f62d3adb2",
+        "media/stripped/RC0/Thumbnail_5018_Small.swatchbin": "38b820aa6d97402e75876082c26c61efe12334d26475a2e31738d3bf50c58ff0",
+        "media/stripped/RC0/Thumbnail_5018_Big.swatchbin": "d4d5fe8246aee1409910889728e6914bd7ec17a1ecb150bb1c04ea3f5db8644f"
+      }
+    }
+  ]
+}

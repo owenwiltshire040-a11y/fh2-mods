@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Ford Fiesta 2002",
+    "car_id": 5001,
+    "mod_id": "owen-daily01",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 10,
+    "bytes": 33143309
+  },
+  {
+    "name": "Ford Focus Mk1",
+    "car_id": 5002,
+    "mod_id": "owen-daily02",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 62,
+    "bytes": 37320566
+  },
+  {
+    "name": "Ford Focus Mk2 ST",
+    "car_id": 5003,
+    "mod_id": "owen-daily03",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 30,
+    "bytes": 32738831
+  },
+  {
+    "name": "Ford Mondeo Mk3",
+    "car_id": 5004,
+    "mod_id": "owen-daily04",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 50,
+    "bytes": 87678765
+  },
+  {
+    "name": "Opel Corsa C",
+    "car_id": 5005,
+    "mod_id": "owen-daily05",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 78,
+    "bytes": 34990795
+  },
+  {
+    "name": "Opel Astra G",
+    "car_id": 5006,
+    "mod_id": "owen-daily06",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 26,
+    "bytes": 40369617
+  },
+  {
+    "name": "Opel Astra H",
+    "car_id": 5007,
+    "mod_id": "owen-daily07",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 62,
+    "bytes": 55913033
+  },
+  {
+    "name": "Opel Vectra B",
+    "car_id": 5008,
+    "mod_id": "owen-daily08",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 134,
+    "bytes": 35454685
+  },
+  {
+    "name": "Opel Vectra C",
+    "car_id": 5009,
+    "mod_id": "owen-daily09",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 126,
+    "bytes": 44296198
+  },
+  {
+    "name": "Opel Zafira A",
+    "car_id": 5010,
+    "mod_id": "owen-daily10",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 50,
+    "bytes": 37429806
+  },
+  {
+    "name": "Volkswagen Polo Mk3",
+    "car_id": 5011,
+    "mod_id": "owen-daily11",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 194,
+    "bytes": 45053543
+  },
+  {
+    "name": "Volkswagen Polo Mk4",
+    "car_id": 5012,
+    "mod_id": "owen-daily12",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 38,
+    "bytes": 47840123
+  },
+  {
+    "name": "Ford Ka",
+    "car_id": 5013,
+    "mod_id": "owen-daily13",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 26,
+    "bytes": 32059737
+  },
+  {
+    "name": "Renault Laguna II",
+    "car_id": 5014,
+    "mod_id": "owen-daily14",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 110,
+    "bytes": 36485697
+  },
+  {
+    "name": "Citroen Xsara",
+    "car_id": 5015,
+    "mod_id": "owen-daily15",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 38,
+    "bytes": 35305743
+  },
+  {
+    "name": "Volvo S60R",
+    "car_id": 5016,
+    "mod_id": "owen-daily16",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 50,
+    "bytes": 36167554
+  },
+  {
+    "name": "Volkswagen Passat B5.5",
+    "car_id": 5017,
+    "mod_id": "owen-daily17",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 178,
+    "bytes": 48032949
+  },
+  {
+    "name": "Fiat Punto Mk2",
+    "car_id": 5018,
+    "mod_id": "owen-daily18",
+    "wheel_fit": true,
+    "archive": true,
+    "model_parts": 89,
+    "texture_refs": 22,
+    "bytes": 34342381
+  }
+]

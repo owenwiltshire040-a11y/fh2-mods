@@ -1,0 +1,62 @@
+{
+  "name": "Ford Mondeo Mk3",
+  "slug": "daily04",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Mondeo Mk3/source.glb",
+  "selected": [
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.009",
+      "material": "rim.001",
+      "triangles": 2184
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.008",
+      "material": "rim.001",
+      "triangles": 350
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.005",
+      "material": "rim.001",
+      "triangles": 18210
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.003",
+      "material": "rim.001",
+      "triangles": 960
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.002",
+      "material": "rim.001",
+      "triangles": 2648
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.001",
+      "material": "rim.001",
+      "triangles": 2112
+    }
+  ],
+  "spindle_axis": [
+    0.9999999117492175,
+    2.570643588439515e-05,
+    0.0004193336811710777
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 24.770379157845852,
+  "normalisation_scale": 0.009200505109257247,
+  "source_depth": 24.273202612711295,
+  "fitted_depth": 0.22332572465628664,
+  "tyres": {
+    "width_front": 225,
+    "width_rear": 225,
+    "aspect_front": 55,
+    "aspect_rear": 55,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.33965,
+  "source_tyre_radius": 0.33739647910141485,
+  "triangles": 26464,
+  "geometry_sha256": "3f7248ca9b34d64c50cdad959d2f920d2daf3994b83c9c4b16a75e58e36bfb04",
+  "status": "source geometry selected; built validation pending"
+}

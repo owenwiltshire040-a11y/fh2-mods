@@ -1,0 +1,37 @@
+{
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Ka/source.glb",
+  "chosen": [
+    "aiStandardSurface1SG",
+    "lambert6SG",
+    "phong1SG",
+    "lambert2SG",
+    "lambert7SG",
+    "aiStandardSurface3SG",
+    "aiStandardSurface6SG",
+    "initialShadingGroup",
+    "aiStandardSurface2SG"
+  ],
+  "dropped": [
+    "lambert12SG",
+    "blinn1SG",
+    "lambert4SG",
+    "lambert5SG"
+  ],
+  "frame": "pca",
+  "scale": 0.39522956405410514,
+  "source_front": 2.8481806727917878,
+  "source_rear": -3.3456879611469423,
+  "source_y": 0.29504157929388064,
+  "bounds": [
+    [
+      -0.9428087865802931,
+      -0.12059763313609465,
+      -1.6225544378698225
+    ],
+    [
+      0.9428087865802932,
+      1.1302311646247034,
+      1.9987473372781062
+    ]
+  ]
+}

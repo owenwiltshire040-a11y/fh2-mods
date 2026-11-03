@@ -1,0 +1,37 @@
+{
+  "name": "Fiat Punto Mk2",
+  "slug": "daily18",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Fiat Punto Mk2/source.glb",
+  "selected": [
+    {
+      "node": "wheel__a6m0",
+      "material": "rgba_204_204_204_255",
+      "triangles": 3757
+    }
+  ],
+  "spindle_axis": [
+    0.9999908604349662,
+    -0.004275400150604478,
+    -2.9684874296355504e-07
+  ],
+  "nominal_rim_in": 14,
+  "nominal_radius": 0.17779999999999999,
+  "outer_lip_radius": 0.1898,
+  "source_outer_radius": 0.23464499283012427,
+  "normalisation_scale": 0.8088815265596114,
+  "source_depth": 0.19497665663205827,
+  "fitted_depth": 0.1577130156600285,
+  "tyres": {
+    "width_front": 185,
+    "width_rear": 185,
+    "aspect_front": 65,
+    "aspect_rear": 65,
+    "rim_in": 14,
+    "compound": 3
+  },
+  "tyre_radius": 0.29805,
+  "source_tyre_radius": 0.29947071277346504,
+  "triangles": 3757,
+  "geometry_sha256": "4bcde06b44b6391f5da36c2a7436ea305ecae45c3895746ef2d5f4de5e691280",
+  "status": "source geometry selected; built validation pending"
+}

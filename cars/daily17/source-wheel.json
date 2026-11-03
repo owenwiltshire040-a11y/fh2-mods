@@ -1,0 +1,37 @@
+{
+  "name": "Volkswagen Passat B5.5",
+  "slug": "daily17",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volkswagen Passat B5.5/source.glb",
+  "selected": [
+    {
+      "node": "wheel__a0m1",
+      "material": "mallory",
+      "triangles": 9740
+    }
+  ],
+  "spindle_axis": [
+    0.9999984275551624,
+    -0.0007613556978081524,
+    -0.0016016318878220245
+  ],
+  "nominal_rim_in": 20,
+  "nominal_radius": 0.254,
+  "outer_lip_radius": 0.266,
+  "source_outer_radius": 0.30861498856323477,
+  "normalisation_scale": 0.8619153633411327,
+  "source_depth": 0.25944435562562773,
+  "fitted_depth": 0.22361907604586895,
+  "tyres": {
+    "width_front": 235,
+    "width_rear": 235,
+    "aspect_front": 20,
+    "aspect_rear": 20,
+    "rim_in": 20,
+    "compound": 3
+  },
+  "tyre_radius": 0.301,
+  "source_tyre_radius": 0.3014136690647482,
+  "triangles": 9740,
+  "geometry_sha256": "e0f405d22664fc1c41b79a4b43783a7ae68dd185fc52dfb005f701698ea4b5c0",
+  "status": "source geometry selected; built validation pending"
+}

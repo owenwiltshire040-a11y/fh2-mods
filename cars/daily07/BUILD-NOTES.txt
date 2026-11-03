@@ -1,0 +1,9 @@
+Opel Astra H
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/opel-astra-h-2004-2014-3f1bbea9691a497ca55f2b4a8cb38b83
+Scale 8.59868421; source axle spacing 0.304000; target axle spacing 2.614m. Source wheel radius 0.2924m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 16 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.
+
+Visual review: Source contained detached and alternative panels. Selected bonnet/headlamp parts have been aligned; exterior still needs an in-game review.

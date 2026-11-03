@@ -1,0 +1,37 @@
+{
+  "name": "Opel Zafira A",
+  "slug": "daily10",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Zafira A/2002_opel_zafira.glb",
+  "selected": [
+    {
+      "node": "Object_30",
+      "material": "Carro_Roda",
+      "triangles": 3785
+    }
+  ],
+  "spindle_axis": [
+    0.9999988795365297,
+    0.0014956470750972515,
+    6.297231251396378e-05
+  ],
+  "nominal_rim_in": 16,
+  "nominal_radius": 0.2032,
+  "outer_lip_radius": 0.2152,
+  "source_outer_radius": 0.2184607246641514,
+  "normalisation_scale": 0.985074092063165,
+  "source_depth": 0.04449889658134439,
+  "fitted_depth": 0.04383471014768048,
+  "tyres": {
+    "width_front": 195,
+    "width_rear": 195,
+    "aspect_front": 50,
+    "aspect_rear": 50,
+    "rim_in": 16,
+    "compound": 3
+  },
+  "tyre_radius": 0.30069999999999997,
+  "source_tyre_radius": 0.3032140707964602,
+  "triangles": 3785,
+  "geometry_sha256": "d4fd2fc19de8aab2dc384051137ba45713028880f76b802dcf477bca858388c7",
+  "status": "source geometry selected; built validation pending"
+}

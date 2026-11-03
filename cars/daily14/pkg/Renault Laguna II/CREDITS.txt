@@ -1,0 +1,7 @@
+Renault Laguna II
+Creator/provenance: skybh; listing also credits jeep, foxboro and tiberius
+Source: https://www.gtainside.com/sanandreas/cars/38183-renault-laguna-ii-2-0t/
+
+Downloaded as an archive only. No installer or mod code was run. This is not yet a Forza-ready car. Preserve original credits. Free download does not establish permission to redistribute; review the original listing and provenance before publishing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

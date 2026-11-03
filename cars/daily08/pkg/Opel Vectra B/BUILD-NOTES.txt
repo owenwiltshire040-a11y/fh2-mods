@@ -1,0 +1,7 @@
+Opel Vectra B
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/opel-vectra-b-2001-979f231d0b014ff19e87d02759546591
+Scale 0.94856115; source axle spacing 2.780000; target axle spacing 2.637m. Source wheel radius 0.3045m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 15 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

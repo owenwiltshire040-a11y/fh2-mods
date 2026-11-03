@@ -1,0 +1,7 @@
+Ford Focus Mk1
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/ford-focus-mk1-1998-2008-dc9b58b6114d4a7b8b25812533f9cbbd
+Scale 0.99809160; source axle spacing 2.620000; target axle spacing 2.615m. Source wheel radius 0.2994m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 17 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

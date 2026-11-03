@@ -503,3 +503,39 @@ CONFIRMED in game 30 Oct (Owen: "that's fixed it!!!"). 'roof' is now build_car's
 Older builds: fh2re/fix_shading.py car.zip donor.zip out.zip [parts] patches a built zip in place. STR1 (Charger
 donor) had the black-trim texel (TEXCOORD3 0.01,0.016 -> 0.694,0.600); the 207 (Fiesta ST donor, body_sheik's
 directional bright_uv1) was already near (0.519 -> 0.587), so it changes little. Both patched 30 Oct.
+
+## 31 Oct - 3 Nov: the Codex sessions on the Mac (synced into this repo 3 Nov by Opus)
+Owen worked with Codex (ChatGPT) on a local copy at
+`~/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build` (code + per-car scripts, synced here; game files, models,
+builds, `output/` and backups stay on the Mac) and `.../Azimuth/FH2 Renderer` (synced here as `renderer/`, without
+its game clone, runtime, captures, logs and toolchains). Read `AGENTS.md` first: Owen's build-quality rules.
+Cars (packages in the Mac's `output/`, versions in each pkg mod.json):
+- Passat B3 2.0 16V (`cars/passatb3`): v0.5.3 baseline confirmed in game - steel wheels via the 207/208 rim system,
+  axle fix (a leftover Charger wheelbase-centre offset drew both axles 3.7 cm forward), badge moved onto the boot,
+  full upgrade tree (`upgrades.py`: tyres, weight, suspension, brakes, FWD diff, gearboxes, engine/cam stages),
+  working lights + cloth cabin. IDLE FIX: every torque curve needs its zero-throttle torque field; without it the
+  car revs to the limiter at idle (IDLE-FIX.txt). Weight reduction readings match the DB exactly.
+- Tesla Model Y 2025 (`modely2025`, electric single-speed AWD): v0.1.5 after 6 wheel-fit rounds -> the measured
+  wheel workflow below. Peugeot 107 early (`peugeot107`) v0.1.3 confirmed (lion badge, headlamp glass, dark liners).
+- Jordan EJ11 2001 (`jordanej11`): fitted right first time. Hyundai N Vision 74 (`nvision74`): v0.1.1, raised 25 mm.
+- 18 mid-2000s "daily drivers" (`cars/daily01-18`, `tools/daily_*.py`): built, own source wheels, fit checks pass;
+  NOT yet tested in game. Ka/Punto bodies need repair; lights decorative; physics/cockpit provisional.
+  Model sources/credits in each pkg CREDITS.txt; downloads in the Mac's `Azimuth/Car Model Downloads`.
+- Toro Rosso STR1 (`cars/tororosso`): 0.6.2 is the working install. 0.7.0 (16,700 rpm curve, the Williams FW24's
+  V10 sound bank, separate F/R rims, digital dash) froze the main game after Continue (first its installer also put
+  it after Williams in the load order, which disabled it) -> 0.7.0 quarantined, its installer disabled. A second try
+  (`build_revision.py`/`validate_revision.py`) runs in the private renderer but accelerates and revs very slowly;
+  open question when the sessions ended (neutral couldn't be selected to test free revving).
+Builder changes: measured wheel fitting (`fh2re/wheelfit.py`: source wheel centres, tyre size, rim face; per-car fit
+profiles; preview with the real DB tyre sizes and rim scaling), `fh2re/wheelcheck.py` in package_car (rejects
+Charger rims, wrong faces/depths), `tests/` (pytest), `tools/car-studio` (Codex's step-by-step app, OTV-styled).
+Extra Options keyboard bindings were changed on the Mac: arrow keys = D-pad (up tap hazards, hold photo mode,
+left/right hold indicators, down autodrive).
+Private renderer (`renderer/README.md`): an isolated APFS clone of the game booted through Azimuth with a private
+winmm.dll (Extra Options fork, `renderer/src/extra-options`): auto Continue/Pause into the car viewer, a browser car
+list of all mod cars, live visual refresh of a rebuilt car (no restart; DB changes still need one), lean boot
+(city streaming off, 42 -> 29 s), six-angle capture (Screen Recording permission granted) so an assistant can check
+builds itself. The main game install and saves are untouched by it.
+From the cloud side (Opus): `glbgeo --wheel-tag` (wheel parts found by position: triangles inside the wheel
+cylinders become RIM_*, matches hand tagging on the Omoda and DAF), `fh2re/estimates.py` (PI/class/ratings from real
+specs). The earlier cloud-only "FH2 Car Studio" (studio/) was retired in favour of tools/car-studio.

@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "id": "owen-tesla-model-y-2025",
+  "name": "Tesla Model Y AWD (2025)",
+  "author": "Owen",
+  "version": "0.1.5",
+  "description": "First-pass Model Y with native FH2 electric motor setup. Personal noncommercial use.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": []
+}

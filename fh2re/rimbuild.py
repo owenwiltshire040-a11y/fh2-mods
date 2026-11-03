@@ -72,7 +72,7 @@ def orient(P, N, trust_normals=False):
     return Pv, Nw, Tv
 
 
-def _fill_group(p, names, gid, mat, keep_donor, sP, sN, sT, planar=False):
+def _fill_group(p, names, gid, mat, keep_donor, sP, sN, sT, planar=False, source_uv=None):
     """replace material `mat` of group `gid` with the triangles sP/sN/sT, keeping the donor's `keep_donor` materials
     (LOD-0 triangles) with their own attributes and morphs; AO UVs for the new vertices from the nearest front-facing
     donor vertex of `mat`"""
@@ -96,7 +96,8 @@ def _fill_group(p, names, gid, mat, keep_donor, sP, sN, sT, planar=False):
         allPos = d['POSITION'][:, :3]; A = np.c_[allPos[:, 1], allPos[:, 2], np.ones(len(allPos))]
         co = [np.linalg.lstsq(A, d['TEXCOORD3'][:, c], rcond=None)[0] for c in (0, 1)]
         uvc[3] = np.concatenate([a[3] for a in keepAO] + [np.stack([np.c_[sP[:, 1], sP[:, 2], np.ones(len(sP))] @ co[c] for c in (0, 1)], 1)])
-    allP = np.concatenate(keepP + [sP]); allN = np.concatenate(keepN + [sN]); allUV = np.concatenate(keepUV + [d['TEXCOORD0'][src] if 'TEXCOORD0' in d else np.zeros((len(sP), 2))])
+    custom_uv = source_uv if source_uv is not None else d['TEXCOORD0'][src] if 'TEXCOORD0' in d else np.zeros((len(sP), 2))
+    allP = np.concatenate(keepP + [sP]); allN = np.concatenate(keepN + [sN]); allUV = np.concatenate(keepUV + [custom_uv])
     by_mat = dict(keepT); by_mat[mat] = (sT + base).reshape(-1)
     planar = np.stack([allP[:, 2] / (2 * R) + 0.5, allP[:, 1] / (2 * R) + 0.5], 1)
     set_group(p, gid, {'P': allP, 'N': allN, 'UV': allUV, 'UVconst': uvc, 'UVtan': planar}, by_mat)
@@ -107,3 +108,59 @@ def _fill_group(p, names, gid, mat, keep_donor, sP, sN, sT, planar=False):
     nm[:, 3] = 0            # the unknown row: the donor's values (up to +/-0.037) shoved the 208's nut bosses off the face (v0.1.2)
     rows = keepM + [nm[i].tobytes() for i in range(len(nm))]
     p.groups[gid]['morph'] = rows + rows[:1]
+
+
+def build_source_rim(wheel_bytes, parts, materials, centre, r_ref, texture_path, gloss_path, material_template):
+    """Source geometry and its original UV/colour atlas, with the game's wheel morphs.
+
+    Generate an open inner barrel. Remove the donor's spokes, badges, valves,
+    backing and blur meshes at every LOD, so none can replace the source face.
+    """
+    import fhmat
+    from body_swap import blank_group
+    vv, nn, uu = [], [], []
+    for mat in materials:
+        for frag in parts.get(mat, []):
+            if len(frag['V']):
+                vv.append(frag['V']); nn.append(frag['N']); uu.append(frag['UV'])
+    if not vv:
+        raise ValueError('Source wheel required, but no rim geometry was supplied')
+    V, N, UV = np.concatenate(vv), np.concatenate(nn), np.concatenate(uu)
+    if not np.isfinite(V).all() or not np.isfinite(UV).all():
+        raise ValueError('Non-finite source wheel geometry or UVs')
+    scale = R / float(r_ref)
+    P = (V - np.asarray(centre)) * scale
+    # Diameter morphs restore Y/Z to the selected size, but do not restore X.
+    # Keep axial depth in metres, otherwise wider rims acquire a shallow dish.
+    P[:, 0] = V[:, 0] - V[:, 0].min()
+    T = np.arange(len(P)).reshape(-1, 3)
+    geometric = np.cross(P[T[:, 1]] - P[T[:, 0]], P[T[:, 2]] - P[T[:, 0]])
+    flip = np.einsum('ij,ij->i', geometric, N[T].mean(1)) < 0
+    T[flip] = T[flip][:, [0, 2, 1]]
+    UV = UV.copy(); UV[:, 1] = 1 - UV[:, 1]
+    p = Part(wheel_bytes); names = material_names(p)
+    # The donor inner_rim includes a plate that hides deep source spokes.
+    # A cylinder with open ends provides a barrel without covering the face.
+    angle = np.arange(65) * (2 * np.pi / 64)
+    barrel = np.array([[x, R * np.cos(a), R * np.sin(a)]
+                       for x in (.02, 1.0) for a in angle])
+    barrel_n = barrel.copy(); barrel_n[:, 0] = 0
+    barrel_n /= np.linalg.norm(barrel_n, axis=1, keepdims=True)
+    barrel_t = np.array([[i, i + 1, i + 65] for i in range(64)] +
+                        [[i + 1, i + 66, i + 65] for i in range(64)]) + len(P)
+    combined_p = np.concatenate([P, barrel])
+    _fill_group(p, names, 0, 'rim', (), combined_p,
+                np.concatenate([N, barrel_n]), T,
+                source_uv=np.concatenate([UV, np.zeros((len(barrel), 2))]))
+    for render in p.render:
+        if render['group'] == 0 and names[id(render['blob'])] == 'inner_rim':
+            render['indices'] = barrel_t.reshape(-1).tolist()
+    for gid in p.group_order:
+        if gid != 0:
+            blank_group(p, gid)
+    mid = fhmat.add_material(p, 'source_rim', fhmat.retexture(material_template, [texture_path, gloss_path]), [texture_path, gloss_path])
+    for render in p.render:
+        if render['group'] == 0 and names[id(render['blob'])] == 'rim':
+            struct.pack_into('<h', render['blob']['data'], 0, mid)
+    out = p.build(); Part(out)
+    return out, (P, T)

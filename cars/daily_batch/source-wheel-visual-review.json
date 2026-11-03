@@ -1,0 +1,191 @@
+{
+  "cars": [
+    {
+      "name": "Ford Fiesta 2002",
+      "wheel_reviewed": true,
+      "face_sha256": "369b37725dd99d9c08a8aaa319efca3131d391bb968f9da3e93b4f6818897dc3",
+      "preview_sha256": {
+        "thumb.png": "d2794f18184f93154156558ecf8a67af0ff8c5d8bb5d4b6be07c438a591cd14b",
+        "other-side.png": "8192610f373735e2db613ccfd62c718661947da7879f0037619a7a1af3e9781b",
+        "rear.png": "bbf317d37a0a10ba81a792b2353ef00fa5cd6829ca3ad5e62539289cafc1af87"
+      }
+    },
+    {
+      "name": "Ford Focus Mk1",
+      "wheel_reviewed": true,
+      "face_sha256": "01cd3245183ba0ccb6a12233a74cfb3cbb8cdbf07118021daab0e968cb2ec7ac",
+      "preview_sha256": {
+        "thumb.png": "f67e05acaecebf0462b07eb43a8709aa4fcf35e45cdc2a9c1d6f10d87608dadb",
+        "other-side.png": "79ef8c624c42e9b3e21ed0b1e9565b564d9d9b7d509cf9bd2eac4b876be53862",
+        "rear.png": "83cdee25d68f6880f1739b820a98ff80bf75dc25c4bedc49a4ef953fd1963be9"
+      }
+    },
+    {
+      "name": "Ford Focus Mk2 ST",
+      "wheel_reviewed": true,
+      "face_sha256": "b6cabe0343d18964695069079b7f6ce05307b08df8df60988b35761ce6a1ad5c",
+      "preview_sha256": {
+        "thumb.png": "6231425bbc84e7d3f16d50eb24be5349a93384c2b10d4785adf93ae3240dbaff",
+        "other-side.png": "da6f9e3094499b25a27a89864207955be333fb0ea016f8336febd133cdd867cb",
+        "rear.png": "aa5ba9b79d2bc3821628214ca205ab31f72b4c2398d97401a36462c8c4e492ee"
+      }
+    },
+    {
+      "name": "Ford Mondeo Mk3",
+      "wheel_reviewed": true,
+      "face_sha256": "e852b33ee68fb3ee41306deaceece7268f932c1dc76a0d0fc64fdc7d5be1fa56",
+      "preview_sha256": {
+        "thumb.png": "4d9e2286bea8db77ee92059a631335238c8802bd3af77b7dbe3cecfdc3b6675c",
+        "other-side.png": "019aa3380f6fabe49846d99a2c6c02c8fcd5e868d7e215504a8b7de4b9031c68",
+        "rear.png": "bf5d7e19e7e82204987580b70e416618389e4e4c7ff041aa1e6434f59bc0510a"
+      }
+    },
+    {
+      "name": "Opel Corsa C",
+      "wheel_reviewed": true,
+      "face_sha256": "82d40ad58a21d45ba9ab5e93f75a0d0d8f245ed954dd4a7603050e89c0be3fc9",
+      "preview_sha256": {
+        "thumb.png": "46ab7391b8ce15fe0265ca369f986e7f4afa5daac758051142c32443afdc45be",
+        "other-side.png": "c3c295bf653cba010ba09b54a381a13c0367ad0b12220614f4b0db71a47f838d",
+        "rear.png": "150558862e41b2b7c75bb76afee93ad98ba1aa6b7dd9257417fc39d2e6f77aa5"
+      }
+    },
+    {
+      "name": "Opel Astra G",
+      "wheel_reviewed": true,
+      "face_sha256": "b68c9e546310c16ba39901f48e46020e73a79fdc2bb37d2e96a4e55fcff20f56",
+      "preview_sha256": {
+        "thumb.png": "fd31d41810cc5a4202c9440fe738306191fb872a6bc5adeae9e7519dd70f5f0e",
+        "other-side.png": "935890aa8e132ef8d68581d95095ac0493c753a1e1b10822011e5958cabadf7c",
+        "rear.png": "d1d62af90f52bc3b7a0b1a2fb5b98318adf0d026abbe0021718e71aff41a966c"
+      }
+    },
+    {
+      "name": "Opel Astra H",
+      "wheel_reviewed": true,
+      "face_sha256": "873ba06d0d68c79205be701d2e738ec1581d0c8d6bf8b801524af0c7ec5660e2",
+      "preview_sha256": {
+        "thumb.png": "b29d52f26d30179b72bcddbeba2e6a72ab54d77ab0d645c756d6ede9d2e51820",
+        "other-side.png": "00bd402a7aa129ddc2cfe47ae0d4fb9de7330fcb9bb167d5c15bada3fb16207f",
+        "rear.png": "ecedc2dc44debf61ef36425fa2599ecf5ed1f71c060eba2ad25668c4ae7c63fb"
+      }
+    },
+    {
+      "name": "Opel Vectra B",
+      "wheel_reviewed": true,
+      "face_sha256": "c35d79f85926f61323785b6719c7650c4e72dca8c4be84aba991b49faf2c6bd4",
+      "preview_sha256": {
+        "thumb.png": "377aa0c65d3fa80e1adee7b4158c1ef311512458f5c6bfbb8724183d754ba269",
+        "other-side.png": "d5554023bda1782afcc3b89c623c11076dc5bf4a4494634edb43f1b420524785",
+        "rear.png": "fa4b98ece5a1546783814bbd4a192873d68938a50ff38ba2f274227f45d38ea2"
+      }
+    },
+    {
+      "name": "Opel Vectra C",
+      "wheel_reviewed": true,
+      "face_sha256": "0fc319ee86d3af62a5ff1413f93aea270c9b352542f7744881892340571cb4a0",
+      "preview_sha256": {
+        "thumb.png": "3b526644f93fcda2f8d27b651315efd2b3d580a795d9eb4ea69a5fe58b022415",
+        "other-side.png": "08717987be7f8e95b61e6cfc460ee9b78e490198c3af81176287ee4f0632648e",
+        "rear.png": "b3469f77fa473758e46bcbd83546f453b966532e6d1c63d8f458acd70934e19b"
+      }
+    },
+    {
+      "name": "Opel Zafira A",
+      "wheel_reviewed": true,
+      "face_sha256": "1fcc9719b553a888bab7290a2eb311c2fc577061f5e8fad7befcf96bbdf048ef",
+      "preview_sha256": {
+        "thumb.png": "35f41748f0d4f39726aed8a2fad074b7d7cd45b5e5b57c74f1c709f413ef4001",
+        "other-side.png": "b466cf88e6c0de058ee694d3f96202e22f967e13bc8a6b7f538f1c5733344fec",
+        "rear.png": "d986a84b37a6e31322864f1f92740bc189c3e75d779a4ed7a527f2ed84cf57d1"
+      }
+    },
+    {
+      "name": "Volkswagen Polo Mk3",
+      "wheel_reviewed": true,
+      "face_sha256": "0ed4525dba0733fabc9a1503d4e7632bf36f3367cd80cca1fbc9f8fbfbc7917c",
+      "preview_sha256": {
+        "thumb.png": "4e92a020b3e2ead16d28e92b7ea269c031c09096f6872437df06b30e23835d6e",
+        "other-side.png": "0af0a4003ad7160dc31774c7c8e495ce5938dd72b0df38a67ac22dd8c0a43f69",
+        "rear.png": "6994426f3cb1f5972228f3bbd6984ad9f296a3426a4bc96a72f7403ed0246bec"
+      }
+    },
+    {
+      "name": "Volkswagen Polo Mk4",
+      "wheel_reviewed": true,
+      "face_sha256": "3e3eb4844917eead43cf4f540572c38ff28a96a359c2c9686b597caeaf71eb70",
+      "preview_sha256": {
+        "thumb.png": "379a427ee46bafa813e3750c5857e150b163c4024d0b8e32ede2fd9d4e39d0e2",
+        "other-side.png": "932b10b10d8009bb1b605eb17062b5a325a1c974b9e75d01b905caed7c7ca5c9",
+        "rear.png": "862ad0bc1b56493f04bde2697ed46673f41a658207af782fd0eb0cbb7dd71982"
+      }
+    },
+    {
+      "name": "Ford Ka",
+      "wheel_reviewed": true,
+      "face_sha256": "71ffbb8a358c509281d50c85ef06fa2f8cf3b50933d228fae8a7f55f2da31fe3",
+      "preview_sha256": {
+        "thumb.png": "650c9e97bf64d090fa1c1358b099740ad3ee6f027abae08643289403c12daf92",
+        "other-side.png": "0a640d6635bfebca80ae58d2a2492340434541ba919e1c0d054a253bec2b94ae",
+        "rear.png": "b07cdeef0325e4267627a17d1093c4a164516417c593eb9ef0885f05802bc57e"
+      }
+    },
+    {
+      "name": "Renault Laguna II",
+      "wheel_reviewed": true,
+      "face_sha256": "21440d3871f230806e9f8efb69b4784ede16932a3deb81e4827c75d643356cab",
+      "preview_sha256": {
+        "thumb.png": "f867286ccd34105dba88f77abf800c9064189fd3689a6f256488d1f73d5941db",
+        "other-side.png": "6636aa0add04fba70eb9d487424fbe0fa29ff1e28f073f2f76e4ce0892621ede",
+        "rear.png": "0c2d3cabad7ceaa33d116da545c82474247045a81ed2665a054c63e1ddb9365b"
+      }
+    },
+    {
+      "name": "Citroen Xsara",
+      "wheel_reviewed": true,
+      "face_sha256": "11d60bf3fd3a36a0fdc9d8b31dfe71de6cf4f8c56c301e2889e64d7597e52c3f",
+      "preview_sha256": {
+        "thumb.png": "74dc218cf66a3b1cb8885f91dc9c3956cc60fe5790e99e7ac3c8a62cbcc52019",
+        "other-side.png": "818194f3862f6086422cd52b5a864101dfbb8623091992c319d4f03261f2b6b1",
+        "rear.png": "9ac4d1422be7f8dc053c98a57bec0e61c740a792c596183a1c3b63a37ad1a56d"
+      }
+    },
+    {
+      "name": "Volvo S60R",
+      "wheel_reviewed": true,
+      "face_sha256": "7310d022e691a0f83c5086ac4a43ff2314d8306c196ea6947a68230636139f8c",
+      "preview_sha256": {
+        "thumb.png": "8b226615d03a8493524fac5cc398a1dc6bf893ac6af25d58ef0d0821de003f19",
+        "other-side.png": "ebe9429cd1824553a930fde145b89d5e359237cad08667efab3d08281c50ba16",
+        "rear.png": "01b717d802368b2fd7b6819b0011f30bd015fce0f612952f62e682bb19f3228f"
+      }
+    },
+    {
+      "name": "Volkswagen Passat B5.5",
+      "wheel_reviewed": true,
+      "face_sha256": "ef91dd61946740cee53dae6684d7c00ac8b6c3cb9b525ada7f1a03fef68ca4c0",
+      "preview_sha256": {
+        "thumb.png": "3e194047d885b987243dc2d7d77ddf6280870aa3c5cdea078a84bed6d5e27193",
+        "other-side.png": "1a48366d1f09a1c59d299df0d61c12852bebd8efe3c0b421bcc3000ccaf359fe",
+        "rear.png": "74b126258e59c86c9b5fa44810d14a12cb3009514d43a6f6a8d57f7b211f8709"
+      }
+    },
+    {
+      "name": "Fiat Punto Mk2",
+      "wheel_reviewed": true,
+      "face_sha256": "abfbe243dac1b6b2a0f53f437ce5214929051d2985cbc150a55a0c96505b7fc3",
+      "preview_sha256": {
+        "thumb.png": "ef39c37486c7d938486caaf1c8eb2d0962dad776b40739f9370a4a2cbba4acbb",
+        "other-side.png": "00a10adc197d30e99a404da6ac85c27833eb9a0d5bd627c53f876efb0fc28279",
+        "rear.png": "49432a3d82a2b15833ba1c0831c22fa2f572c4d2bacb916e361f93cc837e17d9"
+      }
+    }
+  ],
+  "scope": "Source wheel geometry and fit; not in-game validation.",
+  "body_issues": {
+    "Ford Ka": "Rough draft source",
+    "Opel Astra H": "Panel alignment still needs in-game review",
+    "Citroen Xsara": "Source surface faceting",
+    "Fiat Punto Mk2": "Broken surfaces and raised roof piece; body repair or cleaner source needed"
+  }
+}

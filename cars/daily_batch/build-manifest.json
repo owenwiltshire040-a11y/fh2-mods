@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Ford Fiesta 2002",
+    "slug": "daily01",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily01/spec.py",
+    "media": "FOR_daily01_2002__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Fiesta 2002/ford_fiesta_mk5_2002-2014.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9593129718473904,
+        0.024506717925210808,
+        -1.7629356991688918
+      ],
+      [
+        0.9593129718473904,
+        1.3022787449135622,
+        2.1236186059947735
+      ]
+    ],
+    "wheelbase": 2.486,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily01/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Ford Fiesta 2002",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Fiesta 2002"
+  },
+  {
+    "name": "Ford Focus Mk1",
+    "slug": "daily02",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily02/spec.py",
+    "media": "FOR_daily02_2001__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Focus Mk1/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -1.002917385510816,
+        -0.3854487810819659,
+        -1.97048949172333
+      ],
+      [
+        1.0029164336564886,
+        1.3889145475450437,
+        2.251530814026694
+      ]
+    ],
+    "wheelbase": 2.615,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily02/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Ford Focus Mk1",
+    "visual_review": "Uses the intact hatchback variant from the multi-car source scene.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk1"
+  },
+  {
+    "name": "Ford Focus Mk2 ST",
+    "slug": "daily03",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily03/spec.py",
+    "media": "FOR_daily03_2006__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Focus Mk2 ST/2006_ford_focus_st.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9772709165278771,
+        -0.03401550996088137,
+        -2.0607633418058375
+      ],
+      [
+        0.9772709165278771,
+        1.4869946261940876,
+        2.269239633756119
+      ]
+    ],
+    "wheelbase": 2.64,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily03/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Ford Focus Mk2 ST",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk2 ST"
+  },
+  {
+    "name": "Ford Mondeo Mk3",
+    "slug": "daily04",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily04/spec.py",
+    "media": "FOR_daily04_2003__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Mondeo Mk3/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9583477817481428,
+        -0.016440929751557587,
+        -2.3141863490379238
+      ],
+      [
+        0.9583477817481428,
+        1.3521523667051987,
+        2.397925588230488
+      ]
+    ],
+    "wheelbase": 2.754,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily04/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Ford Mondeo Mk3",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Mondeo Mk3"
+  },
+  {
+    "name": "Opel Corsa C",
+    "slug": "daily05",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily05/spec.py",
+    "media": "OPE_daily05_2003__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Corsa C/opel_corsa_c_3-door_2000-2006.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.952607248568535,
+        -0.03160861162090327,
+        -1.8064002298355104
+      ],
+      [
+        0.952607248568535,
+        1.631771963392258,
+        2.0880291264534
+      ]
+    ],
+    "wheelbase": 2.491,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily05/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Corsa C",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Corsa C"
+  },
+  {
+    "name": "Opel Astra G",
+    "slug": "daily06",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily06/spec.py",
+    "media": "OPE_daily06_2001__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra G/opel_astra_g_1998-2004.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.8911231782847819,
+        -0.1483675457033147,
+        -1.897031647438423
+      ],
+      [
+        0.8911231782847819,
+        1.3609402219074178,
+        2.1806028454930577
+      ]
+    ],
+    "wheelbase": 2.606,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily06/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Astra G",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra G"
+  },
+  {
+    "name": "Opel Astra H",
+    "slug": "daily07",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily07/spec.py",
+    "media": "OPE_daily07_2005__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra H/opel_astra_h_2004-2014.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -1.0490635127669439,
+        -0.22250526627534317,
+        -2.105959416119797
+      ],
+      [
+        1.0492176400931312,
+        1.6422551657238027,
+        2.296565737249381
+      ]
+    ],
+    "wheelbase": 2.614,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily07/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Astra H",
+    "visual_review": "Source contained detached and alternative panels. Selected bonnet/headlamp parts have been aligned; exterior still needs an in-game review.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra H"
+  },
+  {
+    "name": "Opel Vectra B",
+    "slug": "daily08",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily08/spec.py",
+    "media": "OPE_daily08_2001__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra B/opel_vectra_b_2001.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9223835580318951,
+        -0.07697839197720159,
+        -2.238134307138868
+      ],
+      [
+        0.9223835580318952,
+        1.2708693449685897,
+        2.245079662390235
+      ]
+    ],
+    "wheelbase": 2.637,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily08/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Vectra B",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra B"
+  },
+  {
+    "name": "Opel Vectra C",
+    "slug": "daily09",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily09/spec.py",
+    "media": "OPE_daily09_2003__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra C/opel_vectra_c_2002-2005.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9875030832470588,
+        0.01205697481137355,
+        -2.175176716253892
+      ],
+      [
+        0.9875030832470588,
+        1.3671309683097987,
+        2.3368188512118357
+      ]
+    ],
+    "wheelbase": 2.7,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily09/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Vectra C",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra C"
+  },
+  {
+    "name": "Opel Zafira A",
+    "slug": "daily10",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily10/spec.py",
+    "media": "OPE_daily10_2002__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Zafira A/2002_opel_zafira.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9738204149545822,
+        0.0031776829783680127,
+        -2.072294670724447
+      ],
+      [
+        0.9738204149545822,
+        1.510367328946021,
+        2.2380755076248033
+      ]
+    ],
+    "wheelbase": 2.694,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily10/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Opel Zafira A",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Zafira A"
+  },
+  {
+    "name": "Volkswagen Polo Mk3",
+    "slug": "daily11",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily11/spec.py",
+    "media": "VW_daily11_1996___",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk3/volkswagen_polo_6n_mk3_1994-2009.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9177035781517195,
+        -0.0041244547183202085,
+        -1.7179152262260458
+      ],
+      [
+        0.9177035781517195,
+        1.236417899553831,
+        2.042822247338984
+      ]
+    ],
+    "wheelbase": 2.407,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily11/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Volkswagen Polo Mk3",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk3"
+  },
+  {
+    "name": "Volkswagen Polo Mk4",
+    "slug": "daily12",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily12/spec.py",
+    "media": "VW_daily12_2003___",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk4/volkswagen_polo_3-door_mk4_2001__2009.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -1.0274348127043356,
+        0.05598843979542523,
+        -1.7870492394177215
+      ],
+      [
+        1.0274348127043356,
+        1.6866779125654672,
+        2.1558798884210235
+      ]
+    ],
+    "wheelbase": 2.46,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily12/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Volkswagen Polo Mk4",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk4"
+  },
+  {
+    "name": "Ford Ka",
+    "slug": "daily13",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily13/spec.py",
+    "media": "FOR_daily13_2000__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Ka/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9428087865802931,
+        -0.12059763313609467,
+        -1.6225544378698225
+      ],
+      [
+        0.9428087865802932,
+        1.354250449338254,
+        1.9987473372781062
+      ]
+    ],
+    "wheelbase": 2.448,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily13/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Ford Ka",
+    "visual_review": "Untextured draft model. Body and cabin detail are limited by the supplied mesh.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Ka"
+  },
+  {
+    "name": "Renault Laguna II",
+    "slug": "daily14",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily14/spec.py",
+    "media": "REN_daily14_2003__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Renault Laguna II/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -1.0625458634617193,
+        -0.008270371913564167,
+        -2.153747979178094
+      ],
+      [
+        1.0625458634617193,
+        1.2400326261036287,
+        2.4054540660025507
+      ]
+    ],
+    "wheelbase": 2.748,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily14/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Renault Laguna II",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Renault Laguna II"
+  },
+  {
+    "name": "Citroen Xsara",
+    "slug": "daily15",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily15/spec.py",
+    "media": "CIT_daily15_2004__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Citroen Xsara/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9608840315811075,
+        -0.059338897091359144,
+        -1.9425991043550945
+      ],
+      [
+        0.9608840315811075,
+        1.4199878015665994,
+        2.238479308990648
+      ]
+    ],
+    "wheelbase": 2.54,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily15/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Citroen Xsara",
+    "visual_review": "Front wing surfaces retain visible faceting from the source conversion.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Citroen Xsara"
+  },
+  {
+    "name": "Volvo S60R",
+    "slug": "daily16",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily16/spec.py",
+    "media": "VOL_daily16_2004__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volvo S60R/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -1.0330487753114392,
+        -0.13612220225795624,
+        -2.3232617669659272
+      ],
+      [
+        1.0330487753114392,
+        1.2082832686747274,
+        2.336587477582501
+      ]
+    ],
+    "wheelbase": 2.715,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily16/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Volvo S60R",
+    "visual_review": "Preview reviewed; final wheel clearance, cockpit and lighting need an in-game check.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volvo S60R"
+  },
+  {
+    "name": "Volkswagen Passat B5.5",
+    "slug": "daily17",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily17/spec.py",
+    "media": "VW_daily17_2003___",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Volkswagen Passat B5.5/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.99091939194441,
+        -0.16593853118046975,
+        -2.253059488363996
+      ],
+      [
+        0.9909193919444099,
+        1.5428208264618468,
+        2.3811827156216587
+      ]
+    ],
+    "wheelbase": 2.703,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily17/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Volkswagen Passat B5.5",
+    "visual_review": "Original fixed blue body colour retained.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Passat B5.5"
+  },
+  {
+    "name": "Fiat Punto Mk2",
+    "slug": "daily18",
+    "spec": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily18/spec.py",
+    "media": "FIA_daily18_2002__",
+    "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Fiat Punto Mk2/source.glb",
+    "status": "installed",
+    "bounds": [
+      [
+        -0.9527884815979272,
+        0.00763229095111384,
+        -1.712918351857428
+      ],
+      [
+        0.9527883781205623,
+        1.4707516310454762,
+        2.106955612079409
+      ]
+    ],
+    "wheelbase": 2.46,
+    "log": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily18/build.log",
+    "package": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/output/Daily Drivers/Fiat Punto Mk2",
+    "visual_review": "Wheel conversion checked. The converted source body has broken surfaces and a raised roof piece; body repair or a cleaner source is needed before treating this car as ready.",
+    "installed_folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Fiat Punto Mk2"
+  }
+]

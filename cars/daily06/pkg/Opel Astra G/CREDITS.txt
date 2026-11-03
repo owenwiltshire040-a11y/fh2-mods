@@ -1,0 +1,13 @@
+Opel Astra G 1998-2004
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/opel-astra-g-1998-2004-90ffb23daea049168975e68b09f9b92d
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

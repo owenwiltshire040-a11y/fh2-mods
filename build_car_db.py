@@ -134,6 +134,12 @@ c.execute('''update Data_CarBody set Height=?, Length=?, Width=?, Wheelbase=?, M
              PristineBoundingBoxMaxY=?, PristineBoundingBoxMinZ=?, PristineBoundingBoxMaxZ=? where Id=?''',
           (B['height'], B['length'], B['width'], B['wheelbase'], B['model_wheelbase'], B['track_front'] * 1.012, B['track_rear'] * 1.012,
            B['ride_height'], B['ride_height'], *B['bbox'], CAR * 1000))
+# Match the game's drawn axle midpoint to the geometry used to build the body.
+import pickle
+_G = pickle.load(open(S.GEO, 'rb'))
+_mid = sum(float(_G['wheels'][k]['centre'][2]) for k in ('HUB_LF', 'HUB_LR')) / 2
+c.execute('update Data_CarBody set BottomCenterWheelbasePosZ=? where Id=?', (-_mid, CAR * 1000))
+print(f'drawn axle midpoint {_mid:.5f} m from build geometry')
 T = P['tyres']
 for t, col, w in (('List_UpgradeCarBodyTireWidthFront', 'FrontTireWidth', T['width_front']), ('List_UpgradeCarBodyTireWidthRear', 'RearTireWidth', T['width_rear'])):
     c.execute(f'update "{t}" set "{col}"=? where CarBodyId=? and IsStock=1', (w, CAR * 1000)); c.execute(f'delete from "{t}" where CarBodyId=? and IsStock=0', (CAR * 1000,))
@@ -175,6 +181,9 @@ c.execute(f'''update Data_Car set Year=?, MakeID=?, DisplayName=?, ModelShort=?,
     *Cr['ratings'], Cr['pi'], Cr['steer_deg'], Cr['steer_deg'] * 0.75, Cr['class'], Cr['family_model'], Cr['family_body'], Cr['family_special'],
     Cr['engine_placement'], Cr['powertrain'], Cr['material'], Cr['open_cockpit'], Cr['open_wheel'], B['ride_height'], B['ride_height'],
     f'game:\\Media\\Stripped\\RC0\\Thumbnail_{Cr["thumbnail_of"]}.png', CAR))
+if getattr(S, 'UPGRADE_PROFILE', None):
+    import runpy
+    runpy.run_path(os.path.join(S.HERE, S.UPGRADE_PROFILE))['apply'](c, S)
 c.commit()
 json.dump({'format_version': 1, 'fallback_language': 'EN', 'languages': {'EN': {
     'Data_Car': {str(S_NAME): P['name'], str(S_SHORT): P['short_name']},

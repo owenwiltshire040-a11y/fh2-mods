@@ -1,0 +1,48 @@
+{
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra G/opel_astra_g_1998-2004.glb",
+  "chosen": [
+    "Object_21",
+    "Object_19",
+    "Object_18",
+    "Object_17",
+    "Object_16",
+    "Object_15",
+    "Object_10",
+    "Object_9",
+    "Object_8",
+    "Object_7",
+    "Object_6",
+    "Object_5",
+    "Object_4",
+    "Object_3",
+    "Object_2"
+  ],
+  "dropped": [
+    "Object_25",
+    "Object_24",
+    "Object_23",
+    "Object_22",
+    "Object_20",
+    "Object_14",
+    "Object_13",
+    "Object_12",
+    "Object_11"
+  ],
+  "frame": "-x,y,z",
+  "scale": 0.09483950797001237,
+  "source_front": 13.199,
+  "source_rear": -14.279,
+  "source_y": 3.172,
+  "bounds": [
+    [
+      -0.8911231782847819,
+      -0.1483675457033147,
+      -1.897031647438423
+    ],
+    [
+      0.8911231782847819,
+      1.3609402219074178,
+      2.1806028454930577
+    ]
+  ]
+}

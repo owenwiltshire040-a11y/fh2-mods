@@ -1,0 +1,199 @@
+{
+  "id": "e49520a527e3491a9ab2f6625fa0ac6f",
+  "car": "Hyundai N Vision 74 (2023)",
+  "created": "2026-11-03T12:36:29.570435+00:00",
+  "selection": {
+    "serial": 1,
+    "code": 4,
+    "car_id": 4301,
+    "media": "HYU_NVision74_23_A",
+    "message": "Car view opened"
+  },
+  "visual_revision": null,
+  "runtime_dll_sha256": "60f060e5ad5ab44d0589488a83c020c750bc408889cad170b36e8e6c8e4c92a2",
+  "session": {
+    "launcher_pid": 90915,
+    "mode": "showroom",
+    "started": "2026-11-03 12:35:38",
+    "exe": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/FH2 Renderer/runtime/azimuth.exe"
+  },
+  "views": [
+    {
+      "name": "Front",
+      "file": "front.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "7738fe6deeac3213c422fb9c182e481272b2d061c75c1a0c35fefa2d9789b2ff",
+      "camera": {
+        "serial": 3,
+        "code": 1,
+        "view": 2,
+        "yaw": 1.5707963705062866,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          1.5707963705062866,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    },
+    {
+      "name": "Right",
+      "file": "right.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "a6cf33ac27a6bac3297b5bee41c1547a576ec10db35b8e1dacf817cefdbede5a",
+      "camera": {
+        "serial": 4,
+        "code": 1,
+        "view": 3,
+        "yaw": 3.1415927410125732,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          3.1415927410125732,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    },
+    {
+      "name": "Rear",
+      "file": "rear.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "c7ed2e6eca2286aff8a121a7b7b23d3506dee80db22688a8c9e3d219b2e265aa",
+      "camera": {
+        "serial": 5,
+        "code": 1,
+        "view": 4,
+        "yaw": -1.5707963705062866,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          -1.5707963705062866,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    },
+    {
+      "name": "Left",
+      "file": "left.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "19c4fb9f814718e7986f11b26cf5ce529ecec444ada3e2453ccc15fc5252c4e7",
+      "camera": {
+        "serial": 6,
+        "code": 1,
+        "view": 1,
+        "yaw": 0.0,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    },
+    {
+      "name": "Front Quarter",
+      "file": "front-quarter.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "a9bafa5c6a3da9336a4e87fee8818d5e62c0fe0b7745d0799bcb39b2e28318b4",
+      "camera": {
+        "serial": 7,
+        "code": 1,
+        "view": 6,
+        "yaw": 2.356194496154785,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          2.356194496154785,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    },
+    {
+      "name": "Rear Quarter",
+      "file": "rear-quarter.png",
+      "width": 3584,
+      "height": 2072,
+      "sha256": "02fffa674ad31bed236e5acfd7bea44efa8b977597e74ed42820c34e2315e2cb",
+      "camera": {
+        "serial": 8,
+        "code": 1,
+        "view": 5,
+        "yaw": -0.7853981852531433,
+        "pitch": 0.0,
+        "fov": 0.7853981852531433,
+        "camera_type": "0x2d50700",
+        "inner_type": "0x2d50360",
+        "orbit": [
+          -0.7853981852531433,
+          0.0,
+          0.0,
+          0.0,
+          -0.07177498936653137,
+          0.5133799314498901,
+          -4.787532806396484,
+          1.0,
+          45.0
+        ]
+      },
+      "window_id": 1083
+    }
+  ],
+  "pid": 90918,
+  "kind": "Exterior inspection",
+  "message": "Inspection captured"
+}

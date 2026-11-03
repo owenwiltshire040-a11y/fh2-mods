@@ -1,0 +1,89 @@
+"""Volkswagen Polo Mk3 — personal prototype. Dimensions based on source axle measurements.
+Engine, handling, cockpit and lamps need an in-game review; see BUILD-NOTES.txt.
+"""
+import os
+from PIL import Image
+HERE=os.path.dirname(os.path.abspath(__file__))
+MEDIA='VW_daily11_1996___'
+DONOR_ZIP=os.path.join(HERE,'donor_'+MEDIA+'.zip')
+GEO=os.path.join(HERE,'geo.pkl')
+TEXTURES={}
+TEXTURES['te78c3ab8']=(Image.open(os.path.join(HERE,'textures','te78c3ab8.png')),512,False)
+TEXTURES['t94d5d0c3']=(Image.open(os.path.join(HERE,'textures','t94d5d0c3.png')),512,False)
+TEXTURES['tf9633f60']=(Image.open(os.path.join(HERE,'textures','tf9633f60.png')),512,False)
+TEXTURES['tbabeca34']=(Image.open(os.path.join(HERE,'textures','tbabeca34.png')),512,False)
+TEXTURES['t758cd1e0']=(Image.open(os.path.join(HERE,'textures','t758cd1e0.png')),512,False)
+TEXTURES['t7afa4ca0']=(Image.open(os.path.join(HERE,'textures','t7afa4ca0.png')),512,False)
+TEXTURES['t134c840f']=(Image.open(os.path.join(HERE,'textures','t134c840f.png')),512,False)
+TEXTURES['tdfd87c36']=(Image.open(os.path.join(HERE,'textures','tdfd87c36.png')),512,False)
+TEXTURES['t68aface1']=(Image.open(os.path.join(HERE,'textures','t68aface1.png')),512,False)
+TEXTURES['t1eaef12f']=(Image.open(os.path.join(HERE,'textures','t1eaef12f.png')),512,False)
+TEXTURES['t75f71219']=(Image.open(os.path.join(HERE,'textures','t75f71219.png')),512,False)
+TEXTURES['te25905db']=(Image.open(os.path.join(HERE,'textures','te25905db.png')),512,False)
+TEXTURES['t8ec390f1']=(Image.open(os.path.join(HERE,'textures','t8ec390f1.png')),512,False)
+TEXTURES['tb79bb648']=(Image.open(os.path.join(HERE,'textures','tb79bb648.png')),512,False)
+TEXTURES['t2106d8f3']=(Image.open(os.path.join(HERE,'textures','t2106d8f3.png')),512,False)
+TEXTURES['t02f651ae']=(Image.open(os.path.join(HERE,'textures','t02f651ae.png')),512,False)
+TEXTURES['t0ffd8b8f']=(Image.open(os.path.join(HERE,'textures','t0ffd8b8f.png')),512,False)
+TEXTURES['t46fae2ec']=(Image.open(os.path.join(HERE,'textures','t46fae2ec.png')),512,False)
+TEXTURES['t00752db6']=(Image.open(os.path.join(HERE,'textures','t00752db6.png')),512,False)
+TEXTURES['taad92812']=(Image.open(os.path.join(HERE,'textures','taad92812.png')),512,False)
+TEXTURES['tdd64b982']=(Image.open(os.path.join(HERE,'textures','tdd64b982.png')),512,False)
+TEXTURES['td37b534d']=(Image.open(os.path.join(HERE,'textures','td37b534d.png')),512,False)
+TEXTURES['t2a9b9abc']=(Image.open(os.path.join(HERE,'textures','t2a9b9abc.png')),512,False)
+TEXTURES['t02f62570']=(Image.open(os.path.join(HERE,'textures','t02f62570.png')),512,False)
+TEXTURES['t8f0ce547']=(Image.open(os.path.join(HERE,'textures','t8f0ce547.png')),512,False)
+TEXTURES['taeb7f547']=(Image.open(os.path.join(HERE,'textures','taeb7f547.png')),512,False)
+TEXTURES['t019f1caf']=(Image.open(os.path.join(HERE,'textures','t019f1caf.png')),512,False)
+TEXTURES['t709b12cb']=(Image.open(os.path.join(HERE,'textures','t709b12cb.png')),512,False)
+TEXTURES['t91ca2089']=(Image.open(os.path.join(HERE,'textures','t91ca2089.png')),512,False)
+TEXTURES['t3741e243']=(Image.open(os.path.join(HERE,'textures','t3741e243.png')),512,False)
+TEXTURES['t0262c674']=(Image.open(os.path.join(HERE,'textures','t0262c674.png')),512,False)
+TEXTURES['t202b9f16']=(Image.open(os.path.join(HERE,'textures','t202b9f16.png')),512,False)
+TEXTURES['t36efacc7']=(Image.open(os.path.join(HERE,'textures','t36efacc7.png')),512,False)
+TEXTURES['t414692f5']=(Image.open(os.path.join(HERE,'textures','t414692f5.png')),512,False)
+TEXTURES['t0f5c3fc3']=(Image.open(os.path.join(HERE,'textures','t0f5c3fc3.png')),512,False)
+TEXTURES['ta28aa690']=(Image.open(os.path.join(HERE,'textures','ta28aa690.png')),512,False)
+TEXTURES['tbe207b77']=(Image.open(os.path.join(HERE,'textures','tbe207b77.png')),512,False)
+TEXTURES['tdb8d9af2']=(Image.open(os.path.join(HERE,'textures','tdb8d9af2.png')),512,False)
+TEXTURES['tadeed1e0']=(Image.open(os.path.join(HERE,'textures','tadeed1e0.png')),512,False)
+TEXTURES['tf56b3635']=(Image.open(os.path.join(HERE,'textures','tf56b3635.png')),512,False)
+TEXTURES['t5099692e']=(Image.open(os.path.join(HERE,'textures','t5099692e.png')),512,False)
+TEXTURES['t72b38ff8']=(Image.open(os.path.join(HERE,'textures','t72b38ff8.png')),512,False)
+TEXTURES['t0ce674e4']=(Image.open(os.path.join(HERE,'textures','t0ce674e4.png')),512,False)
+TEXTURES['t1e08d97d']=(Image.open(os.path.join(HERE,'textures','t1e08d97d.png')),512,False)
+TEXTURES['t7698a78a']=(Image.open(os.path.join(HERE,'textures','t7698a78a.png')),512,False)
+TEXTURES['t0954e51d']=(Image.open(os.path.join(HERE,'textures','t0954e51d.png')),512,False)
+TEXTURES['t0ca8a134']=(Image.open(os.path.join(HERE,'textures','t0ca8a134.png')),512,False)
+TEXTURES['tb8b21c0c']=(Image.open(os.path.join(HERE,'textures','tb8b21c0c.png')),512,False)
+MATERIALS={'ponteiros': ('textured', 'te78c3ab8'), 'quadrante': ('textured', 't94d5d0c3'), 'forro_porta_tras': ('textured', 'tf9633f60'), 'espelho': ('textured', 'tbabeca34'), 'fundo_preto': ('textured', 't758cd1e0'), 'coluna_porta': ('textured', 't7afa4ca0'), 'forro_porta': ('textured', 't134c840f'), 'bancos_bonecos': ('textured', 'tdfd87c36'), 'botoes': ('textured', 't68aface1'), 'Default_OBJ.002': ('textured', 't1eaef12f'), 'vidro_int': ('plain', 'glass'), 'tamno_siva__spec': ('textured', 't75f71219'), 'tablier': ('textured', 'te25905db'), 'vidro_ext': ('plain', 'glass'), 'vidro_luz_frente': ('textured', 't8ec390f1'), 'vidro_luz_tras': ('textured', 'tb79bb648'), 'vidro_pisca_d': ('textured', 't2106d8f3'), 'vidro_pisca_d_tras': ('textured', 't02f651ae'), 'vidro_pisca_e_tras': ('textured', 't0ffd8b8f'), 'vidro_pisca_e': ('textured', 't46fae2ec'), 'quartela': ('textured', 't00752db6'), 'vidro_fundo_escuro': ('textured', 'taad92812'), 'picas_lado_fundo': ('textured', 'tdd64b982'), 'polo1__spec': ('textured', 'td37b534d'), 'piscas_tras_e': ('textured', 't2a9b9abc'), 'plastico_tablier': ('textured', 't02f62570'), 'plasticos_ext': ('textured', 't8f0ce547'), 'pisca_lado_e': ('textured', 'taeb7f547'), 'lamapada_pisca_e': ('textured', 't019f1caf'), 'lampada_pisca_d': ('textured', 't709b12cb'), 'luz_tras': ('textured', 't91ca2089'), 'manete': ('textured', 't3741e243'), 'pisca_tras_d': ('textured', 't0262c674'), 'plastico_porta': ('textured', 't202b9f16'), 'pedais': ('textured', 't36efacc7'), 'lamapada_luz_frente': ('textured', 't414692f5'), 'fundo_pisca_d': ('textured', 't0f5c3fc3'), 'escova_d': ('textured', 'ta28aa690'), 'body_azul_escuro': ('plain', 'paint'), 'carpet': ('textured', 'tbe207b77'), 'burrachas': ('textured', 'tdb8d9af2'), 'forro_teto': ('textured', 'tadeed1e0'), 'fundo_pisca_e': ('textured', 'tf56b3635'), 'pisca_lado_d': ('textured', 't5099692e'), 'fundo_luz_frente': ('textured', 't72b38ff8'), 'luz_matricula': ('textured', 't0ce674e4'), 'escova_tras': ('textured', 't1e08d97d'), 'escova_e': ('textured', 't7698a78a'), 'fundo_luz_tras': ('textured', 't0954e51d'), 'cromados_ext': ('textured', 't0ca8a134'), 'bancos': ('textured', 'tb8b21c0c'), 'body_amarelo': ('plain', 'paint'), 'body_vermelho': ('plain', 'paint'), 'body_verde': ('plain', 'paint')}
+BODY_PLAIN={'paint':(0,'carpaint'),'chrome':(0,'frame'),'black':(1,'blkplastic_hgl')}
+GLASS_PLAIN={'glass':(0,'gls_windsheild')}
+BODY_TEXTURED_LIKE={0:'carpaint',3:'carpaint'}
+KEEP_PARTS={'body_a.modelbin','glassf_a.modelbin'}
+RIM_MATERIALS=[]
+ONE_SIDED=True
+PRESERVE_UV_SEAMS=True
+RIM_TRUST_NORMALS=True
+TRACK_REFERENCE='rim_face'
+RIM_FACE_GAP=.01
+WHEEL_FIT=dict(profile='charger_rim_face')
+STEER=(-0.34, 0.5551812138728325, 0.4)
+HIPS=(-0.34, 0.28091539017341044, -0.05)
+EYE=(-0.34, 0.9593624277456649, 0.0)
+DRIVER_ANIMS_ZIP=None
+AVPINS_TEMPLATE=None
+PRESENT={'paint': '6b92b1', 'use_make': (52, '_&857938517')}
+PHYSICS={'car_id': 5011, 'make_offset': 110, 'make': 'Volkswagen', 'make_profile': 'Volkswagen', 'make_code': 'VW', 'make_country': 7, 'make_icon': 'ARI', 'string_base': 65230, 'colour_offset': 2500, 'name': 'Polo Mk3', 'short_name': 'Polo Mk3', 'engine': {'name': '1.6L I4', 'sound': 'FOR_Fiesta_09', 'mass': 110.0, 'compression': 10.5, 'config': 3, 'cylinders': 1, 'aspiration': 1, 'boost': 0.0, 'inertia': 0.16, 'tank': 35, 'displacement': 1598, 'peak_hp': 74, 'peak_nm': 135, 'redline': 6500, 'stall': 750.0, 'start': 3000.0, 'curve': [(0, 40.5), (1000, 67.5), (2000, 108.0), (3500, 135), (4500, 128.25), (5500, 95.80860066503752), (6000, 87.8245506096177), (6500, 74.25)]}, 'drivetrain': {'drivetype': 1, 'mounting': 2, 'shift_system': 1, 'gears': [3.545, 1.904, 1.281, 0.951, 0.756], 'final_drive': 3.7, 'reverse': -3.214, 'shift_time': 0.35, 'lsd': (0.0, 0.0, 0.0, 0.0), 'clutch_nm': 250}, 'body': {'mass': 980, 'weight_front': 0.6, 'cm_height': 0.48, 'block': (1.835407156303439, 1.2405423542721512, 3.7607374735650296), 'height': 1.2405423542721512, 'length': 3.7607374735650296, 'width': 1.835407156303439, 'wheelbase': 2.407, 'model_wheelbase': 2.407, 'track_front': 'auto', 'track_rear': 'auto', 'ride_height': 0.16, 'bbox': (-0.9177035781517195, 0.9177035781517195, -0.0041244547183202085, 1.236417899553831, -1.7179152262260458, 2.042822247338984)}, 'tyres': {'width_front': 185, 'width_rear': 185, 'aspect_front': 60, 'aspect_rear': 60, 'rim_in': 14, 'compound': 3}, 'brakes': {'front_mm': 256, 'front_type': 2, 'front_pistons': 1, 'rear_mm': 230, 'rear_type': 1, 'rear_pistons': 1, 'friction': 1.0}, 'suspension': {'front': (46.59142268041237, 3.334323711340206, 5.001536082474226), 'rear': (29.7879587628866, 2.1318536082474226, 3.197729896907216), 'swaybar_front': 5.910828865979382, 'swaybar_rear': 3.9405525773195875}, 'aero_front': (5.0, 5.0, 0.0, 0.0), 'aero_rear': (0.0, 0.0, 0.0, 0.0), 'car': {'year': 1996, 't60': 12.0, 't100': 50.0, 'top_mph': 110.0, 'price': 10000, 'pi': 0.15, 'drag': 150.0, 'downforce_front': 0.0, 'downforce_rear': -1.0, 'wi_force': 0.45, 'ratings': (3.0, 3.5, 3.0, 3.5, 3.0), 'steer_deg': 35.0, 'class': 1, 'family_model': 1, 'family_body': 1, 'family_special': 1, 'engine_placement': 1, 'powertrain': 0, 'material': 1, 'open_cockpit': 0, 'open_wheel': 0, 'thumbnail_of': 1086, 'bucket': 23}}
+ARCH_MATERIALS=['body_azul_escuro', 'body_amarelo', 'body_vermelho', 'body_verde']
+UPGRADE_PROFILE='upgrade_profile.py'
+
+# Reviewed source wheel; mandatory custom geometry, no shared Charger face.
+RIM_MATERIALS=['SOURCE_RIM']
+RIM_R_REF=0.2032
+RIM_SOURCE_TEXTURE='source_rim'
+RIM_CLEAR_DONOR=True
+MATERIALS['SOURCE_RIM']=None
+TEXTURES['source_rim']=(Image.open(os.path.join(HERE,'textures','source_rim.png')).convert('RGB'),1024,False)
+PHYSICS['tyres']={'width_front': 195, 'width_rear': 195, 'aspect_front': 45, 'aspect_rear': 45, 'rim_in': 16, 'compound': 3}
+REQUIRE_SOURCE_WHEELS=True

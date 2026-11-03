@@ -1,0 +1,13 @@
+Ford Mondeo MK3 2000-2007
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/ford-mondeo-mk3-2000-2007-21218c9ba9564a778cdd96d9b08721fe
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+Version with loosen parts.
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

@@ -1,0 +1,13 @@
+Ford Focus MK1 1998-2008
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/ford-focus-mk1-1998-2008-dc9b58b6114d4a7b8b25812533f9cbbd
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+LHD/RHD 3-Door ZX3,RS
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

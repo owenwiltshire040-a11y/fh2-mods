@@ -1,0 +1,14 @@
+{
+  "format_version": 1,
+  "id": "owen-peugeot-107",
+  "name": "Peugeot 107 Urban 1.0 (2006)",
+  "author": "Owen",
+  "version": "0.1.3",
+  "description": "Early three-door 107 with original model textures, 14-inch hubcaps and 1.0 I3 manual setup. First test build.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": [
+    "owen-peugeot-207"
+  ]
+}

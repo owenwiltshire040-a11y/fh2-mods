@@ -1,0 +1,19 @@
+Opel Astra H 2004-2014
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/opel-astra-h-2004-2014-3f1bbea9691a497ca55f2b4a8cb38b83
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+3rd Opel Astra.
+Other Names:
+Chevrolet Vectra
+Chevrolet Vectra GT
+Holden Astra
+Saturn Astra
+Vauxhall Astra
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

@@ -1,0 +1,27 @@
+Toro Rosso STR1 0.7.0 — staged update
+
+READY FOR INSTALLATION AND THE FIRST IN-GAME TEST. No game or viewer was restarted during preparation. The installed Toro remains byte-identical to the captured 0.6.2 baseline.
+
+Installation:
+1. Close Azimuth and the private viewer.
+2. Double-click Install Toro Rosso Update.command in Passat B3 Build.
+3. Restart Azimuth once the installer reports success. Keep Williams FW24 enabled for its BMW P83 sound bank.
+The installer refuses to run while Azimuth is open, verifies the staged and installed files, preserves the old mod outside the mods folder, and leaves the existing load order unchanged.
+
+Changes:
+- Full CTDP 16,700 rpm curve: 169 entries including the 16,800 rpm fuel-cut marker; about 722 bhp and 317.3 Nm. Restored final drive from 4.3937 to 6.1659, undoing the old RPM scaling while preserving gear speeds.
+- BMW P83 F1 V10 audio via the Williams dependency. This is an F1 sound approximation, not the Cosworth recording.
+- STR1 steering controls rebuilt in a vertex format with primary UVs. Native digital-gauge material and car-specific XAML/shift-light resources added to the source LCD plane.
+- Front and rear rims reconstructed separately from their respective source hubs, including spoke cutouts and original atlas colours. Proper diameter/width morphs, open inner barrels, no Charger faces/blur details. Common 13-inch nominal diameter retained.
+- Native carbon-fibre shader on carbon surfaces; livery geometry/UVs and body placement preserved.
+- Stock race components with tuning; non-stock roadcar engine/chassis/drivetrain upgrades removed. Carbon/F1 brake settings selected; existing brake model assets remain.
+- Confirmed wheel references, skeleton/driver pose, camera settings, chassis dimensions, springs, mass and aero retained.
+
+Offline checks:
+Engine endpoints, cutoff/coast data, power, gearing equivalence, stock-only upgrades, both actual built rims and their morphs, spoke direction, all donor wheel LOD removal, carbin references, primary steering UVs, XAML and UI texture paths, archive integrity and installation hashes passed. Exterior/cockpit geometry and textures reviewed offline. Preview brake diameter is approximated; this is not the game renderer.
+
+First in-game checks still required:
+Idle/limiter and gear changes, audio pitch/transitions, live dashboard/shift lights and UV orientation, front/rear wheel/brake clearance, tuning availability, steering/driver animation. No runtime claim is made until those tests are done. Existing saved upgrade/tune combinations may be incompatible with the new stock-only parts; start with the stock setup on the first test.
+
+Rebuild:
+Use /Users/owen/Downloads/fh2-mods-main/.venv/bin/python cars/tororosso/build_candidate.py and validate_candidate.py from Passat B3 Build. Source geometry preparation is prepare_source.py. Extra geometry libraries are local to cars/tororosso/build/deps. The installer always checks package-checksums.json; regenerate it only after validating a new build.

@@ -1,0 +1,3629 @@
+{
+  "daily01": [
+    {
+      "node": "primary-material_14",
+      "material": "primary",
+      "faces": 242,
+      "bounds": [
+        [
+          0.225853,
+          -0.334624,
+          1.735228
+        ],
+        [
+          0.272106,
+          -0.309357,
+          1.791859
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_13",
+      "material": "primary",
+      "faces": 1,
+      "bounds": [
+        [
+          0.605288,
+          -0.012203,
+          -0.649534
+        ],
+        [
+          0.618586,
+          0.024184,
+          -0.615713
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_12",
+      "material": "primary",
+      "faces": 108,
+      "bounds": [
+        [
+          0.735902,
+          0.18631,
+          0.87861
+        ],
+        [
+          0.776872,
+          0.233778,
+          1.088482
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_11",
+      "material": "primary",
+      "faces": 468,
+      "bounds": [
+        [
+          0.534371,
+          -0.334419,
+          0.281651
+        ],
+        [
+          0.786762,
+          0.742951,
+          1.11566
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_10",
+      "material": "primary",
+      "faces": 108,
+      "bounds": [
+        [
+          -0.776872,
+          0.18631,
+          0.878609
+        ],
+        [
+          -0.735902,
+          0.233778,
+          1.088481
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_9",
+      "material": "primary",
+      "faces": 468,
+      "bounds": [
+        [
+          -0.786762,
+          -0.334419,
+          0.281649
+        ],
+        [
+          -0.534371,
+          0.742951,
+          1.115658
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_8",
+      "material": "primary",
+      "faces": 28,
+      "bounds": [
+        [
+          -0.908764,
+          0.306912,
+          -0.578076
+        ],
+        [
+          -0.758687,
+          0.404932,
+          -0.461841
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_7",
+      "material": "primary",
+      "faces": 106,
+      "bounds": [
+        [
+          -0.800165,
+          0.126189,
+          0.062158
+        ],
+        [
+          -0.763716,
+          0.173656,
+          0.271907
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_6",
+      "material": "primary",
+      "faces": 405,
+      "bounds": [
+        [
+          -0.77906,
+          -0.34534,
+          -0.694284
+        ],
+        [
+          -0.534371,
+          0.742951,
+          0.353153
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_5",
+      "material": "primary",
+      "faces": 107,
+      "bounds": [
+        [
+          0.763712,
+          0.126189,
+          0.062158
+        ],
+        [
+          0.800161,
+          0.173656,
+          0.271907
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_4",
+      "material": "primary",
+      "faces": 28,
+      "bounds": [
+        [
+          0.758683,
+          0.306912,
+          -0.578076
+        ],
+        [
+          0.90876,
+          0.404932,
+          -0.461841
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_3",
+      "material": "primary",
+      "faces": 405,
+      "bounds": [
+        [
+          0.534367,
+          -0.34534,
+          -0.694284
+        ],
+        [
+          0.779064,
+          0.742951,
+          0.353154
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_2",
+      "material": "primary",
+      "faces": 502,
+      "bounds": [
+        [
+          -0.671663,
+          0.013467,
+          -1.753765
+        ],
+        [
+          0.671662,
+          0.301082,
+          -0.840676
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material_1",
+      "material": "primary",
+      "faces": 1186,
+      "bounds": [
+        [
+          -0.58095,
+          -0.02196,
+          1.273111
+        ],
+        [
+          0.580949,
+          0.731755,
+          1.824206
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "primary-material",
+      "material": "primary",
+      "faces": 4154,
+      "bounds": [
+        [
+          -0.795146,
+          -0.426827,
+          -1.827083
+        ],
+        [
+          0.795151,
+          0.783612,
+          1.854669
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "teker_0-material_1",
+      "material": "teker.0",
+      "faces": 757,
+      "bounds": [
+        [
+          0.553324,
+          -0.596367,
+          -1.36553
+        ],
+        [
+          0.766886,
+          -0.017064,
+          -0.784873
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "teker_0-material",
+      "material": "teker.0",
+      "faces": 644,
+      "bounds": [
+        [
+          0.745944,
+          -0.480903,
+          -1.255469
+        ],
+        [
+          0.770926,
+          -0.127717,
+          -0.898621
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily02": [
+    {
+      "node": "252",
+      "material": "chrome",
+      "faces": 12804,
+      "bounds": [
+        [
+          -0.122323,
+          -0.226219,
+          -0.226488
+        ],
+        [
+          0.118081,
+          0.225745,
+          0.225677
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "251",
+      "material": "chrome",
+      "faces": 948,
+      "bounds": [
+        [
+          -0.044124,
+          -1.39335,
+          0.260203
+        ],
+        [
+          0.568396,
+          2.013219,
+          0.419221
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "243_d63642",
+      "material": "chrome",
+      "faces": 666,
+      "bounds": [
+        [
+          0.316676,
+          -2.090307,
+          0.637424
+        ],
+        [
+          0.742207,
+          -1.676092,
+          0.818852
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "236_e91766",
+      "material": "chrome",
+      "faces": 23,
+      "bounds": [
+        [
+          -0.998072,
+          -0.590978,
+          0.954051
+        ],
+        [
+          -0.824432,
+          -0.498673,
+          1.069899
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "231_5e2619",
+      "material": "chrome",
+      "faces": 666,
+      "bounds": [
+        [
+          -0.742205,
+          -2.090307,
+          0.637424
+        ],
+        [
+          -0.316674,
+          -1.676092,
+          0.818852
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "230",
+      "material": "chrome",
+      "faces": 499,
+      "bounds": [
+        [
+          -0.595097,
+          1.896697,
+          0.839516
+        ],
+        [
+          0.611229,
+          1.928416,
+          0.890748
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "229",
+      "material": "chrome",
+      "faces": 303,
+      "bounds": [
+        [
+          0.508133,
+          1.896697,
+          0.839516
+        ],
+        [
+          0.611229,
+          1.928416,
+          0.890748
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "227_846627",
+      "material": "chrome",
+      "faces": 23,
+      "bounds": [
+        [
+          0.824432,
+          -0.590978,
+          0.954051
+        ],
+        [
+          0.998072,
+          -0.498672,
+          1.069899
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "226_57c4d9",
+      "material": "chrome",
+      "faces": 12,
+      "bounds": [
+        [
+          0.688469,
+          -0.433279,
+          0.851686
+        ],
+        [
+          0.715964,
+          -0.323066,
+          0.893102
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "219_f5460b",
+      "material": "chrome",
+      "faces": 12,
+      "bounds": [
+        [
+          -0.715964,
+          -0.433279,
+          0.851686
+        ],
+        [
+          -0.688469,
+          -0.323066,
+          0.893102
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "216_f99c7d",
+      "material": "chrome",
+      "faces": 118,
+      "bounds": [
+        [
+          0.269615,
+          -0.569097,
+          0.825112
+        ],
+        [
+          0.272789,
+          -0.537786,
+          0.851642
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "138",
+      "material": "chrome",
+      "faces": 3276,
+      "bounds": [
+        [
+          -0.092195,
+          -0.225741,
+          -0.227474
+        ],
+        [
+          0.098333,
+          0.228786,
+          0.227052
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "132_d3dee2",
+      "material": "chrome",
+      "faces": 12,
+      "bounds": [
+        [
+          -0.715964,
+          -0.433279,
+          0.851686
+        ],
+        [
+          -0.688469,
+          -0.323066,
+          0.893102
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "131_8770cb",
+      "material": "chrome",
+      "faces": 12,
+      "bounds": [
+        [
+          0.688469,
+          -0.433279,
+          0.851686
+        ],
+        [
+          0.715964,
+          -0.323066,
+          0.893102
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "78_78d7d3",
+      "material": "chrome",
+      "faces": 392,
+      "bounds": [
+        [
+          -0.466514,
+          1.378088,
+          1.365728
+        ],
+        [
+          0.466514,
+          1.535671,
+          1.458012
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "76",
+      "material": "chrome",
+      "faces": 948,
+      "bounds": [
+        [
+          -0.044124,
+          -1.39335,
+          0.260203
+        ],
+        [
+          0.568396,
+          2.013219,
+          0.419221
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "9",
+      "material": "chrome",
+      "faces": 948,
+      "bounds": [
+        [
+          -0.044124,
+          -1.39335,
+          0.254219
+        ],
+        [
+          0.617469,
+          1.93744,
+          0.419221
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily03": [
+    {
+      "node": "F:M_Rim_High_F:phong14SG1_0",
+      "material": "Fphong14SG1",
+      "faces": 8500,
+      "bounds": [
+        [
+          -0.008741,
+          -0.000622,
+          -0.015616
+        ],
+        [
+          0.008741,
+          0.004236,
+          0.015616
+        ]
+      ],
+      "image": true,
+      "colour": null
+    }
+  ],
+  "daily04": [
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.316",
+      "material": "rim.001",
+      "faces": 2184,
+      "bounds": [
+        [
+          84.169701,
+          25.400003,
+          -142.949613
+        ],
+        [
+          86.531502,
+          42.366086,
+          -126.270009
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.315",
+      "material": "rim.001",
+      "faces": 350,
+      "bounds": [
+        [
+          85.897903,
+          30.722189,
+          -137.552159
+        ],
+        [
+          86.535797,
+          36.730229,
+          -131.394372
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.312",
+      "material": "rim.001",
+      "faces": 18210,
+      "bounds": [
+        [
+          62.5266,
+          9.225124,
+          -159.037793
+        ],
+        [
+          86.126701,
+          58.545363,
+          -109.79816
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.310",
+      "material": "rim.001",
+      "faces": 960,
+      "bounds": [
+        [
+          86.650703,
+          33.100378,
+          -136.728125
+        ],
+        [
+          86.697899,
+          34.691976,
+          -132.233529
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.309",
+      "material": "rim.001",
+      "faces": 2648,
+      "bounds": [
+        [
+          86.729897,
+          33.453131,
+          -135.114744
+        ],
+        [
+          86.789101,
+          34.172895,
+          -133.153309
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.308",
+      "material": "rim.001",
+      "faces": 2112,
+      "bounds": [
+        [
+          86.729897,
+          33.450508,
+          -135.837195
+        ],
+        [
+          86.789101,
+          34.474221,
+          -133.828255
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.292",
+      "material": "rim.001",
+      "faces": 2184,
+      "bounds": [
+        [
+          -86.531403,
+          25.400003,
+          -142.949613
+        ],
+        [
+          -84.169601,
+          42.366086,
+          -126.270009
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.291",
+      "material": "rim.001",
+      "faces": 350,
+      "bounds": [
+        [
+          -86.535698,
+          30.722189,
+          -137.552159
+        ],
+        [
+          -85.897797,
+          36.730229,
+          -131.39435
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.288",
+      "material": "rim.001",
+      "faces": 18210,
+      "bounds": [
+        [
+          -86.126602,
+          9.225124,
+          -159.037793
+        ],
+        [
+          -62.5266,
+          58.545363,
+          -109.79816
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.286",
+      "material": "rim.001",
+      "faces": 960,
+      "bounds": [
+        [
+          -86.697899,
+          33.100378,
+          -136.728125
+        ],
+        [
+          -86.650703,
+          34.691976,
+          -132.233529
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.285",
+      "material": "rim.001",
+      "faces": 2648,
+      "bounds": [
+        [
+          -86.789101,
+          33.453131,
+          -135.114744
+        ],
+        [
+          -86.729897,
+          34.172895,
+          -133.153202
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.284",
+      "material": "rim.001",
+      "faces": 2112,
+      "bounds": [
+        [
+          -86.789101,
+          33.450508,
+          -135.837195
+        ],
+        [
+          -86.729897,
+          34.474221,
+          -133.828255
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.268",
+      "material": "rim.001",
+      "faces": 2184,
+      "bounds": [
+        [
+          84.169601,
+          25.696184,
+          134.819638
+        ],
+        [
+          86.531502,
+          42.662366,
+          151.499234
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.267",
+      "material": "rim.001",
+      "faces": 350,
+      "bounds": [
+        [
+          85.897797,
+          31.018468,
+          140.217098
+        ],
+        [
+          86.535698,
+          37.026509,
+          146.374901
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.264",
+      "material": "rim.001",
+      "faces": 18210,
+      "bounds": [
+        [
+          62.5266,
+          9.521404,
+          118.731451
+        ],
+        [
+          86.126602,
+          58.841643,
+          167.971084
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.262",
+      "material": "rim.001",
+      "faces": 960,
+      "bounds": [
+        [
+          86.650703,
+          33.396658,
+          141.041111
+        ],
+        [
+          86.697899,
+          34.988157,
+          145.535707
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.261",
+      "material": "rim.001",
+      "faces": 2648,
+      "bounds": [
+        [
+          86.729897,
+          33.74941,
+          142.654508
+        ],
+        [
+          86.789101,
+          34.469076,
+          144.615942
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.260",
+      "material": "rim.001",
+      "faces": 2112,
+      "bounds": [
+        [
+          86.729897,
+          33.746788,
+          141.932041
+        ],
+        [
+          86.789101,
+          34.770501,
+          143.940996
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.009",
+      "material": "rim.001",
+      "faces": 2184,
+      "bounds": [
+        [
+          -86.531502,
+          25.696184,
+          134.819638
+        ],
+        [
+          -84.169601,
+          42.662366,
+          151.499234
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.008",
+      "material": "rim.001",
+      "faces": 350,
+      "bounds": [
+        [
+          -86.535698,
+          31.018468,
+          140.217098
+        ],
+        [
+          -85.897797,
+          37.026509,
+          146.374901
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.005",
+      "material": "rim.001",
+      "faces": 18210,
+      "bounds": [
+        [
+          -86.126701,
+          9.521404,
+          118.731451
+        ],
+        [
+          -62.5266,
+          58.841643,
+          167.971084
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.003",
+      "material": "rim.001",
+      "faces": 960,
+      "bounds": [
+        [
+          -86.697899,
+          33.396658,
+          141.041111
+        ],
+        [
+          -86.650703,
+          34.988157,
+          145.535707
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.002",
+      "material": "rim.001",
+      "faces": 2648,
+      "bounds": [
+        [
+          -86.789101,
+          33.749411,
+          142.654508
+        ],
+        [
+          -86.729897,
+          34.469076,
+          144.616034
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Ford_Mondeo_(Mk3f)_hatchback_2003.001",
+      "material": "rim.001",
+      "faces": 2112,
+      "bounds": [
+        [
+          -86.789101,
+          33.746788,
+          141.932041
+        ],
+        [
+          -86.729897,
+          34.770501,
+          143.941088
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily05": [
+    {
+      "node": "gray-material_1",
+      "material": "gray",
+      "faces": 1010,
+      "bounds": [
+        [
+          0.034942,
+          -0.251715,
+          -0.25118
+        ],
+        [
+          0.101522,
+          0.247925,
+          0.24939
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily06": [
+    {
+      "node": "Object_25",
+      "material": "wheel",
+      "faces": 20120,
+      "bounds": [
+        [
+          5.538995,
+          0.721765,
+          10.757496
+        ],
+        [
+          7.76002,
+          5.602313,
+          15.639009
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_24",
+      "material": "wheel",
+      "faces": 20120,
+      "bounds": [
+        [
+          5.538996,
+          0.721764,
+          -16.719685
+        ],
+        [
+          7.76002,
+          5.602313,
+          -11.838171
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_23",
+      "material": "wheel",
+      "faces": 20120,
+      "bounds": [
+        [
+          -9.605063,
+          0.721764,
+          -16.719687
+        ],
+        [
+          -7.38404,
+          5.602312,
+          -11.838173
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_22",
+      "material": "wheel",
+      "faces": 20120,
+      "bounds": [
+        [
+          -9.605069,
+          0.721764,
+          10.75897
+        ],
+        [
+          -7.384046,
+          5.602312,
+          15.640483
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily07": [
+    {
+      "node": "Object_614",
+      "material": "956_25",
+      "faces": 534,
+      "bounds": [
+        [
+          0.010888,
+          -0.177761,
+          0.225231
+        ],
+        [
+          0.011933,
+          -0.129465,
+          0.273526
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_611",
+      "material": "956_24",
+      "faces": 320,
+      "bounds": [
+        [
+          0.011237,
+          -0.176985,
+          0.225696
+        ],
+        [
+          0.011958,
+          -0.129567,
+          0.273114
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_523",
+      "material": "956_23",
+      "faces": 3020,
+      "bounds": [
+        [
+          -0.085663,
+          -0.040015,
+          0.054719
+        ],
+        [
+          0.085659,
+          0.018315,
+          0.366682
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_510",
+      "material": "956_22",
+      "faces": 4863,
+      "bounds": [
+        [
+          0.008488,
+          -0.117103,
+          0.205396
+        ],
+        [
+          0.077706,
+          -0.001136,
+          0.305818
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_503",
+      "material": "956_22",
+      "faces": 4863,
+      "bounds": [
+        [
+          -0.080801,
+          -0.117103,
+          0.205396
+        ],
+        [
+          -0.011583,
+          -0.001136,
+          0.305818
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_386",
+      "material": "956_21",
+      "faces": 20,
+      "bounds": [
+        [
+          -0.017185,
+          -0.086441,
+          0.017865
+        ],
+        [
+          0.018616,
+          -0.08603,
+          0.020971
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_383",
+      "material": "956_21",
+      "faces": 96,
+      "bounds": [
+        [
+          -0.01745,
+          -0.08685,
+          0.017557
+        ],
+        [
+          0.018883,
+          -0.08603,
+          0.021183
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_380",
+      "material": "956_21",
+      "faces": 118,
+      "bounds": [
+        [
+          0.079434,
+          -0.125263,
+          0.253381
+        ],
+        [
+          0.089261,
+          -0.123711,
+          0.255207
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_377",
+      "material": "956_21",
+      "faces": 118,
+      "bounds": [
+        [
+          0.078851,
+          -0.125125,
+          0.256881
+        ],
+        [
+          0.088445,
+          -0.123648,
+          0.259974
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_374",
+      "material": "956_21",
+      "faces": 118,
+      "bounds": [
+        [
+          0.079686,
+          -0.108772,
+          0.252265
+        ],
+        [
+          0.089512,
+          -0.107538,
+          0.254094
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_371",
+      "material": "956_21",
+      "faces": 118,
+      "bounds": [
+        [
+          0.078178,
+          -0.116148,
+          0.25599
+        ],
+        [
+          0.087747,
+          -0.114629,
+          0.259145
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_368",
+      "material": "956_21",
+      "faces": 384,
+      "bounds": [
+        [
+          -0.089717,
+          -0.067763,
+          0.440141
+        ],
+        [
+          -0.079925,
+          -0.065753,
+          0.44951
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_365",
+      "material": "956_21",
+      "faces": 406,
+      "bounds": [
+        [
+          0.079406,
+          -0.067759,
+          0.440563
+        ],
+        [
+          0.089088,
+          -0.065748,
+          0.449897
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_362",
+      "material": "956_21",
+      "faces": 218,
+      "bounds": [
+        [
+          0.071301,
+          -0.150748,
+          0.261507
+        ],
+        [
+          0.071752,
+          -0.147604,
+          0.26185
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Object_359",
+      "material": "956_21",
+      "faces": 380,
+      "bounds": [
+        [
+          0.0737,
+          -0.1238,
+          0.226117
+        ],
+        [
+          0.091495,
+          -0.110302,
+          0.285871
+        ]
+      ],
+      "image": true,
+      "colour": null
+    }
+  ],
+  "daily08": [
+    {
+      "node": "windowtrim-material",
+      "material": "windowtrim",
+      "faces": 64,
+      "bounds": [
+        [
+          -0.833125,
+          0.97198,
+          -1.411802
+        ],
+        [
+          0.831389,
+          1.377309,
+          0.096727
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelchrome-material_3",
+      "material": "wheelchrome",
+      "faces": 2070,
+      "bounds": [
+        [
+          -0.903865,
+          0.087473,
+          1.197475
+        ],
+        [
+          -0.832714,
+          0.592526,
+          1.702528
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelinner-material_3",
+      "material": "wheelinner",
+      "faces": 298,
+      "bounds": [
+        [
+          -0.856469,
+          0.087009,
+          1.198142
+        ],
+        [
+          -0.665402,
+          0.592991,
+          1.701629
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelchrome-material_2",
+      "material": "wheelchrome",
+      "faces": 2070,
+      "bounds": [
+        [
+          0.832714,
+          0.087473,
+          1.197472
+        ],
+        [
+          0.903865,
+          0.592526,
+          1.702525
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelinner-material_2",
+      "material": "wheelinner",
+      "faces": 298,
+      "bounds": [
+        [
+          0.665402,
+          0.087009,
+          1.198371
+        ],
+        [
+          0.856469,
+          0.592991,
+          1.701858
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelchrome-material_1",
+      "material": "wheelchrome",
+      "faces": 2070,
+      "bounds": [
+        [
+          -0.898865,
+          0.067473,
+          -1.582525
+        ],
+        [
+          -0.827714,
+          0.572526,
+          -1.077472
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelinner-material_1",
+      "material": "wheelinner",
+      "faces": 298,
+      "bounds": [
+        [
+          -0.851469,
+          0.067009,
+          -1.581858
+        ],
+        [
+          -0.660402,
+          0.572991,
+          -1.078371
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelchrome-material",
+      "material": "wheelchrome",
+      "faces": 2070,
+      "bounds": [
+        [
+          0.827714,
+          0.067473,
+          -1.582527
+        ],
+        [
+          0.898865,
+          0.572526,
+          -1.077475
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheelinner-material",
+      "material": "wheelinner",
+      "faces": 298,
+      "bounds": [
+        [
+          0.660402,
+          0.067009,
+          -1.581629
+        ],
+        [
+          0.851469,
+          0.572991,
+          -1.078142
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily09": [
+    {
+      "node": "htvectrac_metal-material_3",
+      "material": "htvectrac_metal",
+      "faces": 2708,
+      "bounds": [
+        [
+          -0.107738,
+          -0.217052,
+          -0.215432
+        ],
+        [
+          0.102262,
+          0.217075,
+          0.215442
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "htvectrac_chrome-material_14",
+      "material": "htvectrac_chrome",
+      "faces": 2492,
+      "bounds": [
+        [
+          0.074399,
+          -0.065208,
+          -0.065451
+        ],
+        [
+          0.100952,
+          0.061915,
+          0.059279
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "htvectrac_metal-material_1",
+      "material": "htvectrac_metal",
+      "faces": 12840,
+      "bounds": [
+        [
+          -0.09238,
+          -0.218376,
+          -0.218341
+        ],
+        [
+          0.097489,
+          0.218395,
+          0.218339
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "htvectrac_chrome-material_7",
+      "material": "htvectrac_chrome",
+      "faces": 2492,
+      "bounds": [
+        [
+          0.047416,
+          -0.065208,
+          -0.065451
+        ],
+        [
+          0.075611,
+          0.061915,
+          0.059279
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "htvectrac_metal-material",
+      "material": "htvectrac_metal",
+      "faces": 2292,
+      "bounds": [
+        [
+          -0.091576,
+          -0.214251,
+          -0.213282
+        ],
+        [
+          0.104063,
+          0.209505,
+          0.210179
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "htvectrac_chrome-material",
+      "material": "htvectrac_chrome",
+      "faces": 2492,
+      "bounds": [
+        [
+          0.067826,
+          -0.067619,
+          -0.068258
+        ],
+        [
+          0.094379,
+          0.073247,
+          0.072933
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily10": [
+    {
+      "node": "Object_35",
+      "material": "Carro_Roda",
+      "faces": 156,
+      "bounds": [
+        [
+          -0.790341,
+          0.244046,
+          -1.41647
+        ],
+        [
+          -0.779025,
+          0.31928,
+          -1.29247
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_34",
+      "material": "Carro_Roda",
+      "faces": 3676,
+      "bounds": [
+        [
+          -0.790341,
+          0.095403,
+          -1.57418
+        ],
+        [
+          0.790341,
+          0.511592,
+          1.56252
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_33",
+      "material": "Carro_Roda",
+      "faces": 3287,
+      "bounds": [
+        [
+          -0.78785,
+          0.095403,
+          -1.57367
+        ],
+        [
+          0.78785,
+          0.784757,
+          1.97838
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_32",
+      "material": "Carro_Roda",
+      "faces": 3917,
+      "bounds": [
+        [
+          -0.78785,
+          0.086679,
+          -1.5745
+        ],
+        [
+          0.78785,
+          0.784757,
+          1.97838
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_31",
+      "material": "Carro_Roda",
+      "faces": 3785,
+      "bounds": [
+        [
+          0.761171,
+          0.097619,
+          -1.5723
+        ],
+        [
+          0.80547,
+          0.516144,
+          -1.13999
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_30",
+      "material": "Carro_Roda",
+      "faces": 3785,
+      "bounds": [
+        [
+          -0.80547,
+          0.097619,
+          1.14169
+        ],
+        [
+          -0.761171,
+          0.516144,
+          1.574
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_29",
+      "material": "Carro_Roda",
+      "faces": 3785,
+      "bounds": [
+        [
+          -0.80547,
+          0.097619,
+          -1.57041
+        ],
+        [
+          -0.761171,
+          0.516144,
+          -1.1381
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_28",
+      "material": "Carro_Roda",
+      "faces": 3785,
+      "bounds": [
+        [
+          0.761171,
+          0.097619,
+          1.13981
+        ],
+        [
+          0.80547,
+          0.516144,
+          1.57212
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily11": [
+    {
+      "node": "Object_58",
+      "material": "jante",
+      "faces": 8492,
+      "bounds": [
+        [
+          -0.92171,
+          0.054642,
+          1.215311
+        ],
+        [
+          -0.69922,
+          0.56092,
+          1.721588
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_57",
+      "material": "jante",
+      "faces": 8492,
+      "bounds": [
+        [
+          0.702688,
+          0.107476,
+          -1.547044
+        ],
+        [
+          0.925178,
+          0.613753,
+          -1.040766
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_56",
+      "material": "jante",
+      "faces": 8492,
+      "bounds": [
+        [
+          -0.921772,
+          0.10552,
+          -1.546295
+        ],
+        [
+          -0.699281,
+          0.611798,
+          -1.040018
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "Object_55",
+      "material": "jante",
+      "faces": 8492,
+      "bounds": [
+        [
+          0.699757,
+          0.058656,
+          1.224974
+        ],
+        [
+          0.922247,
+          0.564933,
+          1.731252
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily12": [
+    {
+      "node": "desirefx.me_043_rim_0",
+      "material": "material",
+      "faces": 27736,
+      "bounds": [
+        [
+          -0.085372,
+          -0.132268,
+          0.009083
+        ],
+        [
+          -0.062436,
+          -0.088001,
+          0.053241
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "desirefx.me_038_rim_0",
+      "material": "material",
+      "faces": 27736,
+      "bounds": [
+        [
+          0.062436,
+          -0.132268,
+          0.009083
+        ],
+        [
+          0.085372,
+          -0.088001,
+          0.053241
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "desirefx.me_031_rim_0",
+      "material": "material",
+      "faces": 27736,
+      "bounds": [
+        [
+          -0.085372,
+          0.107011,
+          0.009083
+        ],
+        [
+          -0.062436,
+          0.151278,
+          0.053241
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "desirefx.me_017_rim_0",
+      "material": "material",
+      "faces": 27736,
+      "bounds": [
+        [
+          0.062436,
+          0.107011,
+          0.009083
+        ],
+        [
+          0.085372,
+          0.151278,
+          0.053241
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily13": [
+    {
+      "node": "lambert12SG",
+      "material": "lambert12SG",
+      "faces": 4,
+      "bounds": [
+        [
+          -14.98332,
+          -0.98538,
+          -15.517621
+        ],
+        [
+          13.110843,
+          11.258835,
+          8.576304
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "aiStandardSurface1SG",
+      "material": "aiStandardSurface1SG",
+      "faces": 290,
+      "bounds": [
+        [
+          -2.950555,
+          1.423545,
+          -4.427832
+        ],
+        [
+          3.350609,
+          2.592848,
+          1.486438
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "lambert6SG",
+      "material": "lambert6SG",
+      "faces": 24,
+      "bounds": [
+        [
+          -4.380175,
+          0.031652,
+          -4.266924
+        ],
+        [
+          3.567989,
+          0.343671,
+          2.276438
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "phong1SG",
+      "material": "phong1SG",
+      "faces": 3028,
+      "bounds": [
+        [
+          -4.741872,
+          -0.392148,
+          -5.072245
+        ],
+        [
+          4.05774,
+          2.53098,
+          2.894525
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "lambert2SG",
+      "material": "lambert2SG",
+      "faces": 2920,
+      "bounds": [
+        [
+          -4.498607,
+          -0.343367,
+          -4.742693
+        ],
+        [
+          3.809772,
+          2.772668,
+          2.665414
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "blinn1SG",
+      "material": "blinn1SG",
+      "faces": 10008,
+      "bounds": [
+        [
+          -4.452146,
+          -0.723767,
+          -5.038625
+        ],
+        [
+          3.876569,
+          0.383048,
+          2.871096
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "lambert4SG",
+      "material": "lambert4SG",
+      "faces": 560,
+      "bounds": [
+        [
+          -4.406417,
+          -0.652737,
+          -4.986536
+        ],
+        [
+          3.813995,
+          0.301476,
+          2.80481
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "lambert7SG",
+      "material": "lambert7SG",
+      "faces": 1312,
+      "bounds": [
+        [
+          -4.291113,
+          0.10732,
+          -4.153098
+        ],
+        [
+          3.519818,
+          0.255935,
+          2.204643
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "aiStandardSurface3SG",
+      "material": "aiStandardSurface3SG",
+      "faces": 118,
+      "bounds": [
+        [
+          -4.554787,
+          0.506747,
+          -0.03282
+        ],
+        [
+          -2.353859,
+          1.112506,
+          2.698296
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "aiStandardSurface6SG",
+      "material": "aiStandardSurface6SG",
+      "faces": 160,
+      "bounds": [
+        [
+          -4.555741,
+          0.488982,
+          -0.279521
+        ],
+        [
+          -2.00544,
+          1.112506,
+          2.698296
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "initialShadingGroup",
+      "material": "initialShadingGroup",
+      "faces": 1664,
+      "bounds": [
+        [
+          -4.403276,
+          0.655749,
+          -2.135144
+        ],
+        [
+          0.082289,
+          1.702912,
+          2.549213
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "aiStandardSurface2SG",
+      "material": "aiStandardSurface2SG",
+      "faces": 40,
+      "bounds": [
+        [
+          -4.562016,
+          0.488982,
+          0.323002
+        ],
+        [
+          -2.72488,
+          0.69072,
+          2.679354
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "lambert5SG",
+      "material": "lambert5SG",
+      "faces": 40288,
+      "bounds": [
+        [
+          -4.519707,
+          -0.958956,
+          -5.129931
+        ],
+        [
+          4.017406,
+          0.626189,
+          3.030244
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily14": [
+    {
+      "node": "wheel_lf_dummy__copy_wheel_2__a0m2",
+      "material": "exterieur",
+      "faces": 128,
+      "bounds": [
+        [
+          -0.713825,
+          1.223137,
+          -0.333974
+        ],
+        [
+          -0.638644,
+          1.503536,
+          -0.053575
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel_2__a0m1",
+      "material": "silv",
+      "faces": 1502,
+      "bounds": [
+        [
+          -0.896051,
+          1.134607,
+          -0.421456
+        ],
+        [
+          -0.592023,
+          1.591509,
+          0.035446
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel_2__a0m0",
+      "material": "pneu512",
+      "faces": 768,
+      "bounds": [
+        [
+          -0.956018,
+          1.045827,
+          -0.50991
+        ],
+        [
+          -0.575812,
+          1.679816,
+          0.12408
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel_2__a0m2",
+      "material": "exterieur",
+      "faces": 128,
+      "bounds": [
+        [
+          0.817831,
+          1.222107,
+          -0.333974
+        ],
+        [
+          0.893012,
+          1.502506,
+          -0.053575
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel_2__a0m1",
+      "material": "silv",
+      "faces": 1502,
+      "bounds": [
+        [
+          0.635606,
+          1.134134,
+          -0.421456
+        ],
+        [
+          0.939634,
+          1.591037,
+          0.035446
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel_2__a0m0",
+      "material": "pneu512",
+      "faces": 768,
+      "bounds": [
+        [
+          0.575638,
+          1.045827,
+          -0.50991
+        ],
+        [
+          0.955844,
+          1.679817,
+          0.12408
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel_2__a0m2",
+      "material": "exterieur",
+      "faces": 128,
+      "bounds": [
+        [
+          -0.906569,
+          -1.534451,
+          -0.089369
+        ],
+        [
+          -0.62617,
+          -1.254051,
+          -0.014188
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel_2__a0m1",
+      "material": "silv",
+      "faces": 1502,
+      "bounds": [
+        [
+          -0.99559,
+          -1.622981,
+          -0.271595
+        ],
+        [
+          -0.538688,
+          -1.166078,
+          0.032433
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel_2__a0m0",
+      "material": "pneu512",
+      "faces": 768,
+      "bounds": [
+        [
+          -1.084224,
+          -1.711761,
+          -0.331562
+        ],
+        [
+          -0.450234,
+          -1.077771,
+          0.048644
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel_2__a0m2",
+      "material": "exterieur",
+      "faces": 128,
+      "bounds": [
+        [
+          0.609314,
+          -1.535201,
+          -0.089369
+        ],
+        [
+          0.889713,
+          -1.254802,
+          -0.014188
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel_2__a0m1",
+      "material": "silv",
+      "faces": 1502,
+      "bounds": [
+        [
+          0.521832,
+          -1.623174,
+          -0.271595
+        ],
+        [
+          0.978734,
+          -1.166272,
+          0.032433
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel_2__a0m0",
+      "material": "pneu512",
+      "faces": 768,
+      "bounds": [
+        [
+          0.433378,
+          -1.711482,
+          -0.331562
+        ],
+        [
+          1.067368,
+          -1.077492,
+          0.048644
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_2__a0m2",
+      "material": "exterieur",
+      "faces": 128,
+      "bounds": [
+        [
+          0.816776,
+          1.223314,
+          -0.333208
+        ],
+        [
+          0.891957,
+          1.503713,
+          -0.052809
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_2__a0m1",
+      "material": "silv",
+      "faces": 1502,
+      "bounds": [
+        [
+          0.634551,
+          1.135341,
+          -0.420691
+        ],
+        [
+          0.938579,
+          1.592243,
+          0.036211
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_2__a0m0",
+      "material": "pneu512",
+      "faces": 768,
+      "bounds": [
+        [
+          0.574583,
+          1.047033,
+          -0.509144
+        ],
+        [
+          0.95479,
+          1.681023,
+          0.124846
+        ]
+      ],
+      "image": true,
+      "colour": null
+    }
+  ],
+  "daily15": [
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "faces": 4065,
+      "bounds": [
+        [
+          -0.995978,
+          -1.774721,
+          -0.506265
+        ],
+        [
+          -0.787655,
+          -1.253965,
+          0.014505
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m1",
+      "material": "paint",
+      "faces": 16,
+      "bounds": [
+        [
+          -0.908856,
+          -1.54116,
+          -0.560595
+        ],
+        [
+          -0.888903,
+          -1.49617,
+          -0.515605
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m0",
+      "material": "real racing convert tire",
+      "faces": 768,
+      "bounds": [
+        [
+          -0.99592,
+          -1.84972,
+          -0.575935
+        ],
+        [
+          -0.782357,
+          -1.185611,
+          0.088125
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "faces": 4065,
+      "bounds": [
+        [
+          0.787593,
+          -1.781369,
+          -0.506303
+        ],
+        [
+          0.995916,
+          -1.260613,
+          0.014467
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m1",
+      "material": "paint",
+      "faces": 16,
+      "bounds": [
+        [
+          0.888841,
+          -1.539164,
+          -0.560633
+        ],
+        [
+          0.908794,
+          -1.494174,
+          -0.515643
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m0",
+      "material": "real racing convert tire",
+      "faces": 768,
+      "bounds": [
+        [
+          0.782294,
+          -1.849723,
+          -0.575973
+        ],
+        [
+          0.995858,
+          -1.185613,
+          0.088087
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "faces": 4065,
+      "bounds": [
+        [
+          -0.995978,
+          1.193344,
+          -0.529104
+        ],
+        [
+          -0.787655,
+          1.7141,
+          -0.008335
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m1",
+      "material": "paint",
+      "faces": 16,
+      "bounds": [
+        [
+          -0.908857,
+          1.426905,
+          -0.583434
+        ],
+        [
+          -0.888903,
+          1.471895,
+          -0.538444
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m0",
+      "material": "real racing convert tire",
+      "faces": 768,
+      "bounds": [
+        [
+          -0.99592,
+          1.118345,
+          -0.598775
+        ],
+        [
+          -0.782357,
+          1.782454,
+          0.065285
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "faces": 4065,
+      "bounds": [
+        [
+          0.787535,
+          1.186821,
+          -0.529144
+        ],
+        [
+          0.995858,
+          1.707577,
+          -0.008375
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m1",
+      "material": "paint",
+      "faces": 16,
+      "bounds": [
+        [
+          0.888783,
+          1.429026,
+          -0.583474
+        ],
+        [
+          0.908736,
+          1.474016,
+          -0.538484
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m0",
+      "material": "real racing convert tire",
+      "faces": 768,
+      "bounds": [
+        [
+          0.782236,
+          1.118467,
+          -0.598815
+        ],
+        [
+          0.995799,
+          1.782577,
+          0.065245
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m2",
+      "material": "car_hp_c4sedan_texture",
+      "faces": 4065,
+      "bounds": [
+        [
+          0.788998,
+          1.188073,
+          -0.535361
+        ],
+        [
+          0.997321,
+          1.70883,
+          -0.01459
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m1",
+      "material": "paint",
+      "faces": 16,
+      "bounds": [
+        [
+          0.890246,
+          1.429704,
+          -0.589698
+        ],
+        [
+          0.9102,
+          1.474694,
+          -0.544708
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m0",
+      "material": "real racing convert tire",
+      "faces": 768,
+      "bounds": [
+        [
+          0.7837,
+          1.119686,
+          -0.605075
+        ],
+        [
+          0.997263,
+          1.783871,
+          0.059061
+        ]
+      ],
+      "image": true,
+      "colour": null
+    }
+  ],
+  "daily16": [
+    {
+      "node": "Volvo_Ratas __a22m1",
+      "material": "tirea0",
+      "faces": 1120,
+      "bounds": [
+        [
+          0.766721,
+          1.180233,
+          -0.704765
+        ],
+        [
+          1.037105,
+          1.919127,
+          0.035425
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "Volvo_Ratas __a22m0",
+      "material": "wheel",
+      "faces": 1592,
+      "bounds": [
+        [
+          0.766721,
+          1.273337,
+          -0.611565
+        ],
+        [
+          1.042123,
+          1.826575,
+          -0.057775
+        ]
+      ],
+      "image": true,
+      "colour": null
+    }
+  ],
+  "daily17": [
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m4",
+      "material": "chromatic",
+      "faces": 2111,
+      "bounds": [
+        [
+          0.950402,
+          -1.461048,
+          -0.457696
+        ],
+        [
+          1.101785,
+          -1.303016,
+          -0.116302
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m3",
+      "material": "rgba_31_31_31_255",
+      "faces": 466,
+      "bounds": [
+        [
+          0.967391,
+          -1.396938,
+          -0.468093
+        ],
+        [
+          1.002655,
+          -1.367725,
+          -0.438504
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m2",
+      "material": "freio",
+      "faces": 479,
+      "bounds": [
+        [
+          0.862144,
+          -1.574542,
+          -0.378496
+        ],
+        [
+          0.952094,
+          -1.191579,
+          0.004467
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m1",
+      "material": "mallory",
+      "faces": 9740,
+      "bounds": [
+        [
+          0.76827,
+          -1.689177,
+          -0.495337
+        ],
+        [
+          1.026849,
+          -1.071949,
+          0.121892
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__copy_wheel__a0m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 30517,
+      "bounds": [
+        [
+          0.75852,
+          -1.723283,
+          -0.528188
+        ],
+        [
+          1.013003,
+          -1.041556,
+          0.153663
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m4",
+      "material": "chromatic",
+      "faces": 2111,
+      "bounds": [
+        [
+          -1.10086,
+          -1.461863,
+          -0.457695
+        ],
+        [
+          -0.949477,
+          -1.303831,
+          -0.116302
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m3",
+      "material": "rgba_31_31_31_255",
+      "faces": 466,
+      "bounds": [
+        [
+          -1.00173,
+          -1.397154,
+          -0.468092
+        ],
+        [
+          -0.966466,
+          -1.367941,
+          -0.438503
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m2",
+      "material": "freio",
+      "faces": 479,
+      "bounds": [
+        [
+          -0.951169,
+          -1.5733,
+          -0.378496
+        ],
+        [
+          -0.861219,
+          -1.190337,
+          0.004468
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m1",
+      "material": "mallory",
+      "faces": 9740,
+      "bounds": [
+        [
+          -1.025924,
+          -1.69293,
+          -0.495336
+        ],
+        [
+          -0.767345,
+          -1.075702,
+          0.121892
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__copy_wheel__a0m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 30517,
+      "bounds": [
+        [
+          -1.012078,
+          -1.723322,
+          -0.528187
+        ],
+        [
+          -0.757594,
+          -1.041596,
+          0.153664
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m4",
+      "material": "chromatic",
+      "faces": 2111,
+      "bounds": [
+        [
+          -1.061946,
+          1.595671,
+          -0.48189
+        ],
+        [
+          -0.910562,
+          1.753704,
+          -0.140497
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m3",
+      "material": "rgba_31_31_31_255",
+      "faces": 466,
+      "bounds": [
+        [
+          -0.962816,
+          1.660381,
+          -0.492287
+        ],
+        [
+          -0.927552,
+          1.689594,
+          -0.462698
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m2",
+      "material": "freio",
+      "faces": 479,
+      "bounds": [
+        [
+          -0.912254,
+          1.484234,
+          -0.402691
+        ],
+        [
+          -0.822304,
+          1.867197,
+          -0.019727
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m1",
+      "material": "mallory",
+      "faces": 9740,
+      "bounds": [
+        [
+          -0.98701,
+          1.364605,
+          -0.519532
+        ],
+        [
+          -0.728431,
+          1.981833,
+          0.097697
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__copy_wheel__a0m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 30517,
+      "bounds": [
+        [
+          -0.973164,
+          1.334212,
+          -0.552382
+        ],
+        [
+          -0.71868,
+          2.015938,
+          0.129468
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m4",
+      "material": "chromatic",
+      "faces": 2111,
+      "bounds": [
+        [
+          0.91212,
+          1.596454,
+          -0.48187
+        ],
+        [
+          1.063504,
+          1.754486,
+          -0.140476
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m3",
+      "material": "rgba_31_31_31_255",
+      "faces": 466,
+      "bounds": [
+        [
+          0.929109,
+          1.660564,
+          -0.492267
+        ],
+        [
+          0.964374,
+          1.689776,
+          -0.462678
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m2",
+      "material": "freio",
+      "faces": 479,
+      "bounds": [
+        [
+          0.823862,
+          1.48296,
+          -0.40267
+        ],
+        [
+          0.913812,
+          1.865923,
+          -0.019707
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m1",
+      "material": "mallory",
+      "faces": 9740,
+      "bounds": [
+        [
+          0.729989,
+          1.368325,
+          -0.519511
+        ],
+        [
+          0.988568,
+          1.985553,
+          0.097718
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__copy_wheel__a0m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 30517,
+      "bounds": [
+        [
+          0.720238,
+          1.334219,
+          -0.552362
+        ],
+        [
+          0.974722,
+          2.015945,
+          0.129489
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m4",
+      "material": "chromatic",
+      "faces": 2111,
+      "bounds": [
+        [
+          0.91212,
+          1.596454,
+          -0.494426
+        ],
+        [
+          1.063504,
+          1.754486,
+          -0.153033
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m3",
+      "material": "rgba_31_31_31_255",
+      "faces": 466,
+      "bounds": [
+        [
+          0.929109,
+          1.660564,
+          -0.504824
+        ],
+        [
+          0.964374,
+          1.689776,
+          -0.475234
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m2",
+      "material": "freio",
+      "faces": 479,
+      "bounds": [
+        [
+          0.823862,
+          1.48296,
+          -0.415227
+        ],
+        [
+          0.913812,
+          1.865923,
+          -0.032263
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m1",
+      "material": "mallory",
+      "faces": 9740,
+      "bounds": [
+        [
+          0.729989,
+          1.368325,
+          -0.532068
+        ],
+        [
+          0.988568,
+          1.985553,
+          0.085161
+        ]
+      ],
+      "image": true,
+      "colour": null
+    },
+    {
+      "node": "wheel__a0m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 30517,
+      "bounds": [
+        [
+          0.720238,
+          1.334219,
+          -0.564918
+        ],
+        [
+          0.974722,
+          2.015945,
+          0.116932
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ],
+  "daily18": [
+    {
+      "node": "steerwheel_dummy__a49m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 12,
+      "bounds": [
+        [
+          -0.39156,
+          0.357462,
+          0.027142
+        ],
+        [
+          -0.365598,
+          0.383719,
+          0.052336
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel02__a8m0",
+      "material": "rgba_204_204_204_255",
+      "faces": 4177,
+      "bounds": [
+        [
+          -0.968186,
+          -1.818757,
+          -1.011579
+        ],
+        [
+          -0.748758,
+          -1.130948,
+          -0.321264
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lb_dummy__a7m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 12,
+      "bounds": [
+        [
+          -0.840163,
+          -1.48665,
+          -0.666612
+        ],
+        [
+          -0.817444,
+          -1.46393,
+          -0.643894
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel__a6m0",
+      "material": "rgba_204_204_204_255",
+      "faces": 4177,
+      "bounds": [
+        [
+          0.748734,
+          1.016276,
+          -1.011302
+        ],
+        [
+          0.961897,
+          1.702816,
+          -0.32098
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rf_dummy__a5m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 12,
+      "bounds": [
+        [
+          0.827598,
+          1.31733,
+          -0.668036
+        ],
+        [
+          0.850317,
+          1.340049,
+          -0.645317
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel01__a4m0",
+      "material": "rgba_204_204_204_255",
+      "faces": 4177,
+      "bounds": [
+        [
+          0.748734,
+          -1.817785,
+          -1.011302
+        ],
+        [
+          0.961897,
+          -1.131246,
+          -0.32098
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_rb_dummy__a3m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 12,
+      "bounds": [
+        [
+          0.800373,
+          -1.485611,
+          -0.666613
+        ],
+        [
+          0.823092,
+          -1.462893,
+          -0.643894
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel03__a2m0",
+      "material": "rgba_204_204_204_255",
+      "faces": 4177,
+      "bounds": [
+        [
+          -0.967424,
+          1.014894,
+          -1.011578
+        ],
+        [
+          -0.749519,
+          1.702249,
+          -0.321264
+        ]
+      ],
+      "image": false,
+      "colour": null
+    },
+    {
+      "node": "wheel_lf_dummy__a1m0",
+      "material": "rgba_0_0_0_255",
+      "faces": 12,
+      "bounds": [
+        [
+          -0.832704,
+          1.322317,
+          -0.668036
+        ],
+        [
+          -0.809984,
+          1.345036,
+          -0.645317
+        ]
+      ],
+      "image": false,
+      "colour": null
+    }
+  ]
+}

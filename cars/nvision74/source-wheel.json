@@ -1,0 +1,17 @@
+{
+  "selected": [
+    "\ucef4\ud3ec\ub10c\ud2b8#17",
+    "\ucef4\ud3ec\ub10c\ud2b8#33",
+    "\ucef4\ud3ec\ub10c\ud2b8#31",
+    "\ucef4\ud3ec\ub10c\ud2b8#21",
+    "\ucef4\ud3ec\ub10c\ud2b8#29",
+    "\ucef4\ud3ec\ub10c\ud2b8#25"
+  ],
+  "nominal_rim_in": 21,
+  "nominal_radius": 0.2667,
+  "outer_lip_radius": 0.29163274185844246,
+  "fitted_depth": 0.3023624816234348,
+  "triangles": 8861,
+  "status": "source selected; built validation pending",
+  "preparation_note": "Front source design retained on all corners; radial normalisation 0.9995 accommodates packed lip precision. Source rear design differs in diameter; game uses a common nominal 21-inch rim."
+}

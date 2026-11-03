@@ -1,0 +1,37 @@
+{
+  "name": "Opel Astra H",
+  "slug": "daily07",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra H/opel_astra_h_2004-2014.glb",
+  "selected": [
+    {
+      "node": "Object_611",
+      "material": "956_24",
+      "triangles": 320
+    }
+  ],
+  "spindle_axis": [
+    0.9999893259821229,
+    -0.0022224446442506798,
+    -0.004050760622743166
+  ],
+  "nominal_rim_in": 16,
+  "nominal_radius": 0.2032,
+  "outer_lip_radius": 0.2152,
+  "source_outer_radius": 0.023709046586055812,
+  "normalisation_scale": 9.076704085037619,
+  "source_depth": 0.0008643651297324264,
+  "fitted_depth": 0.007845586504006352,
+  "tyres": {
+    "width_front": 195,
+    "width_rear": 195,
+    "aspect_front": 45,
+    "aspect_rear": 45,
+    "rim_in": 16,
+    "compound": 3
+  },
+  "tyre_radius": 0.29095,
+  "source_tyre_radius": 0.29235526315789473,
+  "triangles": 320,
+  "geometry_sha256": "9ec1989f65b1ba881988e4217f41396ab0eb9053e09e96a498968333152fa793",
+  "status": "source geometry selected; built validation pending"
+}

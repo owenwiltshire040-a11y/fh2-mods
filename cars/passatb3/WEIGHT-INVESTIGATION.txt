@@ -1,0 +1,1 @@
+Resolved: user confirmed street 2657 lb, sport 2495 lb, race 2305 lb. These match direct kg-to-lb conversions of database records. Prior 95% scaling hypothesis disproved. No weight compensation applied. Earlier 2355 lb state not established.

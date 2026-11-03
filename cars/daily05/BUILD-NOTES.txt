@@ -1,0 +1,7 @@
+Opel Corsa C
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/opel-corsa-c-3-door-2000-2006-68bacb5b6c70455a8524aa2c1c371faf
+Scale 0.99640000; source axle spacing 2.500000; target axle spacing 2.491m. Source wheel radius 0.2491m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 14 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

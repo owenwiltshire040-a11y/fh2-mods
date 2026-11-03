@@ -18,9 +18,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..', 'tex'))
 import uiswatch
 
-FONT = next((f for f in ('/usr/share/fonts/opentype/inter/Inter-Bold.otf', '/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf',
-                         '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
-                         '/System/Library/Fonts/Supplemental/Arial Bold.ttf', '/Library/Fonts/Arial Bold.ttf', '/System/Library/Fonts/Supplemental/Verdana Bold.ttf') if os.path.exists(f)), None)
+FONT = next((f for f in ('/System/Library/Fonts/Supplemental/Arial Bold.ttf', '/System/Library/Fonts/Helvetica.ttc',
+                         '/usr/share/fonts/opentype/inter/Inter-Bold.otf', '/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf',
+                         '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf') if os.path.exists(f)), None)
 MAKE_COLS = ('MakeID', 'ManufacturerID', 'ManufacturerId')
 
 
@@ -29,7 +29,7 @@ def wordmark(text, w, h):
     S = 4; W, H = w * S, h * S
     size = H; img = None
     while size > 8:
-        f = ImageFont.truetype(FONT, size)
+        f = ImageFont.truetype(FONT, size) if FONT else ImageFont.load_default(size=size)
         lines = text.split('\\n') if '\\n' in text else [text]
         boxes = [f.getbbox(l) for l in lines]
         tw = max(b[2] - b[0] for b in boxes); th = sum(b[3] - b[1] for b in boxes) + (len(lines) - 1) * size * 0.25

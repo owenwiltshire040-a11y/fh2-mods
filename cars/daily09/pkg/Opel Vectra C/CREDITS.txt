@@ -1,0 +1,19 @@
+Opel Vectra C 2002-2005
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/opel-vectra-c-2002-2005-4559521e31134baf9b607f0f2186d4e8
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+Version sedan with a petrol engine.
+Other Names:
+Vauxhall Vectra 
+Chevrolet Vectra
+Holden Vectra
+Petrol:
+1.6 16v,1.8 16v,2.0T 16v,2.2 16v,2.2 16v DIRECT,3.2 24v.
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

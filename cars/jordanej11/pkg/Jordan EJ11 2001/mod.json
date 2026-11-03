@@ -1,0 +1,14 @@
+{
+  "format_version": 1,
+  "id": "owen-jordan-ej11",
+  "name": "Jordan EJ11 (2001)",
+  "author": "Owen",
+  "version": "0.1.0",
+  "description": "Jordan EJ11 with supplied livery and cockpit, exposed-wheel fit, Honda RA001E V10 setup and working rear light. Personal test conversion; handling provisional.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": [
+    "zs-williams-fw24"
+  ]
+}

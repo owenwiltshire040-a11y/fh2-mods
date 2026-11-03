@@ -1,0 +1,44 @@
+{
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Focus Mk2 ST/2006_ford_focus_st.glb",
+  "chosen": [
+    "F:M_Opaque_PlasticSmooth_High_black_glass_0",
+    "F:M_GlassSurround_High_black_glass_0",
+    "F:M_GlassSurround_High_Mirror_0",
+    "F:M_Internal_Interior_High_F:phong4SG1_0",
+    "F:M_LicensePlate_High_black_glass_0",
+    "F:M_Paint_Metal_High_black_glass_0",
+    "F:M_Paint_Metal_High_Paint_0",
+    "F:M_LightCluster_High_F:phong3SG1_0",
+    "F:M_LightRefracted_High_F:phong13SG1_0",
+    "F:M_Grille_A_High_F:phong6SG1_0",
+    "F:M_Chassis_High_black_glass_0",
+    "F:M_Badges_High_F:phong9SG1_0",
+    "F:M_GlassLights_High_black_glass_0",
+    "F:M_GlassLights_High_glass_0",
+    "F:M_Opaque_Chrome_High_chrome_0",
+    "F:M_GlassColor_High_red_glass_0"
+  ],
+  "dropped": [
+    "F:M_Rim_High_F:phong14SG1_0",
+    "F:M_Caliper_High_brakr_0",
+    "F:M_BrakeDisc_High_F:phong17SG1_0",
+    "F:M_Tire_High_F:phong15SG1_0"
+  ],
+  "frame": "-x,y,z",
+  "scale": 99.77324263038548,
+  "source_front": 0.01323,
+  "source_rear": -0.01323,
+  "source_y": 0.001805,
+  "bounds": [
+    [
+      -0.9772709165278771,
+      -0.03401550996088137,
+      -2.0607633418058375
+    ],
+    [
+      0.9772709165278771,
+      1.4869946261940876,
+      2.269239633756119
+    ]
+  ]
+}

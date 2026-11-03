@@ -1,0 +1,37 @@
+{
+  "name": "Ford Ka",
+  "slug": "daily13",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/cars/daily_batch/Ford Ka/source.glb",
+  "selected": [
+    {
+      "node": "blinn1SG",
+      "material": "blinn1SG",
+      "triangles": 2502
+    }
+  ],
+  "spindle_axis": [
+    0.9338230575379485,
+    0.014456086517437657,
+    -0.35744302870958017
+  ],
+  "nominal_rim_in": 13,
+  "nominal_radius": 0.1651,
+  "outer_lip_radius": 0.1771,
+  "source_outer_radius": 0.5569947047927785,
+  "normalisation_scale": 0.3179563440659412,
+  "source_depth": 0.5119864356541355,
+  "fitted_depth": 0.16278933529194117,
+  "tyres": {
+    "width_front": 185,
+    "width_rear": 185,
+    "aspect_front": 60,
+    "aspect_rear": 60,
+    "rim_in": 13,
+    "compound": 3
+  },
+  "tyre_radius": 0.2761,
+  "source_tyre_radius": 0.27159763313609464,
+  "triangles": 2502,
+  "geometry_sha256": "a06bfbc82ccd0ad538123deba0d44121db0cdb611d3bd1ac10f84125b441b014",
+  "status": "source geometry selected; built validation pending"
+}

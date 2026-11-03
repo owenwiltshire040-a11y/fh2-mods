@@ -1,0 +1,96 @@
+{
+  "timestamp": "20261101-165953",
+  "loadorder_backup": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Passat B3 Build/backups/daily-batch-install-20261101-165953/loadorder.txt",
+  "installed": [
+    {
+      "name": "Ford Fiesta 2002",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Fiesta 2002",
+      "mod_id": "owen-daily01"
+    },
+    {
+      "name": "Ford Focus Mk1",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk1",
+      "mod_id": "owen-daily02"
+    },
+    {
+      "name": "Ford Focus Mk2 ST",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Focus Mk2 ST",
+      "mod_id": "owen-daily03"
+    },
+    {
+      "name": "Ford Mondeo Mk3",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Mondeo Mk3",
+      "mod_id": "owen-daily04"
+    },
+    {
+      "name": "Opel Corsa C",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Corsa C",
+      "mod_id": "owen-daily05"
+    },
+    {
+      "name": "Opel Astra G",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra G",
+      "mod_id": "owen-daily06"
+    },
+    {
+      "name": "Opel Astra H",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Astra H",
+      "mod_id": "owen-daily07"
+    },
+    {
+      "name": "Opel Vectra B",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra B",
+      "mod_id": "owen-daily08"
+    },
+    {
+      "name": "Opel Vectra C",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Vectra C",
+      "mod_id": "owen-daily09"
+    },
+    {
+      "name": "Opel Zafira A",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Opel Zafira A",
+      "mod_id": "owen-daily10"
+    },
+    {
+      "name": "Volkswagen Polo Mk3",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk3",
+      "mod_id": "owen-daily11"
+    },
+    {
+      "name": "Volkswagen Polo Mk4",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Polo Mk4",
+      "mod_id": "owen-daily12"
+    },
+    {
+      "name": "Ford Ka",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Ford Ka",
+      "mod_id": "owen-daily13"
+    },
+    {
+      "name": "Renault Laguna II",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Renault Laguna II",
+      "mod_id": "owen-daily14"
+    },
+    {
+      "name": "Citroen Xsara",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Citroen Xsara",
+      "mod_id": "owen-daily15"
+    },
+    {
+      "name": "Volvo S60R",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volvo S60R",
+      "mod_id": "owen-daily16"
+    },
+    {
+      "name": "Volkswagen Passat B5.5",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Volkswagen Passat B5.5",
+      "mod_id": "owen-daily17"
+    },
+    {
+      "name": "Fiat Punto Mk2",
+      "folder": "/Users/owen/Library/Application Support/CrossOver/Bottles/Azimuth/drive_c/azimuth-windows/mods/Daily - Fiat Punto Mk2",
+      "mod_id": "owen-daily18"
+    }
+  ]
+}

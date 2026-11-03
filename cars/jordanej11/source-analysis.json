@@ -1,0 +1,292 @@
+{
+  "offset": [
+    -4.105269908905029e-05,
+    -0.18016959929986,
+    0.43889135420322417
+  ],
+  "wheelbase": 3.1293326914310455,
+  "wheels": {
+    "HUB_LF": {
+      "centre": [
+        0.715782880783081,
+        0.33127896138466895,
+        1.1757745444774628
+      ],
+      "radius": 0.3261827769456431,
+      "width": 0.3300933837890625
+    },
+    "HUB_LR": {
+      "centre": [
+        0.7158101499080658,
+        0.33139001158997416,
+        -1.9535582065582275
+      ],
+      "radius": 0.31676865206100047,
+      "width": 0.37315934896469116
+    },
+    "HUB_RR": {
+      "centre": [
+        -0.7158940136432648,
+        0.3313900167122483,
+        -1.9535571932792664
+      ],
+      "radius": 0.3167686793021858,
+      "width": 0.3731592297554016
+    },
+    "HUB_RF": {
+      "centre": [
+        -0.7158632278442383,
+        0.33128260751254857,
+        1.1757754385471344
+      ],
+      "radius": 0.326243270537816,
+      "width": 0.3321115970611572
+    }
+  },
+  "textures": {
+    "Material_#116.002": "e4415c1223.png",
+    "Material_#115.006": "4105fc3f8a.png",
+    "Screw.002": "c7f50464e8.png",
+    "Chrome_button.002": "e01a5d49af.png",
+    "INT_RedButton.002": "fa21588bbd.png",
+    "plastic.004": "fec7fa6a3a.png",
+    "SeatBelt.002": "f5a76c58b2.png",
+    "INT_Rubber.006": "aa223168df.png",
+    "INT_Plastic.002": "647a651c94.png",
+    "Material_#110.002": "fff47444f5.png",
+    "Material_#111.004": "d7e282fecb.png",
+    "EXT_FwingHD.006": "34dc657365.png",
+    "Mirror_FuelCap.006": "921201e2ae.png",
+    "Material_#106.004": "37f2fa0c0d.png",
+    "EXT_Glass.002": "033e6c7466.png",
+    "EXT_RearLight.004": "ff6f624a29.png",
+    "INT_Seat_Carbon.002": "b43ee06892.png",
+    "INT_Carbon.006": "1cde879e02.png",
+    "gold_sw.002": "e33eaa9514.png",
+    "Chrome.004": "65dbc207bb.png",
+    "metal_sw.004": "0a490ddf2f.png",
+    "LCD_sw.004": "81f3aab5fd.png",
+    "Material_#105.004": "fbec56439f.png",
+    "Material_#88.004": "fcf3a48af0.png",
+    "Material_#87.002": "d7bb8d2c6f.png",
+    "plastic_sw.004": "2508ddb72a.png",
+    "knob_sw.004": "5ba45b2292.png",
+    "Material_#28.006": "8b77d91510.png",
+    "RIM_REAR.002": "9c0420be95.png",
+    "RIM.002": "f65825ab4d.png",
+    "Silver_Chrome.006": "99295dfe85.png",
+    "Red_Chrome.004": "e28929076b.png",
+    "exhaust_hole.008": "23d8aa980a.png",
+    "Radior_grille.008": "7a2641724e.png",
+    "Mirror.006": "6e1c9a712e.png",
+    "Wings.008": "849ce0e04b.png",
+    "Exhaust_Metal.004": "5dd54ce1a3.png",
+    "Exhaust.002": "45f2a161cb.png",
+    "Rubber.002": "c96ed06f1e.png",
+    "Carbon.006": "6f3edda2a3.png",
+    "Floor.006": "18859fab42.png",
+    "Material_#27.008": "b5baf04338.png"
+  },
+  "mapping": {
+    "Material_#116.002": [
+      "textured",
+      "te4415c1223"
+    ],
+    "Material_#115.006": [
+      "textured",
+      "t4105fc3f8a"
+    ],
+    "Screw.002": [
+      "textured",
+      "tc7f50464e8"
+    ],
+    "Chrome_button.002": [
+      "textured",
+      "te01a5d49af"
+    ],
+    "INT_RedButton.002": [
+      "textured",
+      "tfa21588bbd"
+    ],
+    "plastic.004": [
+      "textured",
+      "tfec7fa6a3a"
+    ],
+    "SeatBelt.002": [
+      "textured",
+      "tf5a76c58b2"
+    ],
+    "INT_Rubber.006": [
+      "textured",
+      "taa223168df"
+    ],
+    "INT_Plastic.002": [
+      "textured",
+      "t647a651c94"
+    ],
+    "Material_#110.002": [
+      "textured",
+      "tfff47444f5"
+    ],
+    "Material_#111.004": [
+      "textured",
+      "td7e282fecb"
+    ],
+    "EXT_FwingHD.006": [
+      "textured",
+      "t34dc657365"
+    ],
+    "Mirror_FuelCap.006": [
+      "textured",
+      "t921201e2ae"
+    ],
+    "Material_#106.004": [
+      "textured",
+      "t37f2fa0c0d"
+    ],
+    "EXT_Glass.002": [
+      "plain",
+      "glass"
+    ],
+    "EXT_RearLight.004": [
+      "textured",
+      "tff6f624a29"
+    ],
+    "INT_Seat_Carbon.002": [
+      "textured",
+      "tb43ee06892"
+    ],
+    "INT_Carbon.006": [
+      "textured",
+      "t1cde879e02"
+    ],
+    "gold_sw.002": [
+      "textured",
+      "te33eaa9514"
+    ],
+    "Chrome.004": [
+      "textured",
+      "t65dbc207bb"
+    ],
+    "metal_sw.004": [
+      "textured",
+      "t0a490ddf2f"
+    ],
+    "LCD_sw.004": [
+      "textured",
+      "t81f3aab5fd"
+    ],
+    "Material_#105.004": [
+      "textured",
+      "tfbec56439f"
+    ],
+    "Material_#88.004": [
+      "textured",
+      "tfcf3a48af0"
+    ],
+    "Material_#87.002": [
+      "textured",
+      "td7bb8d2c6f"
+    ],
+    "plastic_sw.004": [
+      "textured",
+      "t2508ddb72a"
+    ],
+    "knob_sw.004": [
+      "textured",
+      "t5ba45b2292"
+    ],
+    "Material_#28.006": [
+      "textured",
+      "t8b77d91510"
+    ],
+    "RIM_REAR.002": null,
+    "RIM.002": null,
+    "Silver_Chrome.006": null,
+    "Red_Chrome.004": null,
+    "exhaust_hole.008": [
+      "textured",
+      "t23d8aa980a"
+    ],
+    "Radior_grille.008": [
+      "textured",
+      "t7a2641724e"
+    ],
+    "Mirror.006": [
+      "plain",
+      "chrome"
+    ],
+    "Wings.008": [
+      "textured",
+      "t849ce0e04b"
+    ],
+    "Exhaust_Metal.004": [
+      "textured",
+      "t5dd54ce1a3"
+    ],
+    "Exhaust.002": [
+      "textured",
+      "t45f2a161cb"
+    ],
+    "Rubber.002": [
+      "textured",
+      "tc96ed06f1e"
+    ],
+    "Carbon.006": [
+      "textured",
+      "t6f3edda2a3"
+    ],
+    "Floor.006": [
+      "textured",
+      "t18859fab42"
+    ],
+    "Material_#27.008": [
+      "textured",
+      "tb5baf04338"
+    ]
+  },
+  "triangles": {
+    "Material_#116.002": 64,
+    "Material_#115.006": 296,
+    "Screw.002": 8480,
+    "Chrome_button.002": 864,
+    "INT_RedButton.002": 648,
+    "plastic.004": 936,
+    "SeatBelt.002": 1761,
+    "INT_Rubber.006": 1984,
+    "INT_Plastic.002": 312,
+    "Material_#110.002": 32,
+    "Material_#111.004": 184,
+    "EXT_FwingHD.006": 3252,
+    "Mirror_FuelCap.006": 322,
+    "Material_#106.004": 200,
+    "EXT_Glass.002": 960,
+    "EXT_RearLight.004": 12,
+    "INT_Seat_Carbon.002": 3788,
+    "INT_Carbon.006": 3900,
+    "gold_sw.002": 800,
+    "Chrome.004": 1980,
+    "metal_sw.004": 5048,
+    "LCD_sw.004": 78,
+    "Material_#105.004": 144,
+    "Material_#88.004": 3408,
+    "Material_#87.002": 22196,
+    "plastic_sw.004": 492,
+    "knob_sw.004": 23898,
+    "Material_#28.006": 95543,
+    "RIM_REAR.002": 38864,
+    "RIM.002": 36988,
+    "Silver_Chrome.006": 13048,
+    "Red_Chrome.004": 7008,
+    "exhaust_hole.008": 8,
+    "Radior_grille.008": 44,
+    "Mirror.006": 32,
+    "Wings.008": 54222,
+    "Exhaust_Metal.004": 2160,
+    "Exhaust.002": 6079,
+    "Rubber.002": 1000,
+    "Carbon.006": 35417,
+    "Floor.006": 51648,
+    "Material_#27.008": 90343
+  }
+}

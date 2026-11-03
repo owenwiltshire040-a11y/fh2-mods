@@ -1,0 +1,37 @@
+{
+  "name": "Volkswagen Polo Mk4",
+  "slug": "daily12",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Volkswagen Polo Mk4/volkswagen_polo_3-door_mk4_2001__2009.glb",
+  "selected": [
+    {
+      "node": "desirefx.me_038_rim_0",
+      "material": "material",
+      "triangles": 27736
+    }
+  ],
+  "spindle_axis": [
+    0.9999996952376553,
+    -0.0006072960869050036,
+    0.0004906282293136992
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 0.022223508800486378,
+  "normalisation_scale": 10.254906281721464,
+  "source_depth": 0.022958886426664677,
+  "fitted_depth": 0.23299999999999998,
+  "tyres": {
+    "width_front": 225,
+    "width_rear": 225,
+    "aspect_front": 45,
+    "aspect_rear": 45,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.31715,
+  "source_tyre_radius": 0.3199264490785239,
+  "triangles": 27736,
+  "geometry_sha256": "3288efaf0eee0a2d6ba234edeb009eea0d3bc6c2399f280f9e0aebd877db9d2b",
+  "status": "source geometry selected; built validation pending"
+}

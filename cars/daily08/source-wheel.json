@@ -1,0 +1,37 @@
+{
+  "name": "Opel Vectra B",
+  "slug": "daily08",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Vectra B/opel_vectra_b_2001.glb",
+  "selected": [
+    {
+      "node": "alloy15-material_1",
+      "material": "alloy15",
+      "triangles": 2034
+    }
+  ],
+  "spindle_axis": [
+    0.999998709379249,
+    0.0002759848415731553,
+    -0.0015827419889173724
+  ],
+  "nominal_rim_in": 15,
+  "nominal_radius": 0.1905,
+  "outer_lip_radius": 0.2025,
+  "source_outer_radius": 0.21352159788896202,
+  "normalisation_scale": 0.9483818124352292,
+  "source_depth": 0.17483254985176055,
+  "fitted_depth": 0.16580801050108518,
+  "tyres": {
+    "width_front": 185,
+    "width_rear": 185,
+    "aspect_front": 60,
+    "aspect_rear": 60,
+    "rim_in": 15,
+    "compound": 3
+  },
+  "tyre_radius": 0.3015,
+  "source_tyre_radius": 0.30448812949640286,
+  "triangles": 2034,
+  "geometry_sha256": "8ea9bba95db44d82e64f7525ffd6107870d3358c56bd34769fadfbb29625d315",
+  "status": "source geometry selected; built validation pending"
+}

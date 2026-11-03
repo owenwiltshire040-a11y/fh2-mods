@@ -1,0 +1,37 @@
+{
+  "name": "Ford Fiesta 2002",
+  "slug": "daily01",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Ford Fiesta 2002/ford_fiesta_mk5_2002-2014.glb",
+  "selected": [
+    {
+      "node": "teker_0-material",
+      "material": "teker.0",
+      "triangles": 644
+    }
+  ],
+  "spindle_axis": [
+    0.9999999166889003,
+    0.000112986324750543,
+    -0.00039224518214250637
+  ],
+  "nominal_rim_in": 14,
+  "nominal_radius": 0.17779999999999999,
+  "outer_lip_radius": 0.1898,
+  "source_outer_radius": 0.18081839104300723,
+  "normalisation_scale": 1.0496719880382992,
+  "source_depth": 0.025089325042917936,
+  "fitted_depth": 0.026335561696338772,
+  "tyres": {
+    "width_front": 185,
+    "width_rear": 185,
+    "aspect_front": 70,
+    "aspect_rear": 70,
+    "rim_in": 14,
+    "compound": 3
+  },
+  "tyre_radius": 0.3073,
+  "source_tyre_radius": 0.30613163481953287,
+  "triangles": 644,
+  "geometry_sha256": "b1a0fc880538cc73b13125ed3b3a61ef8c3d48cfc746cc9b3b024ed6f4018eee",
+  "status": "source geometry selected; built validation pending"
+}

@@ -1,0 +1,4 @@
+Model and original textures: supplied by Owen in 2001-jordan-ej11; original author/licence were not included in supplied metadata. Attribution pending. Personal local conversion.
+Game donor: own FH2 Dodge Charger media. Driver pose: existing personal Toro Rosso STR1 build. Sound: BMW_P83_03 from installed ZS Williams FW24, a V10 placeholder rather than a Honda recording.
+Honda reference: https://global.honda/en/POWEREDbyHONDA/2001_ra001e/ ; https://global.honda/en/newsroom/worldnews/2001/c010116.html
+Engine torque curve, gearing, suspension, aero, PI and nominal tyre dimensions are provisional game setup values.

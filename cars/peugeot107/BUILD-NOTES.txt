@@ -1,0 +1,19 @@
+Peugeot 107 Urban 1.0 (2006), early 3-door manual — first test build 0.1.0.
+
+Selection: early 107 bonnet, bumpers, headlamps, tailgate and hubcaps. C1/facelift and JDM alternatives removed; duplicate primitives removed. Peugeot steering wheel positioned from loose local coordinates. Source textures preserved, except two normal maps incorrectly in base-colour slots replaced with neutral trim colour. Static source instruments; no live gauge/steering animation added.
+
+Stock target: 998 cc three-cylinder, 50 kW / 68 PS (about 67 bhp), 93 Nm, 790 kg, five-speed manual, FWD; 2.340 m wheelbase; 155/65 R14; 247 mm front and 200 mm rear brakes. Source: Peugeot launch information, https://www.media.stellantis.com/at-de/peugeot/press/peugeot-107-ein-neues-lacheln-in-der-stadt . Detailed suspension, gearbox calibration, PI and upgrade balance are provisional. Native FH2 three-cylinder engine sound reference FIA_595SS_68 is a placeholder, not a verified 107 recording.
+
+Wheel review: source only includes one loose tyre/wheel and alternate hubcaps. The analyser correctly withheld automatic four-wheel fitting. Axles staged at source Z +/-1.17 m, source ground 0, centre height from stock tyre radius .27855 m. Body shifted to donor spindle average Y .1511658. Hubcap nominal reference .1778 m, actual outer lip .19019 m. Rim-face profile uses a measured approximate 15 mm inset from the paint arch, preserving a stock stance. All measurements still require final in-game confirmation.
+
+Lamps: head, tail/brake, reversing surface, front/rear indicators and centre brake lamp configured using source geometry and existing donor method. Reverse surface repositioned from a loose part. In-game triggering/occlusion not confirmed yet.
+
+Upgrades: handling, weight reduction and staged engine/transmission records adapted from established profiles. Added post-database fit verification to reject mismatched stock tyre/rim dimensions after upgrade scripts run. Positive zero-throttle curve values retained. Check build/wheel-fit.json and build/fit-preview.glb in the source project for fit review.
+
+Checks passed: SQLite integrity; engine identity and curve references/cutoffs; 790 kg stock mass; tyre dimensions in both Data_Car and stock upgrades; pre/post database fit checks; mesh decoding; texture reference lengths/CRCs/archive targets; archive CRC; early-body selection. Original model author/licence details are absent from supplied metadata; see CREDITS.txt.
+
+Install alongside Peugeot 207, which supplies the existing Peugeot make. Restart game and find Peugeot / 107 Urban 1.0. First in-game checks: wheel fit, idle, driving, lights and cockpit.
+
+0.1.2 front material correction: source front trim was routed through a flat cabin texture and the outer headlamp covers were disabled. Split the raised lion from the shield backing; assign the game headlamp chrome shader to the lion and reflector surrounds, dark backing to the shield, and the transparent projector-glass shader to both source headlamp covers. Derived donor produced by front_materials.py; rerun after prepare_source.py and darken_arches.py when rebuilding geometry. All lamp part bytes and Lights.bin, plus database.json, verified identical to installed 0.1.1. Game confirmation required for reflections/transparency. Prior grey arch correction and all lighting functions confirmed by Owen.
+
+0.1.3: separate 22-triangle bonnet badge inset from alpha-textured grille material; use dark trim to remove the white background from RGB conversion. Lion, lens covers, lamp functions and database retained from 0.1.2.

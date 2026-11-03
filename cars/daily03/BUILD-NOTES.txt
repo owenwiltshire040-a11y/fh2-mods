@@ -1,0 +1,7 @@
+Ford Focus Mk2 ST
+Personal prototype v0.1.1. Not in-game validated. Own source wheel geometry and original colour/texture atlas are fitted. The donor face, backing plate and blur meshes have been removed. Source lamps are decorative until individually mapped. Interior retains available source geometry; camera/driver positions are provisional.
+Source: https://sketchfab.com/3d-models/2006-ford-focus-st-a6fd998a789c473da6c5736ad62bae8f
+Scale 99.77324263; source axle spacing 0.026460; target axle spacing 2.640m. Source wheel radius 0.3173m.
+Handling is a provisional road-car setup, not a verified factory specification.
+
+Wheel review: 18 inch source wheels; source geometry, diameter, axial depth and all donor detail levels checked. Open inner barrel generated. Preview brakes retain their own inward offsets.

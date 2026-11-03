@@ -1,0 +1,7 @@
+Volkswagen Passat B5.5
+Creator/provenance: DnZSv45
+Source: https://www.gta.cz/eng/san-andreas/download/volkswagen-passat-b5-5/
+
+Downloaded as an archive only. No installer or mod code was run. This is not yet a Forza-ready car. Preserve original credits. Free download does not establish permission to redistribute; review the original listing and provenance before publishing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

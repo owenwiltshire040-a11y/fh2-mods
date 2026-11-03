@@ -1,0 +1,15 @@
+Volkswagen Polo 6N MK3 1994-2009
+Creator: Merc_TV
+Creator page: https://sketchfab.com/szymonpasterczyk
+Source: https://sketchfab.com/3d-models/volkswagen-polo-6n-mk3-1994-2009-9386cc53b3374be78a0d790b5ad0f82e
+Listing licence: Creative Commons Attribution
+Licence link: http://creativecommons.org/licenses/by/4.0/
+
+Original listing description:
+Imported from Assetto Corsa.
+1994-2001 (Europe)
+1996-2009 (Argentina)
+
+Saved for Owen's car-modelling collection. No conversion or redistribution performed. The listing's licence and original asset provenance need reviewing before distributing a port.
+
+Conversion uses DragonFF (GPL-3.0) format readers where applicable: https://github.com/Parik27/DragonFF

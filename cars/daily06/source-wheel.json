@@ -1,0 +1,37 @@
+{
+  "name": "Opel Astra G",
+  "slug": "daily06",
+  "source": "/Users/owen/Downloads/FH2_Extra_Options_0/Azimuth/Car Model Downloads/Opel Astra G/opel_astra_g_1998-2004.glb",
+  "selected": [
+    {
+      "node": "Object_25",
+      "material": "wheel",
+      "triangles": 20120
+    }
+  ],
+  "spindle_axis": [
+    0.999999999999911,
+    3.0065661994591956e-07,
+    -2.9575567547597855e-07
+  ],
+  "nominal_rim_in": 17,
+  "nominal_radius": 0.21589999999999998,
+  "outer_lip_radius": 0.2279,
+  "source_outer_radius": 2.4457042968747134,
+  "normalisation_scale": 0.093183791798226,
+  "source_depth": 2.2210235941226246,
+  "fitted_depth": 0.20696340017367032,
+  "tyres": {
+    "width_front": 205,
+    "width_rear": 205,
+    "aspect_front": 40,
+    "aspect_rear": 40,
+    "rim_in": 17,
+    "compound": 3
+  },
+  "tyre_radius": 0.29789999999999994,
+  "source_tyre_radius": 0.30083091928087924,
+  "triangles": 20120,
+  "geometry_sha256": "cf7812815cfa3deb04cbafbcd68ceaf35a91bb0ec948f5c0a4da13f467cdbae7",
+  "status": "source geometry selected; built validation pending"
+}

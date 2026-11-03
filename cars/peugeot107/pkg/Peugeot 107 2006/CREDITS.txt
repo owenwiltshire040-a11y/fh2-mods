@@ -1,0 +1,3 @@
+Source model: Citroen C1 / Peugeot 107, supplied by Owen. Original author and licence were not present in GLB metadata or supplied files; attribution details pending.
+Changes: early 107 configuration selected, duplicate primitives removed, original textures converted, wheel/hubcap positioned, steering wheel assembled, FH2 physics and light setup.
+Peugeot make supplied by Owen Peugeot 207 mod.

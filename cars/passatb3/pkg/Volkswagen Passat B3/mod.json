@@ -1,0 +1,12 @@
+{
+  "id": "owen-passat-b3",
+  "name": "Volkswagen Passat B3 2.0 16V",
+  "author": "Owen",
+  "version": "0.5.3",
+  "description": "Passat B3 2.0 16V with steel wheels, upgrade progression, functional lamp setup and detailed cabin materials.",
+  "format_version": 1,
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": []
+}

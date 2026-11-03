@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "id": "owen-daily01",
+  "name": "Ford Fiesta 2002 (prototype)",
+  "author": "Owen",
+  "version": "0.1.1",
+  "description": "Personal source-model conversion with its own source wheels. Provisional handling/cockpit and decorative lighting. See BUILD-NOTES.txt.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media"
+}
