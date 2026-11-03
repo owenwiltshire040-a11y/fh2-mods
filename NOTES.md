@@ -539,3 +539,34 @@ builds itself. The main game install and saves are untouched by it.
 From the cloud side (Opus): `glbgeo --wheel-tag` (wheel parts found by position: triangles inside the wheel
 cylinders become RIM_*, matches hand tagging on the Omoda and DAF), `fh2re/estimates.py` (PI/class/ratings from real
 specs). The earlier cloud-only "FH2 Car Studio" (studio/) was retired in favour of tools/car-studio.
+
+## FINISHING: from a donor-built car to one that behaves like a base-game car (3 Nov, Opus)
+Step after package_car: `python3 fh2re/finish_car.py CAR_PKG REFERENCE_PKG OUT_PKG --version V [--price N]`, or spec
+`FINISH_REFERENCE = '<path to a reference mod folder>'` and package_car runs it. The reference is a well-made car of
+the same kind (F1: the ZS Williams FW24). Found by comparing the Toro 0.7.1 with the FW24 table by table:
+- The generic builder leaves the CHARGER'S DRIVETRAIN FEEL: flywheel inertia 0.345 (FW24 0.0025, x140), engine 0.049
+  (0.03), gearbox 0.012 (0.0079), driveline 0.0133 (0.0024), clutch in/out 0.1/0.2 s (0.01), shift 0.03 s (0.01),
+  road shift system 4 (6) -> revs and acceleration like a lorry (the 0.7.1 "slow acceleration"). All copied.
+- FreeRevOverrides (throttle delay, rev-rise rate, throttle cut): the donor has no row; copied.
+- Torque curve: game race engines are flattened at the bottom (FW24 89% from 0 rpm); dyno data (CTDP TJ2005: 12% at
+  1,600, 50% at ~4,900) is raised to the reference's shape at the same fraction of the rev range.
+- Base-game race-car upgrade layout = ONE stock row per upgrade table at Level 3 (race: tuning open from stock), no
+  turbo/intercooler/CSC tables, race tyres (OW_F1 + OW_drag) and rim sizes 13-18 as the only options, and the car's
+  own wheels registered in List_Wheels (ID 10000 + car id) as Data_Car.StockWheelID (donor builds point at 11038,
+  the Charger's). Race rows are kept where the tuning ranges live (springs, anti-roll bars, gearbox) with the stock
+  defaults copied in; unreferenced physics / torque rows dropped.
+- Suspension shaped like the reference: progressive springs, bump stops 200, 3.5 cm travel, ride height tuning
+  upwards only, spring ranges scaled to the car's own rates. Static ride height keeps the car's spring-vs-model pair
+  (that pair places the body on the wheels, see the DAF); the reference's RAKE is added to both rear values (Toro:
+  rear 0.1625 -> 0.2025 spring, 0.10 -> 0.14 model). UNTESTED: whether that shows as rake or moves the body.
+- Car identity from the reference: CarTypeID 3, ClassID 7 / PI 1.108, family ids, bucket 26, ratings, Sim* handling
+  stats, aero drag (170 -> 268) / lateral drag / wind force, wing drag values, steering lock 24 -> 30.6, hood camera
+  offsets; price set by hand (Toro 1 credit -> 1,800,000).
+- Car zip: donor part models the carbin no longer uses (doors, boot, bumpers, cabin parts, lamps, control arms) and
+  the textures only they used are dropped, unless any kept file still names them (the carbin's AO list uses
+  dashPad_a_AO for the steering wheel; the hero cinematic names wing_a). Shaders and materials are kept: the Toro's
+  glass/paint/gauge materials point at its own Shaders/ folders. Toro: 548 -> 418 files, 38 -> 20 MB.
+NOT done: moving suspension. The FW24 has a skinned suspension model + suspensionLF/RF/LR/RR and turn .gr2s; adding
+those switches the game to animation-driven wheel placement (NOTES: Atom path), which would undo the confirmed wheel
+fit. Needs the STR1's wishbones as separate source geometry and its own test.
+Toro 0.7.2 = 0.7.1 + finish_car (cars/tororosso/finish-0.7.2.log on the Mac); 0.7.1 output backed up in backups/.

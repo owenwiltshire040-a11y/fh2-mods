@@ -93,4 +93,7 @@ elif PR.get('logo_png') or PR.get('logo_text'):
     pc += ['--logo-png', PR['logo_png']] if PR.get('logo_png') else ['--logo-text', PR['logo_text']]
     if PR.get('icon_base'): pc += ['--make-icon-base', PR['icon_base']]
 run(*pc)
+if getattr(S, 'FINISH_REFERENCE', None):   # a well-made car of the same kind (fh2re/finish_car.py, NOTES: FINISHING)
+    tmp = dst + '.finishing'; run('fh2re/finish_car.py', dst, S.FINISH_REFERENCE, tmp, '--version', json.load(open(os.path.join(dst, 'mod.json')))['version'])
+    shutil.rmtree(dst); os.rename(tmp, dst)
 print('\nmod folder ready:', dst)
