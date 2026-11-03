@@ -80,19 +80,23 @@ def remap(row, old, new):
     return r
 
 
-def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_parts=False):
+VERIFIED = {'drivetrain', 'freerev', 'torque', 'upgrades', 'roll', 'rake'}            # confirmed in game on the Toro (3 Nov)
+OPTIONAL = {'identity', 'suspension', 'aero', 'camera', 'wheels'}               # built and checked offline, not yet in game
+
+
+def finish(car, ref, out, version, price, log=print, do_prune=False, drop_old_parts=False, steps=VERIFIED, roll_factor=1.5, cm_height=0.15):
     C, R = tables(car), tables(ref); cid, media = car_ids(C); rid, rmedia = car_ids(R)
     T = C['tables']; car_row = ins(C, 'Data_Car')[0]; ref_row = ins(R, 'Data_Car')[0]
 
     # 1-2. inertia, clutch/shift timing, diff locking, free-rev behaviour
     eng = ins(C, 'Data_Engine')[0]; reng = ins(R, 'Data_Engine')[0]
     log(f'engine inertia {eng["MomentInertia"]} -> {reng["MomentInertia"]}'); eng['MomentInertia'] = reng['MomentInertia']
-    ins(C, 'Data_Drivetrain')[0]['ShiftSystemID'] = ins(R, 'Data_Drivetrain')[0]['ShiftSystemID']
     T['FreeRevOverrides'] = {'key': [], 'insert': [dict(stock(R, 'FreeRevOverrides') or ins(R, 'FreeRevOverrides')[0], Ordinal=cid)]}
 
     # 3. torque curves: never below the reference's curve at the same fraction of the rev range
     rc = ins(R, 'List_TorqueCurve')[0]; rv = [rc[f'v{i}'] for i in range(rc['NumTorqueValues'])][:-1]
-    for tc in ins(C, 'List_TorqueCurve'):
+    live = stock(C, 'List_UpgradeEngineCamshaft')['TorqueCurveFullThrottleID']
+    for tc in [x for x in ins(C, 'List_TorqueCurve') if x['TorqueCurveID'] == live]:
         n = tc['NumTorqueValues']; raised = 0
         for i in range(n - 1):
             j = round(i / (n - 2) * (len(rv) - 1)); r_ = rv[j]
@@ -102,7 +106,10 @@ def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_par
     # 5. upgrades: one stock row per table, at the reference's level
     for t in [t for t in T if t.startswith('List_Upgrade')]:
         rows = ins(C, t)
-        if t in EXTRA_OPTIONS: continue
+        if t in EXTRA_OPTIONS:          # the stock tyre / rim rows take the reference's level too
+            rs0 = stock(R, t); st_ = stock(C, t)
+            if rs0 and st_ and 'Level' in rs0: st_['Level'] = rs0['Level'] if t == 'List_UpgradeTireCompound' else st_['Level']
+            continue
         if t not in R['tables']:
             if all(r.get('IsStock') == 0 for r in rows): del T[t]; log(f'{t}: removed (the reference has none)'); continue
         rs = stock(R, t)
@@ -111,7 +118,7 @@ def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_par
             keep = next((r for r in rows if r.get('Level') == lv), None) or max(rows, key=lambda r: r.get('Level', 0))
         else: keep = stock(C, t) or rows[0]
         st0 = stock(C, t)
-        if t in TUNING_ROW and st0 is not None and keep is not st0:      # race row for its tuning ranges, stock defaults
+        if 'suspension' in steps and t in TUNING_ROW and st0 is not None and keep is not st0:      # race row for its tuning ranges, stock defaults
             for k, v in st0.items():
                 if k.endswith('PhysicsID'):
                     copy_defaults(C, k, v, keep[k])
@@ -141,11 +148,12 @@ def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_par
         log(f'save safety: {kept} old upgrade/physics rows kept so saved cars still find their parts (--drop-old-parts to remove)')
 
     # race tyres, rim sizes, the car's own wheel as a wheel part
-    for t in EXTRA_OPTIONS:
-        T[t] = {'key': R['tables'][t]['key'], 'insert': [remap(r, rid, cid) for r in ins(R, t)]}
-    wheel = remap(ins(R, 'List_Wheels')[0], rid, cid); wheel.update(MediaName=media, IconPath=media)
-    T['List_Wheels'] = {'key': ['ID'], 'insert': [wheel]}; car_row['StockWheelID'] = wheel['ID']
-    log(f"tyres {[r['TireModelName'] for r in T['List_UpgradeTireCompound']['insert']]}, rims {[r['FrontWheelDiameter'] for r in T['List_UpgradeRimSizeFront']['insert']]}, StockWheelID {wheel['ID']}")
+    if 'wheels' in steps:
+        for t in EXTRA_OPTIONS:
+            T[t] = {'key': R['tables'][t]['key'], 'insert': [remap(r, rid, cid) for r in ins(R, t)]}
+        wheel = remap(ins(R, 'List_Wheels')[0], rid, cid); wheel.update(MediaName=media, IconPath=media)
+        T['List_Wheels'] = {'key': ['ID'], 'insert': [wheel]}; car_row['StockWheelID'] = wheel['ID']
+        log(f"tyres {[r['TireModelName'] for r in T['List_UpgradeTireCompound']['insert']]}, rims {[r['FrontWheelDiameter'] for r in T['List_UpgradeRimSizeFront']['insert']]}, StockWheelID {wheel['ID']}")
 
     # unreferenced physics rows
     used = {v for t, x in T.items() if t.startswith('List_Upgrade') for r in x.get('insert', []) for k, v in r.items() if k.endswith(('PhysicsID', 'FullThrottleID'))}
@@ -154,45 +162,72 @@ def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_par
         before = len(ins(C, t)); T[t]['insert'] = [r for r in ins(C, t) if r[key] in used]
         if before != len(ins(C, t)): log(f'{t}: {before} -> {len(ins(C, t))} rows')
 
+    # rake: the reference's rear-minus-front ride height added to the rear MODEL ride height (where the body is drawn
+    # on the wheels). Toro 3 Nov: rear 0.10 -> 0.14, approved in game. (The 'suspension' step also raises the spring.)
+    if 'rake' in steps:
+        rsd0 = stock(R, 'List_UpgradeSpringDamper'); rp = {r['SpringDamperPhysicsID']: r for r in ins(R, 'List_SpringDamperPhysics')}
+        rk = rp[rsd0['RearSpringDamperPhysicsID']]['DefRideHeight'] - rp[rsd0['FrontSpringDamperPhysicsID']]['DefRideHeight']
+        b0 = ins(C, 'Data_CarBody')[0]; b0['ModelRearStockRideHeight'] = round(b0['ModelRearStockRideHeight'] + rk, 4)
+        car_row['RearStockRideHeight'] = b0['ModelRearStockRideHeight']; log(f'rake: rear model ride height +{rk:.3f}')
+
     # 6. suspension shape and rake
-    sd = stock(C, 'List_UpgradeSpringDamper'); rsd = stock(R, 'List_UpgradeSpringDamper')
-    body = ins(C, 'Data_CarBody')[0]; rbody = ins(R, 'Data_CarBody')[0]
-    rphys = {r['SpringDamperPhysicsID']: r for r in ins(R, 'List_SpringDamperPhysics')}
-    rf, rr = rphys[rsd['FrontSpringDamperPhysicsID']], rphys[rsd['RearSpringDamperPhysicsID']]
-    rake = (rr['DefRideHeight'] - rf['DefRideHeight'])
-    for end, pid, ref_p in (('Front', sd['FrontSpringDamperPhysicsID'], rf), ('Rear', sd['RearSpringDamperPhysicsID'], rr)):
-        p = next(r for r in ins(C, 'List_SpringDamperPhysics') if r['SpringDamperPhysicsID'] == pid)
-        if end == 'Rear' and rake:
-            p['DefRideHeight'] += rake; body['ModelRearStockRideHeight'] += rake; car_row['RearStockRideHeight'] = body['ModelRearStockRideHeight']
-        d = p['DefRideHeight']; s = p['DefSpringRate'] / ref_p['DefSpringRate']
-        p.update(UseProgressiveSpring=ref_p['UseProgressiveSpring'], BumpstopStiffness=ref_p['BumpstopStiffness'], BumpstopDamping=ref_p['BumpstopDamping'],
-                 MinRideHeight=d, MaxRideHeight=d + ref_p['MaxRideHeight'] - ref_p['DefRideHeight'],
-                 MaxCompressHeight=d - (ref_p['DefRideHeight'] - ref_p['MaxCompressHeight']), MaxStretchDeltaFromRideHeight=d,
-                 MinSpringRate=round(ref_p['MinSpringRate'] * s, 3), MaxSpringRate=round(ref_p['MaxSpringRate'] * s, 3),
-                 MinDampenBumpRate=ref_p['MinDampenBumpRate'], MaxDampenBumpRate=ref_p['MaxDampenBumpRate'],
-                 MinDampenReboundRate=ref_p['MinDampenReboundRate'], MaxDampenReboundRate=ref_p['MaxDampenReboundRate'])
-        log(f'{end} suspension: ride {d:.4f} (model {body["Model" + end + "StockRideHeight"]:.4f}), travel {d - p["MaxCompressHeight"]:.3f}, '
-            f'springs {p["MinSpringRate"]}-{p["MaxSpringRate"]} progressive, bump stop {p["BumpstopStiffness"]}')
+    if 'suspension' in steps:
+        sd = stock(C, 'List_UpgradeSpringDamper'); rsd = stock(R, 'List_UpgradeSpringDamper')
+        body = ins(C, 'Data_CarBody')[0]; rbody = ins(R, 'Data_CarBody')[0]
+        rphys = {r['SpringDamperPhysicsID']: r for r in ins(R, 'List_SpringDamperPhysics')}
+        rf, rr = rphys[rsd['FrontSpringDamperPhysicsID']], rphys[rsd['RearSpringDamperPhysicsID']]
+        rake = (rr['DefRideHeight'] - rf['DefRideHeight'])
+        for end, pid, ref_p in (('Front', sd['FrontSpringDamperPhysicsID'], rf), ('Rear', sd['RearSpringDamperPhysicsID'], rr)):
+            p = next(r for r in ins(C, 'List_SpringDamperPhysics') if r['SpringDamperPhysicsID'] == pid)
+            if end == 'Rear' and rake: p['DefRideHeight'] += rake
+            d = p['DefRideHeight']; s = p['DefSpringRate'] / ref_p['DefSpringRate']
+            p.update(UseProgressiveSpring=ref_p['UseProgressiveSpring'], BumpstopStiffness=ref_p['BumpstopStiffness'], BumpstopDamping=ref_p['BumpstopDamping'],
+                     MinRideHeight=d, MaxRideHeight=d + ref_p['MaxRideHeight'] - ref_p['DefRideHeight'],
+                     MaxCompressHeight=d - (ref_p['DefRideHeight'] - ref_p['MaxCompressHeight']), MaxStretchDeltaFromRideHeight=d,
+                     MinSpringRate=round(ref_p['MinSpringRate'] * s, 3), MaxSpringRate=round(ref_p['MaxSpringRate'] * s, 3),
+                     MinDampenBumpRate=ref_p['MinDampenBumpRate'], MaxDampenBumpRate=ref_p['MaxDampenBumpRate'],
+                     MinDampenReboundRate=ref_p['MinDampenReboundRate'], MaxDampenReboundRate=ref_p['MaxDampenReboundRate'])
+            log(f'{end} suspension: ride {d:.4f} (model {body["Model" + end + "StockRideHeight"]:.4f}), travel {d - p["MaxCompressHeight"]:.3f}, '
+                f'springs {p["MinSpringRate"]}-{p["MaxSpringRate"]} progressive, bump stop {p["BumpstopStiffness"]}')
 
     # aero drag of the wings
-    aero = {r['AeroPhysicsID']: r for r in ins(C, 'List_AeroPhysics')}; raero = {r['AeroPhysicsID']: r for r in ins(R, 'List_AeroPhysics')}
-    for t, k in (('List_UpgradeCarBodyFrontBumper', 'AeroPhysicsID'), ('List_UpgradeRearWing', 'AeroPhysicsID')):
-        a, b = aero.get(stock(C, t)[k]), raero.get(stock(R, t)[k])
-        if a and b:
-            for f in ('Drag0', 'Drag1', 'LateralDrag', 'AngleZeroDownforce'): a[f] = b[f]
+    if 'aero' in steps:
+        aero = {r['AeroPhysicsID']: r for r in ins(C, 'List_AeroPhysics')}; raero = {r['AeroPhysicsID']: r for r in ins(R, 'List_AeroPhysics')}
+        for t, k in (('List_UpgradeCarBodyFrontBumper', 'AeroPhysicsID'), ('List_UpgradeRearWing', 'AeroPhysicsID')):
+            a, b = aero.get(stock(C, t)[k]), raero.get(stock(R, t)[k])
+            if a and b:
+                for f in ('Drag0', 'Drag1', 'LateralDrag', 'AngleZeroDownforce'): a[f] = b[f]
 
     # 4. car-level identity and handling numbers
-    for k in CAR_COPY:
-        if k in ref_row: car_row[k] = ref_row[k]
-    car_row['BaseCost'] = price
-    T['Data_Car_Buckets']['insert'][0]['CarBucket'] = ins(R, 'Data_Car_Buckets')[0]['CarBucket']
-    log(f"class {car_row['ClassID']} PI {car_row['PerformanceIndex']}, type {car_row['CarTypeID']}, bucket {T['Data_Car_Buckets']['insert'][0]['CarBucket']}, "
-        f"steer {car_row['SteerMaxAngle']}, drag {car_row['BodyAeroLongitudinalDrag']}, price {price}")
+    if 'identity' in steps:
+        for k in CAR_COPY:
+            if k in ref_row: car_row[k] = ref_row[k]
+        car_row['BaseCost'] = price
+        ins(C, 'Data_Drivetrain')[0]['ShiftSystemID'] = ins(R, 'Data_Drivetrain')[0]['ShiftSystemID']
+        T['Data_Car_Buckets']['insert'][0]['CarBucket'] = ins(R, 'Data_Car_Buckets')[0]['CarBucket']
+        log(f"class {car_row['ClassID']} PI {car_row['PerformanceIndex']}, type {car_row['CarTypeID']}, bucket {T['Data_Car_Buckets']['insert'][0]['CarBucket']}, "
+            f"steer {car_row['SteerMaxAngle']}, drag {car_row['BodyAeroLongitudinalDrag']}, price {price}")
 
     # 7. hood camera
-    cam, rcam = ins(C, 'CameraOverrides')[0], ins(R, 'CameraOverrides')[0]
-    for k in rcam:
-        if k.startswith('CamHood'): cam[k] = rcam[k]
+    if 'camera' in steps:
+        cam, rcam = ins(C, 'CameraOverrides')[0], ins(R, 'CameraOverrides')[0]
+        for k in rcam:
+            if k.startswith('CamHood'): cam[k] = rcam[k]
+
+    # roll resistance (in game 3 Nov: the Toro rolled at full lock at speed; its 1.50/1.44 m track is set by the wheel
+    # drawing, so the centre of mass, anti-roll bars and suspension pivots carry it): CM height and pivots from the
+    # reference, anti-roll bars = the reference's x roll_factor (Toro: CM 0.27 -> 0.15, bars x1.5 -> no lift)
+    if 'roll' in steps:
+        w, rw = stock(C, 'List_UpgradeCarBodyWeight'), stock(R, 'List_UpgradeCarBodyWeight')
+        w['CMHeight'] = cm_height if cm_height is not None else rw['CMHeight']
+        for side in ('Front', 'Rear'):
+            a = stock(C, f'List_UpgradeAntiSway{side}')['AntiSwayPhysicsID']; b = stock(R, f'List_UpgradeAntiSway{side}')['AntiSwayPhysicsID']
+            ra = next(r for r in ins(C, 'List_AntiSwayPhysics') if r['AntiSwayPhysicsID'] == a); rb = next(r for r in ins(R, 'List_AntiSwayPhysics') if r['AntiSwayPhysicsID'] == b)
+            for k in ('DefSwaybarStiffness', 'MinSwaybarStiffness', 'MaxSwaybarStiffness'): ra[k] = round(rb[k] * roll_factor, 3)
+            sa = stock(C, 'List_UpgradeSpringDamper')[f'{side}SpringDamperPhysicsID']; sb = stock(R, 'List_UpgradeSpringDamper')[f'{side}SpringDamperPhysicsID']
+            pa = next(r for r in ins(C, 'List_SpringDamperPhysics') if r['SpringDamperPhysicsID'] == sa); pb = next(r for r in ins(R, 'List_SpringDamperPhysics') if r['SpringDamperPhysicsID'] == sb)
+            pa['ChassisPivotX'], pa['TirePivotX'] = pb['ChassisPivotX'], pb['TirePivotX']
+        log(f"roll: CM height {w['CMHeight']}, anti-roll bars x{roll_factor} of the reference, suspension pivots from the reference")
 
     # write the package
     if os.path.exists(out): shutil.rmtree(out)
@@ -241,7 +276,11 @@ def prune(src, dst, media, log=print):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('car'); ap.add_argument('reference'); ap.add_argument('out')
-    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None); ap.add_argument('--no-prune', action='store_true'); ap.add_argument('--drop-old-parts', action='store_true')
+    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None); ap.add_argument('--prune', action='store_true', help='drop unused donor parts from the car zip (not yet tested in game)')
+    ap.add_argument('--drop-old-parts', action='store_true')
+    ap.add_argument('--with', dest='extra', default='', help='also apply untested steps: ' + ','.join(sorted(OPTIONAL)))
+    ap.add_argument('--roll-factor', type=float, default=1.5); ap.add_argument('--cm-height', type=float, default=0.15)
     a = ap.parse_args()
     ref_price = ins(tables(a.reference), 'Data_Car')[0]['BaseCost']
-    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price, do_prune=not a.no_prune, drop_old_parts=a.drop_old_parts)
+    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price, do_prune=a.prune, drop_old_parts=a.drop_old_parts,
+           steps=VERIFIED | {x for x in a.extra.split(',') if x}, roll_factor=a.roll_factor, cm_height=a.cm_height)

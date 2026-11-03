@@ -580,3 +580,19 @@ the game. Codex's 0.7.0 ("stock-only parts") froze the same way. finish_car now 
 unless --drop-old-parts, which is only safe after the car is set back to stock parts with no tune in every save
 (or sold). test-i (= 0.7.2 + the 73 old rows) loads. Still untested in game: rim/tyre options + List_Wheels, the
 0.7.x car zip (rims/dash) and the pruned zip.
+
+### Toro Rosso STR1 0.7.3 = confirmed in game (Owen 3 Nov: "perfect")
+Database = `finish_car.py <0.7.1 pkg> <Williams FW24> OUT --version 0.7.3` with the defaults (verified steps:
+drivetrain inertia + clutch/shift timing + diff, FreeRevOverrides, torque low end, race-level upgrade rows with the
+old rows kept for saves, rake on the rear model ride height, roll: CM 0.15, anti-roll bars = FW24 x1.5, FW24
+suspension pivots). Reproduces the approved test build byte-for-byte in content. Result: pulls away and revs like an
+F1 car, no rolling or wheel lift at full lock at speed.
+Car zip = the 0.6.2 car zip + Codex's 0.7.1 `taillightL_a.modelbin` + `Lights.bin` (the STR1 rain light as the
+day-working tail/brake lamp; 0.6.2 still had the Charger's left tail lamp above the rear wing). Codex's 0.7.x
+separate front/rear rims, digital dash and rim atlas are NOT in 0.7.3 (untested in game; the dash XAML uses a font
+FH2's cars don't use).
+Not yet tried in game (finish_car --with ...): identity (class/type/bucket/ratings/price/shift system), suspension
+shape, wing drag, hood camera, wheels (race tyres, rim sizes, List_Wheels), --prune, --drop-old-parts (needs the car
+set to stock in the save first). The in-game bisect of the 0.7.2 freeze: 9 builds in output/_tests_0.7.3 on the Mac.
+Also seen: an intermittent Azimuth crash at startup in d3d12.dll ("Azimuth pipelines" thread, 0x6ffffce9cae0),
+before any mod loads; a restart clears it (if it keeps happening: move data/psolib*.bin aside).
