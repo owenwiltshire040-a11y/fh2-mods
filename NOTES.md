@@ -570,3 +570,13 @@ NOT done: moving suspension. The FW24 has a skinned suspension model + suspensio
 those switches the game to animation-driven wheel placement (NOTES: Atom path), which would undo the confirmed wheel
 fit. Needs the STR1's wishbones as separate source geometry and its own test.
 Toro 0.7.2 = 0.7.1 + finish_car (cars/tororosso/finish-0.7.2.log on the Mac); 0.7.1 output backed up in backups/.
+
+### FINISHING lesson (3 Nov, in game): never delete upgrade rows a saved car may use
+Toro 0.7.2 froze on the loading screen (world never streamed in; 0.7.2b froze before the world). Bisected in game
+with 9 builds (0.6.2 car zip throughout): not the car zip, the dashboard XAML, the BMW sound, Codex's 0.7.1 database,
+the wheel registration, identity rows, suspension or wings -> it was finish_car DELETING upgrade rows. A save stores
+the part IDs fitted to each owned car; the Toro was Owen's current car, spawned at load, and a missing part ID hangs
+the game. Codex's 0.7.0 ("stock-only parts") froze the same way. finish_car now keeps every old upgrade/physics row
+unless --drop-old-parts, which is only safe after the car is set back to stock parts with no tune in every save
+(or sold). test-i (= 0.7.2 + the 73 old rows) loads. Still untested in game: rim/tyre options + List_Wheels, the
+0.7.x car zip (rims/dash) and the pruned zip.

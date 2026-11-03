@@ -80,7 +80,7 @@ def remap(row, old, new):
     return r
 
 
-def finish(car, ref, out, version, price, log=print, do_prune=True):
+def finish(car, ref, out, version, price, log=print, do_prune=True, drop_old_parts=False):
     C, R = tables(car), tables(ref); cid, media = car_ids(C); rid, rmedia = car_ids(R)
     T = C['tables']; car_row = ins(C, 'Data_Car')[0]; ref_row = ins(R, 'Data_Car')[0]
 
@@ -126,6 +126,20 @@ def finish(car, ref, out, version, price, log=print, do_prune=True):
         if t == 'List_UpgradeEngineFlywheel': log(f'flywheel inertia {stock(C, t)["MomentInertia"]} -> {keep["MomentInertia"]}')
         if 'Id' in keep: keep['Id'] = (stock(C, t) or keep)['Id']
         T[t]['insert'] = [keep]
+    # SAVE SAFETY (3 Nov, found the hard way): a save stores the IDs of the parts fitted to each owned car. A car whose
+    # fitted part (or tune) no longer exists hangs the game on the loading screen when it spawns. So the old upgrade
+    # rows stay in the database unless --drop-old-parts is given, which is only safe once every saved copy of the car
+    # has been set back to stock parts with no tune (or sold).
+    if not drop_old_parts:
+        orig = tables(car)['tables']; kept = 0
+        for t, v in orig.items():
+            if not (t.startswith('List_Upgrade') or t in ('List_SpringDamperPhysics', 'List_AntiSwayPhysics', 'List_TorqueCurve', 'List_AeroPhysics')): continue
+            ks = v.get('key') or []; T.setdefault(t, {'key': v.get('key'), 'insert': []})
+            have = {tuple(r.get(k) for k in ks) for r in T[t]['insert']}
+            for r in v.get('insert', []):
+                if ks and tuple(r.get(k) for k in ks) not in have: T[t]['insert'].append(r); kept += 1
+        log(f'save safety: {kept} old upgrade/physics rows kept so saved cars still find their parts (--drop-old-parts to remove)')
+
     # race tyres, rim sizes, the car's own wheel as a wheel part
     for t in EXTRA_OPTIONS:
         T[t] = {'key': R['tables'][t]['key'], 'insert': [remap(r, rid, cid) for r in ins(R, t)]}
@@ -135,8 +149,8 @@ def finish(car, ref, out, version, price, log=print, do_prune=True):
 
     # unreferenced physics rows
     used = {v for t, x in T.items() if t.startswith('List_Upgrade') for r in x.get('insert', []) for k, v in r.items() if k.endswith(('PhysicsID', 'FullThrottleID'))}
-    for t, key in (('List_SpringDamperPhysics', 'SpringDamperPhysicsID'), ('List_AntiSwayPhysics', 'AntiSwayPhysicsID'),
-                   ('List_AeroPhysics', 'AeroPhysicsID'), ('List_TorqueCurve', 'TorqueCurveID')):
+    for t, key in ((('List_SpringDamperPhysics', 'SpringDamperPhysicsID'), ('List_AntiSwayPhysics', 'AntiSwayPhysicsID'),
+                   ('List_AeroPhysics', 'AeroPhysicsID'), ('List_TorqueCurve', 'TorqueCurveID')) if drop_old_parts else ()):
         before = len(ins(C, t)); T[t]['insert'] = [r for r in ins(C, t) if r[key] in used]
         if before != len(ins(C, t)): log(f'{t}: {before} -> {len(ins(C, t))} rows')
 
@@ -227,7 +241,7 @@ def prune(src, dst, media, log=print):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('car'); ap.add_argument('reference'); ap.add_argument('out')
-    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None); ap.add_argument('--no-prune', action='store_true')
+    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None); ap.add_argument('--no-prune', action='store_true'); ap.add_argument('--drop-old-parts', action='store_true')
     a = ap.parse_args()
     ref_price = ins(tables(a.reference), 'Data_Car')[0]['BaseCost']
-    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price, do_prune=not a.no_prune)
+    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price, do_prune=not a.no_prune, drop_old_parts=a.drop_old_parts)
