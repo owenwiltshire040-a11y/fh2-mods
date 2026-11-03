@@ -19,7 +19,8 @@ sys.path.insert(0, os.path.join(HERE, '..', 'tex'))
 import uiswatch
 
 FONT = next((f for f in ('/usr/share/fonts/opentype/inter/Inter-Bold.otf', '/usr/share/fonts/opentype/inter/Inter-ExtraBold.otf',
-                         '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf') if os.path.exists(f)), None)
+                         '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+                         '/System/Library/Fonts/Supplemental/Arial Bold.ttf', '/Library/Fonts/Arial Bold.ttf', '/System/Library/Fonts/Supplemental/Verdana Bold.ttf') if os.path.exists(f)), None)
 MAKE_COLS = ('MakeID', 'ManufacturerID', 'ManufacturerId')
 
 

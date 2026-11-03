@@ -16,6 +16,7 @@ spec PRESENT = dict(paint='b8121b',                       # thumbnail paint colo
 import sys, os, json, shutil, subprocess, importlib.util, glob, socket, time, argparse
 HERE = os.path.dirname(os.path.abspath(__file__))
 ap = argparse.ArgumentParser(); ap.add_argument('spec'); ap.add_argument('out'); ap.add_argument('--skip-build', action='store_true')
+ap.add_argument('--thumb', help='a ready 816x459 transparent PNG (FH2 Car Studio renders it in the browser) instead of rendering one here')
 a = ap.parse_args()
 _s = importlib.util.spec_from_file_location('carspec', a.spec); S = importlib.util.module_from_spec(_s); _s.loader.exec_module(S)
 CAR_DIR = os.path.dirname(os.path.abspath(a.spec)); P = S.PHYSICS; MEDIA = S.MEDIA; PR = getattr(S, 'PRESENT', {})
@@ -28,6 +29,8 @@ for sp in glob.glob(os.path.join(HERE, 'cars', '*', 'spec.py')):
     if os.path.samefile(sp, a.spec): continue
     t = open(sp).read(); import re
     m = re.search(r'string_base=(\d+)', t)
+    pj = os.path.join(os.path.dirname(sp), 'project.json')
+    if not m and os.path.exists(pj): m = re.search(r'(\d+)', str(json.load(open(pj)).get('ids', {}).get('string_base', '')))
     if m: KNOWN[os.path.basename(os.path.dirname(sp))] = range(int(m.group(1)), int(m.group(1)) + 3)
 mine = set(range(P['string_base'], P['string_base'] + 3))
 clash = {k: sorted(mine & set(v)) for k, v in KNOWN.items() if mine & set(v)}
@@ -49,18 +52,20 @@ shutil.copy(dbj, dst); shutil.copy(strings, dst)
 os.makedirs(os.path.join(dst, 'media', 'cars'), exist_ok=True); shutil.copy(car_zip, os.path.join(dst, 'media', 'cars', f'{MEDIA}.zip'))
 
 # ---------------------------------------------------------------- thumbnail (needs the viewer server; started here if not running)
-viewer = os.path.join(HERE, 'scan', 'viewer'); glb = os.path.join(viewer, f'_{MEDIA}.glb'); png = os.path.join(work, 'thumb.png')
-T = P.get('tyres', {}); tyres = PR.get('tyres') or (f"{T['width_front']},{T['rim_in']},{T['width_rear']},{T['rim_in']}" if 'rim_in' in T else None)
-cmd = ['fh2re/carpreview.py', car_zip, glb, '--paint', PR.get('paint', 'b0b0b4')] + (['--tyres', tyres] if tyres else [])
-run(*cmd)
-srv = None
-if socket.socket().connect_ex(('127.0.0.1', 8765)) != 0:
-    srv = subprocess.Popen([sys.executable, '-m', 'http.server', '8765'], cwd=viewer, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL); time.sleep(1)
-env = dict(os.environ); env['NODE_PATH'] = os.pathsep.join(filter(None, [os.path.join(viewer, 'node_modules'),
-          subprocess.run(['npm', 'root', '-g'], capture_output=True, text=True).stdout.strip()]))
-subprocess.run(['node', 'thumb.js', os.path.basename(glb), png, '816', '459', '-50', '10'], cwd=viewer, env=env, check=True)
-if srv: srv.terminate()
-os.remove(glb)
+if a.thumb: png = a.thumb
+else:
+  viewer = os.path.join(HERE, 'scan', 'viewer'); glb = os.path.join(viewer, f'_{MEDIA}.glb'); png = os.path.join(work, 'thumb.png')
+  T = P.get('tyres', {}); tyres = PR.get('tyres') or (f"{T['width_front']},{T['rim_in']},{T['width_rear']},{T['rim_in']}" if 'rim_in' in T else None)
+  cmd = ['fh2re/carpreview.py', car_zip, glb, '--paint', PR.get('paint', 'b0b0b4')] + (['--tyres', tyres] if tyres else [])
+  run(*cmd)
+  srv = None
+  if socket.socket().connect_ex(('127.0.0.1', 8765)) != 0:
+      srv = subprocess.Popen([sys.executable, '-m', 'http.server', '8765'], cwd=viewer, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL); time.sleep(1)
+  env = dict(os.environ); env['NODE_PATH'] = os.pathsep.join(filter(None, [os.path.join(viewer, 'node_modules'),
+            subprocess.run(['npm', 'root', '-g'], capture_output=True, text=True).stdout.strip()]))
+  subprocess.run(['node', 'thumb.js', os.path.basename(glb), png, '816', '459', '-50', '10'], cwd=viewer, env=env, check=True)
+  if srv: srv.terminate()
+  os.remove(glb)
 
 # ---------------------------------------------------------------- presentation: thumbnail + make
 pc = ['fh2re/presentation.py', dst, '--thumb', png]

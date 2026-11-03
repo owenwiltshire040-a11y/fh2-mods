@@ -49,6 +49,7 @@ if __name__ == '__main__':
     ap.add_argument('--ground', type=float, required=True, help='FH2 y of the tyre contact patch'); ap.add_argument('--axle-mid', type=float, default=0.0)
     ap.add_argument('--rim-node', default=None); ap.add_argument('--rim-mats', default=''); ap.add_argument('--skip-mats', default='')
     ap.add_argument('--skip-nodes', default='', help='node name prefixes to leave out of the body (e.g. the other wheels)')
+    ap.add_argument('--wheel-tag', action='store_true', help='triangles inside the four wheel cylinders become RIM_<material> (any model: wheels found by position, not node name)')
     ap.add_argument('--tag-nodes', default='', help='prefix=TAG,...: materials of nodes starting with prefix become TAG+material (wheels baked into the body: hub_=RIM_)')
     A = ap.parse_args()
     body, rim = load(A.glb, A.frame, A.scale, set(A.skip_mats.split(',')) - {''}, A.rim_node, set(A.rim_mats.split(',')) - {''}, [p for p in A.skip_nodes.split(',') if p],
@@ -59,6 +60,28 @@ if __name__ == '__main__':
     for lst in body.values():
         for p in lst: p['V'] = p['V'] + off
     wheels = {k: dict(centre=c + off, radius=r) for k, c in W.items()}
+    if A.wheel_tag:
+        def in_wheels(V):
+            V = V.reshape(-1, 3, 3); inside = np.zeros(len(V), bool)
+            for w in wheels.values():
+                c = w['centre']; dyz = np.hypot(V[..., 1] - c[1], V[..., 2] - c[2])
+                ax = np.abs(V[..., 0]); cx = abs(c[0])
+                inside |= np.all((dyz <= r * 1.04) & (np.sign(V[..., 0]) == np.sign(c[0])) & (ax >= cx - 1.2 * r) & (ax <= cx + 0.6 * r), 1)
+            return inside
+        for mat in list(body):
+            if mat.startswith('RIM_'): continue
+            mat_frac = np.mean(np.concatenate([in_wheels(p['V']) for p in body[mat]]))
+            keep_l = []
+            for p in body[mat]:
+                inside = in_wheels(p['V'])
+                if inside.mean() < 0.3 and mat_frac < 0.25: inside[:] = False   # a body piece that merely reaches into a wheel (seat corner, axle stub)
+                if inside.any():
+                    t = lambda a, k, d: a.reshape(-1, 3, d)[k].reshape(-1, d)
+                    body.setdefault('RIM_' + mat, []).append(dict(p, mat='RIM_' + mat, V=t(p['V'], inside, 3), N=t(p['N'], inside, 3), UV=t(p['UV'], inside, 2)))
+                    p = dict(p, V=t(p['V'], ~inside, 3), N=t(p['N'], ~inside, 3), UV=t(p['UV'], ~inside, 2))
+                if len(p['V']): keep_l.append(p)
+            if keep_l: body[mat] = keep_l
+            else: del body[mat]
     parts = dict(body)
     for mat, lst in rim.items():           # the rim, re-centred on the FH2 left-front wheel (outward = -x, as in the wheel part)
         parts[mat] = [dict(p, V=p['V'] + wheels['HUB_LF']['centre']) for p in lst]
