@@ -80,7 +80,7 @@ def remap(row, old, new):
     return r
 
 
-def finish(car, ref, out, version, price, log=print):
+def finish(car, ref, out, version, price, log=print, do_prune=True):
     C, R = tables(car), tables(ref); cid, media = car_ids(C); rid, rmedia = car_ids(R)
     T = C['tables']; car_row = ins(C, 'Data_Car')[0]; ref_row = ins(R, 'Data_Car')[0]
 
@@ -188,7 +188,7 @@ def finish(car, ref, out, version, price, log=print):
     for root, dirs, files in os.walk(os.path.join(car, 'media')):
         for f in files:
             src = os.path.join(root, f); dst = os.path.join(out, os.path.relpath(src, car)); os.makedirs(os.path.dirname(dst), exist_ok=True)
-            if f.lower() == f'{media.lower()}.zip': prune(src, dst, media, log)
+            if do_prune and f.lower() == f'{media.lower()}.zip': prune(src, dst, media, log)
             else: shutil.copy2(src, dst)
 
 
@@ -227,7 +227,7 @@ def prune(src, dst, media, log=print):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('car'); ap.add_argument('reference'); ap.add_argument('out')
-    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None)
+    ap.add_argument('--version', default=None); ap.add_argument('--price', type=int, default=None); ap.add_argument('--no-prune', action='store_true')
     a = ap.parse_args()
     ref_price = ins(tables(a.reference), 'Data_Car')[0]['BaseCost']
-    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price)
+    finish(a.car, a.reference, a.out, a.version or json.load(open(os.path.join(a.car, 'mod.json')))['version'] + '-finished', a.price or ref_price, do_prune=not a.no_prune)
