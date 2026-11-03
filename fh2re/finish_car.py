@@ -93,12 +93,14 @@ def finish(car, ref, out, version, price, log=print, do_prune=False, drop_old_pa
     log(f'engine inertia {eng["MomentInertia"]} -> {reng["MomentInertia"]}'); eng['MomentInertia'] = reng['MomentInertia']
     T['FreeRevOverrides'] = {'key': [], 'insert': [dict(stock(R, 'FreeRevOverrides') or ins(R, 'FreeRevOverrides')[0], Ordinal=cid)]}
 
-    # 3. torque curves: never below the reference's curve at the same fraction of the rev range
+    # 3. torque curves: below the car's own torque peak, never below the reference's curve at the same fraction of the
+    #    rev range (the top end and peak power stay the car's own; RB22 3 Nov: raising past the peak gave 1,335 hp)
     rc = ins(R, 'List_TorqueCurve')[0]; rv = [rc[f'v{i}'] for i in range(rc['NumTorqueValues'])][:-1]
     live = stock(C, 'List_UpgradeEngineCamshaft')['TorqueCurveFullThrottleID']
     for tc in [x for x in ins(C, 'List_TorqueCurve') if x['TorqueCurveID'] == live]:
         n = tc['NumTorqueValues']; raised = 0
-        for i in range(n - 1):
+        peak_i = max(range(n - 1), key=lambda i: tc[f'v{i}'])      # only the low end: never above the car's own peak torque
+        for i in range(peak_i):
             j = round(i / (n - 2) * (len(rv) - 1)); r_ = rv[j]
             if tc[f'v{i}'] >= 0 and r_ > tc[f'v{i}']: tc[f'v{i}'] = r_; raised += 1
         log(f'torque curve {tc["TorqueCurveID"]}: {raised} of {n - 1} points raised to the reference shape (low end {tc["v0"]:.2f})')

@@ -1,0 +1,29 @@
+{
+  "name": "Red Bull RB22 2026",
+  "slug": "redbullrb22",
+  "source": "Downloads/2026-redbull-rb22/source/untitled.glb",
+  "selected": [
+    {
+      "node": "f1_2026_rb22_3b700b",
+      "material": "redbull_wheel_hub.007 (left-front rim, z > 0)",
+      "triangles": 5340
+    }
+  ],
+  "nominal_rim_in": 18,
+  "nominal_radius": 0.2286,
+  "source_lip_radius": 0.25612514340669373,
+  "outer_lip_radius": 0.25292,
+  "fitted_depth": 0.35866,
+  "tyres": {
+    "width_front": 350,
+    "width_rear": 400,
+    "aspect_front": 36,
+    "aspect_rear": 31,
+    "rim_in": 18,
+    "compound": 8
+  },
+  "tyre_radius": 0.3536,
+  "triangles": 5340,
+  "geometry_sha256": "040dcc92438fe657e5634c24584f9fd627775c02f5c38f642d1e56532b7614a9",
+  "status": "source geometry selected; built validation pending"
+}

@@ -1,0 +1,5 @@
+Red Bull RB22 (2026) - Forza Horizon 2 add-on, personal use only. Do not redistribute.
+3D model: supplied by Owen (Downloads/2026-redbull-rb22, untitled.glb); original author, source page and licence were
+not included with the file - add them here when known.
+Built on the 2012 Dodge Charger SRT8 (game files, not included). Engine sound: the BMW P83 bank from the installed
+ZS Williams FW24 mod (dependency, not included).

@@ -1,0 +1,198 @@
+{
+  "offset": [
+    4.41819429397583e-06,
+    -0.17168809581618952,
+    0.04992723895526403
+  ],
+  "wheelbase": 3.402678490837636,
+  "tyre_radius": 0.35391694883630775,
+  "wheels": {
+    "HUB_RF": {
+      "centre": [
+        -0.7751231491565704,
+        0.3219846186982011,
+        1.70141200647697
+      ],
+      "radius": 0.3536439436730852,
+      "width": 0.3594915270805359
+    },
+    "HUB_LF": {
+      "centre": [
+        0.7751408219337463,
+        0.32178489098413937,
+        1.701412006450138
+      ],
+      "radius": 0.3536438505408278,
+      "width": 0.35949158668518066
+    },
+    "HUB_LR": {
+      "centre": [
+        0.7362301051616669,
+        0.32382298696551515,
+        -1.701267020815894
+      ],
+      "radius": 0.3541900105773751,
+      "width": 0.41392916440963745
+    },
+    "HUB_RR": {
+      "centre": [
+        -0.7362301051616669,
+        0.3238230866169025,
+        -1.7012659479322703
+      ],
+      "radius": 0.35418999055394274,
+      "width": 0.41392940282821655
+    }
+  },
+  "textures": {
+    "redbull_carbon3.007": "b6e2ff0239.png",
+    "redbull_detail.007": "51e5eda448.png",
+    "redbull_mirror_right.005": "0e43b538c0.png",
+    "generics2.007": "2b3ef56e2f.png",
+    "redbull_carbon1.007": "abcedbcd57.png",
+    "sw_redbull_carbon2.007": "3279d99fde.png",
+    "redbull_carbon2.007": "11e1be7732.png",
+    "redbull_paint.007": "bfca86573d.png",
+    "redbull_number_3.005": "375f3cf90b.png",
+    "rain_light": "08b81ed4f4.png",
+    "rear_light_2.007": "13b366abf0.png",
+    "glass.005": "12993fd5b1.png",
+    "redbull_decals.005": "40ba73d03e.png",
+    "rim_front": "d055c0e24e.png",
+    "rim_rear": "a21df58b51.png",
+    "chrome.006": "bb1c24b123.png",
+    "gp21_cinture.004": "e7fecff465.png",
+    "redbull_color.005": "3ff83b460a.png",
+    "black_s.006": "74e4383e12.png",
+    "sw_kers_blue.003": "e8eb2abbad.png",
+    "sw_gp21_LCD.003": "dc57e57cd3.png",
+    "sw_clearled.003": "c72439a347.png",
+    "sw_redbull_steeringwheel.004": "ef2b074470.png",
+    "sw_black_s.006": "5b3ec7153b.png",
+    "sw_sw_decals.004": "91479fb443.png"
+  },
+  "mapping": {
+    "redbull_carbon3.007": [
+      "textured",
+      "tb6e2ff0239"
+    ],
+    "redbull_detail.007": [
+      "textured",
+      "t51e5eda448"
+    ],
+    "redbull_mirror_right.005": [
+      "textured",
+      "t0e43b538c0"
+    ],
+    "generics2.007": [
+      "textured",
+      "t2b3ef56e2f"
+    ],
+    "redbull_carbon1.007": [
+      "textured",
+      "tabcedbcd57"
+    ],
+    "sw_redbull_carbon2.007": [
+      "textured",
+      "t3279d99fde"
+    ],
+    "redbull_carbon2.007": [
+      "textured",
+      "t11e1be7732"
+    ],
+    "redbull_paint.007": [
+      "textured",
+      "tbfca86573d"
+    ],
+    "redbull_number_3.005": [
+      "textured",
+      "t375f3cf90b"
+    ],
+    "rain_light": [
+      "textured",
+      "t08b81ed4f4"
+    ],
+    "rear_light_2.007": [
+      "textured",
+      "t13b366abf0"
+    ],
+    "glass.005": [
+      "plain",
+      "chrome"
+    ],
+    "redbull_decals.005": [
+      "textured",
+      "t40ba73d03e"
+    ],
+    "rim_front": null,
+    "rim_rear": null,
+    "chrome.006": [
+      "textured",
+      "tbb1c24b123"
+    ],
+    "gp21_cinture.004": [
+      "textured",
+      "te7fecff465"
+    ],
+    "redbull_color.005": [
+      "textured",
+      "t3ff83b460a"
+    ],
+    "black_s.006": [
+      "textured",
+      "t74e4383e12"
+    ],
+    "sw_kers_blue.003": [
+      "textured",
+      "te8eb2abbad"
+    ],
+    "sw_gp21_LCD.003": [
+      "textured",
+      "tdc57e57cd3"
+    ],
+    "sw_clearled.003": [
+      "textured",
+      "tc72439a347"
+    ],
+    "sw_redbull_steeringwheel.004": [
+      "textured",
+      "tef2b074470"
+    ],
+    "sw_black_s.006": [
+      "textured",
+      "t5b3ec7153b"
+    ],
+    "sw_sw_decals.004": [
+      "textured",
+      "t91479fb443"
+    ],
+    "SOURCE_RIM": null
+  },
+  "triangles": {
+    "redbull_carbon3.007": 16649,
+    "redbull_detail.007": 26011,
+    "redbull_mirror_right.005": 84,
+    "generics2.007": 6818,
+    "redbull_carbon1.007": 8028,
+    "sw_redbull_carbon2.007": 5392,
+    "redbull_carbon2.007": 76133,
+    "redbull_paint.007": 49358,
+    "redbull_number_3.005": 18150,
+    "rain_light": 336,
+    "rear_light_2.007": 414,
+    "glass.005": 176,
+    "redbull_decals.005": 19961,
+    "rim_front": 10680,
+    "rim_rear": 11788,
+    "chrome.006": 5004,
+    "gp21_cinture.004": 12746,
+    "redbull_color.005": 322,
+    "black_s.006": 100,
+    "sw_kers_blue.003": 68,
+    "sw_gp21_LCD.003": 4,
+    "sw_clearled.003": 3401,
+    "sw_redbull_steeringwheel.004": 18361,
+    "sw_black_s.006": 32,
+    "sw_sw_decals.004": 6024
+  }
+}

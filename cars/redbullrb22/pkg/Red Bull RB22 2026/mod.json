@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "id": "owen-redbull-rb22",
+  "name": "Red Bull RB22 (2026)",
+  "author": "Owen",
+  "version": "0.1.0",
+  "description": "Red Bull RB22 (2026) with the supplied livery and cockpit, exposed-wheel fit, 1.6 V6 turbo hybrid setup, working rain light. Personal test conversion; handling provisional.",
+  "database": "database.json",
+  "strings": "strings.json",
+  "media": "media",
+  "dependencies": ["zs-williams-fw24"]
+}
