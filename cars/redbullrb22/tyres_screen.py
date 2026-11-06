@@ -246,9 +246,16 @@ def rebuild_steering(raw):
         UV = np.concatenate([q['UV'] for q in G['parts'][m]])
         V = (V - steer) @ basis.T; N = N @ basis.T
         if m == 'sw_gp21_LCD.003': lcd = V; continue
-        T = np.arange(len(V)).reshape(-1, 3)
-        V2 = np.concatenate([V, V]); N2 = np.concatenate([N, -N]); UV2 = np.concatenate([UV, UV])   # two-sided
-        T2 = np.concatenate([T, T[:, ::-1] + len(V)])
+        # weld the triangle soup: a part on a moving bone stays under 65,536 vertices (every working one does:
+        # donor wheel 7k, Williams wheel 21k, road wheels 19k; the soup was 200k)
+        key = np.round(np.c_[V * 1e4, N * 100, UV * 4096]).astype(np.int64)
+        _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
+        V, N, UV = V[first], N[first], UV[first]; T = inv.reshape(-1, 3)
+        if m in ('sw_sw_decals.004', 'sw_clearled.003'):     # stickers 2 mm proud / LED lenses: front faces only
+            V2, N2, UV2, T2 = V, N, UV, T
+        else:                                                # two-sided
+            V2 = np.concatenate([V, V]); N2 = np.concatenate([N, -N]); UV2 = np.concatenate([UV, UV])
+            T2 = np.concatenate([T, T[:, ::-1] + len(V)])
         key = A['mapping'][m][1]; mname = f'{MEDIA.lower()}_{key}'
         assert any(names[id(r['blob'])] == mname for r in old), mname
         Ps.append(V2); Ns.append(N2); UVs.append(UV2); by[mname] = (T2 + base).reshape(-1); base += len(V2)
@@ -280,11 +287,12 @@ def rebuild_steering(raw):
         set_group(p, g, dict(P=np.zeros((0, 3)), N=np.zeros((0, 3)), UV=np.zeros((0, 2))), {})
     out = p.build(); q = Part(out); qn = material_names(q)
     assert struct.unpack_from('<H', next(b for b in q.b.blobs if b['tag'] == 'Modl')['data'], 0)[0] == len(q.meshes)
+    nverts = sum(len(g['positions']) for g in q.groups.values()); assert nverts < 65536, nverts
     drawn = [r for r in q.render if len(set(r['indices'])) > 1]
     assert drawn and all(r['group'] == 3 for r in drawn), sorted({r['group'] for r in drawn})
     from gltf_bridge import layout_of
     lay = [e['name'] for e in layout_of(q, 3)[0]]; assert 'TEXCOORD0' in lay and 'TANGENT0' in lay, lay
-    return out, dict(group=3, layout=lay, triangles=sum(len(r['indices']) for r in drawn) // 3,
+    return out, dict(group=3, layout=lay, vertices=nverts, triangles=sum(len(r['indices']) for r in drawn) // 3,
                      materials=sorted(qn[id(r['blob'])] for r in drawn), screen_m=(float(np.linalg.norm(TR - TL)), float(np.linalg.norm(BL - TL))))
 
 
