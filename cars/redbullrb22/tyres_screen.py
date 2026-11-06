@@ -555,12 +555,14 @@ def apply(pkg, ow_f1_path, version=None):
                 zi = zipfile.ZipInfo(n, date_time=(1980, 1, 1, 0, 0, 0)); zi.compress_type = zipfile.ZIP_DEFLATED; z.writestr(zi, entries[n])
     tmp.replace(archive)
     # the empty library tyre and the database
-    lib = pkg / 'media' / 'cars' / '_library' / 'scene' / 'tires'; lib.mkdir(parents=True, exist_ok=True)
-    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(hidden_library_tyre(Path(ow_f1_path).read_bytes()))
+    # 0.1.14: the model's tyre (in the wheel part) is not drawn once the wheel spins fast (Owen 6 Nov: only the tyres
+    # vanish, rims stay). The game's plain OW_F1 slick stays as the library tyre underneath, so a tyre is always there.
     dbp = pkg / 'database.json'; db = json.loads(dbp.read_text())
     rows = db['tables']['List_UpgradeTireCompound']['insert']
-    for r in rows:
-        assert r['TireModelName'] == 'OW_F1', r['TireModelName']; r['TireModelName'] = TYRE_NAME
+    for r in rows: assert r['TireModelName'] == 'OW_F1', r['TireModelName']
+    # cockpit camera 10 cm lower (Owen 6 Nov: too high); the Williams FW24 uses this field too (+0.06)
+    cam = db['tables']['CameraOverrides']['insert'][0]; cam['CamCockpitOffsetY'] = round(cam['CamCockpitOffsetY'] - 0.10, 3)
+    report['cockpit_camera_offset_y'] = cam['CamCockpitOffsetY']
     dbp.write_text(json.dumps(db, indent=1) + '\n')
     if version:
         mp = pkg / 'mod.json'; mj = json.loads(mp.read_text()); mj['version'] = version; mp.write_text(json.dumps(mj, indent=1) + '\n')
