@@ -182,6 +182,95 @@ def narrow_library_tyre(ow_f1, width=0.80, radius=0.995):
     return buf.getvalue()
 
 
+OW_X = (-0.0623435, 1.0623444)              # OW_F1 library tyre: normalised width envelope (beads at 0 and 1)
+OW_R = (0.1392159, 0.2227984)               # ... and radius envelope (bead = rim seat .. tread), R = 0.1397 units
+R_WEIGHT = 4.3                              # profile metric: one radius unit ~ 4.3 width units (physical scale)
+
+def library_source_tyre(ow_f1, wheel_with_tyre):
+    """the model's Pirelli tyre AS the library tyre (0.1.17, Owen 6 Nov: 'get our actual tyres from the model to be
+    used instead of forza's default'). The game draws its library tyre at every wheel speed; the model tyre in the
+    wheel part was not drawn once the wheel spun fast.
+
+    Geometry, UVs and lookups are the front tyre exactly as built into the wheel part by add_tyre (the version Owen
+    saw drawn correctly at low speed); the material is the same retextured interior_lod1 one and the vertex layout the
+    wheel part's (OW_F1's + TEXCOORD3, which that material reads). Placement: the tyre's profile is fitted onto
+    OW_F1's normalised envelope (width -0.062..1.062 with the beads at 0 / 1, radius 0.139 (rim seat) .. 0.223), so
+    the game's size morphs put it exactly where OW_F1 went (0.1.15: rims sized right). Morphs: each of OW_F1's 10
+    targets (5 position, 5 normal; x, y, z, tag) is taken from the nearest points of OW_F1's profile (x, radius;
+    inverse-distance over 4) as axial / radial / tangential components and re-applied at our vertex's angle."""
+    from scipy.spatial import cKDTree
+    w = Part(wheel_with_tyre); wn = material_names(w)
+    tyre_r = [r for r in w.render if wn[id(r['blob'])] == 'source_tyre']
+    lod0 = next(r for r in tyre_r if struct.unpack_from('<H', r['blob']['data'], 4)[0] == 3)
+    WA, wels = decode_group(w, 0)
+    vid = np.array(sorted(set(lod0['indices']))); remap = -np.ones(len(WA['POSITION']), int); remap[vid] = np.arange(len(vid))
+    tri = remap[np.array(lod0['indices'])]; assert (tri >= 0).all()
+    src = {k: np.asarray(WA[k][vid], np.float64) for k in WA}
+    P = src['POSITION']; rw = np.hypot(P[:, 1], P[:, 2]); ca, sa = P[:, 1] / rw, P[:, 2] / rw
+    # wheel part: x = metres from the rim face, outward -x  ->  library: low x = outer side (symmetric tyre)
+    sx = (OW_X[1] - OW_X[0]) / np.ptp(P[:, 0]); sr = (OW_R[1] - OW_R[0]) / np.ptp(rw)
+    x = OW_X[0] + (P[:, 0] - P[:, 0].min()) * sx
+    r = OW_R[0] + (rw - rw.min()) * sr
+    newP = np.c_[x, r * ca, r * sa]
+    N = src['NORMAL0'][:, :3]; n_ax, n_rad, n_tan = N[:, 0], N[:, 1] * ca + N[:, 2] * sa, -N[:, 1] * sa + N[:, 2] * ca
+    n_ax, n_rad, n_tan = n_ax / sx, n_rad / sr, n_tan / (r / rw)               # normals under the (axial, radial) stretch
+    newN = np.c_[n_ax, n_rad * ca - n_tan * sa, n_rad * sa + n_tan * ca]; newN /= np.linalg.norm(newN, axis=1, keepdims=True)
+    # morphs from OW_F1's profile
+    o = Part(ow_f1); og = o.groups[0]; OP = np.array(og['positions'], np.float64)
+    om = np.frombuffer(b''.join(og['morph']), '<f2').reshape(len(OP), 10, 4).astype(np.float64)
+    orr = np.hypot(OP[:, 1], OP[:, 2]); oc, os_ = OP[:, 1] / orr, OP[:, 2] / orr
+    loc = np.stack([om[:, :, 0], om[:, :, 1] * oc[:, None] + om[:, :, 2] * os_[:, None],
+                    -om[:, :, 1] * os_[:, None] + om[:, :, 2] * oc[:, None]], 2)      # (n, 10, axial/radial/tangential)
+    tags = om[0, :, 3]; assert (om[:, :, 3] == tags).all()
+    prof = np.c_[OP[:, 0], R_WEIGHT * orr]
+    d, nb = cKDTree(prof).query(np.c_[x, R_WEIGHT * r], k=4)
+    wt = 1 / np.maximum(d, 1e-6) ** 2; wt /= wt.sum(1, keepdims=True)
+    L = (loc[nb] * wt[:, :, None, None]).sum(1)                                   # (m, 10, 3)
+    M = np.zeros((len(x), 10, 4)); M[:, :, 0] = L[:, :, 0]
+    M[:, :, 1] = L[:, :, 1] * ca[:, None] - L[:, :, 2] * sa[:, None]
+    M[:, :, 2] = L[:, :, 1] * sa[:, None] + L[:, :, 2] * ca[:, None]; M[:, :, 3] = tags
+    # the library tyre with the wheel part's vertex layout for group 0
+    lay_o = [b for b in o.b.blobs if b['tag'] == 'VLay']; lay_w = [b for b in w.b.blobs if b['tag'] == 'VLay']
+    lid = struct.unpack_from('<I', o.render[0]['blob']['data'], 0x31)[0]
+    wlid = struct.unpack_from('<I', lod0['blob']['data'], 0x31)[0]
+    lay_o[lid]['data'] = bytearray(lay_w[wlid]['data'])
+    vb_w = w.bufs[('VerB', 0)]; vb_o = o.bufs[('VerB', 0)]
+    for k in ('stride', 'nel', 'z', 'fmt'): vb_o[k] = vb_w[k]
+    from geometry import O_NVB, O_VB0
+    for m in o.meshes:
+        dd = m['data']
+        for k in range(struct.unpack_from('<I', dd, O_NVB)[0]):
+            if struct.unpack_from('<i', dd, O_VB0 + 16 * k)[0] == 0: struct.pack_into('<i', dd, O_VB0 + 16 * k + 8, vb_w['stride'])
+    attrs = {'POSITION': newP.astype(np.float32), 'NORMAL0': np.c_[newN, np.zeros(len(x))].astype(np.float32)}
+    for k in ('TEXCOORD0', 'TEXCOORD1', 'TEXCOORD2', 'TEXCOORD3'): attrs[k] = src[k].astype(np.float32)
+    tan = tangents(newP, newN, src['TEXCOORD0'], tri).astype(np.float32); attrs['TANGENT0'] = attrs['TANGENT1'] = tan
+    rows, uvt = encode_group(o, 0, attrs)
+    og['positions'] = [tuple(map(float, v)) for v in attrs['POSITION']]; og['attrs'] = rows
+    og['morph'] = [rr.tobytes() for rr in M.astype('<f2')]
+    # materials: our tyre on every 'sidewall' mesh (all 6 LODs); the size-text meshes draw nothing
+    wm = next(b for b in w.b.blobs if b['tag'] == 'MatI' and w.b.meta(b, 'Name') == b'source_tyre')
+    texs = [t.decode('latin1') for t in re.findall(rb'Game:\\Media\\cars\\[ -~]+?\.swatchbin', bytes(wm['data']))]
+    on = material_names(o); mid = fhmat.add_material(o, 'source_tyre', bytes(wm['data']), texs)
+    for rr in o.render:
+        struct.pack_into('<20f', rr['blob']['data'], O_UVT, *uvt)
+        if on[id(rr['blob'])] == 'sidewall':
+            struct.pack_into('<h', rr['blob']['data'], 0, mid); rr['indices'] = tri.tolist()
+        else:
+            rr['indices'] = [0, 0, 0]
+    out = o.build(); q = Part(out)
+    assert len(q.groups[0]['positions']) == len(x) < 65536
+    qn = material_names(q)
+    assert sum(qn[id(rr['blob'])] == 'source_tyre' for rr in q.render) == 6
+    QA, qels = decode_group(q, 0); assert [e['name'] for e in qels] == [e['name'] for e in wels]
+    assert np.abs(QA['TEXCOORD0'] - attrs['TEXCOORD0']).max() < 1e-3
+    info = dict(vertices=len(x), triangles=len(tri) // 3, width_scale=float(sx), radius_scale=float(sr), textures=texs,
+                morph_max=[float(np.abs(M[:, t, :3]).max()) for t in range(10)])
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as z:
+        z.writestr(f'tireL_{TYRE_NAME}.modelbin', out)
+    return buf.getvalue(), info, out
+
+
 PIRELLI_RED = (0.62, 0.015, 0.015, 0.0)     # whitewall band colour param (stock: 0.578 grey = white)
 
 def red_band(raw, colour=PIRELLI_RED):
@@ -539,7 +628,7 @@ def apply(pkg, ow_f1_path, version=None):
     low = {n.lower(): n for n in entries}
     wheel_lf = next(n for n in entries if n.lower().endswith('_wheellf.modelbin'))
     wheel_lr = wheel_lf[:-len('LF.modelbin')] + 'LR.modelbin'
-    assert wheel_lr.lower() not in low, 'already applied'
+    assert not (pkg / 'tyres-screen-check.json').exists(), 'already applied'
     # textures: the model's tyre (sidewall.007, 4096 -> 1024) and a rubber gloss (matte)
     import trimesh
     from PIL import Image
@@ -560,18 +649,13 @@ def apply(pkg, ow_f1_path, version=None):
     tpl = open(REPO / 'f1' / 'matI_lod1.bin', 'rb').read()
     tyres = source_tyres()
     base = entries[wheel_lf]
-    entries[wheel_lf] = add_tyre(base, tyres['F'], tyre_tex, tyre_gloss, tpl)
-    entries[wheel_lr] = add_tyre(base, tyres['R'], tyre_tex, tyre_gloss, tpl)
+    # 0.1.17: the tyre is the library tyre (below), built from the wheel part add_tyre makes; the wheel part keeps
+    # only the rim (no spin-blur pass), front and rear alike
+    with_tyre = add_tyre(base, tyres['F'], tyre_tex, tyre_gloss, tpl)
+    rim = Part(base); strip_blur(rim); entries[wheel_lf] = rim.build()
     report['tyres'] = {k: {kk: v for kk, v in t.items() if kk not in ('P', 'N', 'UV', 'T')} | {'triangles': len(t['T'])} for k, t in tyres.items()}
-    # carbin: rear wheels draw the rear wheel part
     cname = next(n for n in entries if n.lower().endswith('.carbin'))
     raw = entries[cname]; c = carbin.read_carbin(raw); assert carbin.write_carbin(c) == raw, 'carbin round trip'
-    moved = 0
-    for pt in c['parts']:
-        for m in pt['part']['models']:
-            if m['type'] == 'Wheels' and m['bone_name'] in ('spindleLR', 'spindleRR'):
-                assert m['path'].endswith('_wheellf.modelbin'); m['path'] = m['path'][:-len('lf.modelbin')] + 'lr.modelbin'; moved += 1
-    assert moved == 2, moved
     # the steering wheel: the cockpit visibility of the Williams FW24's (and its other cabin parts'); the Charger
     # donor's entry left it out of the cockpit view (Owen 6 Nov: steering wheel isn't there)
     sw_models = [m for pt in c['parts'] for m in pt['part']['models'] if m['path'].endswith('steeringwheel_a.modelbin')]
@@ -603,9 +687,8 @@ def apply(pkg, ow_f1_path, version=None):
     # 0.1.14: the model's tyre (in the wheel part) is not drawn once the wheel spins fast (Owen 6 Nov: only the tyres
     # vanish, rims stay). The game's plain OW_F1 slick stays as the library tyre underneath, so a tyre is always there.
     lib = pkg / 'media' / 'cars' / '_library' / 'scene' / 'tires'; lib.mkdir(parents=True, exist_ok=True)
-    base = Path(ow_f1_path).read_bytes()
-    if WHITEWALL and Path(WHITEWALL).exists(): base = red_band(Path(WHITEWALL).read_bytes()); report['library_tyre'] = 'OW_whiteWall, red band'
-    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(narrow_library_tyre(base))
+    lib_zip, report['library_tyre'], _ = library_source_tyre(Path(ow_f1_path).read_bytes(), with_tyre)
+    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(lib_zip)
     dbp = pkg / 'database.json'; db = json.loads(dbp.read_text())
     rows = db['tables']['List_UpgradeTireCompound']['insert']
     for r in rows:
