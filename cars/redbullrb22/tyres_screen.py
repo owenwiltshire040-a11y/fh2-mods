@@ -296,6 +296,25 @@ def rebuild_steering(raw):
                      materials=sorted(qn[id(r['blob'])] for r in drawn), screen_m=(float(np.linalg.norm(TR - TL)), float(np.linalg.norm(BL - TL))))
 
 
+def driver_wheel_track(entries):
+    """The driver animations (scene/drivers/default/*.gr2, from the Toro build) each carry a constant position track for
+    boneSteeringWheel, the steering wheel part's parent bone. It overrides the skeleton at runtime, so the wheel was
+    drawn at that animation set's old wheel position (Owen 6 Nov 0.1.12: wheel shows, but where the Charger's was).
+    Set it to the RB22 skeleton's own local position of that bone (build_car moved only the Hips track)."""
+    import granny
+    sk = next(n for n in entries if n.lower().endswith('_skeleton.gr2'))
+    target = next(pos for name, par, pos, _ in granny.bones(granny.GR2(entries[sk])) if name == 'boneSteeringWheel')
+    done = {}
+    for n in [n for n in entries if n.lower().startswith('scene/drivers/') and n.lower().endswith('.gr2')]:
+        g = granny.GR2(entries[n]); r = granny.set_track_position(g, 'boneSteeringWheel', list(target), list(target))
+        assert r == ['constant'], (n, r)
+        entries[n] = g.write()
+        after = granny.track_position_constant(granny.GR2(entries[n]), 'boneSteeringWheel')
+        assert np.allclose(after, target, atol=1e-5), (n, after)
+        done[n.split('/')[-1]] = r[0]
+    return dict(target=[round(float(x), 4) for x in target], files=len(done))
+
+
 LOD_SET = [(4, 1), (8, 2), (16, 3), (32, 4), (64, 5)]     # (mask, index) after LOD0 (3, 0/255), as on the Williams FW24
 
 def all_lods(raw):
@@ -518,6 +537,7 @@ def apply(pkg, ow_f1_path, version=None):
     sw = next(n for n in entries if n.lower().endswith('interior/dash/steeringwheel_a.modelbin'))
     entries[sw], report['steering'] = rebuild_steering(entries[sw])
     entries[sw] = all_lods(entries[sw])
+    report['driver_wheel_track'] = driver_wheel_track(entries)
     xaml = page_xaml(); report['page'] = check_xaml(xaml)
     ui = next(n for n in entries if n.lower() == f'ui/{MEDIA.lower()}.xaml')
     entries[ui] = xaml.encode('utf-8')
