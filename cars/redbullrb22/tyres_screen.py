@@ -211,6 +211,28 @@ def add_screen(raw):
     return out, dict(screen_m=size, normal=n.tolist(), lods=sorted(r['blob']['data'][4] for r in scr))
 
 
+LOD_SET = [(4, 1), (8, 2), (16, 3), (32, 4), (64, 5)]     # (mask, index) after LOD0 (3, 0/255), as on the Williams FW24
+
+def all_lods(raw):
+    """the donor-built steering wheel only had LOD0 meshes (mask 3; Modl LOD mask 3). The game's cockpit camera
+    draws another LOD (Owen 6 Nov 0.1.9: still no steering wheel). Every LOD0 mesh is copied into LOD1-5 like the
+    Williams FW24's wheel (meshes at 3/4/8/16/32/64, Modl mask 0x3f)."""
+    p = Part(raw)
+    base = [r for r in p.render if r['blob']['data'][4] == 3]
+    assert len(base) == len(p.render), 'steering wheel already has other LODs'
+    for r in base:
+        mat = struct.unpack_from('<h', r['blob']['data'], 0)[0]
+        for mask, index in LOD_SET:
+            fhmat.add_mesh(p, r, mat); n = p.render[-1]
+            struct.pack_into('<H', n['blob']['data'], 4, mask); struct.pack_into('<BB', n['blob']['data'], 6, index, index)
+            n['indices'] = list(r['indices'])
+    M = fhmat.modl(p); d = bytearray(M['data']); struct.pack_into('<H', d, len(d) - 2, 0x3f); M['data'] = d
+    out = p.build(); q = Part(out)
+    assert struct.unpack_from('<H', next(b for b in q.b.blobs if b['tag'] == 'Modl')['data'], 0)[0] == len(q.meshes)
+    masks = sorted({r['blob']['data'][4] for r in q.render}); assert masks == [3, 4, 8, 16, 32, 64], masks
+    return out
+
+
 def led_images():
     """84 x 84 LED images (own artwork): a bright lens with a soft halo, for the page's shift lights"""
     yy, xx = np.mgrid[0:84, 0:84]; r = np.hypot(xx - 41.5, yy - 41.5) / 42
@@ -405,11 +427,12 @@ def apply(pkg, ow_f1_path, version=None):
     # donor's entry left it out of the cockpit view (Owen 6 Nov: steering wheel isn't there)
     sw_models = [m for pt in c['parts'] for m in pt['part']['models'] if m['path'].endswith('steeringwheel_a.modelbin')]
     assert len(sw_models) == 1
-    sw_models[0]['draw_groups'] = 31; sw_models[0]['u11'] = '0101' + '00' * 16
+    sw_models[0]['draw_groups'] = 31; sw_models[0]['u11'] = '0101' + '00' * 16; sw_models[0]['lods'] = 63
     entries[cname] = carbin.write_carbin(c)
     # steering wheel screen + page + LED images
     sw = next(n for n in entries if n.lower().endswith('interior/dash/steeringwheel_a.modelbin'))
     entries[sw], report['screen'] = add_screen(entries[sw])
+    entries[sw] = all_lods(entries[sw])
     xaml = page_xaml(); report['page'] = check_xaml(xaml)
     ui = next(n for n in entries if n.lower() == f'ui/{MEDIA.lower()}.xaml')
     entries[ui] = xaml.encode('utf-8')
