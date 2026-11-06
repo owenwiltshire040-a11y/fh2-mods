@@ -158,6 +158,29 @@ def add_tyre(raw, tyre, tex_path, gloss_path, tpl_mati):
     return out
 
 
+def narrow_library_tyre(ow_f1, width=0.80, radius=0.995):
+    """the game's OW_F1 slick, narrower and a touch smaller, as the RB22's library tyre: it sits inside the model's
+    Pirelli tyre (Owen 6 Nov 0.1.14: the full-width slick poked out of the sidewalls) and still shows when the
+    model's tyre is not drawn at high wheel speed. Linear: the drawn tyre = position + sum(weight * morph offset), so
+    scaling the positions and every morph offset (10 half4 targets per vertex: x, y, z, tag) scales the result.
+    Width about the tyre's centre line (x = 0.5 in its 0..1 width space), radius about the axle."""
+    p = Part(ow_f1)
+    for g in p.groups.values():
+        P = np.array(g['positions'], np.float64)
+        P[:, 0] = 0.5 + width * (P[:, 0] - 0.5); P[:, 1:] *= radius
+        g['positions'] = [tuple(map(float, v)) for v in P]
+        if g['morph'] is not None:
+            m = np.frombuffer(b''.join(g['morph']), '<f2').reshape(len(P), -1, 4).astype(np.float32)
+            m[:, :, 0] *= width; m[:, :, 1:3] *= radius
+            stride = len(g['morph'][0]); raw = m.astype('<f2').tobytes()
+            g['morph'] = [raw[i * stride:(i + 1) * stride] for i in range(len(P))]
+    out = p.build(); Part(out)
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as z:
+        z.writestr(f'tireL_{TYRE_NAME}.modelbin', out)
+    return buf.getvalue()
+
+
 def hidden_library_tyre(ow_f1):
     """the OW_F1 library tyre with nothing to draw: every position one point, size morphs zero"""
     p = Part(ow_f1)
@@ -557,9 +580,12 @@ def apply(pkg, ow_f1_path, version=None):
     # the empty library tyre and the database
     # 0.1.14: the model's tyre (in the wheel part) is not drawn once the wheel spins fast (Owen 6 Nov: only the tyres
     # vanish, rims stay). The game's plain OW_F1 slick stays as the library tyre underneath, so a tyre is always there.
+    lib = pkg / 'media' / 'cars' / '_library' / 'scene' / 'tires'; lib.mkdir(parents=True, exist_ok=True)
+    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(narrow_library_tyre(Path(ow_f1_path).read_bytes()))
     dbp = pkg / 'database.json'; db = json.loads(dbp.read_text())
     rows = db['tables']['List_UpgradeTireCompound']['insert']
-    for r in rows: assert r['TireModelName'] == 'OW_F1', r['TireModelName']
+    for r in rows:
+        assert r['TireModelName'] == 'OW_F1', r['TireModelName']; r['TireModelName'] = TYRE_NAME
     # cockpit camera 10 cm lower (Owen 6 Nov: too high); the Williams FW24 uses this field too (+0.06)
     cam = db['tables']['CameraOverrides']['insert'][0]; cam['CamCockpitOffsetY'] = round(cam['CamCockpitOffsetY'] - 0.10, 3)
     report['cockpit_camera_offset_y'] = cam['CamCockpitOffsetY']
