@@ -33,6 +33,7 @@ import fhmat, carbin, swatch, uiswatch
 
 MEDIA = 'RBR_RedBullRB22_26'
 TYRE_NAME = 'RB22_26'
+WHITEWALL = None
 R, RIM = .1397, .2286                       # wheel-part face radius; 18 in rim radius (m)
 PHYS = {'F': .2286 + .350 * .36, 'R': .2286 + .400 * .31}     # database tyre outer radii
 # the game's digitalgauge MatI (no texture overrides), as used by the Williams FW24 / Dallara DW12 steering wheels
@@ -179,6 +180,27 @@ def narrow_library_tyre(ow_f1, width=0.80, radius=0.995):
     with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as z:
         z.writestr(f'tireL_{TYRE_NAME}.modelbin', out)
     return buf.getvalue()
+
+
+PIRELLI_RED = (0.62, 0.015, 0.015, 0.0)     # whitewall band colour param (stock: 0.578 grey = white)
+
+def red_band(raw, colour=PIRELLI_RED):
+    """the game's open-wheel whitewall tyre with its band recoloured: at speed a Pirelli sidewall blurs into a red
+    ring (Owen 6 Nov: give the plain tyre the red trim). The 'whitewall' MatI's vec4 parameter is the band colour."""
+    from modelbin import Bundle
+    p = Part(raw); n_done = 0
+    for bl in p.b.blobs:
+        if bl['tag'] != 'MatI' or p.b.meta(bl, 'Name') != b'whitewall': continue
+        inner = Bundle.read(bytes(bl['data'])); mt = next(b for b in inner.blobs if b['tag'] == 'MTPR'); m = bytearray(mt['data'])
+        o = 1
+        for _ in range(m[0]):
+            typ = m[o + 6]; o += 7
+            if typ == 1: struct.pack_into('<4f', m, o, *colour); o += 16; n_done += 1
+            elif typ in (2, 3, 4, 5): o += 4
+            else: raise ValueError(typ)
+        mt['data'] = m; bl['data'] = bytearray(inner.write())
+    assert n_done == 1, n_done
+    return p.build()
 
 
 def hidden_library_tyre(ow_f1):
@@ -581,7 +603,9 @@ def apply(pkg, ow_f1_path, version=None):
     # 0.1.14: the model's tyre (in the wheel part) is not drawn once the wheel spins fast (Owen 6 Nov: only the tyres
     # vanish, rims stay). The game's plain OW_F1 slick stays as the library tyre underneath, so a tyre is always there.
     lib = pkg / 'media' / 'cars' / '_library' / 'scene' / 'tires'; lib.mkdir(parents=True, exist_ok=True)
-    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(narrow_library_tyre(Path(ow_f1_path).read_bytes()))
+    base = Path(ow_f1_path).read_bytes()
+    if WHITEWALL and Path(WHITEWALL).exists(): base = red_band(Path(WHITEWALL).read_bytes()); report['library_tyre'] = 'OW_whiteWall, red band'
+    (lib / f'tire_{TYRE_NAME}.zip').write_bytes(narrow_library_tyre(base))
     dbp = pkg / 'database.json'; db = json.loads(dbp.read_text())
     rows = db['tables']['List_UpgradeTireCompound']['insert']
     for r in rows:
@@ -599,5 +623,6 @@ def apply(pkg, ow_f1_path, version=None):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('pkg'); ap.add_argument('--ow-f1', required=True); ap.add_argument('--version')
-    a = ap.parse_args()
+    ap.add_argument('--whitewall', help="the game's tireL_OW_whiteWall.modelbin (red-band fallback tyre)")
+    a = ap.parse_args(); WHITEWALL = a.whitewall
     print(json.dumps(apply(a.pkg, a.ow_f1, a.version), indent=2))
