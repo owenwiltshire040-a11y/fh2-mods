@@ -211,6 +211,83 @@ def add_screen(raw):
     return out, dict(screen_m=size, normal=n.tolist(), lods=sorted(r['blob']['data'][4] for r in scr))
 
 
+def rebuild_steering(raw):
+    """The donor-built steering wheel never drew (RB22, Jordan, Toro; Owen 6 Nov): build_car put the textured
+    (interior_lod1) materials into the Charger part's group 0, whose vertex layout has no TEXCOORD0 / TANGENT0
+    (NORMAL0, TEXCOORD1, TEXCOORD2, TANGENT1), so the shader's inputs were missing and the meshes were dropped.
+    Rebuilt here from the source model (geo.pkl sw_* parts, with their UVs) into group 3, the part's full-layout group
+    (NORMAL0, TEXCOORD0-3, TANGENT0-1, like every group of the Williams FW24's wheel), plus the live screen quad
+    (digitalgauge) in the same group. Groups 0-2 are left empty."""
+    from body_swap import set_group
+    from geometry import O_LAYOUT, O_VB0
+    A = json.load(open(HERE / 'source-analysis.json')); G = pickle.load(open(HERE / 'geo.pkl', 'rb'))
+    p = Part(raw); names = material_names(p)
+    # the spindle frame, exactly as build_car (local = (V - STEER) @ basis.T)
+    from modelbin import Bundle
+    basis = None
+    for bl in p.b.blobs:
+        if bl['tag'] != 'Skel': continue
+        d = bl['data']; n = struct.unpack_from('<H', d, 0)[0]; off = 2
+        for _ in range(n):
+            L = struct.unpack_from('<I', d, off)[0]; off += 4; nm = bytes(d[off:off + L]).decode(); off += L + 6
+            if nm == 'boneSteeringWheelSpindle': basis = np.array(struct.unpack_from('<16f', d, off)).reshape(4, 4)[:3, :3]
+            off += 64
+    sw = [m for m in G['parts'] if m.startswith('sw_')]
+    allV = np.concatenate([q['V'] for m in sw for q in G['parts'][m]])
+    steer = ((allV.min(0) + allV.max(0)) / 2).round(4)
+    old = [r for r in p.render if r['group'] == 0 and len(set(r['indices'])) > 1]
+    A0, _ = decode_group(p, 0); used0 = sorted({i for r in old for i in r['indices']})
+    lo0, hi0 = A0['POSITION'][used0].min(0), A0['POSITION'][used0].max(0)
+    uv1 = np.median(A0['TEXCOORD1'][used0], 0); uv2 = np.median(A0['TEXCOORD2'][used0], 0)
+    Ps, Ns, UVs, by, base = [], [], [], {}, 0
+    lcd = None
+    for m in sw:
+        V = np.concatenate([q['V'] for q in G['parts'][m]]); N = np.concatenate([q['N'] for q in G['parts'][m]])
+        UV = np.concatenate([q['UV'] for q in G['parts'][m]])
+        V = (V - steer) @ basis.T; N = N @ basis.T
+        if m == 'sw_gp21_LCD.003': lcd = V; continue
+        T = np.arange(len(V)).reshape(-1, 3)
+        V2 = np.concatenate([V, V]); N2 = np.concatenate([N, -N]); UV2 = np.concatenate([UV, UV])   # two-sided
+        T2 = np.concatenate([T, T[:, ::-1] + len(V)])
+        key = A['mapping'][m][1]; mname = f'{MEDIA.lower()}_{key}'
+        assert any(names[id(r['blob'])] == mname for r in old), mname
+        Ps.append(V2); Ns.append(N2); UVs.append(UV2); by[mname] = (T2 + base).reshape(-1); base += len(V2)
+    P = np.concatenate(Ps)
+    assert np.abs(P.min(0) - lo0).max() < 0.003 and np.abs(P.max(0) - hi0).max() < 0.003, (P.min(0), lo0, P.max(0), hi0)
+    # the screen: the LCD quad, 0.4 mm proud, facing the driver, page UVs (u right, v down as the driver sees it)
+    ymin, ymax = lcd[:, 1].min(), lcd[:, 1].max()
+    top = lcd[lcd[:, 2] < lcd[:, 2].mean()].mean(0); bot = lcd[lcd[:, 2] >= lcd[:, 2].mean()].mean(0)
+    TL = np.array([top[0], ymax, top[2]]); TR = np.array([top[0], ymin, top[2]])
+    BR = np.array([bot[0], ymin, bot[2]]); BL = np.array([bot[0], ymax, bot[2]])
+    nrm = np.cross(TR - TL, BL - TL); nrm /= np.linalg.norm(nrm)
+    if nrm[0] > 0: nrm = -nrm
+    quad = np.stack([TL, TR, BR, BL]) + nrm * 0.0004
+    qt = np.array([[0, 1, 2], [0, 2, 3]])
+    if np.dot(np.cross(quad[1] - quad[0], quad[2] - quad[0]), nrm) < 0: qt = qt[:, [0, 2, 1]]
+    Ps.append(quad); Ns.append(np.tile(nrm, (4, 1))); UVs.append(np.array([[0, 0], [1, 0], [1, 1], [0, 1]], float))
+    by['digitalGauge'] = (qt + base).reshape(-1)
+    # move the textured meshes to group 3 (layout id + attribute buffer binding), add the screen mesh there
+    tpl = next(r for r in p.render if r['group'] == 3)
+    t_lay = struct.unpack_from('<i', tpl['blob']['data'], O_LAYOUT)[0]; t_vb = struct.unpack_from('<iiii', tpl['blob']['data'], O_VB0 + 16)
+    for r in p.render:
+        if r['group'] == 0 and names[id(r['blob'])] in by:
+            d = r['blob']['data']; struct.pack_into('<i', d, O_LAYOUT, t_lay); struct.pack_into('<iiii', d, O_VB0 + 16, *t_vb); r['group'] = 3
+    mid = fhmat.add_material(p, 'digitalGauge', DIGITAL_MATI)
+    fhmat.add_mesh(p, tpl, mid)
+    geo = dict(P=np.concatenate(Ps), N=np.concatenate(Ns), UV=np.concatenate(UVs), UVconst={1: uv1, 2: uv2, 3: uv2})
+    set_group(p, 3, geo, by)
+    for g in (0, 1, 2):
+        set_group(p, g, dict(P=np.zeros((0, 3)), N=np.zeros((0, 3)), UV=np.zeros((0, 2))), {})
+    out = p.build(); q = Part(out); qn = material_names(q)
+    assert struct.unpack_from('<H', next(b for b in q.b.blobs if b['tag'] == 'Modl')['data'], 0)[0] == len(q.meshes)
+    drawn = [r for r in q.render if len(set(r['indices'])) > 1]
+    assert drawn and all(r['group'] == 3 for r in drawn), sorted({r['group'] for r in drawn})
+    from gltf_bridge import layout_of
+    lay = [e['name'] for e in layout_of(q, 3)[0]]; assert 'TEXCOORD0' in lay and 'TANGENT0' in lay, lay
+    return out, dict(group=3, layout=lay, triangles=sum(len(r['indices']) for r in drawn) // 3,
+                     materials=sorted(qn[id(r['blob'])] for r in drawn), screen_m=(float(np.linalg.norm(TR - TL)), float(np.linalg.norm(BL - TL))))
+
+
 LOD_SET = [(4, 1), (8, 2), (16, 3), (32, 4), (64, 5)]     # (mask, index) after LOD0 (3, 0/255), as on the Williams FW24
 
 def all_lods(raw):
@@ -431,7 +508,7 @@ def apply(pkg, ow_f1_path, version=None):
     entries[cname] = carbin.write_carbin(c)
     # steering wheel screen + page + LED images
     sw = next(n for n in entries if n.lower().endswith('interior/dash/steeringwheel_a.modelbin'))
-    entries[sw], report['screen'] = add_screen(entries[sw])
+    entries[sw], report['steering'] = rebuild_steering(entries[sw])
     entries[sw] = all_lods(entries[sw])
     xaml = page_xaml(); report['page'] = check_xaml(xaml)
     ui = next(n for n in entries if n.lower() == f'ui/{MEDIA.lower()}.xaml')
