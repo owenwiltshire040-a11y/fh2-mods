@@ -47,9 +47,11 @@ for node,row in raw.items():
    (rim if axle=='F' else rear).append(frag)
   continue
  is_steering='STEER_HR' in row['ancestors']
- if is_steering and any(a in node for a in ('SW_LIT','LIT8','TAG_')):continue
+ # Claude 7 Nov (step 10): the wheel's LCD (SW_LIT2) is kept as SW_SCREEN; screen.py makes it the live page
+ if is_steering and any(a in node for a in ('SW_LIT','LIT8','TAG_')) and not node.startswith('SW_LIT2'):continue
  key=('SW_' if is_steering else '')+mat
  if node=='headlightl_a_SUB3':key='HEAD_EMIT'
+ elif node.startswith('SW_LIT2'):key='SW_SCREEN'
  elif node=='GLOW_1':key='TAIL_EMIT'
  image=material.baseColorTexture
  if image is None:image=Image.new('RGBA',(16,16),(255,255,255,255))
