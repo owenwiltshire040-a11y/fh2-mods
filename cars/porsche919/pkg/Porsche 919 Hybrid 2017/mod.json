@@ -1,0 +1,12 @@
+{
+ "format_version": 1,
+ "id": "owen-porsche-919-2017",
+ "name": "Porsche 919 Hybrid (2017)",
+ "author": "Owen",
+ "version": "0.1.1",
+ "description": "2017 Porsche 919 Hybrid, No. 2 Le Mans livery, source cockpit and wheels, working lights and adapted source audio.",
+ "database": "database.json",
+ "strings": "strings.json",
+ "media": "media",
+ "dependencies": []
+}

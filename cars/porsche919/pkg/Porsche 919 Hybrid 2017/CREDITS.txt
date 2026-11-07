@@ -1,0 +1,6 @@
+Porsche 919 Hybrid (2017) - personal conversion for Owen.
+Model, textures and audio supplied in gtp_porsche_919_2017. Original creator and licence not supplied.
+No. 2 Le Mans skin selected from the supplied skins/2 folder.
+Assetto Corsa KN5 read with assetto-corsa-gltf by semiloker (MIT).
+FH2 donor media from Owen's own game installation.
+Hybrid deployment is approximated by combined power and rear-biased AWD in FH2.
