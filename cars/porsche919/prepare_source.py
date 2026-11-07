@@ -93,28 +93,36 @@ def clip_alpha(V,N,UV,mask):
  for v,n,u in zip(V.reshape(-1,3,3),N.reshape(-1,3,3),UV.reshape(-1,3,2)):walk(v,n,u)
  if not out:return np.zeros((0,3)),np.zeros((0,3)),np.zeros((0,2))
  return tuple(np.concatenate([o[i] for o in out]) for i in range(3))
-clipped={}
+clipped={};decals=[]
 for key in sorted(alpha):
  if key not in parts or mapping.get(key)==('plain','glass') or key=='TAIL_EMIT':continue
  img=Image.open(HERE/'textures'/textures[key]).convert('RGBA')
  if max(img.size)<=64:continue
  rgba=np.array(img);mask=rgba[:,:,3]>100
  if (~mask).mean()<=.01:continue
+ idx=distance_transform_edt(~mask,return_distances=False,return_indices=True)
+ bled=rgba.copy();bled[:,:,:3]=rgba[idx[0],idx[1],:3]
+ if key not in steering:
+  # Claude 7 Nov v0.1.2: body decals keep their source geometry and alpha; livery_decals.py (package finalizer)
+  # draws them with the game's carpaint_livery transparent pass (Codex's RB22 restore_decals method).
+  for f in parts[key]:f['V']=f['V']+f['N']*.0015
+  out=Image.fromarray(bled);filename=hashlib.sha1(out.tobytes()+b'livery').hexdigest()[:12]+'.png';out.save(HERE/'textures'/filename)
+  textures[key]=filename;mapping[key]=('textured','t'+Path(filename).stem);decals.append(key);continue
+ # steering-wheel decals (bone-attached part): clipped to their alpha, as before
  kept=[];before=sum(len(f['V'])//3 for f in parts[key])
  for f in parts[key]:
   iu=np.c_[f['UV'][:,0],1-f['UV'][:,1]].reshape(-1,3,2);iu=(iu-np.floor(iu.mean(1,keepdims=True))).reshape(-1,2)
   V,N,iu=clip_alpha(f['V'],f['N'],iu,mask)
   if len(V):kept.append(dict(f,V=V+N*.0015,N=N,UV=np.c_[iu[:,0],1-iu[:,1]]))
- idx=distance_transform_edt(~mask,return_distances=False,return_indices=True)
- rgba[:,:,:3]=rgba[idx[0],idx[1],:3];rgba[:,:,3]=255;bled=Image.fromarray(rgba)
- filename=hashlib.sha1(bled.tobytes()+b'decal').hexdigest()[:12]+'.png';bled.save(HERE/'textures'/filename)
+ bled[:,:,3]=255;out=Image.fromarray(bled)
+ filename=hashlib.sha1(out.tobytes()+b'decal').hexdigest()[:12]+'.png';out.save(HERE/'textures'/filename)
  textures[key]=filename;mapping[key]=('textured','t'+Path(filename).stem)
  clipped[key]=(before,sum(len(f['V'])//3 for f in kept))
  if kept:parts[key]=kept
  else:
   del parts[key];mapping[key]=None
   if key in steering:steering.remove(key)
-print('alpha-clipped decals',len(clipped),{k:v for k,v in clipped.items()})
+print('livery decals',len(decals),'clipped steering decals',clipped)
 # An atlas keeps both the BBS face and its source decals, including their alpha.
 base_mat=scene.geometry[scene.graph['RIM_LF_SUB0'][1]].visual.material.baseColorTexture.convert('RGBA')
 decal_mat=scene.geometry[scene.graph['RIM_LF_SUB1'][1]].visual.material.baseColorTexture.convert('RGBA')
@@ -134,6 +142,6 @@ P=np.concatenate([f['V'] for f in parts['SOURCE_RIM']]);c=W['HUB_LF']['centre']
 report=dict(nominal_rim_in=18,outer_lip_radius=float(np.hypot(P[:,1]-c[1],P[:,2]-c[2]).max()),fitted_depth=float(np.ptp(P[:,0])),triangles=len(P)//3,source='Porsche 919 BBS front rim and original decals')
 (HERE/'source-wheel.json').write_text(json.dumps(report,indent=2)+'\n')
 pickle.dump(dict(parts=parts,wheels=W,wheelbase=wb,ground=.151-np.mean([w['radius'] for w in W.values()]),materials=sorted(parts)),open(HERE/'geo.pkl','wb'))
-a=dict(offset=offset.tolist(),wheelbase=wb,textures=textures,mapping=mapping,alpha=alpha,paint=sorted(set(paint)),steering=steering,wheels={k:dict(centre=w['centre'].tolist(),radius=w['radius'],width=w['width']) for k,w in wheels.items()})
+a=dict(decals=decals,offset=offset.tolist(),wheelbase=wb,textures=textures,mapping=mapping,alpha=alpha,paint=sorted(set(paint)),steering=steering,wheels={k:dict(centre=w['centre'].tolist(),radius=w['radius'],width=w['width']) for k,w in wheels.items()})
 (HERE/'source-analysis.json').write_text(json.dumps(a,indent=2)+'\n')
 print('Measured wheelbase',wb,'texture files',len(set(textures.values())),'steering materials',len(steering),'source rim',report)

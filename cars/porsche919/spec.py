@@ -62,3 +62,4 @@ PHYSICS['aero_rear']=(35.,80.,600.,1000.)
 PHYSICS['car'].update(year=2017,top_mph=210.,t60=2.2,t100=4.3,price=2000000,drag=250.,downforce_front=450.,downforce_rear=800.,wi_force=.85,open_cockpit=0,open_wheel=0)
 LIGHTS={'head':dict(mats=['HEAD_EMIT']),'tail':dict(mats=['TAIL_EMIT'])}
 EXTRA_MEDIA_FILES={'audio/fmodanthem/durango/PG_POR_919_2017_.bank':str(Path(HERE)/'audio/build/PG_POR_919_2017_.bank')}
+PACKAGE_FINALIZER='cars/porsche919/livery_decals.py'   # Claude 7 Nov: native transparent livery pass for the source decals
