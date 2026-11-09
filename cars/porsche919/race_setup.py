@@ -25,7 +25,9 @@ def apply(c,S):
   if col.endswith('ScalarMax'):c.execute(f'update Data_Car set "{col}"=1.2 where Id=?',(car,))
   if col.endswith('ScalarClamp'):c.execute(f'update Data_Car set "{col}"=6.0 where Id=?',(car,))
  for (sid,front) in c.execute('select s.SpringDamperPhysicsID,s.SpringDamperPhysicsID=u.FrontSpringDamperPhysicsID from List_UpgradeSpringDamper u join List_SpringDamperPhysics s on s.SpringDamperPhysicsID in (u.FrontSpringDamperPhysicsID,u.RearSpringDamperPhysicsID) where u.Ordinal=?',(car,)).fetchall():
-  c.execute('update List_SpringDamperPhysics set DefRideHeight=.1625,MinRideHeight=.1325,MaxRideHeight=.1925,StaticCamber=?,StaticToe=? where SpringDamperPhysicsID=?',(-2. if front else -1.5,0. if front else -.5,sid))
+  # Claude 9 Nov: LMP1-like travel (was 81 mm to MaxCompressHeight .0812, so the body sat down onto the tyres under
+  # downforce/braking); 25 mm travel, springs x1.5, firmer bump stops, ride-height tuning down to -15 mm only
+  c.execute('update List_SpringDamperPhysics set DefRideHeight=.1625,MinRideHeight=.1475,MaxRideHeight=.1925,MaxCompressHeight=.1375,BumpstopStiffness=150,BumpstopDamping=4,DefSpringRate=DefSpringRate*1.5,MinSpringRate=MinSpringRate*1.5,MaxSpringRate=MaxSpringRate*1.5,StaticCamber=?,StaticToe=? where SpringDamperPhysicsID=?',(-2. if front else -1.5,0. if front else -.5,sid))
  # brakes: the Williams FW24's stock tuning (every FH2 car ships 0.5/0.5; bias 1 put all the braking on the front axle)
  c.execute('update List_UpgradeBrakes set Level=3,BrakeTorqueSlider=.5,BrakeBiasSlider=.5,GameFrictionScaleBraking=1.15,ReleasePointABSFrontFullSteer=.45,ReleasePointABSRearNoSteer=2.15,ReleasePointABSRearFullSteer=.65,RequiresGraphics=0 where Ordinal=?',(car,))
  c.execute('update Data_Car set SimBrakeDistance60MPH=20.0,SimBrakeDistance100MPH=43.2 where Id=?',(car,))

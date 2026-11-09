@@ -100,6 +100,26 @@ def clip_alpha(V,N,UV,mask):
  for v,n,u in zip(V.reshape(-1,3,3),N.reshape(-1,3,3),UV.reshape(-1,3,2)):walk(v,n,u)
  if not out:return np.zeros((0,3)),np.zeros((0,3)),np.zeros((0,2))
  return tuple(np.concatenate([o[i] for o in out]) for i in range(3))
+# Claude 9 Nov (Owen: "the tyres clip through the body", at the top of the arches, standing still and moving).
+# The rear bodywork (trunk_a panel, its glass edge, trunkliner) already sits up to 45 mm inside the source tyre, and the
+# front arch tops clear it by 15 mm; the game tyre (310/41 R18: r .3557) is 3 mm bigger and sits 23 mm further out
+# (first-fit.json). Body vertices inside the GAME tyre + ARCH_MARGIN (between the hub radius and that, across the
+# tyre width + 10 mm, above axle - 10 cm) are pushed radially out to it: a local arch reshape; decals move with it.
+ARCH_MARGIN=.022
+fit=json.loads((HERE/'first-fit.json').read_text())['corners']
+arch={}
+for corner,c in fit.items():
+ cx,cy,cz=c['tyre_centre'];Rt=c['radius']+ARCH_MARGIN;hw=c['width']/2+.01;moved=0;deepest=0.
+ for key,frags in parts.items():
+  if key.startswith(('RIM_REF','SOURCE_RIM')) or key in steering:continue
+  for fr in frags:
+   V=fr['V'];dy=V[:,1]-cy;dz=V[:,2]-cz;r=np.hypot(dy,dz)
+   sel=(np.abs(V[:,0]-cx)<hw)&(r>.25)&(r<Rt)&(dy>-.10)
+   if sel.any():
+    deepest=max(deepest,float((Rt-r[sel]).max()));k=Rt/r[sel]
+    V[sel,1]=cy+dy[sel]*k;V[sel,2]=cz+dz[sel]*k;moved+=int(sel.sum())
+ arch[corner]=dict(vertices_moved=moved,deepest_mm=round(deepest*1000,1),clear_radius=Rt)
+print('arch clearance',arch)
 clipped={};decals=[]
 for key in sorted(alpha):
  if key not in parts or mapping.get(key)==('plain','glass') or key=='TAIL_EMIT':continue
@@ -149,6 +169,6 @@ P=np.concatenate([f['V'] for f in parts['SOURCE_RIM']]);c=W['HUB_LF']['centre']
 report=dict(nominal_rim_in=18,outer_lip_radius=float(np.hypot(P[:,1]-c[1],P[:,2]-c[2]).max()),fitted_depth=float(np.ptp(P[:,0])),triangles=len(P)//3,source='Porsche 919 BBS front rim and original decals')
 (HERE/'source-wheel.json').write_text(json.dumps(report,indent=2)+'\n')
 pickle.dump(dict(parts=parts,wheels=W,wheelbase=wb,ground=.151-np.mean([w['radius'] for w in W.values()]),materials=sorted(parts)),open(HERE/'geo.pkl','wb'))
-a=dict(decals=decals,offset=offset.tolist(),wheelbase=wb,textures=textures,mapping=mapping,alpha=alpha,paint=sorted(set(paint)),steering=steering,wheels={k:dict(centre=w['centre'].tolist(),radius=w['radius'],width=w['width']) for k,w in wheels.items()})
+a=dict(arch_clearance=arch,decals=decals,offset=offset.tolist(),wheelbase=wb,textures=textures,mapping=mapping,alpha=alpha,paint=sorted(set(paint)),steering=steering,wheels={k:dict(centre=w['centre'].tolist(),radius=w['radius'],width=w['width']) for k,w in wheels.items()})
 (HERE/'source-analysis.json').write_text(json.dumps(a,indent=2)+'\n')
 print('Measured wheelbase',wb,'texture files',len(set(textures.values())),'steering materials',len(steering),'source rim',report)
