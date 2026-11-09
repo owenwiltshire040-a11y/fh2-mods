@@ -49,6 +49,8 @@ for node,row in raw.items():
  is_steering='STEER_HR' in row['ancestors']
  # Claude 7 Nov (step 10): the wheel's LCD (SW_LIT2) is kept as SW_SCREEN; screen.py makes it the live page
  if is_steering and any(a in node for a in ('SW_LIT','LIT8','TAG_')) and not node.startswith('SW_LIT2'):continue
+ # Claude 9 Nov (step 10): the opaque blackglass layer behind the clear headlight cover hid the whole lamp
+ if node=='headlightl_a_SUB5':continue
  key=('SW_' if is_steering else '')+mat
  if node=='headlightl_a_SUB3':key='HEAD_EMIT'
  elif node.startswith('SW_LIT2'):key='SW_SCREEN'
@@ -56,6 +58,9 @@ for node,row in raw.items():
  image=material.baseColorTexture
  if image is None:image=Image.new('RGBA',(16,16),(255,255,255,255))
  image=image.convert('RGBA')
+ # the reflector and lamp were textured with the conversion's dark RIM_BLUR.DDS: plain silver / near-white
+ if key=='HEAD_EMIT':image=Image.new('RGBA',(16,16),(238,240,245,255))
+ if node=='headlightl_a_SUB2':key='HEAD_CHROME';image=Image.new('RGBA',(16,16),(205,207,212,255))
  factor=np.asarray(material.baseColorFactor if material.baseColorFactor is not None else [255]*4)/255
  pixels=np.array(image).astype(float)*factor
  image=Image.fromarray(np.rint(pixels).astype('uint8'))
