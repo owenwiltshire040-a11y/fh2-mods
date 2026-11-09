@@ -1,4 +1,5 @@
-"""Dedicated stock race setup (from the Jordan EJ11), full 15,000 rpm curves, and adjustable race components."""
+"""Dedicated stock race setup (from the Jordan EJ11), full-range torque curves (9,000 rpm here), and adjustable race components.
+Claude 9 Nov: engine graph torque limit 700 -> 900 (peak 800 Nm)."""
 import math
 import numpy as np
 
@@ -16,7 +17,7 @@ def apply(c,S):
   values=[max(float(np.interp(i*100,xs,ys)),0.)/peak if i*100<=E['redline'] else (-2.63 if i==count-1 else 0.) for i in range(246)]
   c.execute('update List_TorqueCurve set TorqueScale=?,ZeroThrottleTorqueScale=150,NumTorqueValues=?,'+','.join(f'v{i}=?' for i in range(246))+' where TorqueCurveID=?',[peak,count,*values,cid])
  c.execute('update List_UpgradeEngineCamshaft set RedlineRPM=?,TorqueCurveMaxRPM=?,NumRPMEntriesArray=?,StallRPM=?,StartRPM=? where EngineID=?',(E['redline'],(count-1)*100,count,E['stall'],E['start'],car))
- c.execute('update Data_Engine set EngineGraphingMaxPower=1100,EngineGraphingMaxTorque=700 where EngineID=?',(car,))
+ c.execute('update Data_Engine set EngineGraphingMaxPower=1100,EngineGraphingMaxTorque=900 where EngineID=?',(car,))
  c.execute('update List_UpgradeTireCompound set TireModelName="OW_F1" where Ordinal=?',(car,))
  c.execute('update Data_Car set FixListingRearFricScale=2.5 where Id=?',(car,))
  cols=[r[1] for r in c.execute('pragma table_info(Data_Car)')]

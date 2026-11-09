@@ -49,7 +49,8 @@ PHYSICS['engine'].update(name='2.0L V4 Turbo Hybrid',sound='POR_919_2017_',mass=
  displacement=1995,aspiration=2,boost=1.8,compression=12.,inertia=.07,tank=62.3,
  peak_hp=900.,peak_nm=800.,redline=9000,stall=900.,start=3500.,
  curve=[(0,140),(1000,260),(2000,460),(3500,690),(5000,775),(6500,800),(7500,800),(8000,795),(8500,754),(9000,700)])
-PHYSICS['drivetrain'].update(drivetype=3,gears=[3.15,2.35,1.85,1.52,1.28,1.105,.98],final_drive=4.4,
+PHYSICS['drivetrain'].update(drivetype=3,gears=[3.15,2.35,1.85,1.52,1.28,1.105,.98],final_drive=3.65,  # Claude 9 Nov (step 11): 4.4 hit the 9000 limiter at ~174 mph in 7th; 3.65 -> ~209 mph (Le Mans ~210)
+ 
  shift_time=.05,clutch_nm=1400.,lsd=(350.,150.,1250.,500.))
 PHYSICS['body'].update(mass=875.,weight_front=.44,cm_height=.30,block=(1.9,1.05,4.65),height=1.05,length=4.65,width=1.9,
  wheelbase=A['wheelbase'],model_wheelbase=A['wheelbase'],track_front='auto',track_rear='auto',ride_height=.1625,
